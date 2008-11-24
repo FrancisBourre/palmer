@@ -1,0 +1,339 @@
+<project name="Palmer" basedir="../" default="test.Execute">
+	
+	<property file="./build/build.properties" />
+
+	<!--**************************************************** 
+		CLEAN THE TEST RUNNER
+	*****************************************************-->	
+	
+	<target name="test.Clean">
+		<delete>
+			<fileset dir="${bin.dir}">
+			    <include name="PalmerTestRunner.swf"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<!--**************************************************** 
+		COMPILE THE TEST RUNNER
+	*****************************************************-->
+	
+	<target name="test.Compile">
+		<antcall target="mxmlc.Compile">
+			<param name="src" value="${testRunner.dir}/PalmerTest.mxml"/>
+			<param name="output" value="PalmerTestRunner.swf"/>
+			<param name="bin" value="${bin.dir}"/>
+		</antcall>
+	</target>
+	
+	<!--**************************************************** 
+		LAUNCH THE TEST RUNNER IN THE FLASH PLAYER
+	*****************************************************-->
+	
+	 <target name="test.Launch">
+
+	 	<antcall target="flashPlayer.Exec">
+			<param name="file" value="${bin.dir}/PalmerTestRunner.swf"/>
+		</antcall>
+
+    </target>
+	
+	<!--**************************************************** 
+		CLEAN, COMPILE AND THEN LAUNCH THE TEST RUNNER
+	*****************************************************-->
+	
+	<target name="test.Execute">
+		
+		<antcall target="test.Clean"/>
+		<antcall target="test.Compile"/>
+		<antcall target="test.Launch"/>
+
+	</target>
+	
+	<!--**************************************************** 
+		CLEAN THE SWC PACKAGE
+	*****************************************************-->	
+	
+	<target name="package.Clean">
+		<delete>
+			<fileset dir="${bin.dir}">
+			    <include name="${swc}"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<!--**************************************************** 
+		COMPILE THE SWC PACKAGE
+	*****************************************************-->	
+	
+	<target name="package.Compile">
+		<java jar="${compc.jar}" fork="true">
+			<arg line="-load-config=${flex.config}"/>
+			
+			<arg line="-is=${src.dir}"/>
+			<arg line="-sp=${src.dir}"/>
+	
+			<arg line="-output=${bin.dir}/${swc}"/>
+		</java>
+	</target>
+
+	<!--**************************************************** 
+		CLEAN AND THEN COMPILE THE SWC PACKAGE
+	*****************************************************-->
+	
+	<target name="package.Execute">
+		
+		<antcall target="package.Clean"/>
+		<antcall target="package.Compile"/>
+		
+	</target>
+	
+	<!--**************************************************** 
+		CLEAN THE DOCUMENTATION DIRECTORY
+	*****************************************************-->
+	
+	<target name="docs.Clean">
+
+		<delete includeemptydirs="true">
+			<fileset dir="${docs.dir}" includes="**/*"/>
+		</delete>
+		
+	</target>
+	
+	<!--**************************************************** 
+		CREATE THE DOCUMENTATION
+	*****************************************************-->
+
+	<target name="docs.Create">
+		
+		<java jar="${asdoc.jar}" fork="true">
+			
+			<jvmarg value="-Xbootclasspath/p: ${FLEX_HOME}/asdoc/lib/xalan.jar"/>
+
+			<arg line="+flexlib='${FLEX_HOME}/frameworks'"/>
+			
+			<arg line="-load-config=${flex.config}"/>
+			
+			<arg line="-source-path=${src.dir}"/>
+			<arg line="-doc-sources=${src.dir}"/>
+			<arg line="-output=${docs.dir}"/>
+			
+			<!-- GENERAL TITLES & DESCRIPTION -->
+			
+			<arg line="-footer='${project.name} API Documentation - 2008'"/>
+			<arg line="-main-title='${project.name} API Documentation'"/>
+			<arg line="-window-title='${project.name} API Documentation'"/>
+			
+			<!-- PACKAGES DESCRIPTION -->
+			
+			<arg line="-package com.bourre.collection 
+						'Contains the collections framework, legacy collection classes.'"/>
+			
+			<arg line="-package com.bourre.commands 
+						'Various interfaces, and their implementations, of the Command pattern.'"/>
+			
+			<arg line="-package com.bourre.core 
+						'Core utilities for objects handling.'"/>
+		
+			<arg line="-package com.bourre.error 
+						'Custom exceptions class thrown by LowRA components.'"/>
+			
+			<arg line="-package com.bourre.events 
+						'Provides interfaces and classes for dealing with different types
+						 of events fired by LowRA components or for creating your own
+						 event-based components.'"/>
+			
+			<arg line="-package com.bourre.load 
+						'Contains a complete set of classes for file loading purpose'"/>
+			
+			<arg line="-package com.bourre.load.strategy 
+						'Contains custom strategy used by the different loader of LowRA'"/>
+			
+			<arg line="-package com.bourre.log 
+						'Provides a set of tools application logging and objects stringification'"/>
+			
+			<arg line="-package com.bourre.model
+						'Base objects for model part of the LowRA MVC implementation'"/>
+			
+			<arg line="-package com.bourre.plugin
+						'Base objects for plugin creation and communication'"/>
+		
+			<arg line="-package com.bourre.service
+						'Contains abstract classes and utilities for remoting request 
+						 and service-based communication'"/>
+			
+			<arg line="-package com.bourre.transitions
+						'Animations framework.'"/>
+			
+			<arg line="-package com.bourre.structures
+						'Convenient data structures'"/>
+			
+			<arg line="-package com.bourre.utils
+						'Contains general purpose utility classes and logging layout'"/>
+			
+			<arg line="-package com.bourre.view
+						'Base objects for view part of the LowRA MVC implementation'"/>
+			
+					
+		</java>
+		
+	</target>
+
+	<!--**************************************************** 
+		COPY INCLUDED DOCUMENTS
+	*****************************************************-->	
+	
+	<target name="docs.CopyIncludes">
+		<copy todir="${docs.dir}">
+			<fileset dir="${docsIncludes.dir}">
+			</fileset>
+		</copy>
+	</target>
+	
+<!--**************************************************** 
+		INJECT ANNEXES IN HTML FILES
+	*****************************************************-->
+	
+	<target name="docs.Inject">
+		
+		<loadfile property="file" srcfile="${docs.dir}/package-list.html"></loadfile>
+		<loadfile property="addon" srcfile="${docsIncludes.dir}/annexes.html"></loadfile>
+		
+		<script language="javascript">
+			importClass ( java.io.File );
+
+			file = project.getProperty("file");
+			addon = project.getProperty("addon");
+			
+			docsDir = project.getProperty("docs.dir");
+			
+			s = file.substr ( 0, file.lastIndexOf( "&lt;/table&gt;" ) ) + "&lt;/table&gt;" + 
+				addon + file.substr ( file.lastIndexOf( "&lt;/table&gt;" ) + 8 );
+			
+			echo = project.createTask("echo");
+			echo.setFile( new File( docsDir, "package-list.html" ) );
+			echo.setMessage( s );
+			echo.perform();
+		</script>
+	</target>
+
+	<!--**************************************************** 
+		CLEAN AND THEN CREATES THE DOCUMENTATION
+	*****************************************************-->
+	
+	<target name="docs.Execute">
+		
+		<antcall target="docs.Clean"/>
+		<antcall target="docs.Create"/>
+		<antcall target="docs.CopyIncludes"/>
+		<antcall target="docs.Inject"/>
+		
+	</target>	
+	
+	<!--**************************************************** 
+		MISC TASKS
+	*****************************************************-->
+	
+	<!-- 
+		Launch the passed-in swf ${file} in the flash player.
+	-->
+	<target name="flashPlayer.Exec">
+		<exec executable="${flashDebugPlayer.bin}" spawn="true">
+			<arg line="'${file}'"/>
+		</exec>
+    </target>
+	
+	<!-- 
+		Compile the passed-in ${src} file to the output ${output} file
+		in the ${bin} directory
+	-->
+	<target name="mxmlc.Compile">
+		
+		<condition property="includes.arg" value="-includes='${includes}'" else="">
+			<isset property="includes"/>
+		</condition>
+			
+		<condition property="excludes.arg" value="-externs='${excludes}'" else="">
+			<isset property="excludes"/>
+		</condition>
+		
+		<condition property="report.arg" value="-link-report='${report}'" else="">
+			<isset property="report"/>
+		</condition>
+		
+		<java jar="${mxmlc.jar}" fork="true">
+			<arg line="-load-config=${flex.config}"/>
+			<arg line="-source-path=${flex.framework.dir}"/>
+
+			<arg line="-source-path+=${src.dir}"/>
+			<arg line="-source-path+=${test.dir}"/>
+			<arg line="-source-path+=${testRunner.dir}"/>
+			
+			<arg line="${includes.arg}"/>
+			<arg line="${excludes.arg}"/>
+			<arg line="${report.arg}"/>
+
+			<arg line="-library-path+=${flexunit.swc}"/>	
+
+			<arg line="-output=${bin.dir}/${output}"/>
+			<arg line="${src}"/>
+		</java>
+	</target>
+
+	<!--
+		Compile a dll using a temporary entry class
+	-->
+	
+	<target name="dll.Compile">
+		<property name="tempfile" value="DLLEntryPoint"/>
+		
+		<antcall target="dll.CreateTempEntry">
+			<param name="tempfile" value="${tempfile}"/>
+		</antcall>
+		
+		<antcall target="fcsh.Compile">
+			<param name="src" value="${src.dir}/${tempfile}.as"/>
+			<param name="output" value="${name}.swf"/>
+		</antcall>
+		
+		<antcall target="dll.CleanTempEntry">
+			<param name="tempfile" value="${tempfile}"/>
+		</antcall>
+	</target>
+	
+	<!--
+		Tests the Dll compile task
+		Copy paste that target to create your own dll compilation tasks
+	-->
+	<target name="dll.Test">
+		<antcall target="dll.Compile">
+			<param name="name" value="TestDll"/>
+			<param name="bin" value="${bin.dir}"/>
+			<param name="includes" value="com.bourre.structures.Dimension"/>
+			<param name="report" value="${bin.dir}/dllreport.xml"/>
+		</antcall>
+	</target>
+	
+	<!--
+		Generates a temporary *.as file containing an empty class which extends sprites
+		and which could be used as entry point for dll compilation
+	-->	
+	<target name="dll.CreateTempEntry">
+		<echo file="${src.dir}/${tempfile}.as">package
+{
+	import flash.display.Sprite;
+	public class ${tempfile} extends Sprite {}
+}
+		</echo>
+	</target>
+	
+	<!--
+		Clean the previously created temporary entry point
+	-->
+	<target name="dll.CleanTempEntry">
+		<delete>
+			<fileset file="${src.dir}/${tempfile}.as"/>
+		</delete>
+	</target>
+
+</project>
