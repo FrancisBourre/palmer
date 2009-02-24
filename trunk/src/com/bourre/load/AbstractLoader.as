@@ -67,7 +67,8 @@ package com.bourre.load
 		protected var _oEB : EventBroadcaster;
 		protected var _sName : String;
 		protected var _nTimeOut : Number;
-		protected var _oURL : URLRequest;
+		protected var _URL : URLRequest;
+		protected var _sURL : String;
 		protected var _bAntiCache : Boolean;
 		protected var _sPrefixURL : String;
 
@@ -153,12 +154,14 @@ package com.bourre.load
 
 		public function getURL() : URLRequest
 		{
-			return _bAntiCache ? new URLRequest( _sPrefixURL + _oURL.url + "?nocache=" + _getStringTimeStamp() ) : new URLRequest( _sPrefixURL + _oURL.url );
+			_bAntiCache ? _URL.url = _sPrefixURL + _sURL + "?nocache=" + _getStringTimeStamp() : _sPrefixURL + _sURL;
+			return _URL;
 		}
 
 		public function setURL( url : URLRequest ) : void
 		{
-			_oURL = url;
+			_URL = url;
+			_sURL = _URL.url;
 		}
 
 		public function addListener( listener : LoaderListener ) : Boolean
