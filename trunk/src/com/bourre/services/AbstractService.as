@@ -32,7 +32,7 @@ package com.bourre.services
 		{
 			_result = result;
 		}
-
+		
 		public function getResult() : Object
 		{
 			return _result;

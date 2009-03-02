@@ -17,8 +17,8 @@ package com.bourre.ioc.control
 {
 	import com.bourre.commands.AbstractCommand;
 	import com.bourre.events.ValueObjectEvent;
-	import com.bourre.ioc.assembler.Constructor;
-	import com.bourre.ioc.assembler.DictionaryItem;
+	import com.bourre.ioc.assembler.locator.Constructor;
+	import com.bourre.ioc.assembler.locator.DictionaryItem;
 	
 	import flash.events.Event;
 	import flash.utils.Dictionary;	

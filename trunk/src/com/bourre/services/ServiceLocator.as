@@ -15,8 +15,8 @@
  */
 package com.bourre.services 
 {
-	import com.bourre.core.AbstractLocator;	
-	
+	import com.bourre.core.AbstractLocator;		
+
 	/**
 	 * @author Francis Bourre
 	 */
@@ -34,7 +34,7 @@ package com.bourre.services
 			if ( service is Class ) {e.setServiceClass( service as Class );} else {e.setService( service as Service );}
 			broadcastEvent( e );
 		}
-
+		
 		override protected function onUnregister( key : String = null ) : void
 		{
 			broadcastEvent( new ServiceLocatorEvent( ServiceLocatorEvent.onUnregisterServiceEVENT, key, this ) );
@@ -81,12 +81,12 @@ package com.bourre.services
 			return null;
 		}
 
-		public function addListener( listener : ServiceLocatorListener ) : Boolean
+		public function addServiceListener( listener : ServiceLocatorListener ) : Boolean
 		{
 			return addListener( listener );
 		}
-
-		public function removeListener( listener : ServiceLocatorListener ) : Boolean
+		
+		public function removeServiceListener( listener : ServiceLocatorListener ) : Boolean
 		{
 			return removeListener( listener );
 		}

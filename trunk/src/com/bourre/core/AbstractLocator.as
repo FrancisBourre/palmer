@@ -32,10 +32,25 @@ package com.bourre.core
 	import flash.utils.getQualifiedClassName;	
 
 	/**
-	 * @author Francis Bourre
+	 * Dispatched when an object is registered into locator.
+	 *  
+	 *  @eventType com.bourre.core.LocatorEvent.onRegisterObjectEVENT
 	 */
-	public class AbstractLocator 
-		implements Locator, TypedContainer
+	[Event(name="onRegisterObject", type="com.bourre.core.LocatorEvent")]
+
+	/**
+	 *  Dispatched when an object is unregistered form locator.
+	 *  
+	 *  @eventType com.bourre.core.LocatorEvent.onUnregisterObjectEVENT
+	 */
+	[Event(name="onUnregisterObject", type="com.bourre.core.LocatorEvent")]
+
+	/**
+	 * The AbstractLocator class.
+	 * 
+	 * @author 	Francis Bourre
+	 */
+	public class AbstractLocator implements Locator, TypedContainer
 	{
 		/**
 		 * Map storing <code>String</code> keys associated with
@@ -59,26 +74,78 @@ package com.bourre.core
 		public function AbstractLocator( type : Class = null, typeListener : Class = null, logger : Log = null ) 
 		{
 			_cType = ( type != null ) ? type : Object;
-			_m = new HashMap();
-			_oEB = new EventBroadcaster( this, typeListener );
-			_logger = (logger == null ) ? PalmerDebug.getInstance() : logger;
+			_m = new HashMap( );
+			_oEB = new EventBroadcaster( this, ( typeListener == null ) ? LocatorListener : typeListener );
+			_logger = (logger == null ) ? PalmerDebug.getInstance( ) : logger;
 		}
 
+		/**
+		 * Call this method to do something when an object is registered 
+		 * in locator.
+		 * 
+		 * @param	name	Name of the registered object
+		 * @param	o		The registered object
+		 */
 		protected function onRegister( name : String = null, o : Object = null ) : void
 		{
-			// override me if you need me
+			broadcastEvent( getLocatorEvent( getOnRegisterEventType( ), name, o ) );
 		}
 
+		/**
+		 * Call this method to do something when an object is unregistered 
+		 * from locator.
+		 * 
+		 * @param	name	Name of the registered object
+		 * @param	o		The registered object
+		 */
 		protected function onUnregister( name : String = null ) : void
 		{
-			// override me if you need me
+			broadcastEvent( getLocatorEvent( getOnUnregisterEventType( ), name ) );
 		}
-		
+
+		/**
+		 * Returns event type for "onRegister" event.
+		 * 
+		 * @default onRegisterObject
+		 */
+		protected function getOnRegisterEventType(  ) : String
+		{
+			return LocatorEvent.onRegisterObjectEVENT;
+		}
+
+		/**
+		 * Returns event type for "onUnregister" event.
+		 * 
+		 * @default onUnregisterObject
+		 */
+		protected function getOnUnregisterEventType(  ) : String
+		{
+			return LocatorEvent.onUnregisterObjectEVENT;
+		}
+
+		/**
+		 * Builds locator event structure.
+		 * 
+		 * <p>Overrides to use custom event type.</p>
+		 */
+		protected function getLocatorEvent( type : String, name : String = null, o : Object = null ) : LocatorEvent
+		{
+			return new LocatorEvent( type, this, name, o );
+		}
+
+		/**
+		 * @copy com.bourre.events.Broadcaster#broadcastEvent()
+		 */
 		protected function broadcastEvent( e : Event ) : void
 		{
 			_oEB.broadcastEvent( e );
 		}
-		
+
+		/**
+		 * Returns event <code>Broadcaster</code> owned by this locator.
+		 * 
+		 * @return The event <code>Broadcaster</code> owned by this locator.
+		 */
 		protected function getBroadcaster() : Broadcaster
 		{
 			return _oEB;
@@ -112,26 +179,37 @@ package com.bourre.core
 			return _m.containsKey( name );
 		}
 
+		/**
+		 * Registers passed-in object with identifier name to this locator.
+		 * 
+		 * @param	name	Key identifier
+		 * @param	o		Object to store
+		 * 
+		 * @return 	<code>true</code> if success
+		 * 			
+		 * @throws 	<code>IllegalArgumentException</code> — Key or object 
+		 * 			are already defined in this locator.
+		 */
 		public function register( name : String, o : Object ) : Boolean
 		{
 			var msg : String;
 
-			if ( isTyped() && !( o is getType() ) )
+			if ( isTyped( ) && !( o is getType( ) ) )
 			{
-				msg = this + ".register() failed. Item must be '" + getType().toString() + "' typed.";
-				getLogger().error ( msg );
+				msg = this + ".register() failed. Item must be '" + getType( ).toString( ) + "' typed.";
+				getLogger( ).error( msg );
 				throw new IllegalArgumentException( msg );
 			}
 
 			if ( _m.containsKey( name ) )
 			{
 				msg = " item is already registered with '" + name + "' name in " + this;
-				getLogger().error ( msg );
+				getLogger( ).error( msg );
 				throw new IllegalArgumentException( msg );
 
 				return false;
-
-			} else
+			} 
+			else
 			{
 				_m.put( name, o );
 				onRegister( name, o );
@@ -139,6 +217,13 @@ package com.bourre.core
 			}
 		}
 
+		/**
+		 * Unregisters object registered with identifier name.
+		 * 
+		 * @param	name	Key identifier
+		 * 
+		 * @return 	<code>true</code> if success
+		 */
 		public function unregister( name : String ) : Boolean
 		{
 			if ( isRegistered( name ) )
@@ -146,8 +231,8 @@ package com.bourre.core
 				_m.remove( name );
 				onUnregister( name );
 				return true;
-
-			} else
+			} 
+			else
 			{
 				return false;
 			}
@@ -170,11 +255,11 @@ package com.bourre.core
 			if ( isRegistered( name ) ) 
 			{
 				return _m.get( name );
-
-			} else
+			} 
+			else
 			{
-				var msg : String = "Can't find '" + getType().toString() + "' item with '" + name + "' name in " + this;
-				getLogger().fatal ( msg );
+				var msg : String = "Can't find '" + getType( ).toString( ) + "' item with '" + name + "' name in " + this;
+				getLogger( ).fatal( msg );
 				throw new NoSuchElementException( msg );
 			}
 		}
@@ -185,7 +270,7 @@ package com.bourre.core
 		 */
 		public function release() : void
 		{
-			_m.clear();
+			_m.clear( );
 			_logger = null ;
 		}
 
@@ -207,11 +292,10 @@ package com.bourre.core
 				try
 				{
 					register( key, d[ key ] );
-
 				} catch ( e : IllegalArgumentException )
 				{
 					e.message = this + ".add() fails. " + e.message;
-					_logger.error ( e.message );
+					_logger.error( e.message );
 					throw( e );
 				}
 			}
@@ -256,29 +340,7 @@ package com.bourre.core
 		}
 
 		/**
-		 * Adds an event listener for the specified event type.
-		 * There is two behaviors for the <code>addEventListener</code>
-		 * function : 
-		 * <ol>
-		 * <li>The passed-in listener is an object : 
-		 * The object is added as listener only for the specified event, the object must
-		 * have a function with the same name than <code>type</code> or at least a
-		 * <code>handleEvent</code> function.</li>
-		 * <li>The passed-in listener is a function : 
-		 * A <code>Delegate</code> object is created and then
-		 * added as listener for the event type. There is no restriction on the name of 
-		 * the function. If the <code>rest</code> is not empty, all elements in it is 
-		 * used as additional arguments into the delegate object. 
-		 * </ol>
-		 * 
-		 * @param	type		name of the event for which register the listener
-		 * @param	listener	object or function which will receive this event
-		 * @param	rest		additional arguments for the function listener
-		 * @return	<code>true</code> if the function have been succesfully added as
-		 * 			listener fot the passed-in event
-		 * @throws 	<code>UnsupportedOperationException</code> — If the listener is an object
-		 * 			which have neither a function with the same name than the event type nor
-		 * 			a function called <code>handleEvent</code>
+		 * @copy com.bourre.events.Broadcaster#addEventListener()
 		 */
 		public function addEventListener( type : String, listener : Object, ... rest ) : Boolean
 		{
@@ -286,119 +348,210 @@ package com.bourre.core
 		}
 
 		/**
-		 * Removes the passed-in listener for listening the specified event. The
-		 * listener could be either an object or a function.
-		 * 
-		 * @param	type		name of the event for which unregister the listener
-		 * @param	listener	object or function to be unregistered
-		 * @return	<code>true</code> if the listener have been successfully removed
-		 * 			as listener for the passed-in event
+		 * @copy com.bourre.events.Broadcaster#removeEventListener()
 		 */
 		public function removeEventListener( type : String, listener : Object ) : Boolean
 		{
 			return _oEB.removeEventListener( type, listener );
 		}
-		
+
 		/**
-	     * Returns an <code>Array</code> view of the keys contained in this locator.
-	     *
-	     * @return an array view of the keys contained in this locator
-	     */
-		public function getKeys() : Array
+		 * @copy com.bourre.events.Broadcaster#addListener()
+		 */
+		public function addListener( listener : LocatorListener ) : Boolean
 		{
-			return _m.getKeys();
+			return _oEB.addListener( listener );
 		}
 
 		/**
-	     * Returns an <code>Array</code> view of the values contained in this locator.
-	     *
-	     * @return an array view of the values contained in this locator
-	     */
+		 * @copy com.bourre.events.Broadcaster#removeListener()
+		 */
+		public function removeListener( listener : LocatorListener ) : Boolean
+		{
+			return _oEB.removeListener( listener );
+		}
+
+		/**
+		 * Returns an <code>Array</code> view of the keys contained in this locator.
+		 *
+		 * @return an array view of the keys contained in this locator
+		 */
+		public function getKeys() : Array
+		{
+			return _m.getKeys( );
+		}
+
+		/**
+		 * Returns an <code>Array</code> view of the values contained in this locator.
+		 *
+		 * @return an array view of the values contained in this locator
+		 */
 		public function getValues() : Array
 		{
-			return _m.getValues();
+			return _m.getValues( );
 		}
 		
 		/**
-         * Takes all values of a Locator and pass them one by one as arguments
-         * to a method of an object.
-         * It's exactly the same concept as batch processing in audio or video
-         * software, when you choose to run the same actions on a group of files.
-         * <p>
-         * Basical example which sets _alpha value to .4 and scale to 50
-         * on all MovieClips nested in the Locator instance:
-         * </p>
-         * @example
-         * <listing>
-         * 
-         * function changeAlpha( mc : MovieClip, a : Number, s : Number )
-         * {
-         *      mc._alpha = a;
-         *      mc._xscale = mc._yscale = s;
-         * }
-         *
-         * myMovieClipLocator.processOnAllValues( changeAlpha, .4, 50 );
-         * </listing>
-         *
-         * @param	f		function to execute on each value stored in the locator.
-         * @param 	args	additionnal parameters.
-         */
-		public function processOnAllValues( f : Function, ...args ) : void
+		 * Returns a collection of registered values depending of passed-in 
+		 * value <code>type</code>.
+		 * 
+		 * @param	type	Class type filter
+		 */
+		protected function getTypedValues( type : Class = null ) : Array
 		{
-			var a : Array = getValues();
-			var l : int = a.length;
-			for( var i : int; i < l; ++i ) f.apply( null, (args.length > 0 ) ? [a[i]].concat( args ) : [a[i]] );
-		}
-		
-		/**
-         * Takes all values of a Locator and call on each value the method name
-         * passed as 1st argument.
-         * <p>
-         * Basical example which plays all MovieClips from frame 10.
-         * </p>
-         * @example
-         * <listing>
-         *
-         * myMovieClipLocator.callMethodOnAllValues( "gotoAndPlay", 10 );
-         * </listing>
-         *
-         * @param	methodName	method name to call on each value stored in the locator.
-         * @param 	args		additionnal parameters.
-         */
-		public function callMethodOnAllValues( methodName : String, ...args ) : void
-		{
-			var a : Array = getValues();
-			var l : int = a.length;
-			for( var i : int; i < l; ++i )
+			var a : Array = new Array( );
+			
+			if( type != null )
 			{
-				var target : Object = a[i];
+				for each (var value : * in getValues( ) )
+				{
+					if( value is type ) a.push( value );
+				}
+			}
+			else return getValues( );
+			
+			return a;
+		}
+
+		/**
+		 * Takes all values of a Locator and pass them one by one as arguments
+		 * to a method of an object.
+		 * It's exactly the same concept as batch processing in audio or video
+		 * software, when you choose to run the same actions on a group of files.
+		 * <p>
+		 * Basical example which sets _alpha value to .4 and scale to 50
+		 * on all MovieClips nested in the Locator instance:
+		 * </p>
+		 * @example
+		 * <listing>
+		 * 
+		 * function changeAlpha( mc : MovieClip, a : Number, s : Number )
+		 * {
+		 *      mc._alpha = a;
+		 *      mc._xscale = mc._yscale = s;
+		 * }
+		 *
+		 * locator.batchOnAll( changeAlpha, .4, 50 );
+		 * </listing>
+		 *
+		 * @param	f		function to execute on each value stored in the locator.
+		 * @param 	args	additionnal parameters.
+		 */
+		public function batchOnAll( f : Function, ...args ) : void
+		{
+			batch.apply( this, (args.length > 0 ) ? [ getValues(), f ].concat( args ) : [ getValues(), f ] );		}
+		
+		/**
+		 * Takes values by type in Locator and pass them one by one as arguments
+		 * to a method of an object.
+		 * It's exactly the same concept as batch processing in audio or video
+		 * software, when you choose to run the same actions on a group of files.
+		 * <p>
+		 * Basical example which sets _alpha value to .4 and scale to 50
+		 * on all MovieClips nested in the Locator instance:
+		 * </p>
+		 * @example
+		 * <listing>
+		 * 
+		 * function changeAlpha( mc : MovieClip, a : Number, s : Number )
+		 * {
+		 *      mc._alpha = a;
+		 *      mc._xscale = mc._yscale = s;
+		 * }
+		 *
+		 * locator.batchOnType( MovieClip, changeAlpha, .4, 50 );
+		 * </listing>
+		 * 
+		 * @param	type	Value type filter.
+		 * @param	f		function to execute on each value stored in the locator.
+		 * @param 	args	additionnal parameters.
+		 */
+		public function batchOnType( type : Class, f : Function, ...args ) : void
+		{
+			batch.apply( this, (args.length > 0 ) ? [ getTypedValues( type ), f ].concat( args ) : [ getTypedValues( type ), f ] );
+		}
+		
+		/** @private */
+		protected function batch( collection : Array, f : Function, ...args ) : void
+		{
+			var l : int = collection.length;
+			for( var i : int; i < l ; ++i ) f.apply( null, (args.length > 0 ) ? [ collection[i] ].concat( args ) : [ collection[i] ] );
+		}
+		
+		/**
+		 * Takes all values of a Locator and call on each value the method name
+		 * passed as 1st argument.
+		 * <p>
+		 * Basical example which plays all MovieClips from frame 10.
+		 * </p>
+		 * @example
+		 * <listing>
+		 *
+		 * locator.callOnAll( "gotoAndPlay", 10 );
+		 * </listing>
+		 *
+		 * @param	methodName	method name to call on each value stored in the locator.
+		 * @param 	args		additionnal parameters.
+		 */
+		public function callOnAll( methodName : String, ...args ) : void
+		{
+			call.apply( this, (args.length > 0 ) ? [ getValues(), methodName ].concat( args ) : [ getValues(), methodName ] );
+		}
+		
+		/**
+		 * Takes values by type in Locator and call on each value the method name
+		 * passed as 1st argument.
+		 * <p>
+		 * Basical example which plays all MovieClips from frame 10.
+		 * </p>
+		 * @example
+		 * <listing>
+		 *
+		 * locator.callOnType( MovieClip, "gotoAndPlay", 10 );
+		 * </listing>
+		 *
+		 * @param	type		Value type filter.		 * @param	methodName	method name to call on each value.
+		 * @param 	args		additionnal parameters.
+		 */
+		public function callOnType( type : Class, methodName : String, ...args ) : void
+		{
+			call.apply( this, (args.length > 0 ) ? [ getTypedValues( type ), methodName ].concat( args ) : [ getTypedValues( type ), methodName ] );
+		}
+		
+		/** @private */
+		protected function call( collection : Array, methodName : String, ...args ) : void
+		{
+			var l : int = collection.length;
+			for( var i : int; i < l ; ++i )
+			{
+				var target : Object = collection[i];
 				if ( target.hasOwnProperty( methodName ) && target[ methodName ] is Function )
 				{
 					(target[ methodName ]).apply( null, args );
-
-				} else
+				} 
+				else
 				{
 					var msg : String;
-					msg = this + ".callMethodOnAllValues() failed. " + getQualifiedClassName(target) + 
-					"' class doesn't implement '" + methodName + "'";
+					msg = this + ".callMethodOnAllValues() failed. " + getQualifiedClassName( target ) + "' class doesn't implement '" + methodName + "'";
 					PalmerDebug.ERROR( msg );
 					throw( new UnsupportedOperationException( msg ) );
 				}
 			}
 		}
-
+		
 		/**
 		 * Returns the string representation of this instance.
+		 * 
 		 * @return the string representation of this instance
 		 */
-		public function toString () : String
+		public function toString() : String
 		{
-			var hasType : Boolean = getType() != null;
+			var hasType : Boolean = getType( ) != null;
 			var parameter : String = "";
 
 			if ( hasType )
 			{
-				parameter = getType().toString();
+				parameter = getType( ).toString( );
 				parameter = "<" + parameter.substr( 7, parameter.length - 8 ) + ">";
 			}
 

@@ -16,63 +16,144 @@
 package com.bourre.ioc.parser 
 {
 	import com.bourre.collections.Iterator;
-	import com.bourre.events.EventBroadcaster;
-	import com.bourre.log.PalmerStringifier;	
+	import com.bourre.commands.Batch;
+	import com.bourre.exceptions.NullPointerException;
+	import com.bourre.ioc.load.ApplicationLoader;
+	import com.bourre.log.PalmerDebug;
+	
+	import flash.events.Event;	
 
 	/**
 	 * @author Francis Bourre
 	 */
-	public class ContextParser 
+	public class ContextParser extends Batch
 	{
-		protected var _oEB : EventBroadcaster;
-		protected var _pc : ParserCollection;
-		protected var _oContext : XML;
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
 
+		protected var _oLoader : ApplicationLoader;
+		protected var _oContext : *;
+
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+		
+		/**
+		 * 
+		 */	
 		public function ContextParser( pc : ParserCollection = null ) 
 		{
-			_oEB = new EventBroadcaster( this, ContextParserListener );
-			_pc = pc;
-		}
-
-		public function parse( xml : * ) : void
-		{
-			_oEB.broadcastEvent( new ContextParserEvent( ContextParserEvent.onContextParsingStartEVENT, this ) );
-
-			_oContext = XML( xml );
-			var context : XML = _oContext.copy();
-
-			var i : Iterator = _pc.iterator();
-			while( i.hasNext() ) ( i.next( ) as AbstractParser ).parse( context );
-
-			_oEB.broadcastEvent( new ContextParserEvent( ContextParserEvent.onContextParsingEndEVENT, this ) );
-		}
-
-		public function toString() : String
-		{
-			return PalmerStringifier.stringify( this );
+			super();
+			
+			_oLoader = null;			_oContext = null;
+			
+			if( pc ) setParserCollection( pc );
 		}
 
 		/**
-		 * Event system
+		 *
 		 */
-		public function addListener( listener : ContextParserListener ) : Boolean
+		public function setApplicationLoader( assembler : ApplicationLoader ) : void
 		{
-			return _oEB.addListener( listener );
+			_oLoader = assembler;
+		}
+		
+		/**
+		 *
+		 */
+		public function getApplicationLoader(  ) : ApplicationLoader
+		{
+			return _oLoader;
 		}
 
-		public function removeListener( listener : ContextParserListener ) : Boolean
+		/**
+		 *
+		 */
+		public function setContextData( context : * ) : void
 		{
-			return _oEB.removeListener( listener );
+			_oContext = context;
 		}
 
-		public function addEventListener( type : String, listener : Object, ... rest ) : Boolean
+		/**
+		 *
+		 */
+		public function getContextData(  ) : *
 		{
-			return _oEB.addEventListener.apply( _oEB, rest.length > 0 ? [ type, listener ].concat( rest ) : [ type, listener ] );
+			return _oContext;
 		}
 
-		public function removeEventListener( type : String, listener : Object ) : Boolean
+		/**
+		 *
+		 */
+		final public function parse( context : * = null, loader : ApplicationLoader = null ) : void
 		{
-			return _oEB.removeEventListener( type, listener );
+			if( context ) setContextData( context );
+			if( loader ) setApplicationLoader( loader );
+			
+			var msg : String;
+			
+			if( getApplicationLoader() == null )
+			{
+				msg = this + ".parse() can't application assembler instance.";
+				PalmerDebug.ERROR( msg );
+				throw new NullPointerException( msg );
+			}
+			
+			if( getContextData() == null )
+			{
+				msg = this + ".parse() can't retrieve IoC context data";
+				PalmerDebug.ERROR( msg );
+				throw new NullPointerException( msg );
+			}
+			
+			super.execute( new ContextParserEvent( "", this, getApplicationLoader(), getContextData() ) );
 		}
+		
+		/**
+		 * 
+		 */
+		final override public function execute( event : Event = null ) : void
+		{
+			parse( );
+		}
+		
+		/**
+		 * Called when the command process is over.
+		 * 
+		 * @param	e	event dispatched by the command
+		 */
+		final override public function onCommandEnd( e : Event ) : void
+		{
+			if( _hasNext( ) )
+			{
+				_next( ).execute( e );
+			} 
+			else
+			{
+				_bIsRunning = false;
+				fireCommandEndEvent( );
+			}
+		}
+		
+		
+		//--------------------------------------------------------------------
+		// Protected methods
+		//--------------------------------------------------------------------
+		
+		/**
+		 *
+		 */
+		protected function setParserCollection( pc : ParserCollection  ) : void
+		{
+			removeAll( );
+			
+			var it : Iterator = pc.iterator( );
+			while( it.hasNext( ) )
+			{
+				addCommand( it.next( ) );
+			}	
+		}	
 	}
 }

@@ -16,7 +16,7 @@
 package com.bourre.plugin 
 {
 	import com.bourre.core.ValueObject;
-	import com.bourre.events.ValueObjectEvent;		
+	import com.bourre.events.ValueObjectEvent;	
 
 	/**
 	 * @author Francis Bourre
@@ -38,7 +38,7 @@ package com.bourre.plugin
 
 		public function getPlugin() : Plugin
 		{
-			return _plugin;
+			return ( _plugin != null ) ? _plugin : getTarget() as Plugin;
 		}
 	}
 }

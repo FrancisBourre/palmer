@@ -1,5 +1,7 @@
 package com.bourre.ioc.assembler
 {
+	import com.bourre.ioc.assembler.builder.DisplayObjectBuilder;
+	
 	import flash.net.URLRequest;	
 
 	/**
@@ -11,17 +13,6 @@ package com.bourre.ioc.assembler
 
 		function setDisplayObjectBuilder( 	displayObjectExpert 		: DisplayObjectBuilder ) 	: void;
 		function getDisplayObjectBuilder() 															: DisplayObjectBuilder;
-
-		function buildLoader( 				ID 							: String, 
-											url 						: URLRequest, 
-											progressCallback 			: String 	= null, 
-											nameCallback 				: String 	= null, 
-											timeoutCallback 			: String 	= null, 
-											parsedCallback 				: String 	= null, 
-											methodsCallCallback 		: String 	= null, 
-											objectsBuiltCallback		: String 	= null, 
-											channelsAssignedCallback	: String 	= null, 
-											initCallback 				: String 	= null	) 		: void;
 											
 		function buildRoot(					ID							: String			)		: void;
 
@@ -32,7 +23,20 @@ package com.bourre.ioc.assembler
 											type 						: String	= null	) 		: void;
 
 		function buildDLL( 					url 						: URLRequest 		) 		: void;
-
+		
+		/**
+		 * Builds <code>Resource</code> object.
+		 * 
+		 * @param	ID				Registration ID.
+		 * @param	url				File URL.
+		 * @param	type			(optional) Resource type : 'binary' or 'text'
+		 * @param	deserializer	(optional) Resource content deserializer
+		 */	
+		function buildResource(				id							: String,
+											url							: URLRequest,
+											type						: String = null,
+											deserializer 				: String = null		)	: void;
+											
 		function buildProperty( 			ownerID 					: String, 
 											name 						: String 	= null, 
 											value 						: String 	= null, 

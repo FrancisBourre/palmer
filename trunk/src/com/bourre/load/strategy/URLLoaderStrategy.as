@@ -16,7 +16,6 @@
 package com.bourre.load.strategy
 {
 	import com.bourre.load.Loader;
-	import com.bourre.log.PalmerDebug;
 	import com.bourre.log.PalmerStringifier;
 	
 	import flash.events.Event;
@@ -64,7 +63,7 @@ package com.bourre.load.strategy
 		{
 			_sDataFormat = dataFormat;
 		}
-
+		
 		public function load( request : URLRequest = null, context : LoaderContext = null ) : void
 		{
 			_loader = new URLLoader( );
@@ -76,8 +75,6 @@ package com.bourre.load.strategy
 			_loader.addEventListener( SecurityErrorEvent.SECURITY_ERROR, _onSecurityError );
 			_loader.addEventListener( HTTPStatusEvent.HTTP_STATUS, _onHttpStatus );
 			_loader.addEventListener( IOErrorEvent.IO_ERROR, _onIOError );
-
-			if ( context != null ) PalmerDebug.WARN( this + ".load() doesn't support LoaderContext argument." ); 
 			_loader.load( request ) ;
 		}
 

@@ -31,7 +31,9 @@ package com.bourre.plugin
 	import flash.events.Event;	
 
 	/**
-	 * @author Francis Bourre
+	 * The AbstractPlugin class.
+	 * 
+	 * @author 	Francis Bourre
 	 */
 	public class AbstractPlugin
 		implements Plugin
@@ -80,37 +82,58 @@ package com.bourre.plugin
 		{
 			firePublicEvent( new PluginEvent( PluginEvent.onReleasePluginEVENT, this ) );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function getChannel() : EventChannel
 		{
 			return ChannelExpert.getInstance().getChannel( this );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function isModelRegistered( name : String ) : Boolean
 		{
 			return _oModelLocator.isRegistered( name );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function getModel( key : String ) : Model
 		{
 			return _oModelLocator.getModel( key );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function isViewRegistered( name : String ) : Boolean
 		{
 			return _oViewLocator.isRegistered( name );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function getView( key : String ) : View
 		{
 			return _oViewLocator.getView( key );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function getLogger() : Log
 		{
 			return PluginDebug.getInstance( this );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function fireExternalEvent( e : Event, externalChannel : EventChannel ) : void
 		{
 			if ( externalChannel != getChannel() ) 
@@ -124,18 +147,25 @@ package com.bourre.plugin
 				throw new IllegalArgumentException( msg );
 			}
 		}
-
+		
+		
 		public function handleEvent ( e : Event = null ):void
 		{
 			
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function firePublicEvent( e : Event ) : void
 		{
 			if( _oEBPublic ) ( _oEBPublic as PluginBroadcaster ).firePublicEvent( e, this );
 				else getLogger().warn( this + " doesn't have public dispatcher" );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function firePrivateEvent( e : Event ) : void
 		{
 			if ( _oController.isRegistered( e.type ) ) 
@@ -147,7 +177,15 @@ package com.bourre.plugin
 				getLogger().debug( this + ".firePrivateEvent() fails to retrieve command associated with '" + e.type + "' event type." );
 			}
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function onApplicationInit( ) : void
+		{
+			fireOnInitPlugin();
+		}
+		
 		public function release() : void
 		{
 			_oController.release();
@@ -177,7 +215,7 @@ package com.bourre.plugin
 				return false;
 			}
 		}
-
+		
 		public function removeListener( listener : PluginListener ) : Boolean
 		{
 			if( _oEBPublic ) 

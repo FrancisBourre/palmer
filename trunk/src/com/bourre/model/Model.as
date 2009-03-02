@@ -15,6 +15,8 @@
  */
 package com.bourre.model 
 {
+
 	/**	 * @author Francis Bourre	 */	public interface Model 
 	{
-		//	}}
+		
+	}}

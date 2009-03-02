@@ -15,18 +15,71 @@
  */
 package com.bourre.ioc.load
 {
-	import com.bourre.load.LoaderListener;							
+	import com.bourre.load.LoaderListener;			
 
 	/**
+	 * <p>Application loader listener implementation.</p>
+	 * 
+	 * <p>All objects that want to listen to the loading of the application 
+	 * must implement this interface</p>.
+	 * 
+	 * @see com.bourre.ioc.DefaultApplicationRunner
+	 * 
 	 * @author Francis Bourre
 	 */
-	public interface ApplicationLoaderListener 
-		extends LoaderListener
+	public interface ApplicationLoaderListener extends LoaderListener
 	{
-		function onApplicationParsed 			( e : ApplicationLoaderEvent ) : void;
-		function onApplicationObjectsBuilt 		( e : ApplicationLoaderEvent ) : void;
-		function onApplicationChannelsAssigned 	( e : ApplicationLoaderEvent ) : void;
-		function onApplicationMethodsCalled 	( e : ApplicationLoaderEvent ) : void;
-		function onApplicationInit 				( e : ApplicationLoaderEvent ) : void;
+		/**
+		 * Triggered when IOC process change his state.
+		 * 
+		 * <p>Retreives state value using : <code>e.getApplicationState()</code><br />
+		 * Possible values are : 
+		 * <ul>
+		 * 	<li>ApplicationLoaderEvent.LOAD_STATE</li>
+		 * 	<li>ApplicationLoaderEvent.PARSE_STATE</li>
+		 * 	<li>ApplicationLoaderEvent.DLL_STATE</li>
+		 * 	<li>ApplicationLoaderEvent.RSC_STATE</li>
+		 * 	<li>ApplicationLoaderEvent.GFX_STATE</li>
+		 * 	<li>ApplicationLoaderEvent.BUILD_STATE</li>
+		 * 	<li>ApplicationLoaderEvent.RUN_STATE</li>
+		 * </ul>
+		 * 
+		 * @see ApplicationLoaderEvent
+		 */
+		function onApplicationState( e : ApplicationLoaderEvent ) : void
+		
+		/**
+		 * Triggered when xml context starts loading.
+		 */
+		function onApplicationLoadStart( e : ApplicationLoaderEvent ) : void
+		
+		/**
+		 * Triggered when xml context is loaded and parsed.
+		 */
+		function onApplicationParsed( e : ApplicationLoaderEvent ) : void;
+		
+		/**
+		 * Triggered when objects are created.
+		 */
+		function onApplicationObjectsBuilt( e : ApplicationLoaderEvent ) : void;
+		
+		/**
+		 * Triggered when communication channels are created.
+		 */
+		function onApplicationChannelsAssigned( e : ApplicationLoaderEvent ) : void;
+		
+		/**
+		 * Triggered when all methods defined in xml context are called on 
+		 * their respective owner instance.
+		 */
+		function onApplicationMethodsCalled( e : ApplicationLoaderEvent ) : void;
+		
+		/**
+		 * Triggered when application is ready.
+		 * 
+		 * <p>All is loaded, parsed, created and linked.<br />
+		 * Depedencies are resolved</p>
+		 */
+		function onApplicationInit( e : ApplicationLoaderEvent ) : void;
 	}
 }

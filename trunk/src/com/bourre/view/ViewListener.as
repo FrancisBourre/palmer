@@ -15,14 +15,21 @@
  */
 package com.bourre.view 
 {
-	import com.bourre.events.StringEvent;		
-
 	/**
-	 * @author Francis Bourre
+	 * The ViewListener interfacedefines rules for view listeners.
+	 * 
+	 * @author 	Francis Bourre
 	 */
 	public interface ViewListener 
 	{
-		function onInitView		( e : StringEvent ) : void;
-		function onReleaseView	( e : StringEvent ) : void;
+		/**
+		 * Triggered when view is initialized.
+		 */
+		function onInitView		( e : ViewEvent ) : void;
+		
+		/**
+		 * Triggered when view is released.
+		 */
+		function onReleaseView	( e : ViewEvent ) : void;
 	}
 }

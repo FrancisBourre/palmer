@@ -15,12 +15,8 @@
  */
 package com.bourre.commands 
 {
-	import com.bourre.commands.MacroCommand;
-	import com.bourre.plugin.Plugin;
-
-	import flash.events.Event;	
-
-	/**
+	import com.bourre.commands.MacroCommand;	import com.bourre.plugin.Plugin;		import flash.events.Event;	
+	/**
 	 * An asynchronous batch behave as a normal batch, but is designed to handle 
 	 * asynchronous commands. A command executed by this batch could only start 
 	 * when the previous command have fire its <code>onCommandEnd</code> event.
@@ -76,7 +72,7 @@ package com.bourre.commands
 		protected var _nIndex 		: Number;
 		protected var _eEvent 		: Event;
 		protected var _oLastCommand : Command;
-
+		
 		/**
 		 * Creates a new batch object.
 		 */
@@ -84,7 +80,7 @@ package com.bourre.commands
 		{
 			_aCommands = new Vector.<Command>();
 		}
-
+		
 		/**
 		 * @inheritDoc
 		 */

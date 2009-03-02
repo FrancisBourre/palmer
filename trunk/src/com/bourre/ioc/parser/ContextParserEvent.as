@@ -13,26 +13,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 package com.bourre.ioc.parser 
 {
 	import com.bourre.events.BasicEvent;
-									
+	import com.bourre.ioc.load.ApplicationLoader;	
+
 	/**
 	 * @author Francis Bourre
 	 */
 	public class ContextParserEvent 
 		extends BasicEvent
 	{
-		static public const onContextParsingStartEVENT 	: String = "onContextParsingStart";
-		static public const onContextParsingEndEVENT 	: String = "onContextParsingEnd";
-
-		public function ContextParserEvent( type : String, cp : ContextParser )
+		
+		//--------------------------------------------------------------------
+		// Private properties
+		//--------------------------------------------------------------------
+		
+		private var _oLoader : ApplicationLoader;
+		private var _oContext : *;
+		
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+		
+		public function ContextParserEvent( type : String, parser : ContextParser = null, loader : ApplicationLoader = null, rawContext : * = null )
 		{
-			super( type, cp );
+			super( type, parser );
+			
+			_oLoader = loader;
+			_oContext = rawContext;
 		}
 		
-		public function getContextParser() : ContextParser
+		public function getContextParser() :ContextParser
 		{
-			return getTarget( ) as ContextParser;
+			return getTarget( ) as ContextParser;		}
+		
+		public function getApplicationLoader( ) : ApplicationLoader
+		{
+			return _oLoader;
+		}
+		
+		public function getContextData( ) : *
+		{
+			return _oContext;
 		}
 	}}

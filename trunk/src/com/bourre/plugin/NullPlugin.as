@@ -48,7 +48,15 @@ package com.bourre.plugin
 			if ( !(NullPlugin._oI is NullPlugin) ) NullPlugin._oI = new NullPlugin( new ConstructorAccess() );
 			return NullPlugin._oI;
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function onApplicationInit( ) : void
+		{
+			fireOnInitPlugin();
+		}
+		
 		public function fireOnInitPlugin() : void
 		{
 			

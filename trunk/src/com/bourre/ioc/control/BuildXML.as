@@ -20,7 +20,7 @@ package com.bourre.ioc.control
 	import com.bourre.encoding.Deserializer;
 	import com.bourre.events.ValueObjectEvent;
 	import com.bourre.exceptions.IllegalArgumentException;
-	import com.bourre.ioc.assembler.Constructor;
+	import com.bourre.ioc.assembler.locator.Constructor;
 	
 	import flash.events.Event;	
 

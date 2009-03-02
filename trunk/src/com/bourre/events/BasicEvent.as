@@ -72,6 +72,7 @@ package com.bourre.events
 		{
 			return _sType;
 		}
+		
 		/**
 		 * @private
 		 */

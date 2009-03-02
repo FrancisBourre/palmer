@@ -19,9 +19,10 @@ package com.bourre.ioc.control
 	import com.bourre.commands.Command;
 	import com.bourre.core.CoreFactory;
 	import com.bourre.events.ValueObjectEvent;
-	import com.bourre.ioc.assembler.Constructor;
-	import com.bourre.ioc.parser.ContextTypeList;
-	import com.bourre.log.PalmerStringifier;		
+	import com.bourre.exceptions.PrivateConstructorException;
+	import com.bourre.ioc.assembler.locator.Constructor;
+	import com.bourre.ioc.core.ContextTypeList;
+	import com.bourre.log.PalmerStringifier;	
 
 	/**
 	 * @author Francis Bourre
@@ -43,6 +44,8 @@ package com.bourre.ioc.control
 
 		public function BuildFactory( access : PrivateConstructorAccess )
 		{
+			if ( !(access is PrivateConstructorAccess) ) throw new PrivateConstructorException();
+			
 			init();
 		}
 
@@ -76,9 +79,9 @@ package com.bourre.ioc.control
 			var type : String = constructor.type;
 			var cmd : Command = ( _m.containsKey( type ) ) ? _m.get( type ) as Command : _m.get( ContextTypeList.INSTANCE ) as Command;
 			cmd.execute( new ValueObjectEvent( type, this, constructor ) );
-
+			
 			if ( id ) CoreFactory.getInstance().register( id, constructor.result );
-
+			
 			return constructor.result;
 		}
 

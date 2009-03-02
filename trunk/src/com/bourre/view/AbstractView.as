@@ -17,10 +17,10 @@ package com.bourre.view
 {
 	import com.bourre.core.CoreFactory;
 	import com.bourre.events.EventBroadcaster;
-	import com.bourre.events.StringEvent;
 	import com.bourre.exceptions.IllegalArgumentException;
 	import com.bourre.exceptions.NoSuchElementException;
 	import com.bourre.log.PalmerStringifier;
+	import com.bourre.model.ModelEvent;
 	import com.bourre.plugin.NullPlugin;
 	import com.bourre.plugin.Plugin;
 	import com.bourre.plugin.PluginDebug;
@@ -32,20 +32,33 @@ package com.bourre.view
 	import flash.geom.Point;	
 
 	/**
+	 * Abstract implementation of View part of the MVC implementation.
+	 * 
 	 * @author Francis Bourre
 	 */
 	public class AbstractView 
 		implements View
 	{
-		static public const onInitViewEVENT 	: String = "onInitView";
-		static public const onReleaseViewEVENT 	: String = "onReleaseView";
-
-		public var view 		: DisplayObject;
-
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+		
 		protected var _sName	: String;
 		protected var _oEB		: EventBroadcaster;
 		protected var _owner 	: Plugin;
-
+		
+		
+		//--------------------------------------------------------------------
+		// Public properties
+		//--------------------------------------------------------------------
+				
+		public var view 		: DisplayObject;
+		
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+				
 		public function AbstractView( owner : Plugin = null, name : String = null, dpo : DisplayObject = null ) 
 		{
 			_oEB = new EventBroadcaster( this );
@@ -58,32 +71,37 @@ package com.bourre.view
 		{
 			//
 		}
-
-		protected function onInitView() : void
-		{
-			notifyChanged( new StringEvent( AbstractView.onInitViewEVENT, this, getName() ) );
-		}
-
-		protected function onReleaseView() : void
-		{
-			notifyChanged( new StringEvent( AbstractView.onReleaseViewEVENT, this, getName() ) );
-		}
-
+		
+		/**
+		 * Returns plugin owner.
+		 */
 		public function getOwner() : Plugin
 		{
 			return _owner;
 		}
-
+		
+		/**
+		 * Sets the plugin owner for model.
+		 * 
+		 * <p>if owner is <code>null</code>, use <code>NullPlugin</code> 
+		 * instance.</p>
+		 */
 		public function setOwner( owner : Plugin ) : void
 		{
 			_owner = owner ? owner : NullPlugin.getInstance();
 		}
-
+		
+		/**
+		 * Returns model logger tunnel.
+		 */
 		public function getLogger() : PluginDebug
 		{
 			return PluginDebug.getInstance( getOwner() );
 		}
-
+		
+		/**
+		 * @copy com.bourre.events.Broadcaster#broadcastEvent()
+		 */
 		public function notifyChanged( e : Event ) : void
 		{
 			getBroadcaster().broadcastEvent( e );
@@ -93,7 +111,7 @@ package com.bourre.view
 		{
 			_initAbstractView( getName(), dpo, (( name && (name != getName()) ) ? name : null) );
 		}
-
+		
 		public function setVisible( b : Boolean ) : void
 		{
 			if ( b ) show(); else hide();
@@ -111,15 +129,20 @@ package com.bourre.view
 
 		public function move( x : Number, y : Number ) : void
 		{
-			view.x = x;
-			view.y = y;
+			setPosition( new Point( x, y ) );
 		}
 
 		public function getPosition() : Point
 		{
 			return new Point( view.x, view.y );
 		}
-
+		
+		public function setPosition( p : Point ) : void
+		{
+			view.x = p.x;
+			view.y = p.y;
+		}
+		
 		public function setSize( size : Dimension ) : void
 		{
 			view.width = size.width;
@@ -234,22 +257,34 @@ package com.bourre.view
 			getBroadcaster().removeAllListeners();
 			_sName = null;
 		}
-
+		
+		/**
+		 * @copy com.bourre.events.Broadcaster#addListener()
+		 */
 		public function addListener( listener : ViewListener ) : Boolean
 		{
 			return _oEB.addListener( listener );
 		}
-
+		
+		/**
+		 * @copy com.bourre.events.Broadcaster#removeListener()
+		 */
 		public function removeListener( listener : ViewListener ) : Boolean
 		{
 			return _oEB.removeListener( listener );
 		}
-
+		
+		/**
+		 * @copy com.bourre.events.Broadcaster#addEventListener()
+		 */
 		public function addEventListener( type : String, listener : Object, ... rest ) : Boolean
 		{
 			return _oEB.addEventListener.apply( _oEB, rest.length > 0 ? [ type, listener ].concat( rest ) : [ type, listener ] );
 		}
-
+		
+		/**
+		 * @copy com.bourre.events.Broadcaster#removeEventListener()
+		 */
 		public function removeEventListener( type : String, listener : Object ) : Boolean
 		{
 			return _oEB.removeEventListener( type, listener );
@@ -276,7 +311,23 @@ package com.bourre.view
 				throw new IllegalArgumentException( msg );
 			}
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function onInitModel( e : ModelEvent ) : void
+		{
+			//
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function onReleaseModel( e : ModelEvent ) : void
+		{
+			//
+		}
+		
 		/**
 		 * Returns the string representation of this instance.
 		 * @return the string representation of this instance
@@ -286,7 +337,37 @@ package com.bourre.view
 			return PalmerStringifier.stringify( this );
 		}
 
-		//
+		protected function getBroadcaster() : EventBroadcaster
+		{
+			return _oEB;
+		}
+		
+		/**
+		 * Broadcasts <code>onInitView</code> event to listeners.
+		 */
+		protected function onInitView() : void
+		{
+			notifyChanged( new ViewEvent( ViewEvent.onInitViewEVENT, this, getName() ) );
+		}
+		
+		/**
+		 * Broadcasts <code>onReleaseView</code> event to listeners.
+		 */
+		protected function onReleaseView() : void
+		{
+			notifyChanged( new ViewEvent( ViewEvent.onReleaseViewEVENT, this, getName() ) );
+		}
+		
+		protected function firePrivateEvent( e : Event ) : void
+		{
+			getOwner().firePrivateEvent( e );
+		}
+		
+		
+		//--------------------------------------------------------------------
+		// Private implementation
+		//--------------------------------------------------------------------
+				
 		private function _initAbstractView( name : String, dpo : DisplayObject, avName : String  ) : void
 		{	
 			if ( dpo != null )
@@ -300,26 +381,6 @@ package com.bourre.view
 
 			setName( avName? avName: name );
 			onInitView();
-		}
-
-		protected function getBroadcaster() : EventBroadcaster
-		{
-			return _oEB;
-		}
-
-		protected function firePrivateEvent( e : Event ) : void
-		{
-			getOwner().firePrivateEvent( e );
-		}
-		
-		public function onInitModel( e : StringEvent ) : void
-		{
-			//
-		}
-		
-		public function onReleaseModel( e : StringEvent ) : void
-		{
-			//
 		}
 	}
 }

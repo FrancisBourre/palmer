@@ -15,44 +15,74 @@
  */
 package com.bourre.load
 {
-	import com.bourre.exceptions.IllegalArgumentException;
 	import com.bourre.load.strategy.LoaderStrategy;
-	import com.bourre.log.PalmerDebug;
 	
 	import flash.display.Bitmap;
 	import flash.display.DisplayObjectContainer;
+	import flash.display.LoaderInfo;
 	import flash.display.Sprite;
-	import flash.net.URLRequest;
-	import flash.system.ApplicationDomain;
-	import flash.system.LoaderContext;	
+	import flash.system.ApplicationDomain;	
 
 	/**
-	 * @author Francis Bourre
+	 * The GraphicLoader class is used to load SWF files or image (JPG, PNG, 
+	 * or GIF) files. 
+	 * 
+	 * @example
+	 * <pre class="prettyprint">
+	 * 
+	 * var loader : GraphicLoader = new GraphicLoader( mcContainer, -1, true );
+	 * loader.load( new URLRequest( "logo.swf" );
+	 * </pre>
+	 * 
+	 * @author 	Francis Bourre
 	 */
 	public class GraphicLoader extends AbstractLoader
 	{
+		//--------------------------------------------------------------------
+		// Private properties
+		//--------------------------------------------------------------------
+
 		private var _target : DisplayObjectContainer;
 		private var _index : int;
 		private var _bAutoShow : Boolean;
-		private var _bMustUnregister : Boolean;
-		private var _oContext : LoaderContext;
 		private var _oBitmapContainer : Sprite;
 
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Creates new <code>GraphicLoader</code> instance.
+		 * 
+		 * @param	target		(optional) Container of loaded display object
+		 * @param	index		(optional) Index of loaded display object in target 
+		 * 						display list
+		 * @param	autoShow	(optional) Loaded object visibility
+		 */	
 		public function GraphicLoader( target : DisplayObjectContainer = null, index : int = -1, autoShow : Boolean = true )
 		{
-			super( new LoaderStrategy() );
+			super( new LoaderStrategy( ) );
 
 			_target = target;
 			_index = index;
 			_bAutoShow = autoShow;
-			_bMustUnregister = false;
 		}
-
+		
+		/**
+		 * Returns the container of loaded object.
+		 * 
+		 * @return The container of loaded object.
+		 */
 		public function getTarget() : DisplayObjectContainer
 		{
 			return _target;
 		}
-
+		
+		/**
+		 * Sets the container of loaded display object.
+		 * 
+		 * @param	target	Container of loaded display object
+		 */
 		public function setTarget( target : DisplayObjectContainer ) : void
 		{
 			_target = target ;
@@ -61,46 +91,20 @@ package com.bourre.load
 			{
 				if ( _index != -1 )
 				{
-					_target.addChildAt( getView(), _index );
-
-				} else
+					_target.addChildAt( getView( ), _index );
+				} 
+				else
 				{
-					_target.addChild( getView() );
+					_target.addChild( getView( ) );
 				}
 			} 
 		}
-
-		override protected function getLoaderEvent( type : String, errorMessage : String = "" ) : LoaderEvent
-		{
-			return new GraphicLoaderEvent( type, this, errorMessage );
-		}
-
-		override public function load( url : URLRequest = null, context : LoaderContext = null ) : void
-		{
-			if ( context ) setContext( context );
-			super.load( url, getContext() );
-		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		override protected function onInitialize() : void
 		{
-			if ( getName() != null ) 
-			{
-				if ( !(GraphicLoaderLocator.getInstance().isRegistered(getName())) )
-				{
-					_bMustUnregister = true;
-					GraphicLoaderLocator.getInstance().register( getName(), this );
-
-				} else
-				{
-					_bMustUnregister = false;
-					var msg : String = this + " can't be registered to " + GraphicLoaderLocator.getInstance() 
-										+ " with '" + getName() + "' name. This name already exists.";
-					PalmerDebug.ERROR( msg );
-					fireOnLoadErrorEvent( msg );
-					throw new IllegalArgumentException( msg );
-				}
-			}
-
 			if ( _target ) setTarget( _target );
 			
 			if ( _bAutoShow ) 
@@ -111,76 +115,120 @@ package com.bourre.load
 			{
 				hide();
 			}
-
+			
 			super.onInitialize();
 		}
-
+		
+		/**
+		 * Defines the new content ( display object ) of the loader.
+		 */
 		override public function setContent( content : Object ) : void
 		{	
 			if ( content is Bitmap )
 			{
-				_oBitmapContainer = new Sprite();
+				_oBitmapContainer = new Sprite( );
 				_oBitmapContainer.addChild( content as Bitmap );
-
-			} else
+			} 
+			else
 			{
 				_oBitmapContainer = null;
 			}
 
 			super.setContent( content );
+			
+			if( getName() != null )
+			{
+				try
+				{
+					getView().name = getName();
+				}
+				catch( e : Error )
+				{
+					//timeline based object
+				}
+			}
 		}
-
+		
+		/**
+		 * Shows the display object.
+		 */
 		public function show() : void
 		{
-			getView().visible = true;
+			getView( ).visible = true;
 		}
-
+		
+		/**
+		 * Hides the display object.
+		 */
 		public function hide() : void
 		{
-			getView().visible = false;
+			getView( ).visible = false;
 		}
-
+		
+		/**
+		 * Returns <code>true</code> if display object is visible.
+		 * 
+		 * @return <code>true</code> if display object is visible.
+		 */
 		public function isVisible() : Boolean
 		{
-			return getView().visible;
+			return getView( ).visible;
 		}
-
+		
+		/**
+		 * 
+		 */
 		public function setAutoShow( b : Boolean ) : void
 		{
 			_bAutoShow = b;
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		override public function release() : void
 		{
-			if ( getContent() && _target && _target.contains( getView() ) ) _target.removeChild( getView() );
-
-			if ( _bMustUnregister ) 
-			{
-				GraphicLoaderLocator.getInstance().unregister( getName() );
-				_bMustUnregister = false;
-			}
-
-			super.release();
+			if ( getContent( ) && _target && _target.contains( getView( ) ) ) _target.removeChild( getView( ) );
+			
+			super.release( );
 		}
-
+		
+		/**
+		 * Returns the display object.
+		 * 
+		 * @return The display object.
+		 */
 		public function getView() : DisplayObjectContainer
 		{
-			return _oBitmapContainer ? _oBitmapContainer : getContent() as DisplayObjectContainer;
+			return _oBitmapContainer ? _oBitmapContainer : super.getContent( ) as DisplayObjectContainer;
 		}
-
+		
+		/**
+		 * @private
+		 */
+		override public function getContent() : Object
+		{
+			return getView();
+		}
+		
+		/**
+		 * Returns a LoaderInfo object corresponding to the object being loaded.
+		 * 
+		 * @return A LoaderInfo object corresponding to the object being loaded.
+		 */
+		public function getContentLoaderInfo() : LoaderInfo
+		{
+			return LoaderStrategy( getStrategy() ).getContentLoaderInfo();
+		}
+		
+		/**
+		 * Returns the <code>applicationDomain</code> of loaded display object.
+		 * 
+		 * @return The <code>applicationDomain</code> of loaded display object.
+		 */
 		public function getApplicationDomain() : ApplicationDomain
 		{
-			return ( getStrategy() as LoaderStrategy ).getContentLoaderInfo().applicationDomain;
-		}
-
-		final public function setContext ( context : LoaderContext ):void
-		{
-			_oContext = context;
-		}
-
-		final public function getContext () : LoaderContext
-		{
-			return _oContext;
+			return ( getStrategy( ) as LoaderStrategy ).getContentLoaderInfo( ).applicationDomain;
 		}
 	}
 }

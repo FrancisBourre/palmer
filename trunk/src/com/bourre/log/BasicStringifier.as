@@ -15,14 +15,30 @@
  */
 package com.bourre.log
 {
-	import flash.utils.getQualifiedClassName;	
+	import flash.utils.getQualifiedClassName;		
 
 	/**
+	 * The BasicStringifier class allow to get full classpath class of an object 
+	 * as his string representation.
+	 *
+	 * @example
+	 * <pre class="prettyprint">
+	 * 
+	 * PalmerStringifier.setStringifier( new BasicStringifier() );
+	 * PalmerStringifier.stringify( myInstance );
+	 * </pre>
+	 * 
+	 * @see Stringifier
+	 * @see PalmerStringifier
+	 * 
 	 * @author Francis Bourre
 	 */
-	public class BasicStringifier 
-		implements Stringifier
+
+	public class BasicStringifier implements Stringifier
 	{
+		/**
+		 * @inheritDoc
+		 */
 		public function stringify( target : * ) : String 
 		{
 			return getQualifiedClassName( target );
@@ -30,7 +46,8 @@ package com.bourre.log
 		
 		/**
 		 * Returns the string representation of this instance.
-		 * @return the string representation of this instance
+		 * 
+		 * @return The string representation of this instance
 		 */
 		public function toString() : String 
 		{
