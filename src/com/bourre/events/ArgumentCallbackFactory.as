@@ -18,7 +18,9 @@ package com.bourre.events
 	import flash.events.Event;	
 
 	/**
-	 * @author Francis Bourre
+	 * The ArgumentCallbackFactory class.
+	 * 
+	 * @author 	Francis Bourre
 	 */
 	public interface ArgumentCallbackFactory 
 	{

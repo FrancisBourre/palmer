@@ -15,29 +15,86 @@
  */
 package com.bourre.load 
 {
-	import com.bourre.load.strategy.URLLoaderStrategy;	
-	
-	/**
-	 * @author Francis Bourre
-	 */
-	public class FileLoader 
-		extends AbstractLoader
-	{
-		static public const BINARY 		: String = URLLoaderStrategy.BINARY;		static public const TEXT 		: String = URLLoaderStrategy.TEXT;		static public const VARIABLES 	: String = URLLoaderStrategy.VARIABLES;
+	import com.bourre.load.strategy.URLLoaderStrategy;				
 
-		public function FileLoader( dataFormat : String = null )
+	/**
+	 * The FileLoader class allow to load text, binary or variables data 
+	 * format from passed-in file.
+	 * 
+	 * @example
+	 * <pre class="prettyprint">
+	 * 
+	 * var loader : FileLoader = new FileLoader( FileLoader.BINARY );
+	 * loader.addEventListener( FileLoaderEvent.onLoadInitEVENT, onLoaded );
+	 * loader.load( new URLRequest( "logo.swf" );
+	 * 
+	 * function onLoaded( event : FileLoaderEvent ) :void
+	 * {
+	 * 	var content : ByteArray = event.getFileContent() as ByteArray;
+	 * }
+	 * </pre>
+	 * 
+	 * @author 	Francis Bourre
+	 */
+	public class FileLoader extends AbstractLoader
+	{
+		//--------------------------------------------------------------------
+		// Constants
+		//--------------------------------------------------------------------
+				
+		/**
+		 * Specifies that downloaded data is received as raw binary data. 
+		 */	
+		public static const BINARY : String = URLLoaderStrategy.BINARY;
+
+		/**
+		 * Specifies that downloaded data is received as text. 
+		 */		public static const TEXT : String = URLLoaderStrategy.TEXT;
+
+		/**
+		 * Specifies that downloaded data is received as URL-encoded variables. 
+		 */		public static const VARIABLES : String = URLLoaderStrategy.VARIABLES;
+		
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Creates new <code>FileLoader</code> instance.
+		 * 
+		 * @param	dataFormat	(optional) Downloaded data format.		 * @param	name		(optional) Loader identifier.
+		 * 
+		 * @see #setDataFormat()
+		 */	
+		public function FileLoader( dataFormat : String = null, name : String = null )
 		{
 			super( new URLLoaderStrategy( dataFormat ) );
+			
+			if( name != null ) setName( name );
 		}
-		
+
+		/**
+		 * Sets how the downloaded data is received.
+		 * 
+		 * <p>If the value of the dataFormat property is 
+		 * <code>URLLoaderDataFormat.TEXT</code>, 
+		 * the received data is a string containing the text of 
+		 * the loaded file.</p>
+		 * <p>If the value of the dataFormat property is 
+		 * <code>URLLoaderDataFormat.BINARY</code>, the received data is 
+		 * a ByteArray object containing the raw binary data.</p>
+		 * <p>If the value of the dataFormat property is 
+		 * <code>URLLoaderDataFormat.VARIABLES</code>, the received data is 
+		 * a URLVariables object containing the URL-encoded variables.</p>
+		 * 
+		 * <p>The default is <code>URLLoaderStrategy.TEXT</code></p>
+		 * 
+		 * @param	dataFormat	Downloaded data format
+		 */
 		public function setDataFormat( dataFormat : String ) : void
 		{
 			( getStrategy( ) as URLLoaderStrategy ).setDataFormat( dataFormat );
-		}
-
-		override protected function getLoaderEvent( type : String, errorMessage : String = "" ) : LoaderEvent
-		{
-			return new FileLoaderEvent( type, this, errorMessage );
 		}
 	}
 }

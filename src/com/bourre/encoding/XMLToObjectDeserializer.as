@@ -15,29 +15,43 @@
  */
 package com.bourre.encoding
 {
-	import com.bourre.collections.HashMap;
-	import com.bourre.core.CoreFactory;
-	import com.bourre.exceptions.IllegalArgumentException;
-	import com.bourre.log.PalmerDebug;
-	
-	import flash.geom.Point;	
-
-	/**
+	import com.bourre.collections.HashMap;	import com.bourre.core.CoreFactory;	import com.bourre.exceptions.IllegalArgumentException;	import com.bourre.log.PalmerDebug;	import com.bourre.structures.Dimension;	import com.bourre.structures.Range;		import flash.geom.Point;		
+	/**
+	 * XML object deserializer.
+	 * 
 	 * @author Francis Bourre
+	 * 
+	 * @see Deserializer
 	 */
-	public class XMLToObjectDeserializer 
-		implements Deserializer
+	public class XMLToObjectDeserializer implements Deserializer
 	{
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+		
 		protected var _m 						: HashMap;		protected var _f 						: CoreFactory;
 		protected var _bDeserializeAttributes 	: Boolean;
-
+		
+		
+		//--------------------------------------------------------------------
+		// Public properties
+		//--------------------------------------------------------------------
+		
 		public var pushInArray 					: Boolean;
-
+		
 		static public var DEBUG_IDENTICAL_NODE_NAMES 		: Boolean = false;
 		static public var PUSHINARRAY_IDENTICAL_NODE_NAMES 	: Boolean = true;
 		static public var ATTRIBUTE_TARGETED_PROPERTY_NAME 	: String = null;
 		static public var DESERIALIZE_ATTRIBUTES 			: Boolean = false;
-
+		
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+				
+		/**
+		 * Creates instance.
+		 */	
 		public function XMLToObjectDeserializer ()
 		{
 			_f = CoreFactory.getInstance();
@@ -49,6 +63,8 @@ package com.bourre.encoding
 			addType( "Boolean", getBoolean );
 			addType( "Class", getInstance );
 			addType( "Point", getPoint );
+			addType( "Dimension", getDimension );
+			addType( "Range", getRange );
 			addType( "", getObject );
 			
 			pushInArray = XMLToObjectDeserializer.PUSHINARRAY_IDENTICAL_NODE_NAMES;
@@ -56,19 +72,32 @@ package com.bourre.encoding
 		}
 
 		/**
-		 * Lancement du parcours du xml
+		 * <p>Returns content is a <code>XML</code> instance if deserialization 
+		 * process is success.</p>
+		 * 
+		 * @param	serializedContent	<code>String</code> or <code>XML</code> object.
+		 * @param	target				Target object to store deserialization result.
+		 *
+		 * @return The <code>serializedContent</code> deserialization result.
 		 */
 		public function deserialize( serializedContent : Object, target : Object = null ) : Object
 		{
 			if ( target == null ) target = {};
-			var xml : XML = serializedContent as XML;
+			
+			var xml : XML;
+			if( serializedContent is String )
+			{
+				xml = new XML( serializedContent as String );
+			}
+			else xml = serializedContent as XML;
+			
 			for each ( var property : XML in xml.* ) deserializeNode( target, property ) ;
 			return target ;
 		}
-
+		
 		public function	deserializeNode ( target : Object, node : XML ) : Object
 		{
-			var member:String = node.name();
+			var member:String = node.name().toString();
 			var obj : Object = {};
 			
 			if (node.attribute("type").length()== 0 && !node.hasSimpleContent())
@@ -240,7 +269,63 @@ package com.bourre.encoding
 
 			return new Point( args[0], args[1] );
 	  	}
-
+		
+		/**
+		 * Returns <code>Dimension</code> instance using passed-in 
+		 * <code>XML node</code> as source.
+		 * 
+		 * @example
+		 * <pre class="prettyprint">
+		 * 
+		 * &lt;node type="Dimension"&gt10,100&lt;/node&gt;
+		 * </pre>
+		 * 
+		 * @param	node	XML Node with dimension informations
+		 * 
+		 * @returns	<code>Dimension</code> instance
+		 */
+		protected function getDimension( node : XML ) : Dimension
+	  	{
+	  		var args : Array = getArguments( node );
+	  		
+	  		if ( args[0] == null || args[1] == null )
+	  		{
+	  			var msg : String = this + ".getDimension() failed with values: (" + args[0] + ", " + args[1] + ").";
+				PalmerDebug.FATAL( msg );
+	  			throw new IllegalArgumentException( msg );
+	  		}
+	  		
+	  		return new Dimension( args[0], args[1] );
+		}
+	  	
+	  	/**
+		 * Returns <code>getRange</code> instance using passed-in 
+		 * <code>XML node</code> as source.
+		 * 
+		 * @example
+		 * <pre class="prettyprint">
+		 * 
+		 * &lt;node type="Dimension"&gt10,10&lt;/node&gt;
+		 * </pre>
+		 * 
+		 * @param	node	XML Node with range informations
+		 * 
+		 * @returns	<code>Dimension</code> instance
+		 */
+	  	protected function getRange( node : XML ) : Range
+		{
+			var args : Array = getArguments( node );
+	  		
+	  		if ( args[0] == null || args[1] == null )
+	  		{
+	  			var msg : String = this + ".getRange() failed with values: (" + args[0] + ", " + args[1] + ").";
+				PalmerDebug.FATAL( msg );
+	  			throw new IllegalArgumentException( msg );
+	  		}
+	  		
+			return new Range( args[0], args[1] );
+	  	}
+	  	
 	  	public function getObjectWithAttributes ( node:XML ) : Object
 		{
 			var data:XML = node;

@@ -25,23 +25,36 @@ package com.bourre.model
 	import com.bourre.plugin.PluginDebug;	
 
 	/**
+	 * The ModelLocator class is a locator for 
+	 * <code>AbstractModel</code> object.
+	 * 
+	 * <p>A locator is unique for a <code>Plugin</code> instance.</p>
+	 * 
+	 * @see AbstractModel
+	 * 
 	 * @author Francis Bourre
 	 */
 	final public class ModelLocator 
 		extends AbstractLocator
 	{
+		//--------------------------------------------------------------------
+		// Private properties
+		//--------------------------------------------------------------------
+		
 		static private const _M : HashMap = new HashMap();
 
 		private var _owner : Plugin;
-
-		public function ModelLocator( access : ConstructorAccess, owner : Plugin = null ) 
-		{
-			_owner = owner;
-			super( Model, null, PluginDebug.getInstance( getOwner() ) );
-			
-			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
-		}
-
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Returns the unique <code>ModelLocator</code> instance for 
+		 * passed-in <code>Plugin</code>.
+		 * 
+		 * @return The unique <code>ModelLocator</code> instance.
+		 */
 		static public function getInstance( owner : Plugin = null ) : ModelLocator
 		{
 			if ( owner == null ) owner = NullPlugin.getInstance();
@@ -51,17 +64,34 @@ package com.bourre.model
 
 			return ModelLocator._M.get( owner );
 		}
-
+		
+		/**
+		 * Returns the plugin owner of this locator.
+		 * 
+		 * @return The plugin owner of this locator.
+		 */
 		public function getOwner() : Plugin
 		{
 			return _owner;
 		}
-
+		
+		/**
+		 * Returns <code>AbstractModel</code> registered with passed-in 
+		 * key identifier.
+		 * 
+		 * @param	key	Model registration ID
+		 * 
+		 * @throws 	<code>NoSuchElementException</code> — There is no model
+		 * 			associated with the passed-in key
+		 */
 		public function getModel( key : String ) : Model
 		{
 			return locate( key ) as Model;
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		override public function release() : void
 		{
 			var i : Iterator = new ArrayIterator( _m.getValues() );
@@ -77,6 +107,19 @@ package com.bourre.model
 		override public function toString() : String 
 		{
 			return super.toString() + (_owner?", owner: "+_owner:"No owner.");
+		}
+		
+		//--------------------------------------------------------------------
+		// Private implementation
+		//--------------------------------------------------------------------
+		
+		/** @private */
+		function ModelLocator( access : ConstructorAccess, owner : Plugin = null ) 
+		{
+			_owner = owner;
+			super( Model, null, PluginDebug.getInstance( getOwner() ) );
+			
+			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
 		}
 	}
 }

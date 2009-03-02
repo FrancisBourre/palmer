@@ -16,21 +16,37 @@
 package com.bourre.load
 {
 	/**
-	 * @author Francis Bourre
+	 * The XMLLoader class allow to load xml content.
+	 * 
+	 * @example
+	 * <pre class="prettyprint">
+	 * 
+	 * var loader : XMLLoader = new XMLLoader(  );
+	 * loader.addEventListener( XMLLoader.onLoadInitEVENT, onLoaded );
+	 * loader.load( new URLRequest( "content.xml" );
+	 * </pre>
+	 * 
+	 * @author 	Francis Bourre
 	 */
-	public class XMLLoader 
-		extends FileLoader
+	public class XMLLoader extends FileLoader
 	{
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Creates new <code>XMLLoader</code> instance.
+		 */	
 		public function XMLLoader()
 		{
 			super( FileLoader.TEXT );
 		}
-
-		override protected function getLoaderEvent( type : String, errorMessage : String = "" ) : LoaderEvent
-		{
-			return new XMLLoaderEvent( type, this, errorMessage );
-		}
-
+		
+		/**
+		 * Returns xml content.
+		 * 
+		 * @return	XML content
+		 */
 		public function getXML() : XML
 		{
 			return XML( getContent() );

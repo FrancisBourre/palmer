@@ -18,6 +18,7 @@ package com.bourre.plugin
 	import com.bourre.collections.HashMap;
 	import com.bourre.events.ApplicationBroadcaster;
 	import com.bourre.events.EventChannel;
+	import com.bourre.exceptions.PrivateConstructorException;
 	import com.bourre.log.PalmerStringifier;
 	
 	import flash.utils.Dictionary;	
@@ -54,6 +55,8 @@ package com.bourre.plugin
 		
 		public function ChannelExpert( access : ConstructorAccess )
 		{
+			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
+			
 			_m = new HashMap();
 			_oRegistered = new Dictionary( true );
 		}

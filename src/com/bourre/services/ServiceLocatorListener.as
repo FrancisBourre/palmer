@@ -15,6 +15,10 @@
  */
 package com.bourre.services 
 {
+	import com.bourre.core.LocatorListener;		
+
 	/**
 	 * @author Francis Bourre
-	 */	public interface ServiceLocatorListener {}}
+	 */	public interface ServiceLocatorListener extends LocatorListener
+	{
+	}}

@@ -16,8 +16,8 @@
 package com.bourre.view 
 {
 	import com.bourre.model.ModelListener;	
-	
+
 	/**	 * @author Francis Bourre	 */	public interface View 
 		extends ModelListener
 	{
-		//	}}
+			}}

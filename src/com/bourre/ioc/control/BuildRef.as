@@ -18,8 +18,8 @@ package com.bourre.ioc.control
 	import com.bourre.commands.AbstractCommand;
 	import com.bourre.core.CoreFactory;
 	import com.bourre.events.ValueObjectEvent;
-	import com.bourre.ioc.assembler.Constructor;
-	import com.bourre.ioc.assembler.ConstructorExpert;
+	import com.bourre.ioc.assembler.locator.Constructor;
+	import com.bourre.ioc.assembler.locator.ConstructorExpert;
 	import com.bourre.utils.ObjectUtils;
 	
 	import flash.events.Event;	

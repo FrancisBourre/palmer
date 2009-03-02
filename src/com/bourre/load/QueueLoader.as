@@ -52,10 +52,15 @@ package com.bourre.load
 		override public function load( url : URLRequest = null, context : LoaderContext = null ) : void
 		{
 			registerLoaderToPool( this );
-
+			
+			if( ( url != null ) || ( context != null ) )
+			{
+				PalmerDebug.WARN( this + ".load() arguments are not used in this implementation" );	
+			}
+			
 			var a : Array = _q.toArray();
 			var l : Number = a.length;
-
+			
 			while( --l > -1 )
 			{
 				var loader : Loader = a[l];

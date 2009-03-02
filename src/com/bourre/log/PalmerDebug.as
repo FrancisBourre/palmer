@@ -21,8 +21,7 @@ package com.bourre.log
 	/**
 	 * @author Francis Bourre
 	 */
-	public final class PalmerDebug 
-		implements Log
+	public final class PalmerDebug implements Log
 	{
 		static private var _oI : PalmerDebug;
 
@@ -53,7 +52,7 @@ package com.bourre.log
 
 		static public function set isOn( b : Boolean ) : void
 		{
-			if ( b ) PalmerDebug.getInstance().on() else PalmerDebug.getInstance().off();
+			if ( b ) PalmerDebug.getInstance().on(); else PalmerDebug.getInstance().off();
 		}
 
 		static public function DEBUG( o : * ) : void

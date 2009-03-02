@@ -16,10 +16,24 @@
 package com.bourre.log 
 {
 	/**
+	 * The LogListener must be implemented by all objects which want to listen 
+	 * to Logging API events, like logging console.
+	 * 
+	 * @see	com.bourre.log.layout.AirLoggerLayout
+	 * @see com.bourre.log.layout.SOSLayout
+	 * @see com.bourre.log.layout.FlashInspectorLayout
+	 * @see com.bourre.log.layout.FirebugLayout	 * 
 	 * @author Francis Bourre
 	 */
 	public interface LogListener 
 	{
+		/**
+		 * Triggered when a Log event is broadcasted by the Logging API.
+		 * 
+		 * @param	e	LogEvent event
+		 * 
+		 * @see	Logger	
+		 */
 		function onLog( e : LogEvent ) : void;
 	}
 }

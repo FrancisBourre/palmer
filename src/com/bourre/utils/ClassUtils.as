@@ -17,18 +17,27 @@ package com.bourre.utils
 {
 	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;	
+
 	/**
+	 * Set of class utilities functions.
+	 * 
 	 * @author Cedric Nehemie
 	 * @author	Francis Bourre
 	 */
-
 	public class ClassUtils
 	{		
+		/**
+		 * Verify that the passed-in <code>childClass</code> is a descendant of the 
+		 * specified <code>parentClass</code>.
+		 * 
+		 * @param clazz	class to check inheritance with the ascendant class
+		 * @param parent	class which is the ascendant
+		 */
 		static public function inherit( clazz : Class, parent : Class) : Boolean 
 		{
 			var xml : XML = describeType( clazz );
 			var parentName : String = getQualifiedClassName( parent );
 			return 	(xml.factory.extendsClass.@type).contains( parentName ) || (xml.factory.implementsInterface.@type).contains( parentName );
-		}
+		}	
 	}
 }

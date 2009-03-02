@@ -15,8 +15,21 @@
  */
 package com.bourre.ioc.assembler
 {
+	import com.bourre.ioc.assembler.ApplicationAssembler;
+	import com.bourre.ioc.assembler.locator.ChannelListener;
+	import com.bourre.ioc.assembler.locator.ChannelListenerExpert;
+	import com.bourre.ioc.assembler.locator.Constructor;
+	import com.bourre.ioc.assembler.locator.ConstructorExpert;
+	import com.bourre.ioc.assembler.locator.DictionaryItem;
+	import com.bourre.ioc.assembler.locator.Method;
+	import com.bourre.ioc.assembler.locator.MethodExpert;
+	import com.bourre.ioc.assembler.locator.Property;
+	import com.bourre.ioc.assembler.locator.PropertyExpert;
+	import com.bourre.ioc.assembler.locator.Resource;
+	import com.bourre.ioc.assembler.builder.DisplayObjectBuilder;
+	import com.bourre.ioc.assembler.builder.DisplayObjectInfo;
 	import com.bourre.ioc.core.IDExpert;
-	import com.bourre.ioc.parser.ContextTypeList;
+	import com.bourre.ioc.core.ContextTypeList;
 	import com.bourre.utils.HashCodeFactory;
 	
 	import flash.net.URLRequest;	
@@ -40,29 +53,6 @@ package com.bourre.ioc.assembler
 		{
 			return _oDOB;
 		}
-
-		public function buildLoader (	ID 							: String, 
-										url 						: URLRequest, 
-										progressCallback 			: String 	= null, 
-										nameCallback 				: String 	= null, 
-										timeoutCallback 			: String 	= null, 
-										parsedCallback 				: String 	= null, 
-										methodsCallCallback 		: String 	= null, 
-										objectsBuiltCallback		: String 	= null, 
-										channelsAssignedCallback	: String 	= null, 
-										initCallback 				: String 	= null	) : void
-		{
-			getDisplayObjectBuilder().buildDisplayLoader( new DisplayLoaderInfo( 	ID, 
-																					url, 
-																					progressCallback, 
-																					nameCallback, 
-																					timeoutCallback, 
-																					parsedCallback, 
-																					methodsCallCallback, 
-																					objectsBuiltCallback, 
-																					channelsAssignedCallback, 
-																					initCallback ) 				);
-		}
 		
 		public function buildRoot( ID : String ) : void
 		{
@@ -72,6 +62,14 @@ package com.bourre.ioc.assembler
 		public function buildDLL( url : URLRequest ) : void
 		{
 			getDisplayObjectBuilder().buildDLL( new DisplayObjectInfo( null, null, false, url ) );
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function buildResource( ID : String, url : URLRequest, type : String = null, deserializer : String = null ) : void
+		{
+			getDisplayObjectBuilder().buildResource( new Resource( ID, url, type, deserializer ) );
 		}
 		
 		public function buildDisplayObject( 		ID : String,

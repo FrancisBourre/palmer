@@ -19,6 +19,7 @@ package com.bourre.core
 	import com.bourre.events.EventBroadcaster;
 	import com.bourre.exceptions.IllegalArgumentException;
 	import com.bourre.exceptions.NoSuchElementException;
+	import com.bourre.exceptions.PrivateConstructorException;
 	import com.bourre.log.PalmerDebug;
 	import com.bourre.log.PalmerStringifier;
 	
@@ -236,6 +237,8 @@ package com.bourre.core
 		
 		public function CoreFactory( access : ConstructorAccess )
 		{
+			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
+			
 			_oEB = new EventBroadcaster( this ) ;
 			_m = new HashMap() ;
 		}
@@ -278,7 +281,7 @@ package com.bourre.core
 		{
 			return _m.containsValue( bean ) ;
 		}
-
+		
 		public function register ( key : String, bean : Object ) : Boolean
 		{
 			if ( !( isRegistered( key ) ) && !( isBeanRegistered( bean ) ) )

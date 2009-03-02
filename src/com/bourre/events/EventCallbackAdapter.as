@@ -28,7 +28,9 @@ package com.bourre.events
 	import flash.events.Event;		
 
 	/**
-	 * @author Francis Bourre
+	 * The EventCallbackAdapter class.
+	 * 
+	 * @author 	Francis Bourre
 	 */
 	public class EventCallbackAdapter 
 		implements Command, TickListener
