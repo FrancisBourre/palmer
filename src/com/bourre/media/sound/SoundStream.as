@@ -16,13 +16,39 @@
  
 package com.bourre.media.sound 
 {
-	import com.bourre.media.AbstractMediaStream;			
+	import com.bourre.media.AbstractMediaStream;
+	import com.bourre.media.MediaStream;	
 
 	/**
 	 * @author Romain Ecarnot
 	 */
-	public class SoundStream extends AbstractMediaStream 
+	public class SoundStream extends AbstractMediaStream implements MediaStream
 	{
+		//--------------------------------------------------------------------
+		// Public properties
+		//--------------------------------------------------------------------
+		
+		/**
+		 * 
+		 */
+		public function get duration() : Number
+		{
+			return null;
+		}
+		
+		/**
+		 * 
+		 */
+		public function get volume() : Number
+		{
+			return null;
+		}
+		/** @private */
+		public function set volume(value : Number) : void
+		{
+		}
+		
+				
 		//--------------------------------------------------------------------
 		// Public API
 		//--------------------------------------------------------------------
@@ -33,6 +59,39 @@ package com.bourre.media.sound
 		public function SoundStream( )
 		{
 			super( getContructorAccess() );
+		}
+		
+		public function play() : void
+		{
+		}
+		
+		public function pause() : void
+		{
+		}
+		
+		public function resume() : void
+		{
+			play();
+		}
+		
+		public function stop() : void
+		{
+		}
+		
+		
+		public function run() : void
+		{
+			play();
+		}
+		
+		public function start() : void
+		{
+			play();
+		}
+		
+		public function reset() : void
+		{
+			stop();
 		}
 	}
 }
