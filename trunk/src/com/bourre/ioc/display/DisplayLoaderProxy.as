@@ -118,7 +118,7 @@ package com.bourre.ioc.display
 		 */
 		public function onLoadStart(e : LoaderEvent) : void
 		{
-			call( _oInfo.startCallback, cleanURL( e.getLoader( ).getURL( ) ) );
+			call( _oInfo.loadCallback, cleanURL( e.getLoader( ).getURL( ) ) );
 		}
 
 		/**
@@ -142,7 +142,7 @@ package com.bourre.ioc.display
 		 */
 		public function onLoadTimeOut(e : LoaderEvent) : void
 		{
-			call( _oInfo.loadCallback, cleanURL( e.getLoader( ).getURL( ) ) );
+			call( _oInfo.timeoutCallback, cleanURL( e.getLoader( ).getURL( ) ) );
 		}
 
 		/**
@@ -150,7 +150,7 @@ package com.bourre.ioc.display
 		 */
 		public function onLoadError(e : LoaderEvent) : void
 		{
-			call( _oInfo.loadCallback, cleanURL( e.getLoader( ).getURL( ) ), e.getErrorMessage( ) );
+			call( _oInfo.errorCallback, cleanURL( e.getLoader( ).getURL( ) ), e.getErrorMessage( ) );
 		}
 
 		/**
