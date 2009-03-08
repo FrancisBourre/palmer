@@ -87,7 +87,7 @@ package com.bourre.ioc.parser.factory
 			getLogger( ).error( msg );
 			throw( new UnimplementedMethodException( msg ) );
 		}
-
+		
 		/**
 		 * @inheritDoc
 		 */

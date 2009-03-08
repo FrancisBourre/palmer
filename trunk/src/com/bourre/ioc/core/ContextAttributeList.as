@@ -34,13 +34,23 @@ package com.bourre.ioc.core
 		static public const VISIBLE 						: String = "visible";
 		static public const SINGLETON_ACCESS 				: String = "singleton-access";
 		static public const METHOD 							: String = "method";
-		static public const PROGRESS_CALLBACK				: String = "progress-callback";
-		static public const NAME_CALLBACK 					: String = "name-callback";
-		static public const TIMEOUT_CALLBACK 				: String = "timeout-callback";	
-		static public const PARSED_CALLBACK 				: String = "parsed-callback";			static public const OBJECTS_BUILT_CALLBACK 			: String = "objects-built-callback";			static public const METHODS_CALL_CALLBACK 			: String = "methods-call-callback";			static public const CHANNELS_ASSIGNED_CALLBACK 		: String = "channels-assigned-callback";	
-		static public const INIT_CALLBACK 					: String = "init-callback";	
 		static public const DELAY 							: String = "delay";		static public const DESERIALIZER_CLASS 				: String = "deserializer-class";
 		public static const ROOT_REF : 						String = "root-ref";
+		
+		//Loader callbacks attributes
+		static public const START_CALLBACK					: String = "start-callback";		static public const NAME_CALLBACK 					: String = "name-callback";
+		static public const LOAD_CALLBACK	 				: String = "load-callback";			static public const PROGRESS_CALLBACK	 			: String = "progress-callback";			static public const TIMEOUT_CALLBACK 				: String = "timeout-callback";			static public const ERROR_CALLBACK 					: String = "error-callback";			static public const INIT_CALLBACK 					: String = "init-callback";	
+		static public const PARSED_CALLBACK 				: String = "parsed-callback";	
+		static public const OBJECTS_BUILT_CALLBACK 			: String = "objects-built-callback";	
+		static public const CHANNELS_ASSIGNED_CALLBACK 		: String = "channels-assigned-callback";	
+		static public const METHODS_CALL_CALLBACK 			: String = "methods-call-callback";	
+		static public const COMPLETE_CALLBACK 				: String = "complete-callback";	
+		
+		
+		//--------------------------------------------------------------------
+		// Private implementation
+		//--------------------------------------------------------------------
+				
 		
 		/** @private */
 		function ContextAttributeList( )

@@ -136,23 +136,23 @@ package com.bourre.ioc.display
 		{
 			call( _oInfo.progressCallback, cleanURL( e.getLoader( ).getURL( ) ), e.getPerCent( ) );
 		}
-
+		
 		/**
 		 * @inheritDoc
 		 */
 		public function onLoadTimeOut(e : LoaderEvent) : void
 		{
-			call( _oInfo.timeoutCallback, cleanURL( e.getLoader( ).getURL( ) ) );
+			call( _oInfo.timeoutCallback, cleanURL( e.getLoader( ).getURL( ) )  + " timeout" );
 		}
-
+		
 		/**
 		 * @inheritDoc
 		 */
 		public function onLoadError(e : LoaderEvent) : void
 		{
-			call( _oInfo.errorCallback, cleanURL( e.getLoader( ).getURL( ) ), e.getErrorMessage( ) );
+			call( _oInfo.errorCallback, e.getErrorMessage( ) );
 		}
-
+		
 		/**
 		 * Returns string representation.
 		 */
@@ -160,7 +160,7 @@ package com.bourre.ioc.display
 		{
 			return PalmerStringifier.stringify( this ) + "\n" + _oInfo.toString( );
 		}	
-
+		
 		
 		//--------------------------------------------------------------------
 		// Protected methods
@@ -176,6 +176,8 @@ package com.bourre.ioc.display
 		{
 			if( callback.length > 0 && _oTarget.hasOwnProperty( callback ) )
 			{
+//				PalmerDebug.DEBUG( this + " call " + callback + "( " + args  + " )" );
+				
 				_oTarget[callback].apply( _oTarget, args );
 			}
 		}

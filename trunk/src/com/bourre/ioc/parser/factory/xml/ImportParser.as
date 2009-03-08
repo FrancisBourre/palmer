@@ -96,8 +96,6 @@ package com.bourre.ioc.parser.factory.xml
 		{
 			if( !_loader.isEmpty( ) )
 			{
-				getApplicationLoader().fireOnApplicationState( ApplicationLoaderState.IMPORT_LOAD_STATE );
-				
 				_loader.addEventListener( QueueLoaderEvent.onItemLoadInitEVENT, onImportLoadInit );
 				_loader.addEventListener( LoaderEvent.onLoadProgressEVENT,  onImportLoadProgress );				_loader.addEventListener( LoaderEvent.onLoadTimeOutEVENT, onImportLoadError );
 				_loader.addEventListener( LoaderEvent.onLoadErrorEVENT, onImportLoadError );

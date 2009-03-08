@@ -80,47 +80,7 @@ package com.bourre.ioc.parser.factory.xml
 		{
 			return xml.attribute( ContextAttributeList.METHOD );
 		}
-
-		static public function getProgressCallback( xml : XML ) : String
-		{
-			return xml.attribute( ContextAttributeList.PROGRESS_CALLBACK );
-		}
-
-		static public function getNameCallback( xml : XML ) : String
-		{
-			return xml.attribute( ContextAttributeList.NAME_CALLBACK );
-		}
-
-		static public function getTimeoutCallback( xml : XML ) : String
-		{
-			return xml.attribute( ContextAttributeList.TIMEOUT_CALLBACK );
-		}
-
-		static public function getParsedCallback( xml : XML ) : String
-		{
-			return xml.attribute( ContextAttributeList.PARSED_CALLBACK );
-		}
-
-		static public function getObjectsBuiltCallback( xml : XML ) : String
-		{
-			return xml.attribute( ContextAttributeList.OBJECTS_BUILT_CALLBACK );
-		}
-
-		static public function getMethodsCallCallback( xml : XML ) : String
-		{
-			return xml.attribute( ContextAttributeList.METHODS_CALL_CALLBACK );
-		}
-
-		static public function getChannelsAssignedCallback( xml : XML ) : String
-		{
-			return xml.attribute( ContextAttributeList.CHANNELS_ASSIGNED_CALLBACK );
-		}
-
-		static public function getInitCallback( xml : XML ) : String
-		{
-			return xml.attribute( ContextAttributeList.INIT_CALLBACK );
-		}
-
+		
 		static public function getDelay( xml : XML ) : String
 		{
 			return xml.attribute( ContextAttributeList.DELAY );
@@ -137,6 +97,14 @@ package com.bourre.ioc.parser.factory.xml
 		public static function getRootRef( xml : XML ) : String
 		{
 			return xml.attribute( ContextAttributeList.ROOT_REF );
+		}
+		
+		/**
+		 * 
+		 */
+		public static function getAttribute( xml : XML, attName : String ) : String
+		{
+			return xml.attribute( attName );	
 		}
 		
 		
