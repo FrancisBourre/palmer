@@ -15,9 +15,10 @@
  */
 package com.bourre.ioc.parser.factory.xml 
 {
+	import com.bourre.ioc.core.ContextAttributeList;
 	import com.bourre.ioc.core.ContextNameList;
-	import com.bourre.ioc.load.ApplicationLoaderState;
 	import com.bourre.ioc.display.DisplayLoaderInfo;
+	import com.bourre.ioc.load.ApplicationLoaderState;
 	import com.bourre.load.GraphicLoader;
 	import com.bourre.load.Loader;
 	import com.bourre.load.LoaderEvent;
@@ -57,7 +58,11 @@ package com.bourre.ioc.parser.factory.xml
 
 		protected function parseNode( node : XML ) : void
 		{
-			var info : DisplayLoaderInfo = new DisplayLoaderInfo( AttributeUtils.getID( node ), new URLRequest( AttributeUtils.getURL( node ) ), AttributeUtils.getProgressCallback( node ), AttributeUtils.getNameCallback( node ), AttributeUtils.getTimeoutCallback( node ), AttributeUtils.getParsedCallback( node ), AttributeUtils.getMethodsCallCallback( node ), AttributeUtils.getObjectsBuiltCallback( node ), AttributeUtils.getChannelsAssignedCallback( node ), AttributeUtils.getInitCallback( node ) );
+			var info : DisplayLoaderInfo = new DisplayLoaderInfo( 
+				AttributeUtils.getID( node ), 
+				new URLRequest( AttributeUtils.getURL( node ) ), 
+				AttributeUtils.getAttribute( node, ContextAttributeList.START_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.NAME_CALLBACK), 				AttributeUtils.getAttribute( node, ContextAttributeList.LOAD_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.PROGRESS_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.TIMEOUT_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.ERROR_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.INIT_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.PARSED_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.OBJECTS_BUILT_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.CHANNELS_ASSIGNED_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.METHODS_CALL_CALLBACK ), 				AttributeUtils.getAttribute( node, ContextAttributeList.COMPLETE_CALLBACK )
+			);
 			
 			var loader : GraphicLoader = new GraphicLoader( null, -1, true );
 			loader.addEventListener( LoaderEvent.onLoadInitEVENT, onDisplayLoaderInit, info );

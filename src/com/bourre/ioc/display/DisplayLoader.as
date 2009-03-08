@@ -97,16 +97,16 @@ package com.bourre.ioc.display
 		/**
 		 * Triggered when 'timeout-callback' is called from IoC engine.
 		 * 	
-		 * @param	url		File loaded
+		 * @param	message		Error message
 		 */
-		function onTimeoutCallback( url : String ) : void;
+		function onTimeoutCallback( message : String ) : void;
 		
 		/**
 		 * Triggered when 'error-callback' is called from IoC engine.
 		 * 	
-		 * @param	url		File loaded
+		 * @param	message		Error message
 		 */
-		function onErrorCallback( url : String ) : void;
+		function onErrorCallback( message : String ) : void;
 		
 		/**
 		 * Triggered when 'init-callback' is called from IoC engine.

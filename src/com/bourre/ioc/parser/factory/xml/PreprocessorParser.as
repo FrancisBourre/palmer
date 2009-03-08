@@ -165,15 +165,13 @@ package com.bourre.ioc.parser.factory.xml
 			}
 			else
 			{
-				getApplicationLoader().fireOnApplicationState( ApplicationLoaderState.PREPROCESSOR_LOAD_STATE );
-				
 				_loader.addEventListener( QueueLoaderEvent.onItemLoadInitEVENT, onProcessorInit );
 				_loader.addEventListener( QueueLoaderEvent.onLoadErrorEVENT, onProcessorError );
 				_loader.addEventListener( QueueLoaderEvent.onLoadInitEVENT, onProcessorComplete );
 				_loader.execute( );
 			}
 		}
-
+		
 		
 		//--------------------------------------------------------------------
 		// Protected methods
@@ -266,8 +264,6 @@ package com.bourre.ioc.parser.factory.xml
 			{
 				var cons : Constructor = ConstructorExpert.getInstance( ).locate( id ) as Constructor;
 				if ( cons.arguments != null )  cons.arguments = PropertyExpert.getInstance( ).deserializeArguments( cons.arguments );
-				
-				PalmerDebug.WARN( cons.type );
 				
 				var o : Object = BuildFactory.getInstance( ).build( cons );
 				

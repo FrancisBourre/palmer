@@ -35,52 +35,41 @@ package com.bourre.plugin
 	 * 
 	 * @author 	Francis Bourre
 	 */
-	public class AbstractPlugin
-		implements Plugin
+	public class AbstractPlugin implements Plugin
 	{
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+				
 		protected var _oEBPublic 		: Broadcaster;
 		protected var _oController 		: FrontController;
 		protected var _oModelLocator 	: ModelLocator;
 		protected var _oViewLocator 	: ViewLocator;
-
+		
+		
+		//--------------------------------------------------------------------
+		// Public properties
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Constructor.
+		 * 
+		 * <p>Overrides <code>#_initialize()</code> method to customize 
+		 * plugin initialization process.</p>
+		 * 
+		 * @see #_initialize()
+		 */
 		public function AbstractPlugin() 
 		{
 			_initialize();
 		}
-
-		protected function _initialize() : void
-		{
-			_oController = new FrontController( this );
-			_oModelLocator = ModelLocator.getInstance( this );
-			_oViewLocator = ViewLocator.getInstance( this );
-
-			_oEBPublic = ApplicationBroadcaster.getInstance().getChannelDispatcher( getChannel(), this );
-			if( _oEBPublic ) _oEBPublic.addListener( this );
-		}
 		
+		/**
+		 * Returns plugin Front controller
+		 */
 		public function getController() : FrontController
 		{
 			return _oController;
-		}
-		
-		protected function getModelLocator() : ModelLocator
-		{
-			return _oModelLocator;
-		}
-
-		protected function getViewLocator() : ViewLocator
-		{
-			return _oViewLocator;
-		}
-
-		protected function fireOnInitPlugin() : void
-		{
-			firePublicEvent( new PluginEvent( PluginEvent.onInitPluginEVENT, this ) );
-		}
-
-		protected function fireOnReleasePlugin() : void
-		{
-			firePublicEvent( new PluginEvent( PluginEvent.onReleasePluginEVENT, this ) );
 		}
 		
 		/**
@@ -148,7 +137,9 @@ package com.bourre.plugin
 			}
 		}
 		
-		
+		/**
+		 * Generic event handler.
+		 */
 		public function handleEvent ( e : Event = null ):void
 		{
 			
@@ -186,6 +177,9 @@ package com.bourre.plugin
 			fireOnInitPlugin();
 		}
 		
+		/**
+		 * Releases plugin.
+		 */
 		public function release() : void
 		{
 			_oController.release();
@@ -202,7 +196,10 @@ package com.bourre.plugin
 			PluginDebug.release( this );
 			ChannelExpert.getInstance().releaseChannel( this );
 		}
-
+		
+		/**
+		 * @copy com.bourre.event.Broadcaster#addListener()
+		 */
 		public function addListener( listener : PluginListener ) : Boolean
 		{
 			if( _oEBPublic ) 
@@ -216,6 +213,9 @@ package com.bourre.plugin
 			}
 		}
 		
+		/**
+		 * @copy com.bourre.event.Broadcaster#removeListener()
+		 */
 		public function removeListener( listener : PluginListener ) : Boolean
 		{
 			if( _oEBPublic ) 
@@ -228,7 +228,10 @@ package com.bourre.plugin
 				return false;
 			}
 		}
-
+		
+		/**
+		 * @copy com.bourre.event.Broadcaster#addEventListener()
+		 */
 		public function addEventListener( type : String, listener : Object, ... rest ) : Boolean
 		{
 			if( _oEBPublic ) 
@@ -241,7 +244,10 @@ package com.bourre.plugin
 				return false;
 			}
 		}
-
+		
+		/**
+		 * @copy com.bourre.event.Broadcaster#removeEventListener()
+		 */
 		public function removeEventListener( type : String, listener : Object ) : Boolean
 		{
 			if( _oEBPublic ) 
@@ -254,14 +260,65 @@ package com.bourre.plugin
 				return false;
 			}
 		}
-
+		
 		/**
 		 * Returns the string representation of this instance.
+		 * 
 		 * @return the string representation of this instance
 		 */
 		public function toString() : String 
 		{
 			return PalmerStringifier.stringify( this );
 		}
+		
+		
+		//--------------------------------------------------------------------
+		// Protected methods
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Inits plugin properties.
+		 */
+		protected function _initialize() : void
+		{
+			_oController = new FrontController( this );
+			_oModelLocator = ModelLocator.getInstance( this );
+			_oViewLocator = ViewLocator.getInstance( this );
+
+			_oEBPublic = ApplicationBroadcaster.getInstance().getChannelDispatcher( getChannel(), this );
+			if( _oEBPublic ) _oEBPublic.addListener( this );
+		}
+		
+		/**
+		 * Returns plugin model locator.
+		 */
+		protected function getModelLocator() : ModelLocator
+		{
+			return _oModelLocator;
+		}
+		
+		/**
+		 * Returns plugin view locator.
+		 */
+		protected function getViewLocator() : ViewLocator
+		{
+			return _oViewLocator;
+		}
+		
+		/**
+		 * Fires <code>PluginEvent.onInitPluginEVENT</code> public event.
+		 */
+		protected function fireOnInitPlugin() : void
+		{
+			firePublicEvent( new PluginEvent( PluginEvent.onInitPluginEVENT, this ) );
+		}
+		
+		/**
+		 * Fires <code>PluginEvent.onReleasePluginEVENT</code> public event.
+		 */
+		protected function fireOnReleasePlugin() : void
+		{
+			firePublicEvent( new PluginEvent( PluginEvent.onReleasePluginEVENT, this ) );
+		}		
 	}
 }

@@ -47,7 +47,7 @@ package com.bourre.ioc.load
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	import flash.net.URLRequest;
-	import flash.system.LoaderContext;		
+	import flash.system.LoaderContext;	
 
 	/**
 	 * @author Francis Bourre
@@ -250,6 +250,9 @@ package com.bourre.ioc.load
 			return removeListener( listener );
 		}
 		
+		/**
+		 * Attaches IoC DisplayLoader now.
+		 */
 		public function setDisplayLoader( mc : DisplayObjectContainer, info : DisplayLoaderInfo ) : void
 		{
 			if( _oDLoader ) removeListener( _oDLoader );
@@ -258,6 +261,9 @@ package com.bourre.ioc.load
 			addListener( _oDLoader );
 		}
 		
+		/**
+		 * Returns IoC DisplayLoader ( if exist ).
+		 */
 		public function getDisplayLoader( ) : DisplayLoaderProxy
 		{
 			return _oDLoader;

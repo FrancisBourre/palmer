@@ -15,7 +15,7 @@
  */
  
 package com.bourre.ioc.display 
-{	import flash.display.MovieClip;	
+{	import flash.display.MovieClip;		
 
 	/**	 * Default implementation of display loader object.
 	 * 
@@ -48,6 +48,25 @@ package com.bourre.ioc.display
 	 * @author Romain Ecarnot	 */	public class AbstractDisplayLoader extends MovieClip implements DisplayLoader
 	{
 		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+		
+		/** Number of IoC elements to load. */
+		protected var nTotal : uint;
+
+		/** Number of loaded IoC elements. */		protected var nLoaded : uint;
+
+		/** Number of erro during IoC elements loading. */
+		protected var nError : uint;
+
+		/** Total loading percent progression */
+		protected var nPercent : uint;
+		
+		/** Item loading percent progression */
+		protected var nBuffer : uint;
+		
+		
+		//--------------------------------------------------------------------
 		// Public API
 		//--------------------------------------------------------------------
 		
@@ -56,13 +75,17 @@ package com.bourre.ioc.display
 		 */		
 		public function AbstractDisplayLoader()
 		{
-		}
-		
+			nTotal = 0;
+			nLoaded = 0;			nError = 0;
+			nPercent = 0;
+			nBuffer = 0;		}
+
 		/**
 		 * @inheritDoc
 		 */
 		public function onStartApplication( url : String, size : uint = 0 ) : void
 		{
+			nTotal = size;
 		}
 		
 		/**
@@ -70,13 +93,15 @@ package com.bourre.ioc.display
 		 */
 		public function onNameCallback( state : String ) : void
 		{
+			
 		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
 		public function onLoadCallback( url : String ) : void
 		{
+			nBuffer = 0;
 		}
 		
 		/**
@@ -84,6 +109,9 @@ package com.bourre.ioc.display
 		 */
 		public function onProgressCallback( url : String, percent : Number ) : void
 		{
+			nBuffer = Math.floor( percent / nTotal );
+						fireOnItemProgress( percent );
+			fireOnTotalProgress( Math.min( 100, ( nPercent + nBuffer ) ) );
 		}
 		
 		/**
@@ -91,6 +119,7 @@ package com.bourre.ioc.display
 		 */
 		public function onTimeoutCallback( url : String ) : void
 		{
+			onErrorCallback( url );
 		}
 		
 		/**
@@ -98,6 +127,9 @@ package com.bourre.ioc.display
 		 */
 		public function onErrorCallback( url : String ) : void
 		{
+			saveBuffer( Math.floor( 100 / nTotal ) );
+			
+			nError++;
 		}
 		
 		/**
@@ -105,6 +137,9 @@ package com.bourre.ioc.display
 		 */
 		public function onInitCallback( url : String ) : void
 		{
+			saveBuffer( nBuffer );
+						
+			nLoaded++;
 		}
 		
 		/**
@@ -113,21 +148,21 @@ package com.bourre.ioc.display
 		public function onParsedCallback( ) : void
 		{
 		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
 		public function onBuiltCallback( ) : void
 		{
 		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
 		public function onChannelsCallback( ) : void
 		{
 		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
@@ -140,4 +175,49 @@ package com.bourre.ioc.display
 		 */
 		public function onCompleteCallback( ) : void
 		{
-		}	}}
+			fireOnTotalProgress( 100 );
+		}
+
+		
+		//--------------------------------------------------------------------
+		// Protected methods
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Returns <code>true</code> if all context items are loaded.
+		 * 
+		 * @return <code>true</code> if all context items are loaded.
+		 */
+		protected function isSuccess(  ) : Boolean
+		{
+			return ( nTotal - nLoaded == 0 );
+		}	
+		
+		/** 
+		 * Saves item loading buffer to total loading value.
+		 * 
+		 * @param	value	Item progression value
+		 */
+		protected function saveBuffer( value : uint ) : void
+		{
+			nPercent += value;	
+		}
+		
+		/**
+		 * Triggered when the current item loading state change.
+		 * 
+		 * @param	value	The current item loading progression value
+		 */
+		protected function fireOnItemProgress( value : uint ) : void
+		{
+		}
+		
+		/**
+		 * Triggered when the total loading state change.
+		 * 
+		 * @param	value	The total loading progression value
+		 */
+		protected function fireOnTotalProgress( value : uint ) : void
+		{
+		}
+	}}
