@@ -16,6 +16,8 @@
 package com.bourre.ioc.assembler
 {
 	import com.bourre.ioc.assembler.ApplicationAssembler;
+	import com.bourre.ioc.assembler.builder.DisplayObjectBuilder;
+	import com.bourre.ioc.assembler.builder.DisplayObjectInfo;
 	import com.bourre.ioc.assembler.locator.ChannelListener;
 	import com.bourre.ioc.assembler.locator.ChannelListenerExpert;
 	import com.bourre.ioc.assembler.locator.Constructor;
@@ -26,10 +28,8 @@ package com.bourre.ioc.assembler
 	import com.bourre.ioc.assembler.locator.Property;
 	import com.bourre.ioc.assembler.locator.PropertyExpert;
 	import com.bourre.ioc.assembler.locator.Resource;
-	import com.bourre.ioc.assembler.builder.DisplayObjectBuilder;
-	import com.bourre.ioc.assembler.builder.DisplayObjectInfo;
-	import com.bourre.ioc.core.IDExpert;
 	import com.bourre.ioc.core.ContextTypeList;
+	import com.bourre.ioc.core.IDExpert;
 	import com.bourre.utils.HashCodeFactory;
 	
 	import flash.net.URLRequest;	
@@ -141,11 +141,12 @@ package com.bourre.ioc.assembler
 					args[ i ] = p;
 				}
 			}
-
+			
 			var method : Method = new Method( ownerID, methodCallName, args );
-			MethodExpert.getInstance().register( HashCodeFactory.getKey( method ), method );
+			var index : Number = MethodExpert.getInstance( ).getKeys().length++;
+			MethodExpert.getInstance().register( getOrderedKey( index ), method );
 		}
-
+		
 		public function buildChannelListener( ownerID : String, channelName : String, args : Array = null ) : void
 		{
 			var channelListener : ChannelListener = new ChannelListener( ownerID, channelName, args );
@@ -156,6 +157,22 @@ package com.bourre.ioc.assembler
 		{
 			return _oIE.register( ID );
 		}
+		
+		
+		//--------------------------------------------------------------------
+		// Protected methods
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Returns ordered key using passed-in index value.
+		 */
+		protected function getOrderedKey( index : Number ) : String
+		{
+			var d : Number = 5 - index.toString( ).length;
+			var s : String = "";
+			if( d > 0 ) for( var i : Number = 0; i < d ; i++ ) s += "0";
+			return s + index;
+		}	
 	}
 }
 
