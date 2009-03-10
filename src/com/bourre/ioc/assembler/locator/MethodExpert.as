@@ -74,10 +74,16 @@ package com.bourre.ioc.assembler.locator
 				throw new IllegalArgumentException( msg );
 			}
 		}
-
+		
+		/**
+		 * Methods are called in same order as they defined in IoC context.
+		 */
 		public function callAllMethods() : void
 		{
-			Batch.process( callMethod, getKeys() );
+			var keys : Array = getKeys();
+			keys.sort();
+			
+			Batch.process( callMethod, keys );
 		}
 	}
 }
