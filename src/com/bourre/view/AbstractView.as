@@ -299,7 +299,7 @@ package com.bourre.view
 		{
 			var vl : ViewLocator = ViewLocator.getInstance( getOwner() );
 
-			if ( name != null && !( vl.isRegistered( name ) ) )
+			if ( name != null && ( !(vl.isRegistered( name )) || name == getName() ) )
 			{
 				if ( getName() != null && vl.isRegistered( getName() ) ) vl.unregister( getName() );
 				if ( vl.register( name, this ) ) _sName = name;

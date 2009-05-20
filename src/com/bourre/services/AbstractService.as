@@ -17,13 +17,14 @@ package com.bourre.services
 {
 	import com.bourre.collections.Collection;
 	import com.bourre.commands.AbstractCommand;
-	import com.bourre.events.EventBroadcaster;	
-
+	
+	import flash.events.Event;	
 	/**
 	 * @author Francis Bourre
 	 */
 	public class AbstractService 
-		extends AbstractCommand implements Service
+		extends AbstractCommand 
+		implements Service
 	{
 		protected var _args 	: Array;
 		protected var _result 	: Object;
@@ -63,12 +64,12 @@ package com.bourre.services
 			return _args;
 		}
 
-		public function fireResult() : void
+		public function fireResult( e : Event = null ) : void
 		{
 			_oEB.broadcastEvent( new ServiceEvent( ServiceEvent.onDataResultEVENT, this ) );
 		}
 
-		public function fireError() : void
+		public function fireError( e : Event = null ) : void
 		{
 			_oEB.broadcastEvent( new ServiceEvent( ServiceEvent.onDataErrorEVENT, this ) );
 		}

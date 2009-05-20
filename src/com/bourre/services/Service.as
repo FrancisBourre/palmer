@@ -16,7 +16,9 @@
 package com.bourre.services 
 {
 	import com.bourre.collections.Collection;
-	import com.bourre.commands.Command;		
+	import com.bourre.commands.Command;
+	
+	import flash.events.Event;	
 
 	/**
 	 * @author Francis Bourre
@@ -31,8 +33,8 @@ package com.bourre.services
 		function getServiceListener() : Collection;
 		function setArguments( ... rest ) : void;
 		function getArguments() : Object;
-		function fireResult() : void;
-		function fireError() : void;
+		function fireResult( e : Event = null ) : void;
+		function fireError( e : Event = null ) : void;
 		function release() : void;
 
 		function addEventListener( type : String, listener : Object, ... rest ) : Boolean;
