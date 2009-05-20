@@ -15,21 +15,8 @@
  */
 package com.bourre.ioc.control 
 {
-	import com.bourre.commands.AbstractCommand;
-	import com.bourre.commands.Command;
-	import com.bourre.core.CoreFactory;
-	import com.bourre.events.ValueObjectEvent;
-	import com.bourre.exceptions.IllegalArgumentException;
-	import com.bourre.ioc.assembler.locator.Constructor;
-	import com.bourre.plugin.ChannelExpert;
-	import com.bourre.plugin.Plugin;
-	import com.bourre.plugin.PluginChannel;
-	import com.bourre.utils.ClassUtils;
-	
-	import flash.events.Event;
-	import flash.utils.getDefinitionByName;	
-
-	/**
+	import com.bourre.commands.AbstractCommand;	import com.bourre.commands.Command;	import com.bourre.core.CoreFactory;	import com.bourre.events.ValueObjectEvent;	import com.bourre.ioc.assembler.locator.Constructor;	import com.bourre.plugin.ChannelExpert;	import com.bourre.plugin.Plugin;	import com.bourre.plugin.PluginChannel;	import com.bourre.utils.ClassUtils;		import flash.events.Event;	import flash.utils.getDefinitionByName;	
+	/**
 	 * @author Francis Bourre
 	 */
 	public class BuildInstance
@@ -57,18 +44,8 @@ package com.bourre.ioc.control
 				{
 					// do nothing as expected
 				}
-	
-				try
-				{
-					BuildInstance.buildConstructor( constructor );
 
-				} catch( error2 : Error )
-				{
-					var msg : String = error2.message;
-					msg += " " + this + ".execute(" + constructor.type + ") failed.";
-					getLogger().fatal( msg );
-					throw new IllegalArgumentException( msg );
-				}
+				BuildInstance.buildConstructor( constructor );
 			}
 		}
 		
