@@ -187,7 +187,7 @@ package com.bourre.media
 		 */
 		protected function checkPlayhead(  ) : void
 		{
-			lastPlayheadPosition = palmer_internal::playheadTime;
+			lastPlayheadPosition = palmer_internal::getPlayheadTime();
 			
 			fireEventType( MediaStreamEvent.onMediaPlayheadEVENT );
 		}
@@ -197,7 +197,7 @@ package com.bourre.media
 		 * 
 		 * Returns concrete media playhead position
 		 */
-		palmer_internal function get playheadTime() : Number
+		palmer_internal function getPlayheadTime() : Number
 		{
 			var msg : String = this + ".palmer_internal::playheadTime must be implemented in class.";
 			PalmerDebug.ERROR( msg );
@@ -223,7 +223,7 @@ package com.bourre.media
 		 */
 		protected function fireEventType( type : String ) : void
 		{
-			fireEvent( getLoaderEvent( type ) );
+			fireEvent( getMediaEvent( type ) );
 		}
 		
 		/**
@@ -243,11 +243,11 @@ package com.bourre.media
 		 * 
 		 * @return A MediaStreamEvent event for current media instance.
 		 */
-		protected function getLoaderEvent( type : String ) : MediaStreamEvent
+		protected function getMediaEvent( type : String ) : MediaStreamEvent
 		{
 			return new MediaStreamEvent( type, null );
 		}
-
+		
 		/**
 		 * Returns Abstract constructor access.
 		 */

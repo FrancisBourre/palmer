@@ -34,9 +34,9 @@ package com.bourre.events
 		 * @param	target	target of this event
 		 * @param	bool	boolean value carried by this event
 		 */
-		public function BooleanEvent( type : String, target : Object = null, bool : Boolean = false )
+		public function BooleanEvent( type : String, target : Object = null, bool : Boolean = false, bubbles : Boolean = false, cancelable : Boolean = false )
 		{
-			super( type, target );
+			super( type, target, bubbles, cancelable );
 			_b = bool;
 		}
 		

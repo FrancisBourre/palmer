@@ -15,46 +15,103 @@
  */
 package com.bourre.commands 
 {
-	import com.bourre.commands.MacroCommand;	import com.bourre.plugin.Plugin;		import flash.events.Event;	
-	/**
-	 * An asynchronous batch behave as a normal batch, but is designed to handle 
-	 * asynchronous commands. A command executed by this batch could only start 
-	 * when the previous command have fire its <code>onCommandEnd</code> event.
-	 * <p>
-	 * The <code>Event</code> object received in the <code>execute</code> is passed
-	 * to each commands contained in this batch.
-	 * </p><p>
-	 * The <code>ASyncBatch</code> class extends <code>AbstractSyncCommand</code>
+	import com.bourre.commands.MacroCommand;
+	import com.bourre.plugin.Plugin;
+
+	import flash.events.Event;
+
+	/**
+	 * <code>Batch</code> object encapsulate a set of <code>Commands</code>
+	 * to execute.
+	 * 
+	 * <p>Default, Batch is a first-in first-out stack (FIFO) where commands
+	 * are executed in the order they were registered.<br />
+	 * Batch can be LIFO using Batch instanctiation 2nd argument.</p>
+	 * 
+	 * <p>Default, the <code>Event</code> object received in the 
+	 * <code>execute</code> is passed to each commands contained in this 
+	 * batch.<br />
+	 * But you can relay event from command to command using Batch 
+	 * <code>instanciaton</code> first argument.
+	 * </p>
+	 * 
+	 * <p>The Batch class extends <code>AbstractCommand</code>
 	 * and so, dispatch an <code>onCommandEnd</code> event at the execution end
-	 * of all commands.
-	 * </p> 
+	 * of all commands.</p> 
+	 * 
 	 * @author Cédric Néhémie
-	 * @author Francis Bourre
+	 * @author Francis Bourre	 * @author Romain Ecarnot
 	 */
 	public class Batch 
 		extends AbstractCommand 
 		implements MacroCommand, CommandListener
 	{
+
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+		
+		/** Stores commands list. */
+		protected var _aCommands : Vector.<Command>;
+
+		/** Current command index. */
+		protected var _nIndex : Number;
+
+		/** Main source event data. */
+		protected var _eEvent : Event;
+
+		/** Last executed command. */
+		protected var _oLastCommand : Command;
+		
+		/**
+		 *  Indicates if Batch use command event flow or only 
+		 *  source event data.
+		 *  
+		 *  <p>If <code>true</code> next command is executed using 
+		 *  last command event result.<br />
+		 *  If <code>false</code>, only use the main source event data 
+		 *  passed-in Batch.execute() call.</p>
+		 *  
+		 *  @default false
+		 *   
+		 *  @see #Batch()
+		 */
+		protected var _bUseEventFlow : Boolean;
+		
+		/**
+		 * Defines command list execution order.
+		 * 
+		 * <p>Default is FIFO mode (<code>false</code>).<br />
+		 * Sets to <code>true</code> to use LIFO mode.</p>
+		 * 
+		 * @default false
+		 */
+		protected var _bReversed : Boolean;
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+		
 		/**
 		 * Takes all elements of an Array and pass them one by one as arguments
 		 * to a method of an object.
 		 * It's exactly the same concept as batch processing in audio or video
 		 * software, when you choose to run the same actions on a group of files.
 		 * <p>
-		 * Basical example which sets _alpha value to .4 and scale to 50
+		 * Basical example which sets _alpha value to 0.4 and scale to 0.5
 		 * on all MovieClips nested in the Array :
 		 * </p>
 		 * @example
 		 * <listing>
 		 * import com.bourre.commands.*;
 		 *
-		 * function changeAlpha( mc : MovieClip, a : Number, s : Number )
+		 * function changeAlphaAndScale( mc : MovieClip, a : Number, s : Number )
 		 * {
-		 *      mc._alpha = a;
-		 *      mc._xscale = mc._yscale = s;
+		 *      mc.alpha = a;
+		 *      mc.scaleX = mc.scaleY = s;
 		 * }
 		 *
-		 * Batch.process( changeAlpha, [mc0, mc1, mc2], .4, 50 );
+		 * Batch.process( changeAlphaAndScale, [mc0, mc1, mc2], .4, 0.5 );
 		 * </listing>
 		 *
 		 * @param	f		function to run.
@@ -68,17 +125,14 @@ package com.bourre.commands
 			for( var i : int; i < l ; i++ ) f.apply( null, (args.length > 0 ) ? [ a[i] ].concat( args ) : [ a[i] ] );
 		}
 
-		protected var _aCommands 	: Vector.<Command>;
-		protected var _nIndex 		: Number;
-		protected var _eEvent 		: Event;
-		protected var _oLastCommand : Command;
-		
 		/**
 		 * Creates a new batch object.
 		 */
-		public function Batch()
+		public function Batch( useEventFlow : Boolean = false, reversed : Boolean = false )
 		{
-			_aCommands = new Vector.<Command>();
+			_aCommands = new Vector.<Command>( );
+			
+			_bUseEventFlow = useEventFlow;			_bReversed = reversed;
 		}
 		
 		/**
@@ -91,7 +145,7 @@ package com.bourre.commands
 			var c : AbstractCommand;
 			while( --l - (-1 ) ) if( ( c = _aCommands[ l ] as AbstractCommand ) != null ) c.setOwner( owner );
 		}
-
+		
 		/**
 		 * @inheritDoc
 		 */
@@ -99,7 +153,7 @@ package com.bourre.commands
 		{
 			if( command == null ) return false;
 			if( command is AbstractCommand ) ( command as AbstractCommand).setOwner( getOwner( ) );
-			var l : Number = _aCommands.length;
+			var l : uint = _aCommands.length;
 			return (l != _aCommands.push( command ) );
 		}
 
@@ -108,7 +162,7 @@ package com.bourre.commands
 		 */
 		public function removeCommand( command : Command ) : Boolean
 		{
-			var id : Number = _aCommands.indexOf( command ); 
+			var id : int = _aCommands.indexOf( command ); 
 			if ( id == -1 ) return false;
 			while ( ( id = _aCommands.indexOf( command ) ) != -1 ) _aCommands.splice( id, 1 );
 			return true;
@@ -126,7 +180,7 @@ package com.bourre.commands
 		{
 			return _aCommands.indexOf( command ) != -1;
 		}
-
+		
 		/**
 		 * Starts the execution of the batch. The received event 
 		 * is registered and then passed to sub commands.
@@ -136,6 +190,9 @@ package com.bourre.commands
 			_eEvent = e;
 			_nIndex = -1;
 			_bIsRunning = true;
+			
+			if( _bReversed ) _aCommands.reverse();
+			
 			if( _hasNext( ) ) _next( ).execute( _eEvent );
 		}
 
@@ -148,7 +205,7 @@ package com.bourre.commands
 		{
 			if( _hasNext( ) )
 			{
-				_next( ).execute( _eEvent );
+				_next( ).execute( _bUseEventFlow ? e : _eEvent );
 			} 
 			else
 			{
@@ -162,7 +219,7 @@ package com.bourre.commands
 		 */
 		public function removeAll() : void
 		{
-			_aCommands = new Vector.<Command>();
+			_aCommands = new Vector.<Command>( );
 		}
 
 		/**
@@ -175,6 +232,11 @@ package com.bourre.commands
 			return _aCommands.length;		
 		}
 
+		
+		//--------------------------------------------------------------------
+		// Protected methods
+		//--------------------------------------------------------------------
+		
 		/**
 		 * Returns the next command to execute.
 		 * 
@@ -187,7 +249,7 @@ package com.bourre.commands
 			_oLastCommand.addCommandListener( this );
 			return _oLastCommand;
 		}
-
+		
 		/**
 		 * Returns <code>true</code> if there is a command
 		 * left to execute.

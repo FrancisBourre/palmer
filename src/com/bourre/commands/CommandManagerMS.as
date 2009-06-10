@@ -28,7 +28,7 @@ package com.bourre.commands
 			if ( !(CommandManagerMS._oI is CommandManagerMS) ) CommandManagerMS._oI = new CommandManagerMS( new ConstructorAccess() );
 			return CommandManagerMS._oI;
 		}
-
+		
 		static public function release() : void
 		{
 			CommandManagerMS._oI.removeAll();

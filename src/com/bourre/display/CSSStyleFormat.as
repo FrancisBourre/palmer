@@ -13,27 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bourre.plugin
+ 
+package com.bourre.display 
 {
+	import flash.text.TextFormat;
+
 	/**
-	 * Interface for objects which want to be notified of plugin events.
+	 * Extension of the <code>TextFormat</code> class to 
+	 * add dynamic behaviour for custom format properties.
 	 * 
-	 * @author Francis Bourre
+	 * @see CSS
+	 * 
+	 * @author Romain Ecarnot
 	 */
-	public interface PluginListener
+	public dynamic class CSSStyleFormat extends TextFormat
 	{
-		/**
-		 * Triggered when plugin is initialized.
-		 * 
-		 *  @param	e	event dispatched by the plugin
-		 */
-		function onInitPlugin		( e : PluginEvent ) : void;
-		
-		/**
-		 * Triggered when plugin is released.
-		 * 
-		 *  @param	e	event dispatched by the plugin
-		 */
-		function onReleasePlugin	( e : PluginEvent ) : void;
 	}
 }

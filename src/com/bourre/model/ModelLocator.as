@@ -22,15 +22,15 @@ package com.bourre.model
 	import com.bourre.exceptions.PrivateConstructorException;
 	import com.bourre.plugin.NullPlugin;
 	import com.bourre.plugin.Plugin;
-	import com.bourre.plugin.PluginDebug;	
+	import com.bourre.plugin.PluginDebug;
 
 	/**
 	 * The ModelLocator class is a locator for 
-	 * <code>AbstractModel</code> object.
+	 * <code>Model</code> object.
 	 * 
 	 * <p>A locator is unique for a <code>Plugin</code> instance.</p>
 	 * 
-	 * @see AbstractModel
+	 * @see AbstractModel	 * @see Model
 	 * 
 	 * @author Francis Bourre
 	 */
@@ -44,6 +44,7 @@ package com.bourre.model
 		static private const _M : HashMap = new HashMap();
 
 		private var _owner : Plugin;
+		
 		
 		//--------------------------------------------------------------------
 		// Public API

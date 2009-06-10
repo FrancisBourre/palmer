@@ -16,11 +16,10 @@
  
 package com.bourre.load
 {
-	import com.bourre.load.AbstractLoader;
 	import com.bourre.load.SoundLoader;
 	import com.bourre.load.strategy.SoundURLStrategy;
-	
-	import flash.media.Sound;	
+
+	import flash.media.Sound;
 
 	/**
 	 * The SoundURLLoader class allow to load sound file.

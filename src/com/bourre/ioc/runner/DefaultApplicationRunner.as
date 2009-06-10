@@ -20,13 +20,16 @@ package com.bourre.ioc.runner
 	import com.bourre.ioc.load.ApplicationLoaderListener;
 	import com.bourre.ioc.load.ApplicationLoaderState;
 	import com.bourre.load.LoaderEvent;
-	import com.bourre.log.LogLevel;
 	import com.bourre.log.Logger;
 	import com.bourre.log.PalmerDebug;
-	import com.bourre.log.layout.FirebugLayout;	
+	import com.bourre.log.layout.FirebugLayout;
 
 	/**
-	 * IoC Runner.
+	 * IoC Application runner.
+	 * 
+	 * <p>This dedicated runner adds Logging rules.</p>
+	 * 
+	 * @see #initLogger()
 	 * 
 	 * @author Romain Ecarnot
 	 */
@@ -51,7 +54,10 @@ package com.bourre.ioc.runner
 		{
 			super( );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function onApplicationState(e : ApplicationLoaderEvent) : void
 		{
 			state = e.getApplicationState( );
@@ -79,12 +85,18 @@ package com.bourre.ioc.runner
 		{
 			PalmerDebug( getStep( e ) );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function onApplicationObjectsBuilt(e : ApplicationLoaderEvent) : void
 		{
 			PalmerDebug( getStep( e ) );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function onApplicationChannelsAssigned(e : ApplicationLoaderEvent) : void
 		{
 			PalmerDebug( getStep( e ) );
@@ -156,20 +168,15 @@ package com.bourre.ioc.runner
 		 */
 		override protected function preprocess() : void
 		{
-			if( palmer_compilation::productionBuild ) 
-			{
-				Logger.getInstance( ).setLevel( LogLevel.ERROR );
-			}
-			else
-			{
-				oLoader.addListener( this );
-			}
+			oLoader.addListener( this );
 			
 			initLogger( );
 		}
 		
 		/**
+		 * Adds <code>FirebugLayout</code> logging target to Palmer Logger.
 		 * 
+		 * <p>Overrides this method to define own logging logic.</p>
 		 */
 		protected function initLogger() : void
 		{
@@ -193,7 +200,7 @@ package com.bourre.ioc.runner
 		}
 		
 		/**
-		 * 
+		 * @private
 		 */
 		protected function formatURL( e : LoaderEvent ) : String
 		{
@@ -203,7 +210,7 @@ package com.bourre.ioc.runner
 		}
 		
 		/**
-		 * 
+		 * @private
 		 */
 		protected function formatPercent( e : LoaderEvent ) : String
 		{

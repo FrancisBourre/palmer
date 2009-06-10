@@ -25,7 +25,7 @@ package com.bourre.load
 	 * <pre class="prettyprint">
 	 * 
 	 * var loader : FileLoader = new FileLoader( FileLoader.BINARY );
-	 * loader.addEventListener( FileLoaderEvent.onLoadInitEVENT, onLoaded );
+	 * loader.addEventListener( LoaderEvent.onLoadInitEVENT, onLoaded );
 	 * loader.load( new URLRequest( "logo.swf" );
 	 * 
 	 * function onLoaded( event : FileLoaderEvent ) :void
@@ -46,7 +46,7 @@ package com.bourre.load
 		 * Specifies that downloaded data is received as raw binary data. 
 		 */	
 		public static const BINARY : String = URLLoaderStrategy.BINARY;
-
+		
 		/**
 		 * Specifies that downloaded data is received as text. 
 		 */		public static const TEXT : String = URLLoaderStrategy.TEXT;

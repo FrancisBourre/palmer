@@ -41,13 +41,15 @@ package com.bourre.events
 		 * with the <code>EventBroadcaster</code> class, the event
 		 * target will be set on the event broadcaster source.
 		 * 
-		 * @param	type	<code>String</code> name of the event
-		 * @param	target	an object considered as source for this event
-		 * @see		EventBroadcaster#dispatchEvent() The EventBroadcaster.dispatchEvent() method
+		 * @param	type		<code>String</code> name of the event
+		 * @param	target		an object considered as source for this event
+		 * @param 	bubbles		Determines whether the Event object participates 
+		 * 						in the bubbling stage of the event flow
+		 * @param 	cancelable	Determines whether the Event object can be canceled.
 		 */
-		public function DynBasicEvent( type : String, target : Object = null )
+		public function DynBasicEvent( type : String, target : Object = null, bubbles : Boolean = false, cancelable : Boolean = false )
 		{
-			super( type, target );
+			super( type, target, bubbles, cancelable );
 		}
 		
 		/**

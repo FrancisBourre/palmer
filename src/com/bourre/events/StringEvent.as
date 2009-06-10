@@ -15,7 +15,7 @@
  */
 package com.bourre.events
 {
-	import flash.events.Event;		
+	import flash.events.Event;
 
 	/**
 	 * An event object which carry a string value.
@@ -30,13 +30,16 @@ package com.bourre.events
 		/**
 		 * Creates a new <code>StringEvent</code> object.
 		 * 
-		 * @param	type	name of the event type
-		 * @param	target	target of this event
-		 * @param	string	string value carried by this event
+		 * @param	type		name of the event type
+		 * @param	target		target of this event
+		 * @param	string		string value carried by this event
+		 * @param 	bubbles		Determines whether the Event object participates 
+		 * 						in the bubbling stage of the event flow
+		 * @param 	cancelable	Determines whether the Event object can be canceled
 		 */
-		public function StringEvent( type : String, target : Object = null, string : String = "" )
+		public function StringEvent( type : String, target : Object = null, string : String = "", bubbles : Boolean = false, cancelable : Boolean = false )
 		{
-			super( type, target );
+			super( type, target, bubbles, cancelable );
 			_s = string;
 		}
 		

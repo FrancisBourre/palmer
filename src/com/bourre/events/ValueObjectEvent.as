@@ -16,8 +16,8 @@
 package com.bourre.events
 {
 	import com.bourre.core.ValueObject;
-	
-	import flash.events.Event;			
+
+	import flash.events.Event;
 
 	/**
 	 * An event object which carries a value object.
@@ -26,21 +26,23 @@ package com.bourre.events
 	 * @see		BasicEvent
 	 * @see		ValueObject
 	 */
-	public class ValueObjectEvent 
-		extends BasicEvent
+	public class ValueObjectEvent extends BasicEvent
 	{
 		protected var _o : ValueObject;
 		
 		/**
 		 * Creates a new <code>ValueObjectEvent</code> object.
 		 * 
-		 * @param	type	name of the event type
-		 * @param	target	target of this event
-		 * @param	obj		value object carried by this event
+		 * @param	type		name of the event type
+		 * @param	target		target of this event
+		 * @param	obj			value object carried by this event
+		 * @param 	bubbles		Determines whether the Event object participates 
+		 * 						in the bubbling stage of the event flow
+		 * @param 	cancelable	Determines whether the Event object can be canceled
 		 */
-		public function ValueObjectEvent( type : String, target : Object = null, obj : ValueObject = null )
+		public function ValueObjectEvent( type : String, target : Object = null, obj : ValueObject = null, bubbles : Boolean = false, cancelable : Boolean = false )
 		{
-			super( type, target );
+			super( type, target, bubbles, cancelable );
 			_o = obj;
 		}
 		

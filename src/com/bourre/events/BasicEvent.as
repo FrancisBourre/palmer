@@ -35,8 +35,7 @@ package com.bourre.events
 	 * @author 	Francis Bourre
 	 * @see		com.bourre.load.QueueLoader
 	 */	
-	public class BasicEvent 
-		extends Event
+	public class BasicEvent extends Event
 	{
 		/**
 		 * The source object of this event, redefined to provide write access
@@ -54,13 +53,18 @@ package com.bourre.events
 		 * with the <code>EventBroadcaster</code> class, the event
 		 * target will be set on the event broadcaster source.
 		 * 
-		 * @param	type	<code>String</code> name of the event
-		 * @param	target	an object considered as source for this event
+		 * @param	type		<code>String</code> name of the event
+		 * @param	target		an object considered as source for this event
+		 * @param 	bubbles		Determines whether the Event object participates 
+		 * 						in the bubbling stage of the event flow
+		 * @param 	cancelable	Determines whether the Event object can be canceled.
+		 * 
 		 * @see		EventBroadcaster#broadcastEvent() The EventBroadcaster.broadcastEvent() method
 		 */
-		public function BasicEvent( type : String, target : Object = null )
+		public function BasicEvent( type : String, target : Object = null, bubbles : Boolean = false, cancelable : Boolean = false )
 		{
-			super ( type );
+			super ( type, bubbles, cancelable );
+			
 			_sType = type;
 			_oTarget = target;
 		}
@@ -90,13 +94,14 @@ package com.bourre.events
 		{
 			_sType = en;
 		}
+		
 		/**
 		 * Returns the type of this event, which generally correspond
 		 * to the name of the called function on the listener.
 		 * 
 		 * @return	the type of this event
 		 */
-		public function getType():String
+		public function getType() : String
 		{
 			return _sType;
 		}
@@ -125,6 +130,7 @@ package com.bourre.events
 		{ 
 			_oTarget = oTarget; 
 		}
+		
 		/**
 		 * Returns the current source of this event object.
 		 * 

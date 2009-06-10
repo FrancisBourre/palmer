@@ -15,35 +15,33 @@
  */
 package com.bourre.utils
 {
-	import com.bourre.log.PalmerDebug;	
 	import com.bourre.exceptions.IllegalArgumentException;
 	import com.bourre.exceptions.NoSuchElementException;
 	import com.bourre.exceptions.PrivateConstructorException;
-	
+	import com.bourre.log.PalmerDebug;
+
 	import flash.display.DisplayObject;
 	import flash.net.registerClassAlias;
 	import flash.utils.ByteArray;
 	import flash.utils.getDefinitionByName;
-	import flash.utils.getQualifiedClassName;	
+	import flash.utils.getQualifiedClassName;
 
 	/**
+	 * The ObjectUtil utility class is an all-static class with methods for 
+	 * working with objects.
+	 * 
 	 * @author	Francis Bourre
 	 * @author	Cédric Néhémie
 	 */
-	public class ObjectUtils
+	final public class ObjectUtils
 	{
-		public function ObjectUtils( access : ConstructorAccess )
-		{
-			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
-		}
-
 		/**
 		 * Clone an object
 		 * 
 		 * @param   source	Object to clone
 		 * @return  Object  Object cloned
 		 */
-		static public function clone ( source : Object ) : Object 
+		static public function clone( source : Object ) : Object 
 		{
 			if( source === null ) return null;
 			if ( source is DisplayObject ) 
@@ -53,19 +51,19 @@ package com.bourre.utils
 				throw new IllegalArgumentException( msg );
 			}
 
-			if ( source.hasOwnProperty( "clone" ) && source.clone is Function ) return source.clone();
+			if ( source.hasOwnProperty( "clone" ) && source.clone is Function ) return source.clone( );
 			if ( source is Array ) return ObjectUtils.cloneArray( source as Array ) ;
 
 			var qualifiedClassName : String = getQualifiedClassName( source );
 			var aliasName : String = qualifiedClassName.split( "::" )[1];
-        	if ( aliasName ) registerClassAlias( aliasName, (getDefinitionByName( qualifiedClassName ) as Class) );
-			var ba : ByteArray = new ByteArray();
+			if ( aliasName ) registerClassAlias( aliasName, (getDefinitionByName( qualifiedClassName ) as Class) );
+			var ba : ByteArray = new ByteArray( );
 			ba.writeObject( source );
 			ba.position = 0;
-			return( ba.readObject() );
+			return( ba.readObject( ) );
 		}
-		
-		 /**
+
+		/**
 		 * Clone array's content
 		 * 
 		 * @param   a	Array to clone
@@ -73,7 +71,7 @@ package com.bourre.utils
 		 */
 		static public function cloneArray( a : Array ) : Array
 		{
-			var newArray : Array = new Array();
+			var newArray : Array = new Array( );
 
 			for each( var o : Object in a )
 			{
@@ -82,16 +80,16 @@ package com.bourre.utils
 				else
 				{
 					if( o.hasOwnProperty( "clone" ) && o.clone is Function )
-						newArray.push( o.clone() ) ;
+						newArray.push( o.clone( ) ) ;
 					else
-						newArray.push( ObjectUtils.clone(o) );
+						newArray.push( ObjectUtils.clone( o ) );
 				}
 			}
 			
 			return newArray;
 		}
 
-		 /**
+		/**
 		 * <p>Allow access to a value like dot syntax in as2</p>
 		 * 
 		 * <b>sample:</b>
@@ -108,14 +106,14 @@ package com.bourre.utils
 			var a : Array = toEval.split( "." );
 			var l : int = a.length;
 
-			for ( var i : int = 0; i < l; i++ )
+			for ( var i : int = 0; i < l ; i++ )
 			{
 				var p : String = a[ i ];
 				if ( target.hasOwnProperty( p ) )
 				{
 					target = target[ p ];
-
-				} else
+				} 
+				else
 				{
 					var msg : String = "ObjectUtils.evalFromTarget(" + target + ", " + toEval + ") failed.";
 					PalmerDebug.ERROR( msg );
@@ -124,6 +122,48 @@ package com.bourre.utils
 			}
 
 			return target;
+		}
+
+		/**
+		 *  Returns <code>true</code> if the passed-in <code>source</code> object 
+		 *  reference specified is a simple data type.
+		 *  
+		 *  <p>Simple data types include :
+		 *  <ul>
+		 *    <li><code>String</code></li>
+		 *    <li><code>Number</code></li>
+		 *    <li><code>uint</code></li>
+		 *    <li><code>int</code></li>
+		 *    <li><code>Boolean</code></li>
+		 *    <li><code>Date</code></li>
+		 *    <li><code>Array</code></li>
+		 *  </ul></p>
+		 *	
+		 *  @param source Object inspected.
+		 *
+		 *  @return <code>true</code> if the object is a simple data type
+		 */
+		public static function isSimple( source : Object ) : Boolean
+		{
+			switch ( typeof( source ) )
+			{
+				case "number":
+				case "string":
+				case "boolean":
+					return true;
+				case "object":
+	                return (source is Date) || (source is Array);
+			}
+			
+			return false;
+		}
+		
+		/**
+		 * @private
+		 */
+		function ObjectUtils( access : ConstructorAccess )
+		{
+			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException( );
 		}
 	}
 }

@@ -16,13 +16,16 @@
  
 package com.bourre.view 
 {
-	import com.bourre.events.StringEvent;			
+	import com.bourre.events.StringEvent;
 
 	/**
+	 * An event object which carry a <code>View</code> value.
+	 * 
+	 * @see View
+	 * 
 	 * @author Romain Ecarnot
 	 */
-	public class ViewEvent 
-		extends StringEvent 
+	public class ViewEvent extends StringEvent 
 	{
 		//--------------------------------------------------------------------
 		// Events

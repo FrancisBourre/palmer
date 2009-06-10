@@ -16,8 +16,8 @@
 package com.bourre.structures 
 {
 	import com.bourre.log.PalmerStringifier;
-	
-	import flash.geom.Point;		
+
+	import flash.geom.Point;
 
 	/**
 	 * The Dimension class encapsulates the width and height
@@ -99,12 +99,45 @@ package com.bourre.structures
 		{
 			return new Dimension ( width, height );
 		}
-
+		
+		/**
+		 * Scales dimension using passed-in <code>n</code> factor.
+		 * 
+		 * <p>Instance is not altered.</p>
+		 * 
+		 * @param	n	Scale factor
+		 */
 		public function scale ( n : Number ) : Dimension
 		{
 			return new Dimension( width * n, height * n );
 		}
-
+		
+		/**
+		 * Substracts passed-in <code>size</code> dimension from 
+		 * current instance size.
+		 * 
+		 * <p>Instance is not altered.</p>
+		 * 
+		 * @param	size	Dimension to substract
+		 */
+		public function substract( size : Dimension ) : Dimension
+		{
+			return new Dimension( width - size.width, height - size.height );
+		}
+		
+		/**
+		 * Adds passed-in <code>size</code> dimension to 
+		 * current instance size.
+		 * 
+		 * <p>Instance is not altered.</p>
+		 * 
+		 * @param	size	Dimension to add
+		 */
+		public function add( size : Dimension ) : Dimension
+		{
+			return new Dimension( width + size.width, height + size.height );
+		}
+		
 		/**
 		 * Returns a Point object with its x and y sets
 		 * respectively on width and height of this 
@@ -117,9 +150,9 @@ package com.bourre.structures
 		{
 			return new Point( width, height );
 		}
-
+		
 		/**
-		 * Returns the String representation of this object/
+		 * Returns the String representation of this object.
 		 * 
 		 * @return	the String representation of this object
 		 */

@@ -41,16 +41,16 @@ package com.bourre.ioc.assembler.builder
 	import com.bourre.load.palmer_GraphicLoader;
 	import com.bourre.log.PalmerDebug;
 	import com.bourre.log.PalmerStringifier;
-	import com.bourre.utils.FlashVarsUtil;
+	import com.bourre.utils.FlashVars;
 	import com.bourre.utils.HashCodeFactory;
-	
+
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.LoaderInfo;
 	import flash.events.Event;
 	import flash.net.URLLoaderDataFormat;
 	import flash.system.ApplicationDomain;
-	import flash.system.LoaderContext;		
+	import flash.system.LoaderContext;
 
 	/**
 	 *  Dispatched when a context element starts loading.
@@ -237,10 +237,14 @@ package com.bourre.ioc.assembler.builder
 				try
 				{
 					var param : Object = LoaderInfo( _target.root.loaderInfo ).parameters;
-					for ( var p : * in param ) CoreFactory.getInstance( ).register( FlashVarsUtil.FLASHVARS_PREFIX + p, param[ p ] );
-				} catch ( e : Error )
+					for ( var p : * in param ) 
+					{
+						FlashVars.getInstance().register( p, param[ p ] );
+					}
+				} 
+				catch ( e : Error )
 				{
-					//
+					PalmerDebug.ERROR( this + "::" + e.message );
 				}
 			} 
 			else
@@ -455,7 +459,7 @@ package com.bourre.ioc.assembler.builder
 				try
 				{
 					var deserializer : Deserializer = CoreFactory.getInstance().buildInstance( resource.deserializerClass ) as Deserializer;
-					content = deserializer.deserialize( content );
+					content = deserializer.deserialize( content, null, ID );
 				}
 				catch( err : Error )
 				{

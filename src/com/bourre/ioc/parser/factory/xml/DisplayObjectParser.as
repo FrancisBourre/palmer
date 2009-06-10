@@ -15,15 +15,14 @@
  */
 package com.bourre.ioc.parser.factory.xml
 {
-	import com.bourre.ioc.assembler.ApplicationAssembler;
 	import com.bourre.ioc.core.ContextAttributeList;
 	import com.bourre.ioc.core.ContextNameList;
 	import com.bourre.ioc.exceptions.NullChannelException;
 	import com.bourre.ioc.exceptions.NullIDException;
 	import com.bourre.ioc.load.ApplicationLoaderState;
 	import com.bourre.log.PalmerDebug;
-	
-	import flash.net.URLRequest;	
+
+	import flash.net.URLRequest;
 
 	/**
 	 * @author Francis Bourre

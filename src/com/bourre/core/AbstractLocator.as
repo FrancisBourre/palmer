@@ -78,7 +78,7 @@ package com.bourre.core
 			_oEB = new EventBroadcaster( this, ( typeListener == null ) ? LocatorListener : typeListener );
 			_logger = (logger == null ) ? PalmerDebug.getInstance( ) : logger;
 		}
-
+		
 		/**
 		 * Call this method to do something when an object is registered 
 		 * in locator.

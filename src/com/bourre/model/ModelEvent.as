@@ -16,13 +16,16 @@
  
 package com.bourre.model 
 {
-	import com.bourre.events.StringEvent;			
+	import com.bourre.events.StringEvent;
 
 	/**
+	 * An event object which carry a <code>Model</code> value.
+	 * 
+	 * @see Model
+	 * 
 	 * @author Romain Ecarnot
 	 */
-	public class ModelEvent 
-		extends StringEvent 
+	public class ModelEvent extends StringEvent 
 	{
 		//--------------------------------------------------------------------
 		// Events
@@ -42,12 +45,12 @@ package com.bourre.model
 		 *     
 		 *     <tr><th>Method</th><th>Value</th></tr>
 		 *     <tr>
-		 *     	<td><code>getView()</code>
-		 *     	</td><td>The view object</td>
+		 *     	<td><code>getModel()</code>
+		 *     	</td><td>The model object</td>
 		 *     </tr>
 		 *     <tr>
-		 *     	<td><code>getViewID()</code>
-		 *     	</td><td>The view identifier</td>
+		 *     	<td><code>getModelID()</code>
+		 *     	</td><td>The model identifier</td>
 		 *     </tr>
 		 * </table>
 		 * 
@@ -69,12 +72,12 @@ package com.bourre.model
 		 *     
 		 *     <tr><th>Method</th><th>Value</th></tr>
 		 *     <tr>
-		 *     	<td><code>getView()</code>
-		 *     	</td><td>The view object</td>
+		 *     	<td><code>getModel()</code>
+		 *     	</td><td>The model object</td>
 		 *     </tr>
 		 *      <tr>
-		 *     	<td><code>getViewID()</code>
-		 *     	</td><td>The view identifier</td>
+		 *     	<td><code>getModelID()</code>
+		 *     	</td><td>The model identifier</td>
 		 *     </tr>
 		 * </table>
 		 * 
@@ -88,7 +91,7 @@ package com.bourre.model
 		//--------------------------------------------------------------------
 		
 		/**
-		 * Creates a new <code>ViewEvent</code> object.
+		 * Creates a new <code>ModelEvent</code> object.
 		 * 
 		 * @param	type			Name of the event type
 		 * @param	view			Model object carried by this event

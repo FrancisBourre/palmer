@@ -27,11 +27,11 @@ package com.bourre.view
 
 	/**
 	 * The ViewLocator class is a locator for 
-	 * <code>AbstractView</code> object.
+	 * <code>View</code> object.
 	 * 
 	 * <p>Locator is unique for a <code>Plugin</code> instance.</p>
 	 * 
-	 * @see AbstractView
+	 * @see View
 	 * 
 	 * @author Francis Bourre
 	 */
@@ -77,7 +77,7 @@ package com.bourre.view
 		}
 		
 		/**
-		 * Returns <code>AbstractView</code> registered with passed-in 
+		 * Returns <code>View</code> registered with passed-in 
 		 * key identifier.
 		 * 
 		 * @param	key	View registration ID
@@ -85,9 +85,9 @@ package com.bourre.view
 		 * @throws 	<code>NoSuchElementException</code> — There is no view
 		 * 			associated with the passed-in key
 		 */
-		public function getView( key : String ) : AbstractView
+		public function getView( key : String ) : View
 		{
-			return locate( key ) as AbstractView;
+			return locate( key ) as View;
 		}
 		
 		/**
@@ -136,7 +136,7 @@ package com.bourre.view
 		function ViewLocator( access : ConstructorAccess, owner : Plugin = null ) 
 		{
 			_owner = owner;
-			super( AbstractView, null, PluginDebug.getInstance( getOwner() ) );
+			super( View, null, PluginDebug.getInstance( getOwner() ) );
 			
 			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
 		}		
