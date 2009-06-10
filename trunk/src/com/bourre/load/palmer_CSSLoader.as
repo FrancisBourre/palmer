@@ -13,27 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bourre.plugin
+ 
+package com.bourre.load 
 {
 	/**
-	 * Interface for objects which want to be notified of plugin events.
+	 * Reserved namespace to manage CSSLoader locator registration.
 	 * 
-	 * @author Francis Bourre
-	 */
-	public interface PluginListener
-	{
-		/**
-		 * Triggered when plugin is initialized.
-		 * 
-		 *  @param	e	event dispatched by the plugin
-		 */
-		function onInitPlugin		( e : PluginEvent ) : void;
-		
-		/**
-		 * Triggered when plugin is released.
-		 * 
-		 *  @param	e	event dispatched by the plugin
-		 */
-		function onReleasePlugin	( e : PluginEvent ) : void;
-	}
+	 * @example
+	 * <pre class="prettyprint">
+	 * 
+	 * var loader : CSSLoader = LoaderLocator.getIntance().palmer_CSSLoader::getLoader( "myLoaderName" );
+	 * </pre>
+	 * 
+	 * @author Romain Ecarnot
+	 * 
+	 * @see LoaderLocator
+	 * @see	CSSLoader	 */
+	public namespace palmer_CSSLoader = "http://www.palmer.fr/actionscript/loader/css";
 }

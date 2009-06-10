@@ -15,8 +15,9 @@
  */
 package com.bourre.view 
 {
+
 	/**
-	 * The ViewListener interfacedefines rules for view listeners.
+	 * The ViewListener interface defines rules for view listeners.
 	 * 
 	 * @author 	Francis Bourre
 	 */
@@ -25,11 +26,11 @@ package com.bourre.view
 		/**
 		 * Triggered when view is initialized.
 		 */
-		function onInitView		( e : ViewEvent ) : void;
-		
+		function onInitView( e : ViewEvent ) : void;
+
 		/**
 		 * Triggered when view is released.
 		 */
-		function onReleaseView	( e : ViewEvent ) : void;
+		function onReleaseView( e : ViewEvent ) : void;
 	}
 }

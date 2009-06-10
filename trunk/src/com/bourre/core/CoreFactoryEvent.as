@@ -21,8 +21,7 @@ package com.bourre.core
 	/**
 	 * @author Francis Bourre
 	 */
-	public class CoreFactoryEvent 
-		extends BasicEvent
+	public class CoreFactoryEvent extends BasicEvent
 	{
 		static public const onRegisterBeanEVENT		:String = "onRegisterBean";
 		static public const onUnregisterBeanEVENT	:String = "onUnregisterBean";

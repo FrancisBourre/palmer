@@ -20,11 +20,10 @@ package com.bourre.load
 	import com.bourre.load.SoundLoader;
 	import com.bourre.load.strategy.LoaderStrategy;
 	import com.bourre.log.PalmerDebug;
-	
+
 	import flash.display.DisplayObjectContainer;
 	import flash.display.LoaderInfo;
 	import flash.media.Sound;
-	import flash.system.ApplicationDomain;	
 
 	/**
 	 * @author Aigret Axel

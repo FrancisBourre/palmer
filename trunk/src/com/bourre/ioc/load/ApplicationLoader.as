@@ -43,21 +43,37 @@ package com.bourre.ioc.load
 	import com.bourre.load.LoaderEvent;
 	import com.bourre.load.LoaderListener;
 	import com.bourre.log.PalmerDebug;
-	
+
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	import flash.net.URLRequest;
-	import flash.system.LoaderContext;	
+	import flash.system.LoaderContext;
 
 	/**
+	 * IoC Application context loader.
+	 * 
 	 * @author Francis Bourre
+	 * @author Romain Ecarnot
 	 */
-	public class ApplicationLoader
-		extends AbstractLoader
+	public class ApplicationLoader extends AbstractLoader
 		implements LoaderListener, DisplayObjectBuilderListener, CommandListener
 	{
+		//--------------------------------------------------------------------
+		// Constants
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Default IoC context file URL.
+		 * 
+		 * @default "applicationContext.xml"
+		 */
 		static public const DEFAULT_URL : URLRequest = new URLRequest( "applicationContext.xml" );
 		
+		
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+				
 		/** @private */
 		protected var _oRootTarget : DisplayObjectContainer;
 		
@@ -268,9 +284,9 @@ package com.bourre.ioc.load
 		{
 			return _oDLoader;
 		}
-
+		
 		/**
-		 * Starts loading.
+		 * Starts context loading.
 		 * 
 		 * @param	url		(optional) URL request for 'applicationContext' file 
 		 * 					to load.
@@ -448,11 +464,17 @@ package com.bourre.ioc.load
 			fireOnApplicationStart( );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function onDLLLoadStart( e : DisplayObjectBuilderEvent ) : void
 		{
 			fireOnApplicationState( ApplicationLoaderState.DLL_LOAD_STATE );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function onDLLLoadInit( e : DisplayObjectBuilderEvent ) : void
 		{
 		}
@@ -472,15 +494,24 @@ package com.bourre.ioc.load
 		{
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function onDisplayObjectLoadStart( e : DisplayObjectBuilderEvent ) : void
 		{
 			fireOnApplicationState( ApplicationLoaderState.GFX_LOAD_STATE );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function onDisplayObjectLoadInit( e : DisplayObjectBuilderEvent ) : void
 		{
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function onDisplayObjectBuilderLoadInit( e : DisplayObjectBuilderEvent ) : void
 		{
 			fireOnApplicationParsed( );
@@ -503,7 +534,17 @@ package com.bourre.ioc.load
 		//--------------------------------------------------------------------
 		// Protected methods
 		//--------------------------------------------------------------------
-				
+		
+		/**
+		 * Sets <code>XMLCollection</code> as default context parser 
+		 * collection.
+		 * 
+		 * <p>Overrides to use own parser collection or use 
+		 * <code>setParserCollection()</code> method before context 
+		 * loading.</p>
+		 * 
+		 * @see #setParserCollection()
+		 */	
 		protected function initParserCollection() : void
 		{
 			try
@@ -517,7 +558,7 @@ package com.bourre.ioc.load
 		}
 		
 		/**
-		 * 
+		 * Returns context Loader.
 		 */
 		protected function getContextLoader( ) : Loader
 		{
@@ -525,7 +566,7 @@ package com.bourre.ioc.load
 		}
 		
 		/**
-		 * 
+		 * Triggered when the context file is loaded.
 		 */
 		protected function onContextLoaderLoadInit( e : LoaderEvent ) : void
 		{
@@ -533,9 +574,24 @@ package com.bourre.ioc.load
 			
 			clearExperts();
 			initParsing();
-			runParsing( e.getLoader( ).getContent( ) );
+			runParsing( getContextContent( e.getLoader() ) );		}
+		
+		/**
+		 * Returns loaded content.
+		 * 
+		 * <p>Overrides to customize loaded context content before 
+		 * running IoC parsers.</p>
+		 * 
+		 * @param	loader	Context loader instance.
+		 */
+		protected function getContextContent( loader : Loader ) : *
+		{
+			return loader.getContent();
 		}
 		
+		/**
+		 * Clears all agregators.
+		 */
 		protected function clearExperts( ) : void
 		{
 			ChannelListenerExpert.getInstance( ).release( );
@@ -544,14 +600,23 @@ package com.bourre.ioc.load
 			PropertyExpert.getInstance( ).release( );	
 		}
 		
+		/**
+		 * Inits parsing engine.
+		 */
 		protected function initParsing() : void
 		{
 			if ( getDisplayObjectBuilder( ) == null ) setDisplayObjectBuilder( new DefaultDisplayObjectBuilder( ) );
 			if ( isAntiCache( ) ) getDisplayObjectBuilder( ).setAntiCache( true );
+			
 			getDisplayObjectBuilder( ).setRootTarget( _oRootTarget );
 			getApplicationAssembler( ).setDisplayObjectBuilder( getDisplayObjectBuilder( ) );
 		}
 		
+		/**
+		 * Starts content parsing.
+		 * 
+		 * @param	rawData	The context content
+		 */
 		protected function runParsing( rawData : * ) : void
 		{
 			var cp : ContextParser = new ContextParser( getParserCollection( ) );			cp.setApplicationLoader( this );
@@ -560,6 +625,9 @@ package com.bourre.ioc.load
 			cp.execute( );	
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		override protected function getLoaderEvent( type : String, errorMessage : String = "" ) : LoaderEvent
 		{
 			return new ApplicationLoaderEvent( type, this, errorMessage );

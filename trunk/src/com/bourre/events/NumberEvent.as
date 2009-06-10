@@ -30,13 +30,16 @@ package com.bourre.events
 		/**
 		 * Creates a new <code>NumberEvent</code> object.
 		 * 
-		 * @param	type	name of the event type
-		 * @param	target	target of this event
-		 * @param	num		numeric value carried by this event
+		 * @param	type		name of the event type
+		 * @param	target		target of this event
+		 * @param	num			numeric value carried by this event
+		 * @param 	bubbles		Determines whether the Event object participates 
+		 * 						in the bubbling stage of the event flow
+		 * @param 	cancelable	Determines whether the Event object can be canceled
 		 */
-		public function NumberEvent( type : String, target : Object = null, num : Number = 0 )
+		public function NumberEvent( type : String, target : Object = null, num : Number = 0, bubbles : Boolean = false, cancelable : Boolean = false )
 		{
-			super( type, target );
+			super( type, target, bubbles, cancelable );
 			_n = num;
 		}
 		

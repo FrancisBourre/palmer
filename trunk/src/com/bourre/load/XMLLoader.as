@@ -22,8 +22,8 @@ package com.bourre.load
 	 * <pre class="prettyprint">
 	 * 
 	 * var loader : XMLLoader = new XMLLoader(  );
-	 * loader.addEventListener( XMLLoader.onLoadInitEVENT, onLoaded );
-	 * loader.load( new URLRequest( "content.xml" );
+	 * loader.addEventListener( LoaderEvent.onLoadInitEVENT, onLoaded );
+	 * loader.load( new URLRequest( "content.xml" ) );
 	 * </pre>
 	 * 
 	 * @author 	Francis Bourre

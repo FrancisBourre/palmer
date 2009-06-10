@@ -19,7 +19,8 @@ package com.bourre.utils
 	import flash.utils.getQualifiedClassName;	
 
 	/**
-	 * Set of class utilities functions.
+	 * The ClassUtil utility class is an all-static class with methods for 
+	 * working with Class objects.
 	 * 
 	 * @author Cedric Nehemie
 	 * @author	Francis Bourre

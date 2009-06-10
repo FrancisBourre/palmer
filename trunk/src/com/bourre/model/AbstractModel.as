@@ -20,19 +20,55 @@ package com.bourre.model
 	import com.bourre.plugin.NullPlugin;
 	import com.bourre.plugin.Plugin;
 	import com.bourre.plugin.PluginDebug;
-	
-	import flash.events.Event;	
+
+	import flash.events.Event;
 
 	/**
+	 *  Dispatched when model is initialized.
+	 *  
+	 *  @eventType com.bourre.model.ModelEvent.onInitModelEVENT
+	 */
+	[Event(name="onInitModel", type="com.bourre.model.ModelEvent.onInitModelEVENT")]
+	
+	/**
+	 *  Dispatched when model is released.
+	 *  
+	 *  @eventType com.bourre.model.ModelEvent.onReleaseModelEVENT
+	 */
+	[Event(name="onReleaseModel", type="com.bourre.model.ModelEvent.onReleaseModelEVENT")]
+	
+	
+	/**
+	 * Abstract implementation of Model part of the MVC implementation.
+	 * 
 	 * @author Francis Bourre
 	 */
-	public class AbstractModel 
-		implements Model
+	public class AbstractModel implements Model
 	{
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+				
+		/** EventBroadcaster for this instance. */
 		protected var _oEB 		: EventBroadcaster;
+		
+		/** Instance identifier in <code>ModelLocator</code>. */
 		protected var _sName 	: String;
+		
+		/** Plugin owner og this model. */
 		protected var _owner 	: Plugin;
 		
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+			
+		/**
+		 * Creates instance.
+		 * 
+		 * @param	owner	Plugins owner
+		 * @param	name	Model identifier
+		 */
 		public function AbstractModel( owner : Plugin = null, name : String = null ) 
 		{
 			_oEB = new EventBroadcaster( this );
@@ -41,11 +77,17 @@ package com.bourre.model
 			if ( name ) setName( name );
 		}
 		
+		/**
+		 * @copy com.bourre.events.EventBroadcaster#setListenerType
+		 */
 		public function setListenerType( type : Class ) : void
 		{
 			_oEB.setListenerType(type);
 		}
 		
+		/**
+		 * @private
+		 */
 		public function handleEvent( e : Event ) : void
 		{
 			//

@@ -18,8 +18,8 @@ package com.bourre.commands
 	import com.bourre.log.PalmerStringifier;
 	import com.bourre.transitions.FPSBeacon;
 	import com.bourre.transitions.TickListener;
-	
-	import flash.events.Event;	
+
+	import flash.events.Event;
 
 	/**
 	 * @author 	Francis Bourre
@@ -27,11 +27,48 @@ package com.bourre.commands
 	public class CommandFPS	
 		implements TickListener
 	{
+		//--------------------------------------------------------------------
+		// Private properties
+		//--------------------------------------------------------------------
+		
+		private static var _oI : CommandFPS;
+		
+		
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+				
 		protected var _oT : Object;
 		protected var _oS : Object;
 		protected var _nID : Number;
 		protected var _nL : Number;
 		
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Returns CommandFPS singleton access.
+		 */
+		static public function getInstance() : CommandFPS
+		{
+			if ( !(CommandFPS._oI is CommandFPS) ) CommandFPS._oI = new CommandFPS( );
+			return CommandFPS._oI;
+		}
+		
+		/**
+		 * Releases singleton.
+		 */
+		static public function release() : void
+		{
+			CommandFPS._oI.removeAll();
+			CommandFPS._oI = null;
+		}
+				
+		/**
+		 * Creates new instance.
+		 */
 		public function CommandFPS()
 		{
 			_oT = new Object();

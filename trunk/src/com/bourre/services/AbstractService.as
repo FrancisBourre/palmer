@@ -38,12 +38,12 @@ package com.bourre.services
 		{
 			return _result;
 		}
-
+		
 		public function addServiceListener( listener : ServiceListener ) : Boolean
 		{
 			return _oEB.addListener( listener );
 		}
-
+		
 		public function removeServiceListener( listener : ServiceListener ) : Boolean
 		{
 			return _oEB.removeListener( listener );

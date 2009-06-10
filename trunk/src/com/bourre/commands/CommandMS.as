@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 package com.bourre.commands 
-{ 
+{	
 	import com.bourre.log.PalmerStringifier;
-	
+
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;
 
@@ -25,12 +25,49 @@ package com.bourre.commands
 	 */
 	public class CommandMS
 	{
+		//--------------------------------------------------------------------
+		// Private properties
+		//--------------------------------------------------------------------
+		
+		private static var _oI : CommandMS;
+		
+		
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+						
 		protected var _oT:Object;
 		protected var _nID:Number;
 		protected var _nL : Number;
 			
 		protected static var _EXT:String = '_C_';
 		
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+		
+		/**
+		 * Returns CommandMS singleton access.
+		 */
+		static public function getInstance() : CommandMS
+		{
+			if ( !(CommandMS._oI is CommandMS) ) CommandMS._oI = new CommandMS( );
+			return CommandMS._oI;
+		}
+		
+		/**
+		 * Releases singleton.
+		 */
+		static public function release() : void
+		{
+			CommandMS._oI.removeAll();
+			CommandMS._oI = null;
+		}
+		
+		/**
+		 * Creates new instance.
+		 */	
 		public function CommandMS()
 		{
 			_oT = new Object();
@@ -116,7 +153,11 @@ package com.bourre.commands
 			return PalmerStringifier.stringify( this );
 		}
 		
-		//
+		
+		//--------------------------------------------------------------------
+		// Protected methods
+		//--------------------------------------------------------------------
+				
 		protected function _push(oC:Command, nMs:Number, sN:String) : String
 		{
 			var o:Object = new Object();

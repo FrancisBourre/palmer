@@ -25,7 +25,7 @@ package com.bourre.ioc.runner
 	import flash.display.StageScaleMode;	
 
 	/**
-	 * IoC Runner.
+	 * IoC Application runner.
 	 * 
 	 * <p>Basic IoC builder implementation.<br />
 	 * Just need to compile this class to starts IoC processing.</p>

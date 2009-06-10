@@ -309,7 +309,7 @@ package com.bourre.core
 				return false ;
 			}
 		}
-
+		
 		public function unregister ( key : String ) : Boolean
 		{
 			if ( isRegistered( key ) )

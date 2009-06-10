@@ -25,19 +25,17 @@ package com.bourre.ioc.parser.factory.xml
 	import com.bourre.ioc.load.ApplicationLoaderState;
 	import com.bourre.ioc.parser.factory.ContextProcessor;
 	import com.bourre.load.GraphicLoader;
-	import com.bourre.load.Loader;
-	import com.bourre.load.LoaderEvent;
 	import com.bourre.load.QueueLoader;
 	import com.bourre.load.QueueLoaderEvent;
 	import com.bourre.log.PalmerDebug;
 	import com.bourre.utils.HashCodeFactory;
-	
+
 	import flash.net.URLRequest;
 	import flash.system.ApplicationDomain;
-	import flash.system.LoaderContext;	
+	import flash.system.LoaderContext;
 
 	/**
-	 * The ContextPreprocessorLoader class allow xml context pre processing 
+	 * The PreprocessorParser class allow xml context pre processing 
 	 * from xml context nodes.
 	 * 
 	 * <p>Context preprocessing order is :
@@ -61,16 +59,16 @@ package com.bourre.ioc.parser.factory.xml
 	 * 		
 	 * 		}
 	 * 		
-	 * 		public function process(xml : XML) : XML
+	 * 		public function process( context : * ) : *
 	 * 		{			
 	 * 			//do preprocessing here
 	 * 			
-	 * 			return xml;
+	 * 			return context;
 	 * 		}
 	 * 		
-	 * 		public function customMethod( xml : XML ) : XML
+	 * 		public function customMethod( context : * ) : *
 	 * 		{
-	 * 			return process( xml );
+	 * 			return process( context );
 	 * 		}
 	 * 	}
 	 * }

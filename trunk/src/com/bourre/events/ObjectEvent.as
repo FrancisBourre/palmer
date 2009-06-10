@@ -31,13 +31,16 @@ package com.bourre.events
 		/**
 		 * Creates a new <code>ObjectEvent</code> object.
 		 * 
-		 * @param	type	name of the event type
-		 * @param	target	target of this event
-		 * @param	o		object carried by this event
+		 * @param	type		name of the event type
+		 * @param	target		target of this event
+		 * @param	o			object carried by this event
+		 * @param 	bubbles		Determines whether the Event object participates 
+		 * 						in the bubbling stage of the event flow
+		 * @param 	cancelable	Determines whether the Event object can be canceled
 		 */
-		 public function ObjectEvent( sType : String, oTarget : Object = null, o : Object = null )
+		 public function ObjectEvent( sType : String, oTarget : Object = null, o : Object = null, bubbles : Boolean = false, cancelable : Boolean = false )
 		{
-			super( sType, oTarget );
+			super( sType, oTarget, bubbles, cancelable );
 			_o = o;
 		}
 		

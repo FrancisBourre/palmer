@@ -20,7 +20,7 @@ package com.bourre.ioc.parser.factory.xml
 	import com.bourre.ioc.core.ContextAttributeList;
 	import com.bourre.ioc.load.ApplicationLoaderState;
 	import com.bourre.log.PalmerDebug;
-	import com.bourre.utils.FlashVarsUtil;	
+	import com.bourre.utils.FlashVars;
 
 	/**
 	 * Context URL manager.
@@ -140,7 +140,7 @@ package com.bourre.ioc.parser.factory.xml
 
 		protected function getFlashVarURL( key : String, url : String  ) : String
 		{
-			var path : String = FlashVarsUtil.get( key );
+			var path : String = FlashVars.getInstance().locate( key ) as String;
 			
 			if( path )
 			{

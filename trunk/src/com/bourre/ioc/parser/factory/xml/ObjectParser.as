@@ -16,13 +16,12 @@
 package com.bourre.ioc.parser.factory.xml
 {
 	import com.bourre.events.ApplicationBroadcaster;
-	import com.bourre.ioc.assembler.ApplicationAssembler;
 	import com.bourre.ioc.core.ContextNameList;
 	import com.bourre.ioc.core.ContextTypeList;
 	import com.bourre.ioc.exceptions.NullChannelException;
 	import com.bourre.ioc.exceptions.NullIDException;
 	import com.bourre.ioc.load.ApplicationLoaderState;
-	import com.bourre.log.PalmerDebug;	
+	import com.bourre.log.PalmerDebug;
 
 	/**
 	 * @author Francis Bourre

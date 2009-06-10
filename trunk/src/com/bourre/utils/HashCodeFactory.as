@@ -15,8 +15,8 @@
  */	
 package com.bourre.utils
 {
-	import flash.utils.Dictionary;	
-
+	import flash.utils.Dictionary;
+	
 	/**
 	 * The <code>HashCodeFactory</code> class provides convenient methods
 	 * to emulate the behavior of the Java&trade; <code>Object.hashcode()</code>
@@ -34,8 +34,10 @@ package com.bourre.utils
 	 */
 	public class HashCodeFactory
 	{
-		static protected var _K 		: uint;
-		static protected const _d 	: Dictionary = new Dictionary( true );
+		static protected var _K : uint;
+		static protected const _d : Dictionary = new Dictionary( true );
+		
+		public static const PREFIX : String = "KEY";
 		
 		/**
 		 * Returns the hashcode key associated to the passed-in object.
@@ -45,12 +47,12 @@ package com.bourre.utils
 		 * @param	o	target object
 		 * @return	the string hashcode for the passed-in object
 		 */
-		static public function getKey ( o : * ) : String
+		static public function getKey( o : * ) : String
 		{
-			if( !hasKey( o ) ) _d[ o ] = getNextKey();
+			if( !hasKey( o ) ) _d[ o ] = getNextKey( );
 			return _d[ o ] as String;
 		}
-		
+
 		/**
 		 * Returns <code>true</code> if the passed-in object has already
 		 * got an hashcode key.
@@ -59,11 +61,11 @@ package com.bourre.utils
 		 * @return	<code>true</code> if the passed-in object has already
 		 * 			got an hashcode key.
 		 */
-		static public function hasKey ( o : * ) : Boolean
+		static public function hasKey( o : * ) : Boolean
 		{
 			return _d[ o ] != null;
 		}
-		
+
 		/**
 		 * Returns the next unique identifier, two consecutives
 		 * calls to <code>getNextKey</code> will generate two
@@ -74,11 +76,11 @@ package com.bourre.utils
 		 * @return	next unique identifier
 		 * @see		#previewNextKey()
 		 */
-		static public function getNextKey () : String
+		static public function getNextKey() : String
 		{
-			return "KEY" + _K++;
+			return PREFIX + _K++;
 		}
-		
+
 		/**
 		 * Returns the next key that will be returned by net
 		 * <code>getNextKey</code> call. Calling several times
@@ -87,9 +89,9 @@ package com.bourre.utils
 		 * 
 		 * @return	preview of next unique identifier
 		 */
-		static public function previewNextKey () : String
+		static public function previewNextKey() : String
 		{
-			return "KEY" + _K;
+			return PREFIX + _K;
 		}
 	}
 }

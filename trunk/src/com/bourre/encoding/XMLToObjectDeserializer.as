@@ -80,7 +80,7 @@ package com.bourre.encoding
 		 *
 		 * @return The <code>serializedContent</code> deserialization result.
 		 */
-		public function deserialize( serializedContent : Object, target : Object = null ) : Object
+		public function deserialize( serializedContent : Object, target : Object = null, key : String = null ) : Object
 		{
 			if ( target == null ) target = {};
 			

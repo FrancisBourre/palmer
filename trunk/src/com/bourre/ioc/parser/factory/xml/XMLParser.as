@@ -44,7 +44,7 @@ package com.bourre.ioc.parser.factory.xml
 				throw( new IllegalArgumentException( msg ) );
 			}
 		}
-
+		
 		/**
 		 * 
 		 */

@@ -32,14 +32,12 @@ package com.bourre.ioc.parser.factory
 	/**
 	 * @author Romain Ecarnot
 	 */
-	public class AbstractParserCommand 
-		extends AbstractCommand 
-		implements ParserCommand 
+	public class AbstractParserCommand extends AbstractCommand implements ParserCommand 
 	{
 		//--------------------------------------------------------------------
 		// Private properties
 		//--------------------------------------------------------------------
-
+		
 		private var _oLoader : ApplicationLoader;
 
 		

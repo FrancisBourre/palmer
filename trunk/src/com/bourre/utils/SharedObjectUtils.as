@@ -18,7 +18,7 @@ package com.bourre.utils
 	import com.bourre.exceptions.PrivateConstructorException;
 	import com.bourre.log.PalmerDebug;
 
-	import flash.net.SharedObject;	
+	import flash.net.SharedObject;
 
 	/**
 	 * The original <code>SharedObjectUtils</code> class provides basic methods 
@@ -30,13 +30,24 @@ package com.bourre.utils
 	 * @author	Cédric Néhémie
 	 * @see		http://livedocs.macromedia.com/flex/2/langref/flash/net/SharedObject.html
 	 */
-	public class SharedObjectUtils
+	final public class SharedObjectUtils
 	{
-		public function SharedObjectUtils( access : ConstructorAccess )
-		{
-			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
-		}
+		//--------------------------------------------------------------------
+		// Public properties
+		//--------------------------------------------------------------------
 		
+		/** 
+		 * Default root path for SharedObject file.
+		 * 
+		 * @default "/"
+		 */
+		public static var DEFAULT_ROOT_PATH : String = "/";
+		
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+						
 		/**
 		 * Get a value stored in a local SharedObject.
 		 * 
@@ -50,7 +61,7 @@ package com.bourre.utils
 		{	
 			try
 			{
-				var save:SharedObject = SharedObject.getLocal( cookieName, "/" );
+				var save:SharedObject = SharedObject.getLocal( cookieName, DEFAULT_ROOT_PATH );
 				return save.data[objectName];
 
 			} catch( e : Error )
@@ -59,7 +70,7 @@ package com.bourre.utils
 				return null;
 			}
 		}
-
+		
 		/**
 		 * Save some data in a local SharedObject.
 		 * 
@@ -74,7 +85,7 @@ package com.bourre.utils
 		{
 			try
 			{
-				var save : SharedObject = SharedObject.getLocal( cookieName );
+				var save : SharedObject = SharedObject.getLocal( cookieName, DEFAULT_ROOT_PATH );
 				save.data[ objectName ] = refValue;
 				save.flush();
 				return true;
@@ -99,7 +110,7 @@ package com.bourre.utils
 		{
 			try
 			{
-				var save:SharedObject = SharedObject.getLocal( cookieName );
+				var save:SharedObject = SharedObject.getLocal( cookieName, DEFAULT_ROOT_PATH );
 				save.clear();
 				return true;
 
@@ -107,8 +118,16 @@ package com.bourre.utils
 			{
 				PalmerDebug.ERROR ( e );
 			}
-
+			
 			return false;
+		}
+		
+		/**
+		 * @private
+		 */
+		function SharedObjectUtils( access : ConstructorAccess )
+		{
+			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
 		}
 	}
 }

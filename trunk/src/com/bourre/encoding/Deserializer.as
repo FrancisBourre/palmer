@@ -25,8 +25,12 @@ package com.bourre.encoding
 		/**
 		 * Returns <code>serializedContent</code> deserialization result.
 		 * 
+		 * @param	serializedContent	Content to deserialize
+		 * @param	target				(optional)
+		 * @param	key					(optional) Identifier to allow possible 
+		 * 								object registration	
 		 * @return The <code>serializedContent</code> deserialization result.
 		 */
-		function deserialize( serializedContent : Object, target : Object = null ) : Object;
+		function deserialize( serializedContent : Object, target : Object = null, key : String = null ) : Object;
 	}
 }

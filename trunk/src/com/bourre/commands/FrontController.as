@@ -349,6 +349,9 @@ package com.bourre.commands
 			}
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		override public function release() : void
 		{
 			super.release();

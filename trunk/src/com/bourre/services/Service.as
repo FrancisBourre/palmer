@@ -19,7 +19,7 @@ package com.bourre.services
 	import com.bourre.commands.Command;
 	
 	import flash.events.Event;	
-
+	
 	/**
 	 * @author Francis Bourre
 	 */
