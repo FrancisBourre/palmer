@@ -15,7 +15,7 @@
  */
 package com.bourre.load
 {
-	import com.bourre.events.BasicEvent;		
+	import com.bourre.events.BasicEvent;
 	
 	use namespace palmer_GraphicLoader;
 	
@@ -28,6 +28,7 @@ package com.bourre.load
 	use namespace palmer_VideoLoader;
 	
 	use namespace palmer_SoundLoader;
+		use namespace palmer_CSSLoader;
 	
 	/**
 	 * An event object which carry a <code>Loader</code> value.
@@ -327,5 +328,14 @@ package com.bourre.load
 			return _loader as XMLLoader;
 		}
 		
+		/**
+		 * Returns the CSSLoader object carried by this event.
+		 * 
+		 * @return	The loader value carried by this event.
+		 */
+		palmer_CSSLoader function getLoader() : CSSLoader
+		{
+			return _loader as CSSLoader;
+		}
 	}
 }

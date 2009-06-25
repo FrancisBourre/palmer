@@ -18,11 +18,14 @@ package com.bourre.ioc.runner
 {
 	import com.bourre.ioc.assembler.builder.DefaultDisplayObjectBuilder;
 	import com.bourre.ioc.load.ApplicationLoader;
-	
+	import com.bourre.log.PalmerDebug;
+	import com.bourre.utils.FlashVars;
+
 	import flash.display.DisplayObjectContainer;
+	import flash.display.LoaderInfo;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
-	import flash.display.StageScaleMode;	
+	import flash.display.StageScaleMode;
 
 	/**
 	 * IoC Application runner.
@@ -51,6 +54,8 @@ package com.bourre.ioc.runner
 		 */
 		public function BasicApplicationRunner() 
 		{
+			checkFlashvars();
+			
 			initStage( );
 			
 			loadContext( );
@@ -60,6 +65,25 @@ package com.bourre.ioc.runner
 		//-------------------------------------------------------------------------
 		// Protected methods
 		//-------------------------------------------------------------------------
+		
+		/**
+		 * Retreives Flashvars if defined.
+		 */
+		protected function checkFlashvars( ) : void
+		{
+			try
+			{
+				var param : Object = LoaderInfo( root.loaderInfo ).parameters;
+				for ( var p : * in param ) 
+				{
+					FlashVars.getInstance().register( p, param[ p ] );
+				}
+			} 
+			catch ( e : Error )
+			{
+				PalmerDebug.ERROR( this + "::" + e.message );
+			}
+		}
 		
 		/**
 		 * Defines some stage properties.
@@ -126,6 +150,7 @@ package com.bourre.ioc.runner
 		protected function preprocess() : void
 		{
 			//
+			
 		}
 	}
 }

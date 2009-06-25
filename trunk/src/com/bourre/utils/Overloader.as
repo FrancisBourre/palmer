@@ -22,7 +22,7 @@ package com.bourre.utils
 	import com.bourre.log.PalmerDebug;
 
 	import flash.utils.getQualifiedClassName;
-
+	
 	/**
 	 * Overloads a method.
 	 * 
@@ -51,7 +51,7 @@ package com.bourre.utils
 		//--------------------------------------------------------------------
 		// Private properties
 		//--------------------------------------------------------------------
-
+		
 		private var _oSet : Set;
 		private var _oDefaultHandler : Function;
 
