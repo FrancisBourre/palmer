@@ -228,7 +228,7 @@ package com.bourre.utils
         	
 			return result;
 		}
-
+		
 		/**
 		 * Creates an unique name for passed-in object.
 		 * 

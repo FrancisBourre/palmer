@@ -22,8 +22,7 @@ package com.bourre.ioc.parser
 	/**
 	 * @author Francis Bourre
 	 */
-	public class ContextParserEvent 
-		extends BasicEvent
+	public class ContextParserEvent extends BasicEvent
 	{
 		
 		//--------------------------------------------------------------------
@@ -48,7 +47,8 @@ package com.bourre.ioc.parser
 		
 		public function getContextParser() :ContextParser
 		{
-			return getTarget( ) as ContextParser;		}
+			return getTarget( ) as ContextParser;
+		}
 		
 		public function getApplicationLoader( ) : ApplicationLoader
 		{
@@ -59,4 +59,5 @@ package com.bourre.ioc.parser
 		{
 			return _oContext;
 		}
-	}}
+	}
+}

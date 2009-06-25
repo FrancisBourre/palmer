@@ -25,6 +25,7 @@ package com.bourre.ioc.parser
 
 	/**
 	 * @author Francis Bourre
+	 * @author Romain Ecarnot
 	 */
 	public class ContextParser extends Batch
 	{
@@ -47,7 +48,8 @@ package com.bourre.ioc.parser
 		{
 			super();
 			
-			_oLoader = null;			_oContext = null;
+			_oLoader = null;
+			_oContext = null;
 			
 			if( pc ) setParserCollection( pc );
 		}

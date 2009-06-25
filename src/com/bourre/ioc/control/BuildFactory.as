@@ -68,8 +68,14 @@ package com.bourre.ioc.control
 			addType( ContextTypeList.XML, new BuildXML() );
 			addType( ContextTypeList.FUNCTION, new BuildFunction() );
 		}
-
-		protected function addType( type : String, build : Command ) : void
+		
+		/**
+		 * Adds new command to build a new object of type paased-in.
+		 *
+		 * @param	type	Object type to build
+		 * @param	build	Command to use to build the object
+		 */
+		public function addType( type : String, build : Command ) : void
 		{
 			_m.put( type, build );
 		}

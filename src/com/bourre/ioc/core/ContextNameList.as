@@ -28,14 +28,21 @@ package com.bourre.ioc.core
 		static private var _oI 					: ContextNameList;
 
 		static public var BEANS 				: String = "beans";
-		static public var PREPROCESSOR 			: String = "preprocessor";		static public var PROPERTY 				: String = "property";
+		static public var PREPROCESSOR 			: String = "preprocessor";
+		static public var PROPERTY 				: String = "property";
 		static public var ARGUMENT 				: String = "argument";
 		static public var ROOT 					: String = "root";
 		static public var APPLICATION_LOADER 	: String = "application-loader";
+		static public var VAR					: String = "var";
 		static public var DLL 					: String = "dll";
 		static public var METHOD_CALL 			: String = "method-call";
 		static public var LISTEN 				: String = "listen";
-		static public var ITEM 					: String = "item";		static public var KEY 					: String = "key";		static public var VALUE 				: String = "value";		static public var INCLUDE 				: String = "include";		static public var IMPORT 				: String = "import";		static public var RSC 					: String = "rsc";
+		static public var ITEM 					: String = "item";
+		static public var KEY 					: String = "key";
+		static public var VALUE 				: String = "value";
+		static public var INCLUDE 				: String = "include";
+		static public var IMPORT 				: String = "import";
+		static public var RSC 					: String = "rsc";
 		static public var EVENT 				: String = "event";
 		
 		private var _mNodeName : HashMap;
@@ -65,6 +72,8 @@ package com.bourre.ioc.core
 			addNodeName( ContextNameList.METHOD_CALL, "" );
 			addNodeName( ContextNameList.LISTEN, "" );
 			addNodeName( "attribute", "" );
+			
+			//TODO add DLL, RSC, VAR, etc into reserved ?
 		}
 
 		public function addNodeName( nodeName : String, value:* ) : void
