@@ -33,7 +33,7 @@ package com.bourre.media.sound
 		 */
 		public function get duration() : Number
 		{
-			return null;
+			return -1;
 		}
 		
 		/**
@@ -41,7 +41,7 @@ package com.bourre.media.sound
 		 */
 		public function get volume() : Number
 		{
-			return null;
+			return -1;
 		}
 		/** @private */
 		public function set volume(value : Number) : void

@@ -73,7 +73,7 @@ package com.bourre.utils {
 		{
 			if( !source || source.length < 1 ) return null;
 			
-			var index : Number = Random.nextInt( source.length - 1 );
+			var index : Number = Random.nextInt( source.length );//FIXME test !!!
 			
 			try
 			{
