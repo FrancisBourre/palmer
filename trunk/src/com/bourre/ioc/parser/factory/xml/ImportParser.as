@@ -18,6 +18,7 @@ package com.bourre.ioc.parser.factory.xml
 {
 	import com.bourre.ioc.assembler.locator.Import;
 	import com.bourre.ioc.assembler.locator.ImportExpert;
+	import com.bourre.ioc.core.ContextAttributeList;
 	import com.bourre.ioc.core.ContextNameList;
 	import com.bourre.ioc.load.ApplicationLoaderState;
 	import com.bourre.load.LoaderEvent;
@@ -25,13 +26,13 @@ package com.bourre.ioc.parser.factory.xml
 	import com.bourre.load.QueueLoaderEvent;
 	import com.bourre.load.XMLLoader;
 	import com.bourre.log.PalmerDebug;
-	
+
 	import flash.net.URLRequest;
 	import flash.system.ApplicationDomain;
-	import flash.system.LoaderContext;	
+	import flash.system.LoaderContext;
 
 	/**
-	 * The XMLImportParser class allow to inject IoC context into another 
+	 * The ImportParser class allow to inject IoC context into another 
 	 * IoC context. ( import feature )
 	 * 
 	 * @example How to import context
@@ -45,6 +46,21 @@ package com.bourre.ioc.parser.factory.xml
 	 * 	&lt;/root&gt;
 	 * &lt;/beans&gt; 
 	 * </pre>
+	 * 
+	 * <p><code>sandbox</code> url parsing are checked to enable full 
+	 * plugin structure management.</p>
+	 * @example In imported XML context
+	 * <pre class="prettyprint">
+	 * 
+	 * &lt;beans&gt;
+	 * 	&lt;rsc id="logo" url="sandbox://bitmap.png" type="binary" /&gt;
+	 * &lt;/beans&gt; 
+	 * </pre>
+	 * <p>Here, the <code>bitmap.png</code> url are relative to the imported 
+	 * xml context file.<br />
+	 * Note : only <code>sandbox</code> url are threated, all others types 
+	 * ( flashvars replacement for example ) are threated later with the global 
+	 * <code>PathParser</code> context processing.</p>
 	 * 
 	 * @author Romain Ecarnot
 	 */
@@ -152,6 +168,11 @@ package com.bourre.ioc.parser.factory.xml
 			var xml : XML = XMLLoader( event.getLoader( ) ).getXML( );
 			var info : Import = ImportExpert.getInstance( ).locate( event.getName( ) ) as Import;
 			
+			checkImportSandbox( xml, event.getLoader().getURL().url );
+			
+			PalmerDebug.FATAL( "Imported XML context" );
+			PalmerDebug.FATAL( xml.toXMLString() );
+			
 			parseImport( xml );
 			
 			try
@@ -212,6 +233,50 @@ package com.bourre.ioc.parser.factory.xml
 		protected function fireOnCompleteEvent( ) : void
 		{
 			fireCommandEndEvent( );
+		}
+		
+		/**
+		 * Resolve "sandbox" url type for imported XML content.
+		 * 
+		 * @param	imported	Imported XML data
+		 * @param	contextURL	URL of imported file
+		 */
+		protected function checkImportSandbox( imported : XML, contextURL : String ) : void
+		{
+			var result : XMLList = imported..*.( hasOwnProperty( getAttributeName( ContextAttributeList.URL ) ) && String( @[ContextAttributeList.URL] ).length > 0 );
+			
+			for each (var node : XML in result)
+			{
+				var separator : String = "://";
+				var url : String = node.@url;
+				var key : String = url.substring( 0, url.indexOf( separator ) );
+				
+				if( key == "sandbox" )
+				{
+					node.@url = getSandboxURL( url.substr( url.indexOf( separator ) + separator.length ), contextURL );
+				}
+			}
+		}
+		
+		/**
+		 * Returns XML attribute full qualified name.
+		 */
+		protected function getAttributeName( name : String ) : String
+		{
+			return "@" + name;		
+		}
+		
+		/**
+		 * Parses url.
+		 */
+		protected function getSandboxURL( url : String, contextURL : String  ) : String
+		{
+			var cURL : String = contextURL.substring( 0, getApplicationLoader().getURL( ).url.indexOf( "?" ) );
+			var contextPath : String = cURL.substring( 0, contextURL.lastIndexOf( "/" ) );
+			
+			if( contextPath.length > 0 ) contextPath += "/";
+			
+			return contextPath + url;
 		}
 	}
 }

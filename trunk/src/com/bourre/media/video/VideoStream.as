@@ -19,6 +19,7 @@ package com.bourre.media.video
 	import com.bourre.commands.CommandManagerMS;
 	import com.bourre.commands.Delegate;
 	import com.bourre.core.palmer_internal;
+	import com.bourre.load.VideoLoader;
 	import com.bourre.load.palmer_VideoLoader;
 	import com.bourre.log.PalmerDebug;
 	import com.bourre.media.AbstractMediaStream;
@@ -27,14 +28,15 @@ package com.bourre.media.video
 	import com.bourre.media.MetaDataEvent;
 	import com.bourre.media.sound.SoundTransformInfo;
 	import com.bourre.structures.Dimension;
-	
+
 	import flash.display.BitmapData;
 	import flash.media.Video;
-	import flash.net.NetStream;	
+	import flash.net.NetStream;
 	
 	use namespace palmer_VideoLoader;
-	use namespace palmer_internal;
 	
+	use namespace palmer_internal;
+
 	/**
 	 * 
 	 * @example Basic use
@@ -61,6 +63,8 @@ package com.bourre.media.video
 	 * 
 	 * loader.load( new URLRequest ( "video.f4v" ) );
 	 * </pre>
+	 * 
+	 * @author Romain Ecarnot
 	 */
 	public class VideoStream extends AbstractMediaStream implements MediaStream
 	{
@@ -75,7 +79,7 @@ package com.bourre.media.video
 		private var _bLoopMode : Boolean;
 
 		private var _oVideoMeta : VideoMetadata;
-		private var _bXMPReceived : Boolean;		private var _bLoaded : Boolean;		
+		private var _bXMPReceived : Boolean;		private var _bLoaded : Boolean;
 		private var _dCuePointUpdateMethod : Delegate;
 		private var _oST : SoundTransformInfo ;
 
@@ -210,7 +214,23 @@ package com.bourre.media.video
 			_bLoopMode = enabled;
 		}
 
-		
+		/**
+		 * Specifies whether the video should be smoothed (interpolated) when 
+		 * it is scaled.
+		 * 
+		 * @default true
+		 */
+		public function get smoothing( ) : Boolean
+		{
+			return video.smoothing;
+		}
+
+		/** @private */
+		public function set smoothing( b : Boolean ) : void
+		{
+			video.smoothing = b;
+		}
+
 		
 		//--------------------------------------------------------------------
 		// Public API
@@ -279,7 +299,7 @@ package com.bourre.media.video
 		{
 			return _oCOManager;
 		}	
-		
+
 		/**
 		 * 
 		 */
@@ -289,6 +309,8 @@ package com.bourre.media.video
 			{
 				video.width = w;
 				video.height = h;
+				
+				PalmerDebug.FATAL( "new size " + w + "x" + h );
 			}
 		}
 
@@ -330,7 +352,7 @@ package com.bourre.media.video
 			if( nextPosition >= 0 && nextPosition <= duration );
 			stream.seek( nextPosition );
 		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
@@ -355,7 +377,7 @@ package com.bourre.media.video
 		{
 			isRunning( ) ? pause( ) : resume( );
 		}
-
+		
 		/**
 		 * @inheritDoc
 		 */
@@ -421,6 +443,8 @@ package com.bourre.media.video
 				{
 					fireEvent( new MetaDataEvent( MetaDataEvent.onMetaDataReceivedEVENT, this, getMetadata( ) ) );
 				}
+				
+				if ( autoSize ) setSize( getVideoMetadata( ).width, getVideoMetadata( ).height );
 			}
 		}
 
@@ -466,20 +490,28 @@ package com.bourre.media.video
 		{
 			fireEvent( new VideoImageDataEvent( VideoImageDataEvent.onImageDataEVENT, this, data ) );
 		}
-		
+
 		/**
 		 * Triggered when a NetStream object has completely played 
 		 * a stream.
 		 */
 		public function onPlayStatus( data : Object  ) : void
 		{
-			PalmerDebug.FATAL( "onPlayStatus" );
-			for (var p : String in data) 
+			if( VideoLoader.DEBUG ) 
 			{
-				PalmerDebug.FATAL( p + " -> " + data[p] );
+				PalmerDebug.DEBUG( this + ".onPlayStatus()" );
+				for (var p : String in data) 
+				{
+					PalmerDebug.FATAL( p + " -> " + data[p] );
+				}
+			}
+			
+			if( data.code == "NetStream.Play.Complete")
+			{
+				complete( );
 			}
 		}
-
+		
 		/**
 		 * 
 		 */
@@ -535,6 +567,13 @@ package com.bourre.media.video
 		//--------------------------------------------------------------------
 		// palmer_VideoLoader methods
 		//--------------------------------------------------------------------
+
+		palmer_VideoLoader function setStream( loadedStream : NetStream ) : void
+		{
+			stream = loadedStream;
+			stream.client = this;
+			getVideo( ).attachNetStream( stream );
+		}
 
 		palmer_VideoLoader function setLoaded( b : Boolean ) : void
 		{
@@ -614,33 +653,33 @@ package com.bourre.media.video
 
 		override protected function setRunning( b : Boolean ) : void
 		{
-			super.setRunning(b);
+			super.setRunning( b );
 			
-			if( isRunning() )
+			if( isRunning( ) )
 			{
-				CommandManagerMS.getInstance().push( _dCuePointUpdateMethod, 500 );	
+				CommandManagerMS.getInstance( ).push( _dCuePointUpdateMethod, 500 );	
 			}
 			else
 			{
-				CommandManagerMS.getInstance().remove( _dCuePointUpdateMethod );
+				CommandManagerMS.getInstance( ).remove( _dCuePointUpdateMethod );
 			}
 		}
-		
+
 		protected function checkCuePoint(  ) : void
 		{
-			var cp : CuePoint = getCuePointManager().palmer_internal::getCuePoint( stream.time );
+			var cp : CuePoint = getCuePointManager( ).palmer_internal::getCuePoint( stream.time );
 			if( cp != null )
 			{
-				fireEvent( new CuePointEvent( CuePointEvent.onCuePointEVENT, this, cp) );
+				fireEvent( new CuePointEvent( CuePointEvent.onCuePointEVENT, this, cp ) );
 			}
 		}
-		
+
 		/**
 		 * Returns a VideoStreamEvent event.
 		 * 
 		 * @return A VideoStreamEvent event for current loader instance.
 		 */
-		override protected function getLoaderEvent( type : String ) : MediaStreamEvent
+		override protected function getMediaEvent( type : String ) : MediaStreamEvent
 		{
 			return new VideoStreamEvent( type, this );
 		}
@@ -655,17 +694,17 @@ package com.bourre.media.video
 				play( );
 			}
 		}
-		
+
 		/**
 		 * @private
 		 * 
 		 * Returns real video stream playhead position.
 		 */
-		override palmer_internal function get playheadTime() : Number
+		override palmer_internal function getPlayheadTime() : Number
 		{
 			return stream.time;
 		}
-		
+
 		
 		//--------------------------------------------------------------------
 		// Private implementation
@@ -674,9 +713,9 @@ package com.bourre.media.video
 		/**
 		 * 
 		 */
-		palmer_VideoLoader static function buildInstance( video : Video, stream : NetStream ) : VideoStream
+		palmer_VideoLoader static function buildInstance( video : Video ) : VideoStream
 		{
-			return new VideoStream( video, stream );
+			return new VideoStream( video );
 		}
 
 		/**
@@ -685,12 +724,11 @@ package com.bourre.media.video
 		 * @param	video	Video container
 		 * @param	stream	Video stream to use
 		 */
-		function VideoStream( video : Video, stream : NetStream )
+		function VideoStream( video : Video )
 		{
 			super( getContructorAccess( ) );
 			
 			this.video = video;
-			this.stream = stream;
 			
 			_bAutoPlay = false;
 			_bAutoSize = false;

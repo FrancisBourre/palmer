@@ -17,7 +17,7 @@
 package com.bourre.utils 
 {
 	import flash.system.Capabilities;
-	
+
 	/**
 	 * Useful informations about client environement.
 	 * 
@@ -50,6 +50,14 @@ package com.bourre.utils
 		 */
 		public static var OS_LINUX : String = "Linux";
 
+		/**
+		 * Returns Client player default language.
+		 */
+		public static function get language(  ) : String
+		{
+			return Capabilities.language; 
+		}
+		
 		
 		//--------------------------------------------------------------------
 		// Public API
@@ -71,7 +79,7 @@ package com.bourre.utils
 		{
 			return Capabilities.os.indexOf( OS_WINDOWS ) > -1;
 		}
-
+		
 		/**
 		 * Returns <code>true</code> if current platform is Mac OS 
 		 * platform.

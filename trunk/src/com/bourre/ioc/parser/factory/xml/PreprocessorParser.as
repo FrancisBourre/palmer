@@ -103,7 +103,7 @@ package com.bourre.ioc.parser.factory.xml
 	 * 
 	 * @author Romain Ecarnot
 	 */
-	public class PreprocessorParser extends XMLParser //FIXME Not work
+	public class PreprocessorParser extends XMLParser
 	{
 		//--------------------------------------------------------------------
 		// Constants
