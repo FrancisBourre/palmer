@@ -34,7 +34,7 @@ package com.bourre.ioc.core
 		static public var ROOT 					: String = "root";
 		static public var APPLICATION_LOADER 	: String = "application-loader";
 		static public var VAR					: String = "var";
-		static public var DLL 					: String = "dll";
+		static public var LIB 					: String = "lib";		static public var DLL 					: String = "dll";
 		static public var METHOD_CALL 			: String = "method-call";
 		static public var LISTEN 				: String = "listen";
 		static public var ITEM 					: String = "item";
