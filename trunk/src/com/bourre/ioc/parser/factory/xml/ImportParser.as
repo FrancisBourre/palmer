@@ -170,9 +170,6 @@ package com.bourre.ioc.parser.factory.xml
 			
 			checkImportSandbox( xml, event.getLoader().getURL().url );
 			
-			PalmerDebug.FATAL( "Imported XML context" );
-			PalmerDebug.FATAL( xml.toXMLString() );
-			
 			parseImport( xml );
 			
 			try
