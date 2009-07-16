@@ -16,6 +16,7 @@
 
 package com.bourre.ioc.runner 
 {
+	import com.bourre.utils.SystemConfig;
 	import com.bourre.ioc.assembler.builder.DefaultDisplayObjectBuilder;
 	import com.bourre.ioc.load.ApplicationLoader;
 	import com.bourre.log.PalmerDebug;
@@ -26,6 +27,7 @@ package com.bourre.ioc.runner
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.net.URLRequest;
 
 	/**
 	 * IoC Application runner.
@@ -54,13 +56,13 @@ package com.bourre.ioc.runner
 		 */
 		public function BasicApplicationRunner() 
 		{
-			checkFlashvars();
+			checkFlashvars( );
 			
 			initStage( );
 			
 			loadContext( );
 		}
-		
+
 		
 		//-------------------------------------------------------------------------
 		// Protected methods
@@ -76,7 +78,7 @@ package com.bourre.ioc.runner
 				var param : Object = LoaderInfo( root.loaderInfo ).parameters;
 				for ( var p : * in param ) 
 				{
-					FlashVars.getInstance().register( p, param[ p ] );
+					FlashVars.getInstance( ).register( p, param[ p ] );
 				}
 			} 
 			catch ( e : Error )
@@ -84,7 +86,7 @@ package com.bourre.ioc.runner
 				PalmerDebug.ERROR( this + "::" + e.message );
 			}
 		}
-		
+
 		/**
 		 * Defines some stage properties.
 		 * 
@@ -150,7 +152,18 @@ package com.bourre.ioc.runner
 		protected function preprocess() : void
 		{
 			//
+		}
+		
+		/**
+		 * Returns default relative context file url using runner path.
+		 */
+		protected function getRelativeContextURL(  ) : URLRequest
+		{
+			var local : Boolean = new RegExp( "file://" ).test( loaderInfo.url );
+			var basePath : String = ( local ) ? "" : loaderInfo.url.substring( 0, loaderInfo.url.lastIndexOf( "/" ) + 1 );
+			var url : String = basePath + ApplicationLoader.DEFAULT_NAME;
 			
+			return new URLRequest( url );
 		}
 	}
 }

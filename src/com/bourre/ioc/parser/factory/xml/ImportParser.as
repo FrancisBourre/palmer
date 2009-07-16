@@ -169,6 +169,7 @@ package com.bourre.ioc.parser.factory.xml
 			var info : Import = ImportExpert.getInstance( ).locate( event.getName( ) ) as Import;
 			
 			checkImportSandbox( xml, event.getLoader().getURL().url );
+			checkImportDomain( xml );
 			
 			parseImport( xml );
 			
@@ -251,6 +252,38 @@ package com.bourre.ioc.parser.factory.xml
 				if( key == "sandbox" )
 				{
 					node.@url = getSandboxURL( url.substr( url.indexOf( separator ) + separator.length ), contextURL );
+				}
+			}
+		}
+		
+		protected function checkImportDomain( imported : XML ) : void
+		{
+			if( imported.hasOwnProperty( getAttributeName( "domain" ) ) )
+			{
+				var domain : String = imported.@domain;
+				
+				if( domain.length > 0 )
+				{
+					//ID process
+					var nodes : XMLList = imported..*.( hasOwnProperty( getAttributeName( ContextAttributeList.ID ) ) && String( @[ContextAttributeList.ID] ).length > 0 );
+					for each (var node : XML in nodes ) 
+					{
+						node.@id = domain + "_" + node.@id;
+					}
+					
+					//REF process
+					nodes = imported..*.( hasOwnProperty( getAttributeName( ContextAttributeList.REF ) ) && String( @[ContextAttributeList.REF] ).length > 0 );
+					for each (var node : XML in nodes ) 
+					{
+						if( String( node.@ref ).indexOf( "/" ) == 0 )
+						{
+							node.@ref = String( node.@ref ).substr( 1 );	
+						}
+						else
+						{
+							node.@ref = domain + "_" + node.@ref;
+						}
+					}
 				}
 			}
 		}
