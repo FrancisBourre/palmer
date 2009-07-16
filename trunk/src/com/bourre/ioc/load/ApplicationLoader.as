@@ -63,11 +63,18 @@ package com.bourre.ioc.load
 		//--------------------------------------------------------------------
 		
 		/**
-		 * Default IoC context file URL.
+		 * Default IoC context file name.
 		 * 
 		 * @default "applicationContext.xml"
 		 */
-		static public const DEFAULT_URL : URLRequest = new URLRequest( "applicationContext.xml" );
+		static public const DEFAULT_NAME : String = "applicationContext.xml";
+		
+		/**
+		 * Default IoC context file URL.
+		 * 
+		 * @default "applicationContext.xml" request
+		 */
+		static public const DEFAULT_URL : URLRequest = new URLRequest( DEFAULT_NAME );
 		
 		
 		//--------------------------------------------------------------------
