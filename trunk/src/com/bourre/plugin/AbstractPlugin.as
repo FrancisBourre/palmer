@@ -28,7 +28,7 @@ package com.bourre.plugin
 	import com.bourre.view.View;
 	import com.bourre.view.ViewLocator;
 
-	import flash.events.Event;	
+	import flash.events.Event;
 
 	/**
 	 * The AbstractPlugin class.
@@ -73,7 +73,15 @@ package com.bourre.plugin
 		{
 			return ChannelExpert.getInstance( ).getChannel( this );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function getName() : String
+		{
+			return getChannel().toString();	
+		}
+		
 		/**
 		 * @inheritDoc
 		 */

@@ -23,8 +23,8 @@ package com.bourre.plugin
 	import com.bourre.model.ModelLocator;
 	import com.bourre.view.View;
 	import com.bourre.view.ViewLocator;
-	
-	import flash.events.Event;	
+
+	import flash.events.Event;
 
 	/**
 	 * @author Francis Bourre
@@ -57,36 +57,65 @@ package com.bourre.plugin
 			fireOnInitPlugin();
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function fireOnInitPlugin() : void
 		{
 			
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function fireOnReleasePlugin() : void
 		{
 			
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function fireExternalEvent( e : Event, channel : EventChannel ) : void
 		{
 			
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function firePublicEvent( e : Event ) : void
 		{
 			
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function firePrivateEvent( e : Event ) : void
 		{
 			
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function getChannel() : EventChannel
 		{
 			return _channel;
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function getName() : String
+		{
+			return getChannel().toString();	
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function getLogger() : Log
 		{
 			return PluginDebug.getInstance( this );
@@ -100,26 +129,39 @@ package com.bourre.plugin
 		{
 			return PalmerStringifier.stringify( this );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function getModel( key : String ) : Model
 		{
 			return ModelLocator.getInstance( this ).getModel( key );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function getView( key : String ) : View
 		{
 			return ViewLocator.getInstance( this ).getView( key );
-		}				public function isModelRegistered( key : String ) : Boolean		{
+		}		
+		/**
+		 * @inheritDoc
+		 */		public function isModelRegistered( key : String ) : Boolean		{
 			return ModelLocator.getInstance( this ).isRegistered( key );
-		}				public function isViewRegistered( key : String ) : Boolean		{
+		}		
+		/**
+		 * @inheritDoc
+		 */		public function isViewRegistered( key : String ) : Boolean		{
 			return ViewLocator.getInstance( this ).isRegistered( key );
 		}
 	}
 }
-internal class ConstructorAccess 
-{
-}
 
 import com.bourre.events.EventChannel;
+
+internal class ConstructorAccess 
+{
+}
 
 internal class NullPluginChannel extends EventChannel{}
