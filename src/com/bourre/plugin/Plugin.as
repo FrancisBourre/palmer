@@ -59,6 +59,13 @@ package com.bourre.plugin
 		function getChannel() : EventChannel;
 		
 		/**
+		 * Returns plugin identifier.
+		 * 
+		 * <p>Based on Plugin channel.</p>
+		 */
+		function getName() : String;
+		
+		/**
 		 * Returns plugin's debug channel.
 		 */
 		function getLogger() : Log;
