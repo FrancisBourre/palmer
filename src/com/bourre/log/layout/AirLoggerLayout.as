@@ -15,17 +15,18 @@
  */
 package com.bourre.log.layout 
 {
-	import com.bourre.log.PalmerStringifier;	
 	import com.bourre.exceptions.PrivateConstructorException;
 	import com.bourre.log.LogEvent;
 	import com.bourre.log.LogListener;
-	
+	import com.bourre.log.PalmerStringifier;
+
+	import flash.events.Event;
 	import flash.events.SecurityErrorEvent;
 	import flash.events.StatusEvent;
 	import flash.net.LocalConnection;
 	import flash.utils.clearInterval;
 	import flash.utils.getQualifiedClassName;
-	import flash.utils.setInterval;	
+	import flash.utils.setInterval;
 
 	/**
 	 * The AirLoggerLayout class provides a convenient way
@@ -313,6 +314,15 @@ package com.bourre.log.layout
 			
 			_send( evt );
 		}
+		
+		/**
+		 * Clears console messages.
+		 */
+		public function onClear( e : Event = null ) : void
+		{
+			clear();
+		}
+		
 		
 		private function onStatus( event : StatusEvent ) : void 
 		{

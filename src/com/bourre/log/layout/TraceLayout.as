@@ -20,7 +20,9 @@ package com.bourre.log.layout
 	import com.bourre.exceptions.PrivateConstructorException;
 	import com.bourre.log.LogEvent;
 	import com.bourre.log.LogLevel;
-	import com.bourre.log.LogListener;	
+	import com.bourre.log.LogListener;
+
+	import flash.events.Event;
 
 	/**
 	 * The TraceLayout class provides a convenient way
@@ -104,7 +106,15 @@ package com.bourre.log.layout
 			
 			trace( prefix + event.message );
 		}
-
+		
+		/**
+		 * Clears console messages.
+		 */
+		public function onClear( e : Event = null ) : void
+		{
+			//Not available here
+		}
+		
 		
 		//--------------------------------------------------------------------
 		// Private implementations

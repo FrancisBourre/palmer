@@ -270,7 +270,7 @@ package com.bourre.commands
 		 */
 		override public function execute( e : Event = null ) : void
 		{
-			if( !_bIsRunning && size() )
+			if( !_bIsRunning && size() > 0 )
 			{
 				eEvent = e;
 				nIndex = 0;
@@ -371,6 +371,22 @@ package com.bourre.commands
 		/**
 		 * @inheritDoc
 		 */
+		public function addEventListener( type : String, listener : Object, ... rest ) : Boolean
+		{
+			return _oEB.addEventListener.apply( _oEB, rest.length > 0 ? [ type, listener ].concat( rest ) : [ type, listener ] );
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function removeEventListener( type : String, listener : Object ) : Boolean
+		{
+			return _oEB.removeEventListener( type, listener );
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
 		override public function toString() : String
 		{
 			return super.toString() + " [" + size() +"]";
@@ -419,7 +435,10 @@ package com.bourre.commands
 			{
 		  		aCommands[ nIndex ].addCommandListener ( this );
 		  		
-		  		fireProgressEvent( aCommands[ nIndex ] );
+		  		var c : AbstractCommand;
+		  		if( ( c = aCommands[ nIndex ] as AbstractCommand ) != null ) c.setOwner( getOwner() );
+				
+				fireProgressEvent( aCommands[ nIndex ] );
 		  		
 				aCommands[ nIndex ].execute( useEventFlow ? event : eEvent );
 			}

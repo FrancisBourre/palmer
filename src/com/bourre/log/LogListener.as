@@ -15,6 +15,8 @@
  */
 package com.bourre.log 
 {
+	import flash.events.Event;
+
 	/**
 	 * The LogListener must be implemented by all objects which want to listen 
 	 * to Logging API events, like logging console.
@@ -22,7 +24,7 @@ package com.bourre.log
 	 * @see	com.bourre.log.layout.AirLoggerLayout
 	 * @see com.bourre.log.layout.SOSLayout
 	 * @see com.bourre.log.layout.FlashInspectorLayout
-	 * @see com.bourre.log.layout.FirebugLayout	 * 
+	 * @see com.bourre.log.layout.FirebugLayout	 * @see com.bourre.log.layout.DeMonsterDebuggerLayout	 * 
 	 * @author Francis Bourre
 	 */
 	public interface LogListener 
@@ -35,5 +37,14 @@ package com.bourre.log
 		 * @see	Logger	
 		 */
 		function onLog( e : LogEvent ) : void;
+		
+		/**
+		 * Triggered when a clear event is broadcasted by the Logging API.
+		 * 
+		 * @param	e	Event event
+		 * 
+		 * @see	Logger	
+		 */
+		function onClear( e : Event = null ) : void;
 	}
 }

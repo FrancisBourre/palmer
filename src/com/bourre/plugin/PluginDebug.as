@@ -25,8 +25,7 @@ package com.bourre.plugin
 	/**
 	 * @author Francis Bourre
 	 */
-	public class PluginDebug
-		implements Log
+	public class PluginDebug implements Log
 	{
 		static public var isOn 	: Boolean = true;
 		static private const _M : HashMap = new HashMap();
@@ -89,29 +88,34 @@ package com.bourre.plugin
 			}
 		}
 
-		public function debug( o : * ) : void
+		public function debug( o : *, target : Object = null ) : void
 		{
-			if ( PluginDebug.isOn && _bIsOn ) Logger.DEBUG( o, _channel );
+			if ( PluginDebug.isOn && _bIsOn ) Logger.DEBUG( o, _channel, target );
 		}
 		
-		public function info( o : * ) : void
+		public function info( o : *, target : Object = null ) : void
 		{
-			if ( PluginDebug.isOn && _bIsOn ) Logger.INFO( o, _channel );
+			if ( PluginDebug.isOn && _bIsOn ) Logger.INFO( o, _channel, target );
 		}
 		
-		public function warn( o : * ) : void
+		public function warn( o : *, target : Object = null ) : void
 		{
-			if ( PluginDebug.isOn && _bIsOn ) Logger.WARN( o, _channel );
+			if ( PluginDebug.isOn && _bIsOn ) Logger.WARN( o, _channel, target );
 		}
 		
-		public function error( o : * ) : void
+		public function error( o : *, target : Object = null ) : void
 		{
-			if ( PluginDebug.isOn && _bIsOn ) Logger.ERROR( o, _channel );
+			if ( PluginDebug.isOn && _bIsOn ) Logger.ERROR( o, _channel, target );
 		}
 		
-		public function fatal( o : * ) : void
+		public function fatal( o : *, target : Object = null ) : void
 		{
-			if ( PluginDebug.isOn && _bIsOn ) Logger.FATAL( o, _channel );
+			if ( PluginDebug.isOn && _bIsOn ) Logger.FATAL( o, _channel, target );
+		}
+		
+		public function clear( ) : void
+		{
+			if ( PluginDebug.isOn && _bIsOn ) Logger.CLEAR( _channel );
 		}
 		
 		/**
