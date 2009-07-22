@@ -20,7 +20,8 @@ package com.bourre.log.layout
 	import com.bourre.log.LogListener;
 	import com.bourre.log.PalmerStringifier;
 
-	import flash.net.LocalConnection;	
+	import flash.events.Event;
+	import flash.net.LocalConnection;
 
 	/**
 	 * <code>LuminicboxLayout</code> class provides a convenient way
@@ -102,6 +103,14 @@ package com.bourre.log.layout
 		public function onLog( e : LogEvent ) : void
 		{
 			_lc.send( LOCALCONNECTION_ID, "log", {loggerId:_sID, levelName:e.level.getName(), time:new Date(), version:.15, argument:{type:"string", value:e.message.toString()}} );
+		}
+		
+		/**
+		 * Clears console messages.
+		 */
+		public function onClear( e : Event = null ) : void
+		{
+			//Not available here
 		}
 		
 		/**

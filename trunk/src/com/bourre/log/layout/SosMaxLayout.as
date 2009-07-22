@@ -20,7 +20,7 @@ package com.bourre.log.layout
 	import com.bourre.log.LogLevel;
 	import com.bourre.log.LogListener;
 	import com.bourre.log.PalmerStringifier;
-	
+
 	import flash.events.Event;
 	import flash.net.XMLSocket;
 
@@ -81,6 +81,14 @@ package com.bourre.log.layout
 		public function onLog( e : LogEvent ) : void
 		{
 			output( e.message, e.level );
+		}
+		
+		/**
+		 * Clears console messages.
+		 */
+		public function onClear( e : Event = null ) : void
+		{
+			clearOutput();
 		}
 		
 		/**

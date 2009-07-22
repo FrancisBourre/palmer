@@ -21,8 +21,9 @@ package com.bourre.log.layout
 	import com.bourre.log.LogEvent;
 	import com.bourre.log.LogLevel;
 	import com.bourre.log.LogListener;
-	
-	import flash.external.ExternalInterface;	
+
+	import flash.events.Event;
+	import flash.external.ExternalInterface;
 
 	/**
 	 * The FirebugLayout class provides a convenient way
@@ -79,7 +80,7 @@ package com.bourre.log.layout
 		private static var _oI : FirebugLayout = null;
 
 		private var _mFormat : HashMap;
-
+		
 		
 		//--------------------------------------------------------------------
 		// Public API
@@ -118,6 +119,14 @@ package com.bourre.log.layout
 		}
 		
 		/**
+		 * Clears console messages.
+		 */
+		public function onClear( e : Event = null ) : void
+		{
+			//Not available here
+		}
+		
+		/**
 		 * Writes the passed-in <code>caption</code> message to the console and opens 
 		 * a nested block to indent all future messages sent to the console.
 		 */
@@ -151,6 +160,20 @@ package com.bourre.log.layout
 			catch( e : Error ) {}
 		}
 		
+		/**
+		 *
+		 */
+		public function trace( value : * ) : void
+		{
+			try
+			{
+				if( ExternalInterface.available )
+				{
+					ExternalInterface.call( CONSOLE_DEBUG_METHOD, value );
+				}
+			}
+			catch( e : Error ) { }
+		}
 		
 		//--------------------------------------------------------------------
 		// Private implementations

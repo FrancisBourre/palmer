@@ -16,7 +16,9 @@
 package com.bourre.log 
 {
 	import com.bourre.events.ChannelBroadcaster;
-	import com.bourre.events.EventChannel;	
+	import com.bourre.events.EventChannel;
+
+	import flash.events.Event;
 
 	/**
 	 *  Dispatched when a log message is sent.
@@ -24,6 +26,13 @@ package com.bourre.log
 	 *  @eventType com.bourre.log.LogEvent.onLogEVENT
 	 */
 	[Event(name="onLog", type="com.bourre.log.LogEvent.onLogEVENT")]
+	
+	/**
+	 *  Dispatched when a clears message is sent.
+	 *  
+	 *  @eventType com.bourre.log.LogEvent.onClearEVENT
+	 */
+	[Event(name="onClear", type="com.bourre.log.LogEvent.onClearEVENT")]
 	
 	/**
 	 * The Logger class allow to dispatch log message tl all registered 
@@ -145,6 +154,19 @@ package com.bourre.log
 		}
 		
 		/**
+		 * Broadcasts <code>onClear</code> event in 
+		 * <code>oChannel</code> channel.
+		 * 
+		 * @param	oChannel	(optional) Event channel to use.<br />
+		 * 						If not defined or <code>null</code>, event is 
+		 * 						dispatched to all logger listeners.
+		 */
+		public function clear( oChannel : EventChannel = null ) : void
+		{
+			_oCB.broadcastEvent( new Event( LogEvent.onClearEvent ), oChannel );
+		}
+		
+		/**
 		 * Adds an event listener for the specified event type of the
 		 * specified channel. There is two behaviors for the 
 		 * <code>addEventListener</code> function : 
@@ -171,7 +193,7 @@ package com.bourre.log
 		 */
 		public function addLogListener( listener : LogListener, oChannel : EventChannel = null ) : void
 		{
-			_oCB.addEventListener( LogEvent.onLogEVENT, listener, oChannel );
+			_oCB.addEventListener( LogEvent.onLogEVENT, listener, oChannel );			_oCB.addEventListener( LogEvent.onClearEvent, listener, oChannel );
 		}
 		
 		/**
@@ -188,6 +210,7 @@ package com.bourre.log
 		public function removeLogListener( listener : LogListener, oChannel : EventChannel = null ) : void
 		{
 			_oCB.removeEventListener( LogEvent.onLogEVENT, listener, oChannel );
+			_oCB.removeEventListener( LogEvent.onClearEvent, listener, oChannel );
 		}
 		
 		/**
@@ -248,9 +271,9 @@ package com.bourre.log
 		/**
 		 * @see #log()
 		 */
-		public static function LOG( o : *, level : LogLevel, oChannel : EventChannel = null ) : Boolean
+		public static function LOG( o : *, level : LogLevel, oChannel : EventChannel = null, target : Object = null ) : Boolean
 		{
-			return Logger.getInstance().log( new LogEvent(level, o ), oChannel );
+			return Logger.getInstance().log( new LogEvent(level, o, target ), oChannel );
 		}
 		
 		/**
@@ -260,13 +283,15 @@ package com.bourre.log
 		 * @param	o			Message to log
 		 * @param	oChannel	(optional) Event channel to use.<br />
 		 * 						If not defined or <code>null</code>, event is 
-		 * 						dispatched to all logger listeners.	
+		 * 						dispatched to all logger listeners.
+		 * @param	target		(optional) The target from where the log 
+		 * 						is called	
 		 * 						
 		 * 	@return	<code>true</code> if success. ( Log level compliant )
 		 */
-		public static function DEBUG( o : *, oChannel : EventChannel = null ) : Boolean
+		public static function DEBUG( o : *, oChannel : EventChannel = null, target : Object = null ) : Boolean
 		{
-			return Logger.LOG( o, LogLevel.DEBUG, oChannel  );
+			return Logger.LOG( o, LogLevel.DEBUG, oChannel, target  );
 		}
 		
 		/**
@@ -276,13 +301,15 @@ package com.bourre.log
 		 * @param	o			Message to log
 		 * @param	oChannel	(optional) Event channel to use.<br />
 		 * 						If not defined or <code>null</code>, event is 
-		 * 						dispatched to all logger listeners.	
+		 * 						dispatched to all logger listeners.
+		 * @param	target		(optional) The target from where the log 
+		 * 						is called	
 		 * 						
 		 * 	@return	<code>true</code> if success. ( Log level compliant )
 		 */
-		public static function INFO( o : *, oChannel : EventChannel = null ) : Boolean
+		public static function INFO( o : *, oChannel : EventChannel = null, target : Object = null ) : Boolean
 		{
-			return Logger.LOG( o, LogLevel.INFO, oChannel  );
+			return Logger.LOG( o, LogLevel.INFO, oChannel, target  );
 		}
 		
 		/**
@@ -292,13 +319,15 @@ package com.bourre.log
 		 * @param	o			Message to log
 		 * @param	oChannel	(optional) Event channel to use.<br />
 		 * 						If not defined or <code>null</code>, event is 
-		 * 						dispatched to all logger listeners.	
+		 * 						dispatched to all logger listeners.
+		 * @param	target		(optional) The target from where the log 
+		 * 						is called	
 		 * 						
 		 * 	@return	<code>true</code> if success. ( Log level compliant )
 		 */
-		public static function WARN( o : *, oChannel : EventChannel = null ) : Boolean
+		public static function WARN( o : *, oChannel : EventChannel = null, target : Object = null ) : Boolean
 		{
-			return Logger.LOG( o, LogLevel.WARN, oChannel );
+			return Logger.LOG( o, LogLevel.WARN, oChannel, target );
 		}
 		
 		/**
@@ -308,13 +337,15 @@ package com.bourre.log
 		 * @param	o			Message to log
 		 * @param	oChannel	(optional) Event channel to use.<br />
 		 * 						If not defined or <code>null</code>, event is 
-		 * 						dispatched to all logger listeners.	
+		 * 						dispatched to all logger listeners.
+		 * @param	target		(optional) The target from where the log 
+		 * 						is called	
 		 * 						
 		 * 	@return	<code>true</code> if success. ( Log level compliant )
 		 */
-		public static function ERROR( o : *, oChannel : EventChannel = null ) : Boolean
+		public static function ERROR( o : *, oChannel : EventChannel = null, target : Object = null ) : Boolean
 		{
-			return Logger.LOG( o, LogLevel.ERROR, oChannel );
+			return Logger.LOG( o, LogLevel.ERROR, oChannel, target );
 		}
 		
 		/**
@@ -324,13 +355,23 @@ package com.bourre.log
 		 * @param	o			Message to log
 		 * @param	oChannel	(optional) Event channel to use.<br />
 		 * 						If not defined or <code>null</code>, event is 
-		 * 						dispatched to all logger listeners.	
+		 * 						dispatched to all logger listeners.
+		 * @param	target		(optional) The target from where the log 
+		 * 						is called	
 		 * 						
 		 * 	@return	<code>true</code> if success. ( Log level compliant )
 		 */
-		public static function FATAL( o : *, oChannel : EventChannel = null ) : Boolean
+		public static function FATAL( o : *, oChannel : EventChannel = null, target : Object = null ) : Boolean
 		{
-			return Logger.LOG( o, LogLevel.FATAL, oChannel );
+			return Logger.LOG( o, LogLevel.FATAL, oChannel, target );
+		}
+		
+		/**
+		 * Clears all Logging layout console.
+		 */
+		public static function CLEAR( oChannel : EventChannel = null ) : void
+		{
+			Logger.getInstance().clear( oChannel );
 		}
 		
 		

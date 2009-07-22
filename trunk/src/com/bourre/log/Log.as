@@ -20,37 +20,60 @@ package com.bourre.log
 	/**
 	 * Logging interface.
 	 * 
-	 * @see PalmerDebug	 * @see Log
-	 * 
-	 * @author Francis Bourre
-	 */
+	 * @see PalmerDebug	 * 
+	 * @author Francis Bourre	 */
 	public interface Log 
 	{
 		/**
 		 * Logs passed-in message with a log level defined  
 		 * at 'debug' mode.
+		 * 
+		 * @param	o		Message to log
+		 * @param	target	(optional) The target from where the log 
+		 * 					is called 
 		 */
-		function debug ( o : * ) : void;
+		function debug ( o : *, target : Object = null ) : void;
 		
 		/**
 		 * Logs passed-in message with a log level defined  
-		 * at 'info' mode.
-		 */		function info ( o : * ) : void;
+		 * at 'info' mode..
+		 * 
+		 * @param	o		Message to log
+		 * @param	target	(optional) The target from where the log 
+		 * 					is called 
+		 */		function info ( o : *, target : Object = null ) : void;
 		
 		/**
 		 * Logs passed-in message with a log level defined  
-		 * at 'warn' mode.
-		 */		function warn ( o : * ) : void;
+		 * at 'warn' mode..
+		 * 
+		 * @param	o		Message to log
+		 * @param	target	(optional) The target from where the log 
+		 * 					is called 
+		 */		function warn ( o : *, target : Object = null ) : void;
 		
 		/**
 		 * Logs passed-in message with a log level defined  
-		 * at 'error' mode.
-		 */		function error ( o : * ) : void;
+		 * at 'error' mode..
+		 * 
+		 * @param	o		Message to log
+		 * @param	target	(optional) The target from where the log 
+		 * 					is called 
+		 */		function error ( o : *, target : Object = null ) : void;
 		
 		/**
 		 * Logs passed-in message with a log level defined  
-		 * at 'fatal' mode.
-		 */		function fatal ( o : * ) : void;
+		 * at 'fatal' mode..
+		 * 
+		 * @param	o		Message to log
+		 * @param	target	(optional) The target from where the log 
+		 * 					is called 
+		 */		function fatal ( o : *, target : Object = null ) : void;
+		
+		/**
+		 * Clears Logging layout registered for this event channel.
+		 */
+		function clear( ) : void;
 		
 		/**
 		 * Returns event channel used for communication.

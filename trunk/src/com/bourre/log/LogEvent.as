@@ -39,6 +39,14 @@ package com.bourre.log
 		 */	
 		public static const onLogEVENT : String = "onLog";
 		
+		/**
+		 * Defines the value of the <code>type</code> property of the event 
+		 * object for a <code>onClear</code> event.
+		 * 
+		 * @eventType onClear
+		 */	
+		public static const onClearEvent : String = "onClear";
+		
 		
 		//--------------------------------------------------------------------
 		// Public properties
@@ -55,6 +63,13 @@ package com.bourre.log
 		 * @default *
 		 */	
 		public var message : *;
+		
+		/**
+		 * Debug Target
+		 * 
+		 * @default null
+		 */
+		public var logTarget : Object;
 		
 		/**
 		 * Name of the used channel by this 
@@ -75,12 +90,13 @@ package com.bourre.log
 		 * @param	level	LogLevel status
 		 * @param	message	Message to send
 		 */		
-		public function LogEvent( level : LogLevel, message : * = undefined )
+		public function LogEvent( level : LogLevel, message : * = undefined, target : Object = null )
 		{
 			super( LogEvent.onLogEVENT, false, false );
 
 			this.level = level;
 			this.message = message;
+			this.logTarget = target;
 		}
 		
 		/**
@@ -93,8 +109,8 @@ package com.bourre.log
 		 */
 		public override function clone() : Event 
 		{
-            return new LogEvent( level, message );
-        }
+            return new LogEvent( level, message, logTarget );
+		}
         
         /**
 		 * Returns the string representation of this instance.

@@ -16,7 +16,7 @@
 package com.bourre.log 
 {
 	import com.bourre.events.EventChannel;
-	import com.bourre.exceptions.PrivateConstructorException;	
+	import com.bourre.exceptions.PrivateConstructorException;
 
 	/**
 	 * @author Francis Bourre
@@ -55,72 +55,111 @@ package com.bourre.log
 			if ( b ) PalmerDebug.getInstance().on(); else PalmerDebug.getInstance().off();
 		}
 
-		static public function DEBUG( o : * ) : void
+		static public function DEBUG( o : *, target : Object = null ) : void
 		{
-			PalmerDebug.getInstance().debug( o );
+			PalmerDebug.getInstance().debug( o, target );
 		}
 
-		static public function INFO( o : * ) : void
+		static public function INFO( o : *, target : Object = null ) : void
 		{
-			PalmerDebug.getInstance().info( o );
+			PalmerDebug.getInstance().info( o, target );
 		}
 
-		static public function WARN( o : * ) : void
+		static public function WARN( o : *, target : Object = null ) : void
 		{
-			PalmerDebug.getInstance().warn( o );
+			PalmerDebug.getInstance().warn( o, target );
 		}
 
-		static public function ERROR( o : * ) : void
+		static public function ERROR( o : *, target : Object = null ) : void
 		{
-			PalmerDebug.getInstance().error( o );
-		}
-
-		static public function FATAL( o : * ) : void
-		{
-			PalmerDebug.getInstance().fatal( o );
+			PalmerDebug.getInstance().error( o, target );
 		}
 		
-		//
-		public function debug(o : *) : void
+		static public function FATAL( o : *, target : Object = null ) : void
 		{
-			if ( isOn() ) Logger.DEBUG ( o, channel );
+			PalmerDebug.getInstance().fatal( o, target );
 		}
 		
-		public function info(o : *) : void
+		static public function CLEAR(  ) : void
 		{
-			if ( isOn() ) Logger.INFO ( o, channel );
+			PalmerDebug.getInstance().clear( );
 		}
 		
-		public function warn(o : *) : void
+		/**
+		 * @inheritDoc
+		 */
+		public function debug(o : *, target : Object = null) : void
 		{
-			if ( isOn() ) Logger.WARN ( o, channel );
+			if ( isOn() ) Logger.DEBUG ( o, channel, target );
 		}
 		
-		public function error(o : *) : void
+		/**
+		 * @inheritDoc
+		 */
+		public function info(o : *, target : Object = null) : void
 		{
-			if ( isOn() ) Logger.ERROR ( o, channel );
+			if ( isOn() ) Logger.INFO ( o, channel, target );
 		}
 		
-		public function fatal(o : *) : void
+		/**
+		 * @inheritDoc
+		 */
+		public function warn(o : *, target : Object = null) : void
 		{
-			if ( isOn() ) Logger.FATAL ( o, channel );
+			if ( isOn() ) Logger.WARN ( o, channel, target );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
+		public function error(o : *, target : Object = null) : void
+		{
+			if ( isOn() ) Logger.ERROR ( o, channel, target );
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function fatal(o : *, target : Object = null) : void
+		{
+			if ( isOn() ) Logger.FATAL ( o, channel, target );
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function clear( ) : void
+		{
+			if ( isOn() ) Logger.CLEAR( channel );
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function getChannel() : EventChannel
 		{
 			return channel;
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function isOn() : Boolean
 		{
 			return _bIsOn;
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function on() : void
 		{
 			_bIsOn = true;
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function off() : void
 		{
 			_bIsOn = false;
@@ -130,8 +169,6 @@ package com.bourre.log
 
 import com.bourre.events.EventChannel;
 
-internal class PixlibDebugChannel 
-	extends EventChannel
-{}
+internal class PixlibDebugChannel extends EventChannel {}
 
 internal class ConstructorAccess {}
