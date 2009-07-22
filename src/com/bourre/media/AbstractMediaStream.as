@@ -16,7 +16,7 @@
  
 package com.bourre.media 
 {
-	import com.bourre.commands.CommandManagerMS;
+	import com.bourre.commands.CommandMS;
 	import com.bourre.commands.Delegate;
 	import com.bourre.core.palmer_internal;
 	import com.bourre.events.Broadcaster;
@@ -26,8 +26,8 @@ package com.bourre.media
 	import com.bourre.log.PalmerDebug;
 	import com.bourre.log.PalmerStringifier;
 	import com.bourre.media.video.VideoStreamListener;
-	
-	import flash.events.Event;	
+
+	import flash.events.Event;
 	
 	use namespace palmer_internal;
 	
@@ -70,11 +70,11 @@ package com.bourre.media
 		{
 			_nPlayheadUpdateInterval = value;
 			
-			CommandManagerMS.getInstance().remove( _dPlayheadUpdateMethod );
+			CommandMS.getInstance().remove( _dPlayheadUpdateMethod );
 			
 			if( isRunning() )
 			{
-				CommandManagerMS.getInstance().push( _dPlayheadUpdateMethod, _nPlayheadUpdateInterval );
+				CommandMS.getInstance().push( _dPlayheadUpdateMethod, _nPlayheadUpdateInterval );
 			}
 		}		
 		
@@ -172,11 +172,11 @@ package com.bourre.media
 			
 			if( _bRunning )
 			{
-				CommandManagerMS.getInstance().push( _dPlayheadUpdateMethod, _nPlayheadUpdateInterval );	
+				CommandMS.getInstance().push( _dPlayheadUpdateMethod, _nPlayheadUpdateInterval );	
 			}
 			else
 			{
-				CommandManagerMS.getInstance().remove( _dPlayheadUpdateMethod );	
+				CommandMS.getInstance().remove( _dPlayheadUpdateMethod );	
 			}
 			
 			fireEventType( MediaStreamEvent.onMediaPlayheadEVENT );
