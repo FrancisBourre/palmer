@@ -62,6 +62,8 @@ package com.bourre.commands
 		 */
 		static public function release() : void
 		{
+			FPSBeacon.getInstance().removeTickListener( CommandFPS._oI );
+			
 			CommandFPS._oI.removeAll();
 			CommandFPS._oI = null;
 		}

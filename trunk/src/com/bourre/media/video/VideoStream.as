@@ -16,7 +16,7 @@
  
 package com.bourre.media.video 
 {
-	import com.bourre.commands.CommandManagerMS;
+	import com.bourre.commands.CommandMS;
 	import com.bourre.commands.Delegate;
 	import com.bourre.core.palmer_internal;
 	import com.bourre.load.VideoLoader;
@@ -657,11 +657,11 @@ package com.bourre.media.video
 			
 			if( isRunning( ) )
 			{
-				CommandManagerMS.getInstance( ).push( _dCuePointUpdateMethod, 500 );	
+				CommandMS.getInstance( ).push( _dCuePointUpdateMethod, 500 );	
 			}
 			else
 			{
-				CommandManagerMS.getInstance( ).remove( _dCuePointUpdateMethod );
+				CommandMS.getInstance( ).remove( _dCuePointUpdateMethod );
 			}
 		}
 
