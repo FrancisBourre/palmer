@@ -490,15 +490,6 @@ package com.bourre.media.video
 		 */
 		public function onPlayStatus( data : Object  ) : void
 		{
-			if( VideoLoader_old.DEBUG ) 
-			{
-				PalmerDebug.DEBUG(this + ".onPlayStatus()");
-				for (var p : String in data) 
-				{
-					PalmerDebug.FATAL(p + " -> " + data[p]);
-				}
-			}
-			
 			if( data.code == "NetStream.Play.Complete")
 			{
 				complete();
@@ -617,8 +608,6 @@ package com.bourre.media.video
 
 		palmer_VideoLoader function complete( ) : void
 		{
-			PalmerDebug.WARN(this + ".complete");
-			
 			fireEventType(MediaStreamEvent.onMediaCompleteEVENT);
 			
 			setRunning(false);
