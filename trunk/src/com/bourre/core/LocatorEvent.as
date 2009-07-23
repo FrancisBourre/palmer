@@ -19,9 +19,9 @@ package com.bourre.core
 	import com.bourre.core.Locator;
 	import com.bourre.events.BasicEvent;
 	import com.bourre.log.PalmerStringifier;
-	
+
 	import flash.events.Event;
-	import flash.utils.getQualifiedClassName;		
+	import flash.utils.getQualifiedClassName;
 
 	/**
 	 * The LocatorEvent class represents the event object passed 
@@ -118,9 +118,9 @@ package com.bourre.core
 		 * @param	locator		Locator owner
 		 * @param	id			Registration ID
 		 */		
-		public function LocatorEvent( type : String, locator : Locator, id : String, o : Object = null )
+		public function LocatorEvent( type : String, locator : Locator, id : String, o : Object = null, bubbles : Boolean = false, cancelable : Boolean = false )
 		{
-			super( type, locator );
+			super( type, locator, bubbles, cancelable );
 			
 			_sID = id;
 			_o = o;

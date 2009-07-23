@@ -209,9 +209,10 @@ package com.bourre.load
 		 * @param	loader			Loader object carried by this event
 		 * @param	errorMessage	(optional) Error message carried by this event
 		 */	
-		public function LoaderEvent( type : String, loader : Loader, errorMessage : String = "" )
+		public function LoaderEvent( type : String, loader : Loader, errorMessage : String = "", bubbles : Boolean = false, cancelable : Boolean = false )
 		{
-			super( type, loader );
+			super( type, loader, bubbles, cancelable );
+			
 			_loader = loader;
 			_sErrorMessage = errorMessage;
 		}
