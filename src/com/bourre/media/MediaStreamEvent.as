@@ -51,6 +51,7 @@ package com.bourre.media
 		 * @eventType onMediaPlay
 		 */		
 		public static const onMediaPlayEVENT : String = "onMediaPlay";	
+		
 		/**
 		 * Defines the value of the <code>type</code> property of the event 
 		 * object for a <code>onMediaPause</code> event.
@@ -73,6 +74,7 @@ package com.bourre.media
 		 * @eventType onMediaPause
 		 */		
 		public static const onMediaPauseVENT : String = "onMediaPause";	
+		
 		/**
 		 * Defines the value of the <code>type</code> property of the event 
 		 * object for a <code>onMediaStop</code> event.
@@ -95,6 +97,7 @@ package com.bourre.media
 		 * @eventType onMediaStop
 		 */		
 		public static const onMediaStopEVENT : String = "onMediaStop";	
+		
 		/**
 		 * Defines the value of the <code>type</code> property of the event 
 		 * object for a <code>onMediaPlayhead</code> event.
@@ -117,6 +120,7 @@ package com.bourre.media
 		 * @eventType onMediaPlayhead
 		 */		
 		public static const onMediaPlayheadEVENT : String = "onMediaPlayhead";	
+		
 		/**
 		 * Defines the value of the <code>type</code> property of the event 
 		 * object for a <code>onMediaLoop</code> event.
@@ -139,6 +143,7 @@ package com.bourre.media
 		 * @eventType onMediaLoop
 		 */		
 		public static const onMediaLoopEVENT : String = "onMediaLoop";	
+		
 		/**
 		 * Defines the value of the <code>type</code> property of the event 
 		 * object for a <code>onMediaComplete</code> event.
@@ -161,6 +166,7 @@ package com.bourre.media
 		 * @eventType onMediaComplete
 		 */		
 		public static const onMediaCompleteEVENT : String = "onMediaComplete";
+		
 
 		//--------------------------------------------------------------------
 		// Public API

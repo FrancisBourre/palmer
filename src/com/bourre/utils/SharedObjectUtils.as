@@ -42,7 +42,7 @@ package com.bourre.utils
 		 * @default "/"
 		 */
 		public static var DEFAULT_ROOT_PATH : String = "/";
-		
+
 		
 		//--------------------------------------------------------------------
 		// Public API
@@ -53,20 +53,30 @@ package com.bourre.utils
 		 * 
 		 * <p>If an error occurs the function returns a null value.</p>
 		 * 
-		 * @param	 cookieName	Name of the cookie.
-		 * @param	 objectName	Field to retrieve.
+		 * @param	cookieName	Name of the cookie.
+		 * @param	objectName	Field to retrieve.
+		 * @param	localPath	The full or partial path to the SWF file that 
+		 * 						created the	shared object, and that determines 
+		 * 						where the shared object will be stored locally. 
+		 * 						If you do not specify this parameter, 
+		 * 						the root "DEFAULT_ROOT_PATH" is used.
+		 * @param	secure		Determines whether access to this shared object 
+		 * 						is restricted to SWF files that are delivered 
+		 * 						over an HTTPS connection.(default is false)	
+		 * 									
 		 * @return	 The value stored in the field or <code>null</code>.
 		 */
-		static public function loadLocal( cookieName : String, objectName : String ) : *
+		static public function loadLocal( cookieName : String, objectName : String, localPath : String = null, secure : Boolean = false ) : *
 		{	
 			try
 			{
-				var save:SharedObject = SharedObject.getLocal( cookieName, DEFAULT_ROOT_PATH );
+				if( localPath == null ) localPath = DEFAULT_ROOT_PATH;
+				
+				var save : SharedObject = SharedObject.getLocal( cookieName, localPath, secure );
 				return save.data[objectName];
-
-			} catch( e : Error )
-			{
-				PalmerDebug.ERROR ( e );
+			} 
+			catch( e : Error )			{
+				PalmerDebug.ERROR( e );
 				return null;
 			}
 		}
@@ -79,57 +89,82 @@ package com.bourre.utils
 		 * @param	cookieName	Name of the cookie.
 		 * @param	objectName	Field to retreive.
 		 * @param	refValue	Value to save.
+		 * @param	localPath	The full or partial path to the SWF file that 
+		 * 						created the	shared object, and that determines 
+		 * 						where the shared object will be stored locally. 
+		 * 						If you do not specify this parameter, 
+		 * 						the root "DEFAULT_ROOT_PATH" is used.
+		 * @param	secure		Determines whether access to this shared object 
+		 * 						is restricted to SWF files that are delivered 
+		 * 						over an HTTPS connection.(default is false)	
+		 * 						
 		 * @return	<code>true</code> if the data have been saved.
 		 */
-		static public function saveLocal( cookieName : String, objectName : String, refValue : * ) : Boolean
+		static public function saveLocal( cookieName : String, objectName : String, refValue : *, localPath : String = null, secure : Boolean = false ) : Boolean
 		{
 			try
 			{
-				var save : SharedObject = SharedObject.getLocal( cookieName, DEFAULT_ROOT_PATH );
+				if( localPath == null ) localPath = DEFAULT_ROOT_PATH;
+				
+				var save : SharedObject = SharedObject.getLocal( cookieName, localPath, secure );
 				save.data[ objectName ] = refValue;
-				save.flush();
+				save.flush( );
 				return true;
-
-			} catch( e : Error )
+			} 
+			catch( e : Error )
 			{
-				PalmerDebug.ERROR ( e );
-			}
-
-			return false;
-		}
-
-		/**
-		 * Clear all values stored in a local SharedObject.
-		 * 
-		 * <p>If an error occurs the function dies silently and returns false.</p>
-		 * 
-		 * @param	cookieName Name of the cookie.
-		 * @return	<code>true</code> if data has been cleared.
-		 */
-		static public function clearLocal( cookieName : String ) : Boolean
-		{
-			try
-			{
-				var save:SharedObject = SharedObject.getLocal( cookieName, DEFAULT_ROOT_PATH );
-				save.clear();
-				return true;
-
-			} catch( e : Error )
-			{
-				PalmerDebug.ERROR ( e );
+				PalmerDebug.ERROR( e );
 			}
 			
 			return false;
 		}
 		
 		/**
+		 * Clear all values stored in a local SharedObject.
+		 * 
+		 * <p>If an error occurs the function dies silently and returns false.</p>
+		 * 
+		 * @param	cookieName Name of the cookie.
+		 * @param	localPath	The full or partial path to the SWF file that 
+		 * 						created the	shared object, and that determines 
+		 * 						where the shared object will be stored locally. 
+		 * 						If you do not specify this parameter, 
+		 * 						the root "DEFAULT_ROOT_PATH" is used.
+		 * @param	secure		Determines whether access to this shared object 
+		 * 						is restricted to SWF files that are delivered 
+		 * 						over an HTTPS connection.(default is false)	
+		 * 						
+		 * @return	<code>true</code> if data has been cleared.
+		 */
+		static public function clearLocal( cookieName : String, localPath : String = null, secure : Boolean = false ) : Boolean
+		{
+			try
+			{
+				if( localPath == null ) localPath = DEFAULT_ROOT_PATH;
+				
+				var save : SharedObject = SharedObject.getLocal( cookieName, localPath, secure );
+				save.clear( );
+				
+				return true;
+			} 
+			catch( e : Error )
+			{
+				PalmerDebug.ERROR( e );
+			}
+			
+			return false;
+		}
+
+		/**
 		 * @private
 		 */
 		function SharedObjectUtils( access : ConstructorAccess )
 		{
-			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
+			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException( );
 		}
 	}
 }
 
-internal class ConstructorAccess {}
+internal class ConstructorAccess 
+{
+}

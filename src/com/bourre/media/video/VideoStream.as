@@ -19,7 +19,6 @@ package com.bourre.media.video
 	import com.bourre.commands.CommandMS;
 	import com.bourre.commands.Delegate;
 	import com.bourre.core.palmer_internal;
-	import com.bourre.load.VideoLoader_old;
 	import com.bourre.load.palmer_VideoLoader;
 	import com.bourre.log.PalmerDebug;
 	import com.bourre.media.AbstractMediaStream;

@@ -16,7 +16,7 @@
 package com.bourre.load
 {
 	import com.bourre.core.Locator;
-	import com.bourre.core.LocatorEvent;	
+	import com.bourre.core.LocatorEvent;
 
 	/**
 	 * The LoaderLocatorEvent class represents the event object passed 
@@ -39,9 +39,9 @@ package com.bourre.load
 		 * @param	name			Registration key
 		 * @param	gl				Loader object
 		 */	
-		public function LoaderLocatorEvent( type : String, locator : Locator, name : String, loader : Loader ) 
+		public function LoaderLocatorEvent( type : String, locator : Locator, name : String, loader : Loader, bubbles : Boolean = false, cancelable : Boolean = false ) 
 		{
-			super( type, locator, name, loader );
+			super( type, locator, name, loader, bubbles, cancelable );
 		}
 		
 		/**

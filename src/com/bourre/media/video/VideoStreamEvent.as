@@ -16,7 +16,7 @@
 	 
 package com.bourre.media.video 
 {
-	import com.bourre.media.MediaStreamEvent;	
+	import com.bourre.media.MediaStreamEvent;
 
 	/**
 	 * The VideoStreamEvent class.
