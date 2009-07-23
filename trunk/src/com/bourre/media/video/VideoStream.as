@@ -19,7 +19,7 @@ package com.bourre.media.video
 	import com.bourre.commands.CommandMS;
 	import com.bourre.commands.Delegate;
 	import com.bourre.core.palmer_internal;
-	import com.bourre.load.VideoLoader;
+	import com.bourre.load.VideoLoader_old;
 	import com.bourre.load.palmer_VideoLoader;
 	import com.bourre.log.PalmerDebug;
 	import com.bourre.media.AbstractMediaStream;
@@ -36,7 +36,6 @@ package com.bourre.media.video
 	use namespace palmer_VideoLoader;
 	
 	use namespace palmer_internal;
-
 	/**
 	 * 
 	 * @example Basic use
@@ -64,6 +63,7 @@ package com.bourre.media.video
 	 * loader.load( new URLRequest ( "video.f4v" ) );
 	 * </pre>
 	 * 
+	 * @author Michael Barbero
 	 * @author Romain Ecarnot
 	 */
 	public class VideoStream extends AbstractMediaStream implements MediaStream
@@ -71,27 +71,20 @@ package com.bourre.media.video
 		//--------------------------------------------------------------------
 		// Private properties
 		//--------------------------------------------------------------------
-
 		private var _oCOManager : CuePointManager;
-
 		private var _bAutoPlay : Boolean;		private var _bAutoSize : Boolean;
 		private var _bAutoRewind : Boolean;
 		private var _bLoopMode : Boolean;
-
+		private var _bPaused : Boolean;
 		private var _oVideoMeta : VideoMetadata;
-		private var _bXMPReceived : Boolean;		private var _bLoaded : Boolean;
-		private var _dCuePointUpdateMethod : Delegate;
+		private var _bXMPReceived : Boolean;		private var _bLoaded : Boolean;		private var _dCuePointUpdateMethod : Delegate;
 		private var _oST : SoundTransformInfo ;
-
-		
 		//--------------------------------------------------------------------
 		// Protected properties
 		//--------------------------------------------------------------------
-
 		protected var video : Video;
 		protected var stream : NetStream;
 
-		
 		//--------------------------------------------------------------------
 		// Public properties
 		//--------------------------------------------------------------------
@@ -99,52 +92,45 @@ package com.bourre.media.video
 		/**
 		 * @inheritDoc
 		 */
-		public function get volume( ) : Number
-		{
-			return stream ? _oST.getVolume( ) : 0 ;
+		public function get volume( ) : Number {
+			return stream ? _oST.getVolume() : 0 ;
 		}
 
 		/** @private */
-		public function set volume( value : Number ) : void
-		{
-			_oST.setVolume( value ) ;
+		public function set volume( value : Number ) : void {
+			_oST.setVolume(value) ;
 		}
 
 		/**
 		 *  Height of the loaded video file.
 		 *  <code>-1</code> if no FLV file loaded yet.
 		 */
-		public function get height() : Number
-		{
+		public function get height() : Number {
 			return video ? video.height : -1;
 		}
 
 		/** @private */
-		public function set height( value : Number ) : void
-		{
-			setSize( width, value );	
+		public function set height( value : Number ) : void {
+			setSize(width, value);	
 		}
 
 		/**
 		 *  Width of the loaded video file.
 		 *  <code>-1</code> if no FLV file loaded yet.
 		 */
-		public function get width() : Number
-		{
+		public function get width() : Number {
 			return video ? video.width : -1;
 		}
 
 		/** @private */
-		public function set width( value : Number ) : void
-		{
-			setSize( value, height );	
+		public function set width( value : Number ) : void {
+			setSize(value, height);	
 		}
 
 		/**
 		 * @inheritDoc
 		 */
-		public function get duration( ) : Number
-		{
+		public function get duration( ) : Number {
 			return _oVideoMeta ? _oVideoMeta.duration : 0 ;
 		}
 
@@ -154,14 +140,12 @@ package com.bourre.media.video
 		 * <p>If <code>true</code> video starts playing when 
 		 * loaded ( or buffered ).
 		 */
-		public function get autoPlay() : Boolean
-		{
+		public function get autoPlay() : Boolean {
 			return _bAutoPlay;
 		}
 
 		/** @private */
-		public function set autoPlay( enabled : Boolean ) : void
-		{
+		public function set autoPlay( enabled : Boolean ) : void {
 			_bAutoPlay = enabled;
 		}
 
@@ -171,14 +155,12 @@ package com.bourre.media.video
 		 * <p>If <code>true</code> video is resized when 
 		 * metadata are received.
 		 */
-		public function get autoSize() : Boolean
-		{
+		public function get autoSize() : Boolean {
 			return _bAutoSize;
 		}
 
 		/** @private */
-		public function set autoSize( enabled : Boolean ) : void
-		{
+		public function set autoSize( enabled : Boolean ) : void {
 			_bAutoSize = enabled;
 		}
 
@@ -187,14 +169,12 @@ package com.bourre.media.video
 		 * 
 		 * <p>If <code>true</code> video is rewinded when finished.
 		 */
-		public function get autoRewind() : Boolean
-		{
+		public function get autoRewind() : Boolean {
 			return _bAutoRewind;
 		}
 
 		/** @private */
-		public function set autoRewind( enabled : Boolean ) : void
-		{
+		public function set autoRewind( enabled : Boolean ) : void {
 			_bAutoRewind = enabled;
 		}
 
@@ -203,14 +183,12 @@ package com.bourre.media.video
 		 * 
 		 * <p>If <code>true</code> video restart when finished.
 		 */
-		public function get loopPlayback() : Boolean
-		{
+		public function get loopPlayback() : Boolean {
 			return _bLoopMode;
 		}
 
 		/** @private */
-		public function set loopPlayback( enabled : Boolean ) : void
-		{
+		public function set loopPlayback( enabled : Boolean ) : void {
 			_bLoopMode = enabled;
 		}
 
@@ -220,18 +198,15 @@ package com.bourre.media.video
 		 * 
 		 * @default true
 		 */
-		public function get smoothing( ) : Boolean
-		{
+		public function get smoothing( ) : Boolean {
 			return video.smoothing;
 		}
 
 		/** @private */
-		public function set smoothing( b : Boolean ) : void
-		{
+		public function set smoothing( b : Boolean ) : void {
 			video.smoothing = b;
 		}
 
-		
 		//--------------------------------------------------------------------
 		// Public API
 		//--------------------------------------------------------------------
@@ -245,11 +220,22 @@ package com.bourre.media.video
 		}
 
 		/**
+		 * 
+		 */
+		public function setVideo( o : Video ) : void
+		{
+			if(video) video.attachNetStream(null);
+			video = null;
+			video = o;
+			video.attachNetStream(stream);
+		}
+
+		/**
 		 *	
 		 */
 		public function getVideoMetadata(  ) : VideoMetadata
 		{
-			return getMetadata( ) as VideoMetadata;
+			return getMetadata() as VideoMetadata;
 		}
 
 		/**
@@ -257,8 +243,8 @@ package com.bourre.media.video
 		 */
 		public function getScreenShoot(  ) : BitmapData
 		{
-			var bmp : BitmapData = new BitmapData( video.width, video.height, true, 0xFFFFFF );
-			bmp.draw( video );
+			var bmp : BitmapData = new BitmapData(video.width, video.height, true, 0xFFFFFF);
+			bmp.draw(video);
 			
 			return bmp;
 		}
@@ -271,8 +257,8 @@ package com.bourre.media.video
 			_oST = o ;
 			if( stream )
 			{
-				_oST.addStream( stream ) ;
-				stream.soundTransform = _oST.getSoundTransform( ) ;
+				_oST.addStream(stream) ;
+				stream.soundTransform = _oST.getSoundTransform() ;
 			}
 		}
 
@@ -305,12 +291,10 @@ package com.bourre.media.video
 		 */
 		public function setSize( w : Number, h : Number ) : void
 		{
-			if( video && !isNaN( w ) && !isNaN( h ) )
+			if( video && !isNaN(w) && !isNaN(h) )
 			{
 				video.width = w;
 				video.height = h;
-				
-				PalmerDebug.FATAL( "new size " + w + "x" + h );
 			}
 		}
 
@@ -319,7 +303,7 @@ package com.bourre.media.video
 		 */
 		public function getSize( ) : Dimension
 		{
-			return new Dimension( width, height );
+			return new Dimension(width, height);
 		}
 
 		/**
@@ -327,12 +311,12 @@ package com.bourre.media.video
 		 */
 		public function play() : void
 		{
-			if( !isRunning( ) )
+			if( !isRunning() )
 			{
-				stream.seek( lastPlayheadPosition );
-				stream.resume( );
+				stream.resume();
 				
-				setRunning( true );
+				_bPaused = false;
+				setRunning(true);
 			}
 		}
 
@@ -341,7 +325,7 @@ package com.bourre.media.video
 		 */
 		public function seek( n : Number, relative : Boolean = false ) : void
 		{
-			var seekpoints : Array = getVideoMetadata( ).seekpoints;
+			var seekpoints : Array = getVideoMetadata().seekpoints;
 			
 			var nextPosition : Number = n;
 			if( relative ) nextPosition = stream.time + n;
@@ -350,7 +334,7 @@ package com.bourre.media.video
 			while( --l > -1 ) if ( n > seekpoints[ l ] ) nextPosition = seekpoints[ l ];
 			
 			if( nextPosition >= 0 && nextPosition <= duration );
-			stream.seek( nextPosition );
+			stream.seek(nextPosition);
 		}
 
 		/**
@@ -358,15 +342,16 @@ package com.bourre.media.video
 		 */
 		public function pause() : void
 		{
-			if( isRunning( ) )
+			if( isRunning() )
 			{
-				stream.pause( );
+				stream.pause();
 				
 				lastPlayheadPosition = stream.time;
 			
-				setRunning( false );
+				_bPaused = true;
+				setRunning(false);
 								
-				fireEventType( MediaStreamEvent.onMediaPauseVENT );
+				fireEventType(MediaStreamEvent.onMediaPauseVENT);
 			}
 		}
 
@@ -375,15 +360,23 @@ package com.bourre.media.video
 		 */
 		public function togglePause( ) : void
 		{
-			isRunning( ) ? pause( ) : resume( );
+			isRunning() ? pause() : resume();
 		}
-		
+
+		/**
+		 * 
+		 */
+		public function isPaused( ) : Boolean
+		{
+			return _bPaused;
+		}
+
 		/**
 		 * @inheritDoc
 		 */
 		public function resume() : void
 		{
-			play( );
+			play();
 		}
 
 		/**
@@ -391,16 +384,17 @@ package com.bourre.media.video
 		 */
 		public function stop() : void
 		{
-			if( isRunning( ) )
+			if( isRunning() || _bPaused  )
 			{
-				stream.pause( );
-				stream.seek( 0 );
+				stream.pause();
+				stream.seek(0);
 				
 				lastPlayheadPosition = 0;
 				
-				setRunning( false );
+				_bPaused = false;
+				setRunning(false);
 				
-				fireEventType( MediaStreamEvent.onMediaStopEVENT );			}
+				fireEventType(MediaStreamEvent.onMediaStopEVENT);			}
 		}
 
 		/**
@@ -408,7 +402,7 @@ package com.bourre.media.video
 		 */
 		public function run() : void
 		{
-			play( );
+			play();
 		}
 
 		/**
@@ -416,7 +410,7 @@ package com.bourre.media.video
 		 */
 		public function start() : void
 		{
-			play( );
+			play();
 		}
 
 		/**
@@ -424,7 +418,7 @@ package com.bourre.media.video
 		 */
 		public function reset() : void
 		{
-			stop( );
+			stop();
 		}
 
 		/**
@@ -435,16 +429,16 @@ package com.bourre.media.video
 		{
 			if( metadata != null ) 
 			{
-				_oVideoMeta.append( metadata );
+				_oVideoMeta.append(metadata);
 				
-				setMetadata( _oVideoMeta );
+				setMetadata(_oVideoMeta);
 				
 				if( _bLoaded ) 
 				{
-					fireEvent( new MetaDataEvent( MetaDataEvent.onMetaDataReceivedEVENT, this, getMetadata( ) ) );
+					fireEvent(new MetaDataEvent(MetaDataEvent.onMetaDataReceivedEVENT, this, getMetadata()));
 				}
 				
-				if ( autoSize ) setSize( getVideoMetadata( ).width, getVideoMetadata( ).height );
+				if ( autoSize ) setSize(getVideoMetadata().width, getVideoMetadata().height);
 			}
 		}
 
@@ -467,7 +461,7 @@ package com.bourre.media.video
 		 */
 		public function onTextData( data : Object  ) : void
 		{
-			fireEvent( new VideoTextDataEvent( VideoTextDataEvent.onTextDataEVENT, this, data ) );
+			fireEvent(new VideoTextDataEvent(VideoTextDataEvent.onTextDataEVENT, this, data));
 		}
 
 		/**
@@ -488,7 +482,7 @@ package com.bourre.media.video
 		 */
 		public function onImageData( data : Object  ) : void
 		{
-			fireEvent( new VideoImageDataEvent( VideoImageDataEvent.onImageDataEVENT, this, data ) );
+			fireEvent(new VideoImageDataEvent(VideoImageDataEvent.onImageDataEVENT, this, data));
 		}
 
 		/**
@@ -497,21 +491,21 @@ package com.bourre.media.video
 		 */
 		public function onPlayStatus( data : Object  ) : void
 		{
-			if( VideoLoader.DEBUG ) 
+			if( VideoLoader_old.DEBUG ) 
 			{
-				PalmerDebug.DEBUG( this + ".onPlayStatus()" );
+				PalmerDebug.DEBUG(this + ".onPlayStatus()");
 				for (var p : String in data) 
 				{
-					PalmerDebug.FATAL( p + " -> " + data[p] );
+					PalmerDebug.FATAL(p + " -> " + data[p]);
 				}
 			}
 			
 			if( data.code == "NetStream.Play.Complete")
 			{
-				complete( );
+				complete();
 			}
 		}
-		
+
 		/**
 		 * 
 		 */
@@ -519,60 +513,59 @@ package com.bourre.media.video
 		{
 			if( _bXMPReceived ) return;
 			
-			var xmpDM : Namespace = new Namespace( "http://ns.adobe.com/xmp/1.0/DynamicMedia/" ); 
-			var rdf : Namespace = new Namespace( "http://www.w3.org/1999/02/22-rdf-syntax-ns#" ); 
+			var xmpDM : Namespace = new Namespace("http://ns.adobe.com/xmp/1.0/DynamicMedia/"); 
+			var rdf : Namespace = new Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#"); 
 			
-			var xmp : XML = new XML( xmpData.data ); 
+			var xmp : XML = new XML(xmpData.data); 
 			
 			for each (var track : XML in xmp..xmpDM::Tracks) 
 			{ 
 				var fr : String = track.rdf::Bag.rdf::li.rdf::Description.@xmpDM::frameRate;
-				var rate : Number = Number( fr.substr( 1, fr.length ) );
+				var rate : Number = Number(fr.substr(1, fr.length));
 				var markers : XMLList = track.rdf::Bag.rdf::li.rdf::Description.xmpDM::markers.rdf::Seq.rdf::li;
 				
 				for each (var marker : XML in markers) 
 				{
-					var cp : CuePoint = new CuePoint( );
+					var cp : CuePoint = new CuePoint();
 					
-					if( marker.children( ).length( ) > 0 )
+					if( marker.children().length() > 0 )
 					{
 						cp.name = marker.rdf::Description.@xmpDM::name;
 						cp.type = marker.rdf::Description.@xmpDM::cuePointType;
-						cp.time = Number( marker.rdf::Description.@xmpDM::startTime ) / rate;
+						cp.time = Number(marker.rdf::Description.@xmpDM::startTime) / rate;
 						
 						for each (var param : XML in marker.rdf::Description.xmpDM::cuePointParams.rdf::Seq.rdf::li ) 
 						{
-							cp.parameters.push( { key : param.@xmpDM::key, value : param.@xmpDM::value } );
+							cp.parameters.push({ key : param.@xmpDM::key, value : param.@xmpDM::value });
 						}
 					}
 					else
 					{
 						cp.name = marker.@xmpDM::name;
 						cp.type = marker.@xmpDM::cuePointType;
-						cp.time = Number( marker.@xmpDM::startTime ) / rate;
+						cp.time = Number(marker.@xmpDM::startTime) / rate;
 					}
 					
-					getCuePointManager( ).addCuePoint( cp );
+					getCuePointManager().addCuePoint(cp);
 				}
 			}
 			
-			getVideoMetadata( ).xmpData = xmp;
+			getVideoMetadata().xmpData = xmp;
 			
 			_bXMPReceived = true;
 			
-			fireEvent( new VideoXMPDataEvent( VideoXMPDataEvent.onXMPDataEVENT, this, xmp ) );
+			fireEvent(new VideoXMPDataEvent(VideoXMPDataEvent.onXMPDataEVENT, this, xmp));
 		}
 
-		
 		//--------------------------------------------------------------------
 		// palmer_VideoLoader methods
 		//--------------------------------------------------------------------
-
 		palmer_VideoLoader function setStream( loadedStream : NetStream ) : void
 		{
 			stream = loadedStream;
 			stream.client = this;
-			getVideo( ).attachNetStream( stream );
+			video.attachNetStream(stream);
+			setSoundTransform(getSoundTransform());
 		}
 
 		palmer_VideoLoader function setLoaded( b : Boolean ) : void
@@ -583,29 +576,33 @@ package com.bourre.media.video
 				{
 					_bLoaded = b;
 					
-					if( !isNaN( getVideoMetadata( ).duration ) )
+					if( !isNaN(getVideoMetadata().duration) )
 					{
-						getCuePointManager( ).addCuePoints( getVideoMetadata( ).cuePoints );
+						getCuePointManager().addCuePoints(getVideoMetadata().cuePoints);
 						
-						fireEvent( new MetaDataEvent( MetaDataEvent.onMetaDataReceivedEVENT, this, getMetadata( ) ) );
+						fireEvent(new MetaDataEvent(MetaDataEvent.onMetaDataReceivedEVENT, this, getMetadata()));
 						
-						if ( autoSize ) setSize( getVideoMetadata( ).width, getVideoMetadata( ).height );
+						if ( autoSize ) setSize(getVideoMetadata().width, getVideoMetadata().height);
 					}
 					else
 					{
-						PalmerDebug.WARN( this + " wait for metadata..." );
+						PalmerDebug.WARN(this + " wait for metadata...");
 					}
 				}
 				catch( e : Error )
 				{
-					PalmerDebug.ERROR( this + "::" + e.message );
+					PalmerDebug.ERROR(this + "::" + e.message);
 				}
 				finally
 				{
-					setRunning( true );
+					setRunning(true);
 					
-					fireEventType( MediaStreamEvent.onMediaPlayEVENT );
+					fireEventType(MediaStreamEvent.onMediaPlayEVENT);
 				}
+			} 
+			else 
+			{
+				_bLoaded = b;
 			}
 		}
 
@@ -616,61 +613,63 @@ package com.bourre.media.video
 
 		palmer_VideoLoader function fireEventType( type : String ) : void
 		{
-			super.fireEventType( type );
+			super.fireEventType(type);
 		}
 
 		palmer_VideoLoader function complete( ) : void
 		{
-			setRunning( false );
+			PalmerDebug.WARN(this + ".complete");
+			
+			fireEventType(MediaStreamEvent.onMediaCompleteEVENT);
+			
+			setRunning(false);
 			
 			if( loopPlayback )
 			{
 				lastPlayheadPosition = 0;
 				
-				fireEventType( MediaStreamEvent.onMediaLoopEVENT );
+				fireEventType(MediaStreamEvent.onMediaLoopEVENT);
 				
-				play( );
+				play();
 			}
 			else
 			{
 				if( autoRewind )
 				{
-					stream.pause( );
-					stream.seek( 0 );
+					stream.pause();
+					stream.seek(0);
 					lastPlayheadPosition = 0;
 					
-					fireEventType( MediaStreamEvent.onMediaPlayheadEVENT );
+					fireEventType(MediaStreamEvent.onMediaPlayheadEVENT);
 				}
 				
-				fireEventType( MediaStreamEvent.onMediaStopEVENT );
+				fireEventType(MediaStreamEvent.onMediaStopEVENT);
 			}
 		}
 
-		
 		//--------------------------------------------------------------------
 		// Protected methods
 		//--------------------------------------------------------------------
-
 		override protected function setRunning( b : Boolean ) : void
 		{
-			super.setRunning( b );
+			super.setRunning(b);
 			
-			if( isRunning( ) )
+			if( isRunning() )
 			{
-				CommandMS.getInstance( ).push( _dCuePointUpdateMethod, 500 );	
+				CommandMS.getInstance().push(_dCuePointUpdateMethod, 500);	
 			}
 			else
 			{
-				CommandMS.getInstance( ).remove( _dCuePointUpdateMethod );
+				CommandMS.getInstance().remove(_dCuePointUpdateMethod);
 			}
 		}
 
 		protected function checkCuePoint(  ) : void
 		{
-			var cp : CuePoint = getCuePointManager( ).palmer_internal::getCuePoint( stream.time );
+			var cp : CuePoint = getCuePointManager().palmer_internal::getCuePoint(stream.time);
 			if( cp != null )
 			{
-				fireEvent( new CuePointEvent( CuePointEvent.onCuePointEVENT, this, cp ) );
+				fireEvent(new CuePointEvent(CuePointEvent.onCuePointEVENT, this, cp));
 			}
 		}
 
@@ -681,7 +680,7 @@ package com.bourre.media.video
 		 */
 		override protected function getMediaEvent( type : String ) : MediaStreamEvent
 		{
-			return new VideoStreamEvent( type, this );
+			return new VideoStreamEvent(type, this);
 		}
 
 		/**
@@ -691,7 +690,7 @@ package com.bourre.media.video
 		{
 			if( autoPlay )
 			{
-				play( );
+				play();
 			}
 		}
 
@@ -705,7 +704,6 @@ package com.bourre.media.video
 			return stream.time;
 		}
 
-		
 		//--------------------------------------------------------------------
 		// Private implementation
 		//--------------------------------------------------------------------
@@ -715,7 +713,7 @@ package com.bourre.media.video
 		 */
 		palmer_VideoLoader static function buildInstance( video : Video ) : VideoStream
 		{
-			return new VideoStream( video );
+			return new VideoStream(video);
 		}
 
 		/**
@@ -726,7 +724,7 @@ package com.bourre.media.video
 		 */
 		function VideoStream( video : Video )
 		{
-			super( getContructorAccess( ) );
+			super(getContructorAccess());
 			
 			this.video = video;
 			
@@ -737,17 +735,17 @@ package com.bourre.media.video
 			
 			lastPlayheadPosition = 0;
 			
-			_oVideoMeta = new VideoMetadata( );
-			setMetadata( _oVideoMeta );
+			_oVideoMeta = new VideoMetadata();
+			setMetadata(_oVideoMeta);
 			
 			_bLoaded = false;
 			_bXMPReceived = false;
 			
-			setCuePointManager( new CuePointManager( this ) );
+			setCuePointManager(new CuePointManager(this));
 			
-			_dCuePointUpdateMethod = new Delegate( checkCuePoint );
+			_dCuePointUpdateMethod = new Delegate(checkCuePoint);
 			
-			setSoundTransform( SoundTransformInfo.NORMAL );
+			setSoundTransform(SoundTransformInfo.NORMAL);
 		}
 	}
 }

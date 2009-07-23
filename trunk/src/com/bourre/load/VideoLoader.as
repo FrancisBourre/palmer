@@ -32,7 +32,6 @@ package com.bourre.load
 	import flash.net.NetStream;
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
-
 	/**
 	 * Loader implementation for video file.
 	 * 
@@ -61,6 +60,7 @@ package com.bourre.load
 	 * loader.load( new URLRequest ( "video.f4v" ) );
 	 * </pre>
 	 * 
+	 * @author Michael Barbero
 	 * @author Romain Ecarnot
 	 */
 	public class VideoLoader extends AbstractLoader 
@@ -68,14 +68,10 @@ package com.bourre.load
 		//--------------------------------------------------------------------
 		// Protected properties
 		//--------------------------------------------------------------------
-
 		protected var oConnection : NetConnection;		protected var oStream : NetStream;		protected var oDisplay : VideoStream;		protected var bLoaded : Boolean;
-
+		protected var bStreamStarted : Boolean;
 		protected var nBufferTime : Number;
-
 		protected var sServerHost : String;
-
-		
 		//--------------------------------------------------------------------
 		// Public properties
 		//--------------------------------------------------------------------
@@ -87,7 +83,6 @@ package com.bourre.load
 		 */
 		public static var DEBUG : Boolean = false;
 
-		
 		//--------------------------------------------------------------------
 		// Public API
 		//--------------------------------------------------------------------
@@ -102,11 +97,11 @@ package com.bourre.load
 		 */	
 		public function VideoLoader( video : Video,  autoplay : Boolean = false, bufferTime : Number = 2 )
 		{
-			super( null );
+			super(null);
 			
-			oDisplay = VideoStream.palmer_VideoLoader::buildInstance( video );
+			oDisplay = VideoStream.palmer_VideoLoader::buildInstance(video);
 			oDisplay.autoPlay = autoplay;			
-			setContent( oDisplay );
+			setContent(oDisplay);
 			
 			sServerHost = null;
 			nBufferTime = bufferTime;
@@ -120,7 +115,7 @@ package com.bourre.load
 		{
 			sServerHost = host;
 		}
-		
+
 		/**
 		 * Returns Streaming Server address.
 		 */
@@ -142,31 +137,62 @@ package com.bourre.load
 		}
 
 		/**
+		 * Close current NetStream
+		 */
+		public function closeStream() : void 
+		{
+			if( oStream )
+			{
+				oStream.removeEventListener(NetStatusEvent.NET_STATUS, onNetStreamStatus);
+				if(bStreamStarted) 
+				{
+					removeStream(oStream, null);
+				} 
+				else 
+				{
+					oStream.addEventListener(NetStatusEvent.NET_STATUS, onCloseStream(oStream));
+				}
+				bStreamStarted = false;
+			} 
+			else 
+			{
+				PalmerDebug.ERROR(this + " Stream Not Found");
+			}
+		}
+
+		/**
 		 * 
 		 */
 		override public function load( url : URLRequest = null, context : LoaderContext = null ) : void
 		{
-			if( url ) setURL( url );
+			if( url ) setURL(url);
 			
-			if ( getURL( ).url.length > 0 )
+			if ( getURL().url.length > 0 )
 			{
-				if( !LoaderLocator.getInstance( ).isRegistered( getName( ) ) )
+				if( !LoaderLocator.getInstance().isRegistered(getName()) )
 				{
-					onInitialize( );
+					onInitialize();
 				}
 				
-				if( context ) setContext( context );
+				if( context ) setContext(context);
 				
 				_bIsRunning = true;
 				bLoaded = false;
 				
 				if( oStream ) 
 				{
-					oStream.close( );
-					oConnection.close( );
+					closeStream();
+					
+					getVideoStream().stop();
+					getVideoStream().removeEventListener(MediaStreamEvent.onMediaPlayheadEVENT, _onMediaPlayhead);
+					getVideoStream().palmer_VideoLoader::setLoaded(false);
+					
+					oConnection.removeEventListener(NetStatusEvent.NET_STATUS, onConnectionStatusHandler);
+					oConnection.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, onConnectionErrorHandler);
+					oConnection.close();
 					oConnection = null;
 				}
-								connect( );
+								connect();
 			}
 		}
 
@@ -178,7 +204,6 @@ package com.bourre.load
 			return oDisplay;
 		}
 
-		
 		//--------------------------------------------------------------------
 		// Protected methods
 		//--------------------------------------------------------------------
@@ -186,29 +211,51 @@ package com.bourre.load
 		/**
 		 * 
 		 */
+		private function removeStream(stream : NetStream, e : NetStatusEvent) : void
+		{
+			stream.removeEventListener(NetStatusEvent.NET_STATUS, onCloseStream(oStream));
+			stream.close();
+			stream.client = {};
+			stream = null;
+		}
+
+		/**
+		 * 
+		 */
+		private function onCloseStream(stream : NetStream) : Function 
+		{
+			return function( e : NetStatusEvent ):void 
+			{
+				removeStream(stream, e);
+			};
+		}
+
+		/**
+		 * 
+		 */
 		protected function connect() : void
 		{
-			if( hasStreamingServer( ) )
+			if( hasStreamingServer() )
 			{
-				_sURL = _removeFirst( getURL( ).url, getStreamingServer( ) );
-				_sURL = _sURL.substr( 1, _sURL.length - _getFileExtension( _sURL ).length - 1 );
-				setURL( new URLRequest( _sURL ) );
+				_sURL = _removeFirst(getURL().url, getStreamingServer());
+				_sURL = _sURL.substr(1, _sURL.length - _getFileExtension(_sURL).length - 1);
+				setURL(new URLRequest(_sURL));
 				
-				if( DEBUG ) PalmerDebug.DEBUG( this + " host   URL = " + getStreamingServer( ) );
-				if( DEBUG ) PalmerDebug.DEBUG( this + " stream URL = " + getURL( ).url );
+				if( DEBUG ) PalmerDebug.DEBUG(this + " host   URL = " + getStreamingServer());
+				if( DEBUG ) PalmerDebug.DEBUG(this + " stream URL = " + getURL().url);
 				
-				oConnection = new NetConnection( );
-				oConnection.client = { onBWDone : Delegate.create( onBWDoneHandler ) };
-				oConnection.addEventListener( NetStatusEvent.NET_STATUS, onConnectionStatusHandler );
-				oConnection.addEventListener( SecurityErrorEvent.SECURITY_ERROR, onConnectionErrorHandler );
-				oConnection.connect( getStreamingServer( ) );
+				oConnection = new NetConnection();
+				oConnection.client = { onBWDone : Delegate.create(onBWDoneHandler) };
+				oConnection.addEventListener(NetStatusEvent.NET_STATUS, onConnectionStatusHandler);
+				oConnection.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onConnectionErrorHandler);
+				oConnection.connect(getStreamingServer());
 			}
 			else
 			{
-				oConnection = new NetConnection( );
-				oConnection.connect( null );
+				oConnection = new NetConnection();
+				oConnection.connect(null);
 				
-				loadStream( );
+				loadStream();
 			}	
 		}
 
@@ -219,7 +266,7 @@ package com.bourre.load
 		{
 			if (rest.length > 0)
 			{
-				if( DEBUG ) PalmerDebug.DEBUG( this + " bandwidth = " + rest[0] ); 
+				if( DEBUG ) PalmerDebug.DEBUG(this + " bandwidth = " + rest[0]); 
 			}
 		}
 
@@ -228,35 +275,35 @@ package com.bourre.load
 		 */
 		protected function onConnectionStatusHandler( event : NetStatusEvent ) : void
 		{
-			if( DEBUG ) PalmerDebug.DEBUG( this + " NetStatus = " + event.info.code );
-			if( DEBUG ) PalmerDebug.DEBUG( this + " NetConnection = " + oConnection.uri );
+			if( DEBUG ) PalmerDebug.DEBUG(this + " NetStatus = " + event.info.code);
+			if( DEBUG ) PalmerDebug.DEBUG(this + " NetConnection = " + oConnection.uri);
 			
-			oConnection.removeEventListener( NetStatusEvent.NET_STATUS, onConnectionStatusHandler );
-			oConnection.removeEventListener( SecurityErrorEvent.SECURITY_ERROR, onConnectionErrorHandler );
+			oConnection.removeEventListener(NetStatusEvent.NET_STATUS, onConnectionStatusHandler);
+			oConnection.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, onConnectionErrorHandler);
 			
 			switch (event.info.code) 
 			{ 
 				case "NetConnection.Connect.Success": 
-					if( DEBUG ) PalmerDebug.DEBUG( this + " Streaming Media Server Connection success." );
-					loadStream( );
+					if( DEBUG ) PalmerDebug.DEBUG(this + " Streaming Media Server Connection success.");
+					loadStream();
 					break; 
 				case "NetConnection.Connect.Rejected": 
 				case "NetConnection.Connect.Failed": 
-					PalmerDebug.ERROR( this + " Streaming Media Server Connection error." );
-					fireEventType( LoaderEvent.onLoadErrorEVENT, " An error has occurred during Streaming Server connection." );
+					PalmerDebug.ERROR(this + " Streaming Media Server Connection error.");
+					fireEventType(LoaderEvent.onLoadErrorEVENT, " An error has occurred during Streaming Server connection.");
 					break; 
 			}
 		}
-		
+
 		/**
 		 * Triggered when an error occured during Media Server connection.
 		 */
 		protected function onConnectionErrorHandler( event : SecurityErrorEvent = null ) : void
 		{
 			var msg : String = " An error has occurred during Streaming Server connection.";
-			PalmerDebug.ERROR( this + msg );
+			PalmerDebug.ERROR(this + msg);
 			
-			fireEventType( LoaderEvent.onLoadErrorEVENT, msg );
+			fireEventType(LoaderEvent.onLoadErrorEVENT, msg);
 		}
 
 		/**
@@ -264,77 +311,106 @@ package com.bourre.load
 		 */
 		protected function loadStream( ) : void
 		{
-			if( DEBUG ) PalmerDebug.DEBUG( this + ".loadStream() " + getURL( ).url );
+			if( DEBUG ) PalmerDebug.DEBUG(this + ".loadStream() " + getURL().url);
 			
-			oStream = new NetStream( oConnection );
+			oStream = new NetStream(oConnection);
 			oStream.bufferTime = nBufferTime;
-			oStream.addEventListener( NetStatusEvent.NET_STATUS, onNetStreamStatus );
+			oStream.addEventListener(NetStatusEvent.NET_STATUS, onNetStreamStatus);
 			
-			oDisplay.palmer_VideoLoader::setStream( oStream );	
+			getVideoStream().addEventListener(MediaStreamEvent.onMediaPlayheadEVENT, _onMediaPlayhead);
+			getVideoStream().palmer_VideoLoader::setStream(oStream);	
 				
-			oStream.play( getURL( ).url );
+			oStream.play(getURL().url);
 			
-			if ( !oDisplay.autoPlay ) oStream.pause( );
+			if ( !oDisplay.autoPlay ) oStream.pause();
+		}
+
+		protected function _onMediaPlayhead( event : MediaStreamEvent ) : void
+		{
+			if(getBytesLoaded() >= getBytesTotal())
+			{
+				(event.getMediaStream() as VideoStream).removeEventListener(MediaStreamEvent.onMediaPlayheadEVENT, _onMediaPlayhead);
+				
+				if( DEBUG ) PalmerDebug.DEBUG(this + ".onMediaPlayhead().bytesLoaded: " + oStream.bytesLoaded);
+				if( DEBUG ) PalmerDebug.DEBUG(this + ".onMediaPlayhead().bytesTotal: " + oStream.bytesTotal);
+				
+				fireEventType(LoaderEvent.onLoadProgressEVENT);
+				fireEventType(LoaderEvent.onLoadInitEVENT);
+			} 
+			else 
+			{
+				fireEventType(LoaderEvent.onLoadProgressEVENT);
+			}
+		}
+
+		override public function getBytesLoaded() : uint
+		{
+			return oStream ? oStream.bytesLoaded : 0 ;
+		}
+
+		override public function getBytesTotal() : uint
+		{
+			return oStream ? oStream.bytesTotal : 0 ;
 		}
 
 		protected function onNetStreamStatus(  event : NetStatusEvent ) : void
 		{
-			if( DEBUG ) PalmerDebug.DEBUG( this + ".onNetStreamStatus() " + event.info.code );
+			if( DEBUG ) PalmerDebug.DEBUG(this + ".onNetStreamStatus() " + event.info.code);
 			
 			switch( event.info.code )
 			{
 				case NetStreamStatus.PLAY_START :
-					fireEventType( LoaderEvent.onLoadStartEVENT );
-					if( oStream.bufferTime > 0 ) fireEventType( LoaderEvent.onLoadProgressEVENT );
+					fireEventType(LoaderEvent.onLoadStartEVENT);
+					bStreamStarted = true;
+					if( oStream.bufferTime > 0 ) fireEventType(LoaderEvent.onLoadProgressEVENT);
 					break;
 				case NetStreamStatus.PLAY_NOTFOUND :
-					fireEventType( LoaderEvent.onLoadErrorEVENT, " can't find video url passed to the play() method : '" + getURL( ).url + "'" );
+					fireEventType(LoaderEvent.onLoadErrorEVENT, " can't find video url passed to the play() method : '" + getURL().url + "'");
 					break;
 				case NetStreamStatus.PLAY_FAILED:
-					fireEventType( LoaderEvent.onLoadErrorEVENT, " An error has occurred in playback for a reason other than those listed elsewhere in this table, such as the subscriber not having read access." );
+					fireEventType(LoaderEvent.onLoadErrorEVENT, " An error has occurred in playback for a reason other than those listed elsewhere in this table, such as the subscriber not having read access.");
 					break;
 				case NetStreamStatus.BUFFER_FULL :
 					if( !bLoaded )
 					{
 						bLoaded = true;
-						fireEventType( LoaderEvent.onLoadInitEVENT );
-						getVideoStream( ).palmer_VideoLoader::setLoaded( true );
+						getVideoStream().palmer_VideoLoader::setLoaded(true);
 						
 						_bIsRunning = false;
 					}
 					else
 					{
-						getVideoStream( ).palmer_VideoLoader::fireEventType( MediaStreamEvent.onMediaPlayEVENT );
+						getVideoStream().palmer_VideoLoader::fireEventType(MediaStreamEvent.onMediaPlayEVENT);
 					}
 					break;
 				case NetStreamStatus.PLAY_STOP :
 					if( bLoaded )
 					{
-						getVideoStream( ).palmer_VideoLoader::complete( );
+						getVideoStream().palmer_VideoLoader::complete();
 					}
 					break;
 				case NetStreamStatus.SEEK_NOTIFY : 
-					getVideoStream( ).palmer_VideoLoader::fireEventType( MediaStreamEvent.onMediaPlayheadEVENT );
+					getVideoStream().palmer_VideoLoader::fireEventType(MediaStreamEvent.onMediaPlayheadEVENT);
 					break;
 			}
 		}	
-		
+
 		override protected function onInitialize() : void
 		{
-			if ( getName( ) != null ) 
+			if ( getName() != null ) 
 			{
-				if ( !(LoaderLocator.getInstance( ).isRegistered( getName( ) )) )
+				if ( !(LoaderLocator.getInstance().isRegistered(getName())) )
 				{
 					_bMustUnregister = true;
-					LoaderLocator.getInstance( ).register( getName( ), this );
+					LoaderLocator.getInstance().register(getName(), this);
 				} 
 				else
 				{
 					_bMustUnregister = false;
-					var msg : String = this + " can't be registered to " + LoaderLocator.getInstance( ) + " with '" + getName( ) + "' name. This name already exists.";
-					PalmerDebug.ERROR( msg );
-					fireOnLoadErrorEvent( msg );
-					throw new IllegalArgumentException( msg );
+					var msg : String = this + " can't be registered to " + LoaderLocator.getInstance() + " with '" + getName() + "' name. This name already exists.";
+					PalmerDebug.ERROR(msg);
+					fireOnLoadErrorEvent(msg);
+					throw new IllegalArgumentException(msg);
 				}
 			}
 		}
@@ -342,18 +418,17 @@ package com.bourre.load
 		//--------------------------------------------------------------------
 		// Private implementation
 		//--------------------------------------------------------------------
-
 		private static function _removeFirst( source : String, search : String, casesensitive : Boolean = true ) : String
 		{
-			var pattern : RegExp = new RegExp( search, casesensitive ? "" : "i" );  
+			var pattern : RegExp = new RegExp(search, casesensitive ? "" : "i");  
 			
-			return source.replace( pattern, "" );
+			return source.replace(pattern, "");
 		}
 
 		private static function _getFileExtension( path : String ) : String
 		{
-			var reg : RegExp = new RegExp( "(.*?)(\.[^.]*$|$)", "" );
-			return reg.exec( path )[2];
+			var reg : RegExp = new RegExp("(.*?)(\.[^.]*$|$)", "");
+			return reg.exec(path)[2];
 		}		
 	}
 }
