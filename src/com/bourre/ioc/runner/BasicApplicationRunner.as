@@ -16,7 +16,6 @@
 
 package com.bourre.ioc.runner 
 {
-	import com.bourre.utils.SystemConfig;
 	import com.bourre.ioc.assembler.builder.DefaultDisplayObjectBuilder;
 	import com.bourre.ioc.load.ApplicationLoader;
 	import com.bourre.log.PalmerDebug;
