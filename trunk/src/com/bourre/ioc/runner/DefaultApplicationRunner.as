@@ -62,7 +62,7 @@ package com.bourre.ioc.runner
 		{
 			state = e.getApplicationState( );
 			
-			PalmerDebug.DEBUG( "[IoC] run " + state + " task" );
+			PalmerDebug.DEBUG( "[IoC] run " + state + " task", this );
 			
 			if( state == ApplicationLoaderState.COMPLETE_STATE )
 			{
@@ -75,7 +75,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onApplicationLoadStart(e : ApplicationLoaderEvent) : void
 		{
-			PalmerDebug( getStep( e ) );
+			logStep( e );
 		}
 		
 		/**
@@ -83,7 +83,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onApplicationParsed(e : ApplicationLoaderEvent) : void
 		{
-			PalmerDebug( getStep( e ) );
+			logStep( e );
 		}
 		
 		/**
@@ -91,7 +91,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onApplicationObjectsBuilt(e : ApplicationLoaderEvent) : void
 		{
-			PalmerDebug( getStep( e ) );
+			logStep( e );
 		}
 		
 		/**
@@ -99,7 +99,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onApplicationChannelsAssigned(e : ApplicationLoaderEvent) : void
 		{
-			PalmerDebug( getStep( e ) );
+			logStep( e );
 		}
 		
 		/**
@@ -107,7 +107,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onApplicationMethodsCalled(e : ApplicationLoaderEvent) : void
 		{
-			PalmerDebug( getStep( e ) );
+			logStep( e );
 		}
 		
 		/**
@@ -115,7 +115,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onApplicationInit(e : ApplicationLoaderEvent) : void
 		{
-			PalmerDebug( getStep( e ) );
+			logStep( e );
 		}
 		
 		/**
@@ -123,7 +123,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onLoadStart(e : LoaderEvent) : void
 		{
-			PalmerDebug.DEBUG( getLoaderString( e ) );
+			//PalmerDebug.DEBUG( getLoaderString( e ) );
 		}
 		
 		/**
@@ -131,7 +131,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onLoadInit(e : LoaderEvent) : void
 		{
-			PalmerDebug.DEBUG( getLoaderString( e ) );
+			PalmerDebug.DEBUG( getLoaderString( e ), this );
 		}
 		
 		/**
@@ -139,7 +139,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onLoadProgress(e : LoaderEvent) : void
 		{
-			PalmerDebug.DEBUG( getLoaderString( e ) + "[ " + formatPercent( e ) + "% ] " );
+			//PalmerDebug.DEBUG( getLoaderString( e ) + "[ " + formatPercent( e ) + "% ] " );
 		}
 		
 		/**
@@ -147,7 +147,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onLoadTimeOut(e : LoaderEvent) : void
 		{
-			PalmerDebug.ERROR( "[" + state + "] " + e.getErrorMessage( ) );
+			PalmerDebug.ERROR( "[" + state + "] " + e.getErrorMessage( ), this );
 		}
 		
 		/**
@@ -155,7 +155,7 @@ package com.bourre.ioc.runner
 		 */
 		public function onLoadError(e : LoaderEvent) : void
 		{
-			PalmerDebug.ERROR( "[" + state + "] " + e.getErrorMessage( ) );
+			PalmerDebug.ERROR( "[" + state + "] " + e.getErrorMessage( ), this );
 		}
 		
 		
@@ -186,9 +186,9 @@ package com.bourre.ioc.runner
 		/**
 		 * @private
 		 */
-		protected function getStep( e : LoaderEvent ) : void
+		protected function logStep( e : LoaderEvent ) : void
 		{
-			PalmerDebug.DEBUG( "[IoC] pass " + e.getType( ) );
+			PalmerDebug.DEBUG( "[IoC] pass " + e.getType( ), this );
 		}
 		
 		/**
@@ -204,9 +204,13 @@ package com.bourre.ioc.runner
 		 */
 		protected function formatURL( e : LoaderEvent ) : String
 		{
-			var url : String = e.getLoader( ).getURL( ).url;
-			
-			return url.substring( 0, url.indexOf( "?" ) );	
+			if( e.getLoader() != null )
+			{
+				var url : String = e.getLoader( ).getURL( ).url;
+				
+				return url.substring( 0, url.indexOf( "?" ) );
+			}
+			else return "";	
 		}
 		
 		/**
