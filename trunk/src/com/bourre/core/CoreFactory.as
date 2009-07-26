@@ -29,7 +29,7 @@ package com.bourre.core
 	/**
 	 * A factory for object creation. The <code>CoreFactory</code>
 	 * can build any object of any type. The <code>CoreFactory</code>
-	 * is intensively used in the IoC assembler of LowRA.
+	 * is intensively used in the IoC assembler of PalmER.
 	 * 
 	 * @author	Francis Bourre
 	 */
