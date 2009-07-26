@@ -71,7 +71,7 @@ package com.bourre.view
 		//--------------------------------------------------------------------
 		
 		/** DisplayObject controlled by this view instance. */
-		public var view 		: DisplayObject;
+		public var content 		: DisplayObject;
 		
 		
 		//--------------------------------------------------------------------
@@ -160,7 +160,7 @@ package com.bourre.view
 		 */
 		public function show() : void
 		{
-			view.visible = true;
+			content.visible = true;
 		}
 		
 		/**
@@ -168,7 +168,7 @@ package com.bourre.view
 		 */
 		public function hide() : void
 		{
-			view.visible = false;
+			content.visible = false;
 		}
 		
 		/**
@@ -186,7 +186,7 @@ package com.bourre.view
 		 */
 		public function getPosition() : Point
 		{
-			return new Point( view.x, view.y );
+			return new Point( content.x, content.y );
 		}
 		
 		/**
@@ -194,8 +194,8 @@ package com.bourre.view
 		 */
 		public function setPosition( p : Point ) : void
 		{
-			view.x = p.x;
-			view.y = p.y;
+			content.x = p.x;
+			content.y = p.y;
 		}
 		
 		/**
@@ -203,8 +203,8 @@ package com.bourre.view
 		 */
 		public function setSize( size : Dimension ) : void
 		{
-			view.width = size.width;
-			view.height = size.height;
+			content.width = size.width;
+			content.height = size.height;
 		}
 	
 		/**
@@ -214,8 +214,8 @@ package com.bourre.view
 		 */
 		public function setSizeWH( w : Number, h : Number ) : void
 		{
-			view.width = w;
-			view.height = h;
+			content.width = w;
+			content.height = h;
 		}
 		
 		/**
@@ -223,7 +223,7 @@ package com.bourre.view
 		 */
 		public function getSize () : Dimension
 		{
-			return new Dimension( view.width, view.height );
+			return new Dimension( content.width, content.height );
 		}
 		
 		/**
@@ -262,7 +262,7 @@ package com.bourre.view
 		 */
 		public function resolveUI( label : String, tryToResolve : Boolean = false ) : DisplayObject 
 		{
-			return DisplayUtil.resolveUI( view, label, tryToResolve );
+			return DisplayUtil.resolveUI( content, label, tryToResolve );
 		}
 		
 		/**
@@ -287,7 +287,7 @@ package com.bourre.view
 		 */
 		public function resolveFunction( label : String  , tryToResolve : Boolean = false ) : Function
 		{
-			return DisplayUtil.resolveFunction( view, label, tryToResolve );	
+			return DisplayUtil.resolveFunction( content, label, tryToResolve );	
 		}
 		
 		/**
@@ -297,10 +297,10 @@ package com.bourre.view
 		{
 			ViewLocator.getInstance( getOwner() ).unregister( getName() );
 
-			if ( view != null )
+			if ( content != null )
 			{
-				if ( view.parent != null ) view.parent.removeChild( view );
-				view = null;
+				if ( content.parent != null ) content.parent.removeChild( content );
+				content = null;
 			}
 
 			onReleaseView();
@@ -345,7 +345,7 @@ package com.bourre.view
 		 */
 		public function isVisible() : Boolean
 		{
-			return view.visible;
+			return content.visible;
 		}
 		
 		/**
@@ -436,11 +436,11 @@ package com.bourre.view
 		{	
 			if ( dpo != null )
 			{
-				this.view = dpo;
+				this.content = dpo;
 
 			} else if ( ( CoreFactory.getInstance().isRegistered( name ) &&  CoreFactory.getInstance().locate( name ) is DisplayObject ) )
 			{					
-					this.view = ( CoreFactory.getInstance().locate( name ) as DisplayObject );
+					this.content = ( CoreFactory.getInstance().locate( name ) as DisplayObject );
 			}
 
 			setName( avName? avName: name );

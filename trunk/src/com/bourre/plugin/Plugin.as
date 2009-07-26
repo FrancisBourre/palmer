@@ -19,8 +19,8 @@ package com.bourre.plugin
 	import com.bourre.log.Log;
 	import com.bourre.model.Model;
 	import com.bourre.view.View;
-	
-	import flash.events.Event;	
+
+	import flash.events.Event;
 
 	/**
 	 * The Plugin interface defines rules for IoC plugin implementation.
@@ -118,5 +118,10 @@ package com.bourre.plugin
 		 * Triggered when all IoC processing is finished.
 		 */
 		function onApplicationInit( ) : void;
+		
+		/**
+		 * Releases plugin component.
+		 */
+		function release() : void;
 	}
 }
