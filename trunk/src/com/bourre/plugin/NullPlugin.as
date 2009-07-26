@@ -29,21 +29,22 @@ package com.bourre.plugin
 	/**
 	 * @author Francis Bourre
 	 */
-	final public class NullPlugin 
-		implements Plugin
+	final public class NullPlugin implements Plugin
 	{
-		static private var _oI : NullPlugin = null;
+		//--------------------------------------------------------------------
+		// Private properties
+		//--------------------------------------------------------------------
+				
+		private static var _oI : NullPlugin = null;
 
 		private var _channel : NullPluginChannel;
-
-		public function NullPlugin ( access : ConstructorAccess )
-		{
-			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
-
-			_channel = new NullPluginChannel();
-		}
-
-		static public function getInstance() : NullPlugin
+		
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+				
+		public static function getInstance() : NullPlugin
 		{
 			if ( !(NullPlugin._oI is NullPlugin) ) NullPlugin._oI = new NullPlugin( new ConstructorAccess() );
 			return NullPlugin._oI;
@@ -155,6 +156,26 @@ package com.bourre.plugin
 		 */		public function isViewRegistered( key : String ) : Boolean		{
 			return ViewLocator.getInstance( this ).isRegistered( key );
 		}
+		
+		/**
+		 * Releases plugin.
+		 */
+		public function release() : void
+		{
+			
+		}
+		
+		
+		//--------------------------------------------------------------------
+		// Private implementation
+		//--------------------------------------------------------------------
+		
+		function NullPlugin ( access : ConstructorAccess )
+		{
+			if ( !(access is ConstructorAccess) ) throw new PrivateConstructorException();
+
+			_channel = new NullPluginChannel();
+		}		
 	}
 }
 
