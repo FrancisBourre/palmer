@@ -55,7 +55,6 @@ package com.bourre.collections
 				var n : int = 0 ;
 				while( j.hasNext( )) 
 				{
-					// TODO: know if * or Object
 					var propertyValue : * = j.next( );
 					var propertyName : String = _aColumNames[ n++ ];
 					
