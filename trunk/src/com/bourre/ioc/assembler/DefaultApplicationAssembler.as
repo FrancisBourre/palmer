@@ -31,71 +31,100 @@ package com.bourre.ioc.assembler
 	import com.bourre.ioc.core.ContextTypeList;
 	import com.bourre.ioc.core.IDExpert;
 	import com.bourre.utils.HashCodeFactory;
-	
-	import flash.net.URLRequest;	
+
+	import flash.net.URLRequest;
 
 	/**
-	 * @author Francis Bourre
+	 * @author Francis Bourre	 * @author Romain Ecarnot
 	 */
-	public class DefaultApplicationAssembler 
-		implements ApplicationAssembler
+	public class DefaultApplicationAssembler  implements ApplicationAssembler
 	{
-		protected var _oIE 	: IDExpert;
+		//--------------------------------------------------------------------
+		// Protected properties
+		//--------------------------------------------------------------------
+
+		protected var _oIE : IDExpert;
 		protected var _oDOB : DisplayObjectBuilder;
 
+		
+		//--------------------------------------------------------------------
+		// Public API
+		//--------------------------------------------------------------------
+				
+		/**
+		 * @inheritDoc
+		 */
 		public function setDisplayObjectBuilder( displayObjectBuilder : DisplayObjectBuilder ) : void
 		{
 			_oDOB = displayObjectBuilder;
-			_oIE = new IDExpert();
+			_oIE = new IDExpert( );
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public function getDisplayObjectBuilder() : DisplayObjectBuilder
 		{
 			return _oDOB;
 		}
-		
+
+		/**
+		 * @inheritDoc
+		 */
 		public function buildRoot( ID : String ) : void
 		{
-			getDisplayObjectBuilder().buildDisplayObject( new DisplayObjectInfo( ID, null, true, null, null ) );
+			getDisplayObjectBuilder( ).buildDisplayObject( new DisplayObjectInfo( ID, null, true, null, null ) );
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public function buildDLL( url : URLRequest ) : void
 		{
-			getDisplayObjectBuilder().buildDLL( new DisplayObjectInfo( null, null, false, url ) );
+			getDisplayObjectBuilder( ).buildDLL( new DisplayObjectInfo( null, null, false, url ) );
 		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
 		public function buildResource( ID : String, url : URLRequest, type : String = null, deserializer : String = null ) : void
 		{
-			getDisplayObjectBuilder().buildResource( new Resource( ID, url, type, deserializer ) );
+			getDisplayObjectBuilder( ).buildResource( new Resource( ID, url, type, deserializer ) );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function buildDisplayObject( 		ID : String,
 													parentID : String,
 													url : URLRequest = null,
 													isVisible : Boolean = true,
 													type : String = null ) : void
 		{
-			getDisplayObjectBuilder().buildDisplayObject( new DisplayObjectInfo( ID, parentID, isVisible, url, type ) );
+			getDisplayObjectBuilder( ).buildDisplayObject( new DisplayObjectInfo( ID, parentID, isVisible, url, type ) );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function buildProperty( 	ownerID : String, 
-										name 	: String = null, 
-										value 	: String = null, 
-										type 	: String = null, 
-										ref 	: String = null, 
-										method 	: String = null	) : void
+										name : String = null, 
+										value : String = null, 
+										type : String = null, 
+										ref : String = null, 
+										method : String = null	) : void
 		{
-			PropertyExpert.getInstance().addProperty( ownerID, name, value, type, ref, method );
+			PropertyExpert.getInstance( ).addProperty( ownerID, name, value, type, ref, method );
 		}
-
-		public function buildObject( 	ownerID 	: String, 
-										type 		: String 	= null, 
-										args 		: Array 	= null, 
-										factory 	: String 	= null, 
-										singleton 	: String 	= null) : void
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function buildObject( 	ownerID : String, 
+										type : String = null, 
+										args : Array = null, 
+										factory : String = null, 
+										singleton : String = null) : void
 		{
 			if ( args != null )
 			{
@@ -105,36 +134,39 @@ package com.bourre.ioc.assembler
 
 				if ( type == ContextTypeList.DICTIONARY )
 				{
-					for ( i = 0; i < l; i++ )
+					for ( i = 0; i < l ; i++ )
 					{
 						o = args[ i ];
 						var key : Object = o.key;
 						var value : Object = o.value;
-						var pKey : Property = PropertyExpert.getInstance().buildProperty( ownerID, key.name, key.value, key.type, key.ref, key.method );
-						var pValue : Property = PropertyExpert.getInstance().buildProperty( ownerID, value.name, value.value, value.type, value.ref, value.method );
+						var pKey : Property = PropertyExpert.getInstance( ).buildProperty( ownerID, key.name, key.value, key.type, key.ref, key.method );
+						var pValue : Property = PropertyExpert.getInstance( ).buildProperty( ownerID, value.name, value.value, value.type, value.ref, value.method );
 						args[ i ] = new DictionaryItem( pKey, pValue );
 					}
-
-				} else
+				} 
+				else
 				{
-					for ( i = 0; i < l; i++ )
+					for ( i = 0; i < l ; i++ )
 					{
 						o = args[ i ];
-						var p : Property = PropertyExpert.getInstance().buildProperty( ownerID, o.name, o.value, o.type, o.ref, o.method );
+						var p : Property = PropertyExpert.getInstance( ).buildProperty( ownerID, o.name, o.value, o.type, o.ref, o.method );
 						args[ i ] = p;
 					}
 				}
 			}
 
-			ConstructorExpert.getInstance().register( ownerID, new Constructor( ownerID, type, args, factory, singleton ) );
+			ConstructorExpert.getInstance( ).register( ownerID, new Constructor( ownerID, type, args, factory, singleton ) );
 		}
-
+		
+		/**
+		 * @inheritDoc
+		 */
 		public function buildMethodCall( ownerID : String, methodCallName : String, args : Array = null ) : void
 		{
 			if ( args != null )
 			{
 				var l : int = args.length;
-				for ( var i : int; i < l; i++ )
+				for ( var i : int; i < l ; i++ )
 				{
 					var o : Object = args[ i ];
 					var p : Property = new Property( o.id, o.name, o.value, o.type, o.ref, o.method );
@@ -143,21 +175,27 @@ package com.bourre.ioc.assembler
 			}
 			
 			var method : Method = new Method( ownerID, methodCallName, args );
-			var index : Number = MethodExpert.getInstance( ).getKeys().length++;
-			MethodExpert.getInstance().register( getOrderedKey( index ), method );
+			var index : Number = MethodExpert.getInstance( ).getKeys( ).length++;
+			MethodExpert.getInstance( ).register( getOrderedKey( index ), method );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function buildChannelListener( ownerID : String, channelName : String, args : Array = null ) : void
 		{
 			var channelListener : ChannelListener = new ChannelListener( ownerID, channelName, args );
-			ChannelListenerExpert.getInstance().register( HashCodeFactory.getKey( channelListener ), channelListener );
+			ChannelListenerExpert.getInstance( ).register( HashCodeFactory.getKey( channelListener ), channelListener );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		public function registerID( ID : String ) : Boolean
 		{
 			return _oIE.register( ID );
 		}
-		
+
 		
 		//--------------------------------------------------------------------
 		// Protected methods
@@ -172,8 +210,10 @@ package com.bourre.ioc.assembler
 			var s : String = "";
 			if( d > 0 ) for( var i : Number = 0; i < d ; i++ ) s += "0";
 			return s + index;
-		}	
+		}
 	}
 }
 
-internal class ConstructorAccess {}
+internal class ConstructorAccess 
+{
+}

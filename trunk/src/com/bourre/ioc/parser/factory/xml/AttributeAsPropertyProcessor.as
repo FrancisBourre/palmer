@@ -20,7 +20,7 @@ package com.bourre.ioc.parser.factory.xml
 	import com.bourre.commands.Batch;
 	import com.bourre.ioc.core.ContextAttributeList;
 	import com.bourre.ioc.core.ContextNameList;
-	import com.bourre.ioc.parser.factory.ContextProcessor;	
+	import com.bourre.ioc.parser.factory.ContextProcessor;
 
 	/**
 	 * Transforms node attributes value to IoC property node.

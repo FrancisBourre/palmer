@@ -30,16 +30,22 @@ package com.bourre.ioc.parser.factory.xml
 		//--------------------------------------------------------------------
 		// Public API
 		//--------------------------------------------------------------------
-				
+		
+		/**
+		 * 
+		 */	
 		public function DLLParser(  )
 		{
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		override public function parse( ) : void
 		{
-			var dllXML : XMLList = getXMLContext().child( ContextNameList.DLL );	
-			var l : int = dllXML.length();
-			for ( var i : int = 0; i < l; i++ ) parseNode( dllXML[ i ] );
+			var list : XMLList = getXMLContext().child( ContextNameList.DLL );	
+			var l : int = list.length();
+			for ( var i : int = 0; i < l; i++ ) parseNode( list[ i ] );
 			delete getXMLContext()[ ContextNameList.DLL ];
 			
 			fireCommandEndEvent();
@@ -50,6 +56,9 @@ package com.bourre.ioc.parser.factory.xml
 		// Protected methods
 		//--------------------------------------------------------------------
 		
+		/**
+		 * @inheritDoc
+		 */
 		override protected function getState(  ) : String
 		{
 			return ApplicationLoaderState.DLL_PARSE_STATE;

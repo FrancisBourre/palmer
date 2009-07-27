@@ -42,8 +42,7 @@ package com.bourre.ioc.core
 		static public var VALUE 				: String = "value";
 		static public var INCLUDE 				: String = "include";
 		static public var IMPORT 				: String = "import";
-		static public var RSC 					: String = "rsc";
-		static public var EVENT 				: String = "event";
+		static public var RSC 					: String = "rsc";		static public var EVENT 				: String = "event";
 		
 		private var _mNodeName : HashMap;
 
@@ -71,9 +70,10 @@ package com.bourre.ioc.core
 			addNodeName( ContextNameList.APPLICATION_LOADER, "" );
 			addNodeName( ContextNameList.METHOD_CALL, "" );
 			addNodeName( ContextNameList.LISTEN, "" );
-			addNodeName( "attribute", "" );
 			
-			//TODO add DLL, RSC, VAR, etc into reserved ?
+			addNodeName( ContextNameList.VAR, "" );			addNodeName( ContextNameList.DLL, "" );			addNodeName( ContextNameList.RSC, "" );			addNodeName( ContextNameList.IMPORT, "" );			addNodeName( ContextNameList.LIB, "" );			addNodeName( ContextNameList.PREPROCESSOR, "" );
+			
+			addNodeName( "attribute", "" );
 		}
 
 		public function addNodeName( nodeName : String, value:* ) : void

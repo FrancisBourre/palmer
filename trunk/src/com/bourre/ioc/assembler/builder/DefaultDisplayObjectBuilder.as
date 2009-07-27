@@ -17,7 +17,6 @@ package com.bourre.ioc.assembler.builder
 {
 	import com.bourre.collections.HashMap;
 	import com.bourre.commands.CommandListener;
-	import com.bourre.commands.Sequencer;
 	import com.bourre.core.CoreFactory;
 	import com.bourre.core.ValueObject;
 	import com.bourre.encoding.Deserializer;
@@ -32,8 +31,6 @@ package com.bourre.ioc.assembler.builder
 	import com.bourre.ioc.assembler.locator.Resource;
 	import com.bourre.ioc.assembler.locator.ResourceExpert;
 	import com.bourre.ioc.core.ContextTypeList;
-	import com.bourre.ioc.service.RemoteContextCall;
-	import com.bourre.ioc.service.RemoteContextCallInfo;
 	import com.bourre.load.FileLoader;
 	import com.bourre.load.GraphicLoader;
 	import com.bourre.load.Loader;
@@ -172,8 +169,6 @@ package com.bourre.ioc.assembler.builder
 		protected var _dllQueue : QueueLoader;		protected var _rscQueue : QueueLoader;
 		protected var _gfxQueue : QueueLoader;
 		
-		protected var _remoteSequencer : Sequencer;
-		
 		protected var _mDisplayObject : HashMap;
 		protected var _bIsAntiCache : Boolean;
 
@@ -192,8 +187,6 @@ package com.bourre.ioc.assembler.builder
 			_dllQueue = new QueueLoader( );			_rscQueue = new QueueLoader( );
 			_gfxQueue = new QueueLoader( );
 			_mDisplayObject = new HashMap( );
-			
-			_remoteSequencer = new Sequencer( );
 			
 			_oEB = new EventBroadcaster( this, DisplayObjectBuilderListener );
 			_bIsAntiCache = false;
@@ -230,7 +223,7 @@ package com.bourre.ioc.assembler.builder
 		 */
 		public function size() : uint
 		{
-			return _dllQueue.size( ) + _gfxQueue.size( ) + _rscQueue.size( ) + _remoteSequencer.size();
+			return _dllQueue.size( ) + _gfxQueue.size( ) + _rscQueue.size( );
 		}
 
 		/**
@@ -299,16 +292,6 @@ package com.bourre.ioc.assembler.builder
 			
 			_rscQueue.add( loader, info.id, info.url, new LoaderContext( false, ApplicationDomain.currentDomain ) );
 		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function buildRemoteCall( valueObject : ValueObject ) : void
-		{
-			var info : RemoteContextCallInfo = valueObject as RemoteContextCallInfo;
-			
-			_remoteSequencer.addCommand( new RemoteContextCall( info ) );
-		}	
 		
 		/**
 		 * @inheritDoc
@@ -397,7 +380,7 @@ package com.bourre.ioc.assembler.builder
 		 */
 		public function loadRSCQueue() : void
 		{
-			if ( !(_executeQueueLoader( _rscQueue, onRSCLoadStart, onRSCLoadInit, qlOnRSCLoadInit )) ) loadRemoteQueue( );
+			if ( !(_executeQueueLoader( _rscQueue, onRSCLoadStart, onRSCLoadInit, qlOnRSCLoadInit )) ) loadDisplayObjectQueue( );
 		}
 		
 		/**
@@ -417,40 +400,7 @@ package com.bourre.ioc.assembler.builder
 			
 			ResourceExpert.release( );
 			
-			loadRemoteQueue( );
-		}
-		
-		/**
-		 * Starts remoting call execution.
-		 */
-		public function loadRemoteQueue(  ) : void
-		{
-			if( _remoteSequencer.size() > 0 )
-			{
-//				_remoteSequencer.setOwner( NullPlugin.getInstance() );
-				_remoteSequencer.addEventListener( Sequencer.onSequencerStartEVENT, onRemoteSequencerStart );
-				_remoteSequencer.addEventListener( Sequencer.onSequencerEndVENT, onRemoteSequencerEnd );
-				_remoteSequencer.execute();
-			}
-			else loadDisplayObjectQueue();
-		}
-		
-		/**
-		 * 
-		 */
-		public function onRemoteSequencerStart( event : Event ) : void
-		{
-			fireEvent( DisplayObjectBuilderEvent.onRemoteLoadStartEVENT );
-		}
-		
-		public function onRemoteSequencerEnd( event : Event ) : void
-		{
-			fireEvent( DisplayObjectBuilderEvent.onRemoteLoadInitEVENT );
-			
-			_remoteSequencer.removeEventListener( Sequencer.onSequencerStartEVENT, onRemoteSequencerStart );
-			_remoteSequencer.removeEventListener( Sequencer.onSequencerEndVENT, onRemoteSequencerEnd );
-			
-			loadDisplayObjectQueue();
+			loadDisplayObjectQueue( );
 		}
 		
 		/**

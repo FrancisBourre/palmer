@@ -35,8 +35,7 @@ package com.bourre.ioc.core
 		static public const SINGLETON_ACCESS 				: String = "singleton-access";
 		static public const METHOD 							: String = "method";
 		static public const DELAY 							: String = "delay";		static public const DESERIALIZER_CLASS 				: String = "deserializer-class";
-		public static const ROOT_REF : 						String = "root-ref";
-		
+		public static const ROOT_REF 						: String = "root-ref";		
 		//Loader callbacks attributes
 		static public const START_CALLBACK					: String = "start-callback";		static public const NAME_CALLBACK 					: String = "name-callback";
 		static public const LOAD_CALLBACK	 				: String = "load-callback";			static public const PROGRESS_CALLBACK	 			: String = "progress-callback";			static public const TIMEOUT_CALLBACK 				: String = "timeout-callback";			static public const ERROR_CALLBACK 					: String = "error-callback";			static public const INIT_CALLBACK 					: String = "init-callback";	

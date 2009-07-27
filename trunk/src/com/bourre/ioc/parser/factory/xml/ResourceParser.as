@@ -43,11 +43,11 @@ package com.bourre.ioc.parser.factory.xml
 		 */
 		override public function parse( ) : void
 		{
-			var dllXML : XMLList = getXMLContext().child( ContextNameList.RSC );	
-			var l : int = dllXML.length( );
+			var list : XMLList = getXMLContext().child( ContextNameList.RSC );	
+			var l : int = list.length( );
 			for ( var i : int = 0; i < l ; i++ ) 
 			{
-				_parseNode( dllXML[ i ] );
+				_parseNode( list[ i ] );
 			}
 			delete getXMLContext()[ ContextNameList.RSC ];
 			
@@ -59,6 +59,9 @@ package com.bourre.ioc.parser.factory.xml
 		// Protected methods
 		//--------------------------------------------------------------------
 		
+		/**
+		 * @inheritDoc
+		 */
 		override protected function getState(  ) : String
 		{
 			return ApplicationLoaderState.RSC_PARSE_STATE;

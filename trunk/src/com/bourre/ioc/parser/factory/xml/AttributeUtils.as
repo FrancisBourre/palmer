@@ -17,7 +17,7 @@ package com.bourre.ioc.parser.factory.xml
 {
 	import com.bourre.exceptions.PrivateConstructorException;
 	import com.bourre.ioc.core.ContextAttributeList;
-	import com.bourre.ioc.core.ContextTypeList;	
+	import com.bourre.ioc.core.ContextTypeList;
 
 	/**
 	 * @author Francis Bourre

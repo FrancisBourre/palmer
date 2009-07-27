@@ -530,10 +530,10 @@ package com.bourre.ioc.load
 			
 			ChannelListenerExpert.getInstance( ).assignAllChannelListeners( );
 			fireOnChannelsAssigned( );
-
+			
 			MethodExpert.getInstance( ).callAllMethods( );
 			fireOnMethodsCalled( );
-
+			
 			fireOnApplicationInit( );
 		}
 		
