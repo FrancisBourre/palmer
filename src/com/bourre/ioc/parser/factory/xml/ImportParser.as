@@ -264,16 +264,18 @@ package com.bourre.ioc.parser.factory.xml
 				
 				if( domain.length > 0 )
 				{
+					var node : XML;
+					
 					//ID process
 					var nodes : XMLList = imported..*.( hasOwnProperty( getAttributeName( ContextAttributeList.ID ) ) && String( @[ContextAttributeList.ID] ).length > 0 );
-					for each (var node : XML in nodes ) 
+					for each ( node in nodes ) 
 					{
 						node.@id = domain + "_" + node.@id;
 					}
 					
 					//REF process
 					nodes = imported..*.( hasOwnProperty( getAttributeName( ContextAttributeList.REF ) ) && String( @[ContextAttributeList.REF] ).length > 0 );
-					for each (var node : XML in nodes ) 
+					for each (node  in nodes ) 
 					{
 						if( String( node.@ref ).indexOf( "/" ) == 0 )
 						{

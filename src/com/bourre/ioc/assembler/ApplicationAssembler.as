@@ -1,8 +1,8 @@
 package com.bourre.ioc.assembler
 {
 	import com.bourre.ioc.assembler.builder.DisplayObjectBuilder;
-	
-	import flash.net.URLRequest;	
+
+	import flash.net.URLRequest;
 
 	/**
 	 * @author Francis Bourre
@@ -21,7 +21,7 @@ package com.bourre.ioc.assembler
 											url 						: URLRequest= null,
 											isVisible 					: Boolean	= true,
 											type 						: String	= null	) 		: void;
-
+		
 		function buildDLL( 					url 						: URLRequest 		) 		: void;
 		
 		/**
@@ -36,7 +36,7 @@ package com.bourre.ioc.assembler
 											url							: URLRequest,
 											type						: String = null,
 											deserializer 				: String = null		)	: void;
-											
+		
 		function buildProperty( 			ownerID 					: String, 
 											name 						: String 	= null, 
 											value 						: String 	= null, 
@@ -49,7 +49,7 @@ package com.bourre.ioc.assembler
 											args 						: Array 	= null, 
 											factory 					: String 	= null, 
 											singleton 					: String 	= null  ) 		: void;
-
+		
 		function buildMethodCall( 			id 							: String, 
 											methodCallName 				: String, 
 											args 						: Array 	= null 	) 		: void;

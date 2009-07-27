@@ -43,11 +43,12 @@ package com.bourre.ioc.assembler.builder
 		 * Triggered when a resource file loading is finished.
 		 */
 		function onRSCLoadInit( e : DisplayObjectBuilderEvent ) : void;
+		
 		/**
 		 * Triggered when a resource file starts loading.
 		 */
 		function onRSCLoadStart( e : DisplayObjectBuilderEvent ) : void;
-
+		
 		/**
 		 * Triggered when a graphic file starts loading.
 		 */
