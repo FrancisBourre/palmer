@@ -26,6 +26,7 @@ package com.bourre.ioc.parser.factory.xml
 	import com.bourre.load.QueueLoaderEvent;
 	import com.bourre.load.XMLLoader;
 	import com.bourre.log.PalmerDebug;
+	import com.bourre.utils.NetUtil;
 
 	import flash.net.URLRequest;
 	import flash.system.ApplicationDomain;
@@ -251,7 +252,7 @@ package com.bourre.ioc.parser.factory.xml
 				
 				if( key == "sandbox" )
 				{
-					node.@url = getSandboxURL( url.substr( url.indexOf( separator ) + separator.length ), contextURL );
+					node.@url = NetUtil.createCleanRelativeURL( contextURL, url.substr( url.indexOf( separator ) + separator.length ) );
 				}
 			}
 		}
