@@ -15,13 +15,11 @@
  */
 package net.pixlib.log
 {
-	import flash.events.Event;
-
 	import flexunit.framework.TestCase;
 
 	import net.pixlib.events.EventChannel;
-	import net.pixlib.log.layout.LuminicBoxLayout;
-	import net.pixlib.log.layout.SosMaxLayout;
+
+	import flash.events.Event;
 
 	/**
 	 * @author Francis Bourre
@@ -30,15 +28,12 @@ package net.pixlib.log
 		extends TestCase 
 		implements LogListener
 	{
-		private const CALL_TIMEOUT : int = 1000;
 		private var _e : LogEvent;
 
 		public override function tearDown() : void
 		{
 			Logger.getInstance( ).removeAllListeners( );
 			Logger.getInstance( ).setLevel( LogLevel.ALL );
-			Logger.getInstance( ).addLogListener( SosMaxLayout.getInstance( ), PalmerDebug.CHANNEL );
-			Logger.getInstance( ).addLogListener( LuminicBoxLayout.getInstance( ), PalmerDebug.CHANNEL );
 		}
 
 		public function onLog( e : LogEvent ) : void

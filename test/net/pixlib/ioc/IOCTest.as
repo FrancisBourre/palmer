@@ -65,7 +65,7 @@ package net.pixlib.ioc
 					</test>
 				</root>
 				
-				<test id="mockPlugin" type="com.bourre.ioc.MockPlugin">
+				<test id="mockPlugin" type="net.pixlib.ioc.MockPlugin">
 					<argument ref="stringTest"/>
 					<argument ref="container"/>
 				</test>
@@ -94,12 +94,12 @@ package net.pixlib.ioc
 				<test id="numberTest" type="Number" value="13"/>
 				<test id="booleanTest" type="Boolean" value="true"/>
 
-				<test id="instanceTest" type="com.bourre.ioc.MockClass"/>
-				<test id="logger" type="com.bourre.log.Logger" singleton-access="getInstance"/>
-				<test id="broadcaster" type="com.bourre.events.ApplicationBroadcaster" factory="getChannelDispatcher" singleton-access="getInstance"/>
+				<test id="instanceTest" type="net.pixlib.ioc.MockClass"/>
+				<test id="logger" type="net.pixlib.log.Logger" singleton-access="getInstance"/>
+				<test id="broadcaster" type="net.pixlib.events.ApplicationBroadcaster" factory="getChannelDispatcher" singleton-access="getInstance"/>
 
 				<test id="dimensionClass" type="Class">
-					<argument value="com.bourre.structures.Dimension"/>
+					<argument value="net.pixlib.structures.Dimension"/>
 				</test>
 			</beans>;
 		}
@@ -107,8 +107,7 @@ package net.pixlib.ioc
 		public function testOnApplicationObjectsBuilt() : void
 		{
 			_al.addEventListener( ApplicationLoaderEvent.onApplicationObjectsBuiltEVENT, addAsync( onObjectsBuilt, 5000 ) );
-			//_al.parseContext( _xml );
-			// TODO Apply changes
+			_al.parseContext( _xml );
 		}
 		
 		public function onObjectsBuilt( e : Event ) : void

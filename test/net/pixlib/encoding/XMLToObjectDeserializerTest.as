@@ -130,7 +130,7 @@ package net.pixlib.encoding
 		{
 			xml = 	<fr>
 						<event type="Class">
-						"com.bourre.events.BasicEvent", "onTest"
+						"net.pixlib.events.BasicEvent", "onTest"
 						</event>
 					</fr> ;
 					

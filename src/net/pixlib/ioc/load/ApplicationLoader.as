@@ -297,7 +297,7 @@ package net.pixlib.ioc.load
 		 * 
 		 * @param	url		(optional) URL request for 'applicationContext' file 
 		 * 					to load.
-		 * 	@paam	context	(optional) <code>LoaderContext</code> definition.
+		 * @param	context	(optional) <code>LoaderContext</code> definition.
 		 */
 		override public function load( url : URLRequest = null, context : LoaderContext = null ) : void
 		{
@@ -321,7 +321,19 @@ package net.pixlib.ioc.load
 				throw new NullPointerException( msg );
 			}
 		}
-		
+
+		/**
+		 * Parse raw data without loading.
+		 * 
+		 * @param	rawData	Data to parse (ex: XML data) 
+		 */
+		public function parseContext( rawData : * ) : void
+		{
+			clearExperts();
+			initParsing();
+			runParsing( rawData );	
+		}
+
 		/**
 		 * Triggered when Ioc Parsing is complete.
 		 */
