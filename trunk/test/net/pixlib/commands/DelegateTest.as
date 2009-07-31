@@ -17,10 +17,6 @@ package net.pixlib.commands
 {
 	import flexunit.framework.TestCase;
 
-	import net.pixlib.log.Logger;
-	import net.pixlib.log.PalmerDebug;
-	import net.pixlib.log.layout.LuminicBoxLayout;
-
 	import flash.events.Event;
 
 	/**
@@ -41,7 +37,6 @@ package net.pixlib.commands
 		{
 			_e = null;
 			_n = -1;
-			Logger.getInstance().addLogListener( LuminicBoxLayout.getInstance(), PalmerDebug.CHANNEL );
 		}
 		
 		public function standardCallback( n : int ) : void
