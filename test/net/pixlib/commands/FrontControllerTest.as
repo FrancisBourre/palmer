@@ -158,7 +158,7 @@ internal class MockCommand
 {
 	public static var testclass : FrontControllerTest;
 	
-	override public function execute( e : Event= null ) : void 
+	override protected function onExecute( e : Event = null ) : void
 	{
 		testclass.isExecuted = true;
 		testclass.commandOwner = this.getOwner();

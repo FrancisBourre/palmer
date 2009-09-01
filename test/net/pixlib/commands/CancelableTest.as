@@ -30,7 +30,7 @@ package net.pixlib.commands
 
 		protected function setCancelableObject( o : Cancelable ) : void
 		{
-			setRunnableObject( o );
+			_oCancelable = o;
 		}		
 
 		public function testCancelableCancel() : void

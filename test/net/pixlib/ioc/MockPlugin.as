@@ -82,7 +82,7 @@ import flash.text.TextField;
 internal class Output
 	extends AbstractCommand
 {
-	override public function execute( e : Event = null ) : void
+	override protected function onExecute( e : Event = null ) : void
 	{
 		(getModel( ModelList.modelTest ) as ModelTest).setString( (e as StringEvent).getString() );
 	}
