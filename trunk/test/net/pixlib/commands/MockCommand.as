@@ -15,6 +15,8 @@
  */
 package net.pixlib.commands
 {
+	import net.pixlib.events.CommandEvent;
+
 	import flash.events.Event;
 
 	/**
@@ -35,10 +37,10 @@ package net.pixlib.commands
 		
 		public function isRegistered ( o : CommandListener ) : Boolean
 		{
-			return _oEB.isRegistered( o,  AbstractCommand.onCommandEndEVENT );
+			return _oEB.isRegistered( o,  CommandEvent.onCommandStartEVENT ) && _oEB.isRegistered( o,  CommandEvent.onCommandEndEVENT ) ;
 		}
 		
-		override public function execute( e : Event = null ) : void
+		override protected function onExecute( e : Event = null ) : void
 		{
 			called = true;
 			event = e;

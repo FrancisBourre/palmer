@@ -15,19 +15,25 @@
  */
 package net.pixlib.commands
 {
-	import flash.events.Event;			
+	import flash.events.Event;
 
 	/**
-	 * @author Cédric Néhémie
+	 * @author Francis Bourre
 	 */
 	public class MockCommandListener 
 		implements CommandListener
 	{
-		public var called : Boolean;
+		public var startEventReceived : Event;
+		public var endEventReceived : Event;
 		
+		public function onCommandStart( e : Event ) : void
+		{
+			startEventReceived = e;
+		}
+
 		public function onCommandEnd( e : Event ) : void
 		{
-			called = true;
+			endEventReceived = e;
 		}
 		
 	}
