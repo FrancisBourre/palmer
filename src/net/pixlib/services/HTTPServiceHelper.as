@@ -13,25 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.pixlib.ioc.control 
+package net.pixlib.services 
 {
-	import net.pixlib.commands.AbstractCommand;
-	import net.pixlib.events.ValueObjectEvent;
-	import net.pixlib.ioc.assembler.locator.Constructor;
-	
-	import flash.events.Event;	
+	import net.pixlib.core.ValueObject;
 
 	/**
 	 * @author Francis Bourre
 	 */
-	public class BuildObject
-		extends AbstractCommand
+	public class HTTPServiceHelper 
+		implements ValueObject
 	{
-		override protected function onExecute( e : Event = null ) : void 
+		public var url 			: String;
+		public var method 		: String;
+		public var dataFormat 	: String;
+		public var timeout 		: uint;
+
+		/**
+		 * @param	url		
+		 * @param	method		
+		 * @param	dataFormat		
+		 * @param	timeout		
+		 */	
+		public function HTTPServiceHelper ( url : String, method : String = "POST", dataFormat : String = "text", timeout : uint = 3000 )
 		{
-			var constructor : Constructor = ( e as ValueObjectEvent ).getValueObject( ) as Constructor;
-			constructor.result = {};
-			fireCommandEndEvent();
+			this.url 		= url;			this.method 	= method;			this.dataFormat = dataFormat;			this.timeout 	= timeout;
 		}
 	}
 }

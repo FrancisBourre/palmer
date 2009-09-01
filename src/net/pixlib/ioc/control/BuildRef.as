@@ -30,7 +30,7 @@ package net.pixlib.ioc.control
 	public class BuildRef 
 		extends AbstractCommand
 	{
-		override public function execute( e : Event = null ) : void 
+		override protected function onExecute( e : Event = null ) : void
 		{
 			var constructor : Constructor = ( e as ValueObjectEvent ).getValueObject() as Constructor;
 
@@ -48,6 +48,8 @@ package net.pixlib.ioc.control
                 args.shift();
                 constructor.result =  ObjectUtils.evalFromTarget( constructor.result, args.join(".") );
 			}
+
+			fireCommandEndEvent();
 		}
 	}
 }

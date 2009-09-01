@@ -110,15 +110,15 @@ package net.pixlib.ioc.parser
 				throw new NullPointerException( msg );
 			}
 			
-			super.execute( new ContextParserEvent( "", this, getApplicationLoader(), getContextData() ) );
+			super.onExecute( new ContextParserEvent( "", this, getApplicationLoader(), getContextData() ) );
 		}
 		
 		/**
 		 * 
 		 */
-		final override public function execute( event : Event = null ) : void
+		final override protected function onExecute( e : Event = null ) : void
 		{
-			parse( );
+			parse();
 		}
 		
 		/**
@@ -131,10 +131,9 @@ package net.pixlib.ioc.parser
 			if( _hasNext( ) )
 			{
 				_next( ).execute( e );
-			} 
-			else
+
+			} else
 			{
-				_bIsRunning = false;
 				fireCommandEndEvent( );
 			}
 		}

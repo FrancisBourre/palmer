@@ -28,7 +28,7 @@ package net.pixlib.ioc.control
 	public class BuildUint
 		extends AbstractCommand
 	{
-		override public function execute( e : Event = null ) : void 
+		override protected function onExecute( e : Event = null ) : void 
 		{
 			var constructor : Constructor = ( e as ValueObjectEvent ).getValueObject( ) as Constructor;
 
@@ -47,6 +47,8 @@ package net.pixlib.ioc.control
 				getLogger().fatal( msg );
 				throw new IllegalArgumentException( msg );
 			}
+
+			fireCommandEndEvent();
 		}
 	}
 }

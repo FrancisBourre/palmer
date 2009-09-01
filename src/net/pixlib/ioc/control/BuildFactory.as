@@ -22,7 +22,7 @@ package net.pixlib.ioc.control
 	import net.pixlib.exceptions.PrivateConstructorException;
 	import net.pixlib.ioc.assembler.locator.Constructor;
 	import net.pixlib.ioc.core.ContextTypeList;
-	import net.pixlib.log.PalmerStringifier;	
+	import net.pixlib.log.PalmerStringifier;
 
 	/**
 	 * @author Francis Bourre
@@ -53,20 +53,20 @@ package net.pixlib.ioc.control
 		{
 			_m = new HashMap();
 
-			addType( ContextTypeList.ARRAY, new BuildArray() );
-			addType( ContextTypeList.BOOLEAN, new BuildBoolean() );
-			addType( ContextTypeList.INSTANCE, new BuildInstance() );
-			addType( ContextTypeList.INT, new BuildInt() );
-			addType( ContextTypeList.NULL, new BuildNull() );
-			addType( ContextTypeList.NUMBER, new BuildNumber() );
-			addType( ContextTypeList.OBJECT, new BuildObject() );
-			addType( ContextTypeList.STRING, new BuildString() );
-			addType( ContextTypeList.UINT, new BuildUint() );
-			addType( ContextTypeList.DEFAULT, new BuildString() );
-			addType( ContextTypeList.DICTIONARY, new BuildDictionary() );
-			addType( ContextTypeList.CLASS, new BuildClass() );
-			addType( ContextTypeList.XML, new BuildXML() );
-			addType( ContextTypeList.FUNCTION, new BuildFunction() );
+			addType( ContextTypeList.ARRAY, BuildArray );
+			addType( ContextTypeList.BOOLEAN, BuildBoolean );
+			addType( ContextTypeList.INSTANCE, BuildInstance );
+			addType( ContextTypeList.INT, BuildInt );
+			addType( ContextTypeList.NULL, BuildNull );
+			addType( ContextTypeList.NUMBER, BuildNumber );
+			addType( ContextTypeList.OBJECT, BuildObject );
+			addType( ContextTypeList.STRING, BuildString );
+			addType( ContextTypeList.UINT, BuildUint );
+			addType( ContextTypeList.DEFAULT, BuildString );
+			addType( ContextTypeList.DICTIONARY, BuildDictionary );
+			addType( ContextTypeList.CLASS, BuildClass );
+			addType( ContextTypeList.XML, BuildXML );
+			addType( ContextTypeList.FUNCTION, BuildFunction );
 		}
 		
 		/**
@@ -75,7 +75,7 @@ package net.pixlib.ioc.control
 		 * @param	type	Object type to build
 		 * @param	build	Command to use to build the object
 		 */
-		public function addType( type : String, build : Command ) : void
+		public function addType( type : String, build : Class ) : void
 		{
 			_m.put( type, build );
 		}
@@ -83,11 +83,11 @@ package net.pixlib.ioc.control
 		public function build( constructor : Constructor, id : String = null ) : *
 		{
 			var type : String = constructor.type;
-			var cmd : Command = ( _m.containsKey( type ) ) ? _m.get( type ) as Command : _m.get( ContextTypeList.INSTANCE ) as Command;
+			var cmdClass : Class = ( _m.containsKey( type ) ) ? _m.get( type ) as Class : _m.get( ContextTypeList.INSTANCE ) as Class;
+			var cmd : Command = new cmdClass();
 			cmd.execute( new ValueObjectEvent( type, this, constructor ) );
 			
 			if ( id ) CoreFactory.getInstance().register( id, constructor.result );
-			
 			return constructor.result;
 		}
 

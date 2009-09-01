@@ -15,12 +15,9 @@
  */
 package net.pixlib.commands
 {
-	import net.pixlib.events.BasicEvent;
-	import net.pixlib.events.EventBroadcaster;
-	import net.pixlib.log.PalmerStringifier;
 	import net.pixlib.transitions.TickListener;
-	
-	import flash.events.Event;	
+
+	import flash.events.Event;
 
 	/**
 	 * The Delegate encapsulate a method call as an object. 
@@ -34,9 +31,9 @@ package net.pixlib.commands
 	 * @author	Francis Bourre
 	 */
 	public class Delegate 
-		implements Command, TickListener
+		extends AbstractCommand
+		implements TickListener
 	{
-		protected var _oEB 					: EventBroadcaster;
 		protected var _f 					: Function;
 		protected var _a 					: Array;
 		protected var _bHasEventCallback 	: Boolean;
@@ -52,7 +49,7 @@ package net.pixlib.commands
 		 * @return	an anonymous function which will wrap the call
 		 * 			to the passed-in function 
 		 */
-		static public function create( method : Function, ... args ) : Function 
+		static public function create ( method : Function, ... args ) : Function 
 		{
 			return function( ... rest ) : *
 			{
@@ -71,7 +68,6 @@ package net.pixlib.commands
 		 */
 		public function Delegate( f : Function, ... rest )
 		{
-			_oEB = new EventBroadcaster ( this );
 			_f = f;
 			_a = rest;
 			_bHasEventCallback = true;
@@ -106,7 +102,7 @@ package net.pixlib.commands
 		 * 
 		 * @param	rest	arguments to pass to the function
 		 */
-		public function setArguments( ... rest ) : void
+		public function setArguments ( ... rest ) : void
 		{
 			if ( rest.length > 0 ) _a = rest;
 		}
@@ -116,7 +112,7 @@ package net.pixlib.commands
 		 * 
 		 * @param	a	array of arguments to pass to the function
 		 */
-		public function setArgumentsArray( a : Array ) : void
+		public function setArgumentsArray ( a : Array ) : void
 		{
 			if ( a.length > 0 ) _a = a;
 		}
@@ -154,7 +150,7 @@ package net.pixlib.commands
 		 * @param	event	event object to append to the arguments
 		 * 					array
 		 */
-		public function execute( event : Event = null ) : void
+		override protected function onExecute( event : Event = null ) : void
 		{
 			var a : Array = event != null && _bHasEventCallback ? [event] : [];
 			_f.apply( null, ( _a.length > 0 ) ? a.concat( _a ) : ((a.length > 0 ) ? a : null) );
@@ -187,77 +183,6 @@ package net.pixlib.commands
 		public function callFunction() : *
 		{
 			return _f.apply( null, _a );
-		}
-
-		/**
-		 * Returns the string representation of this instance.
-		 * 
-		 * @return the string representation of this instance
-		 */
-		public function toString() : String 
-		{
-			return PalmerStringifier.stringify( this );
-		}
-
-		/**
-		 * Implementation of the <code>Runnable</code> interface. 
-		 * A call to <code>run()</code> is equivalent to a call to
-		 * <code>execute</code> without argument.
-		 */
-		public function run() : void
-		{
-			execute();
-		}
-		
-		/**
-		 * Returns <code>true</code> if this command is currently
-		 * processing.
-		 * 
-		 * @return	<code>true</code> if this command is currently
-		 * 			processing.
-		 */
-		public function isRunning () : Boolean
-		{
-			return false;
-		}
-		
-		/**
-		 * Fires <code>onCommandEnd</code> event to the listeners
-		 * of this command. 
-		 */
-		public function fireCommandEndEvent() : void
-		{
-			_oEB.broadcastEvent( new BasicEvent ( AbstractCommand.onCommandEndEVENT, this ) );
-		}
-		
-		/**
-		 * Adds a listener that will be notified about end process.
-		 * <p>
-		 * The <code>addListener</code> method supports custom arguments
-		 * provided by <code>EventBroadcaster.addEventListener()</code> method.
-		 * </p> 
-		 * @param	listener	listener that will receive events
-		 * @param	rest		optional arguments
-		 * @return	<code>true</code> if the listener has been added
-		 * @see		net.pixlib.events.EventBroadcaster#addEventListener()
-		 * 			EventBroadcaster.addEventListener() documentation
-		 */
-		public function addCommandListener( listener : CommandListener, ... rest ) : Boolean
-		{
-			return _oEB.addEventListener.apply( _oEB, rest.length > 0 ? [ AbstractCommand.onCommandEndEVENT, listener ].concat( rest ) : [ AbstractCommand.onCommandEndEVENT, listener ] );
-		}
-		
-		/**
-		 * Removes listener from receiving any end process information.
-		 * 
-		 * @param	listener	listener to remove
-		 * @return	<code>true</code> if the listener has been removed
-		 * @see		net.pixlib.events.EventBroadcaster#addEventListener()
-		 * 			EventBroadcaster.addEventListener() documentation
-		 */
-		public function removeCommandListener( listener : CommandListener ) : Boolean
-		{
-			return _oEB.removeEventListener( AbstractCommand.onCommandEndEVENT, listener );
 		}
 	}
 }

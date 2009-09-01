@@ -643,9 +643,9 @@ package net.pixlib.ioc.assembler.builder
 				gl.setTarget( parent );
 				if ( info.isVisible ) gl.show( );
 				
-				CoreFactory.getInstance( ).register( info.ID, gl.getView( ) );
+				CoreFactory.getInstance( ).register( info.ID, gl.getDisplayObject( ) );
 	
-				_oEB.broadcastEvent( new DisplayObjectEvent( DisplayObjectEvent.onBuildDisplayObjectEVENT, gl.getView( ) ) );
+				_oEB.broadcastEvent( new DisplayObjectEvent( DisplayObjectEvent.onBuildDisplayObjectEVENT, gl.getDisplayObject( ) ) );
 				return true;
 			} catch ( e : Error )
 			{

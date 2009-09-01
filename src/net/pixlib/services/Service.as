@@ -17,9 +17,10 @@ package net.pixlib.services
 {
 	import net.pixlib.collections.Collection;
 	import net.pixlib.commands.Command;
-	
-	import flash.events.Event;	
-	
+	import net.pixlib.encoding.Deserializer;
+
+	import flash.events.Event;
+
 	/**
 	 * @author Francis Bourre
 	 */
@@ -39,4 +40,6 @@ package net.pixlib.services
 
 		function addEventListener( type : String, listener : Object, ... rest ) : Boolean;
 		function removeEventListener( type : String, listener : Object ) : Boolean;
+		
+		function setDeserializer( deserializer : Deserializer, target : Object = null ) : void;
 	}}

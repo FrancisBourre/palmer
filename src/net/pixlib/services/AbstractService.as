@@ -17,8 +17,14 @@ package net.pixlib.services
 {
 	import net.pixlib.collections.Collection;
 	import net.pixlib.commands.AbstractCommand;
-	
-	import flash.events.Event;	
+	import net.pixlib.core.ValueObject;
+	import net.pixlib.encoding.Deserializer;
+	import net.pixlib.exceptions.UnsupportedOperationException;
+	import net.pixlib.log.PalmerDebug;
+
+	import flash.events.Event;
+	import flash.utils.Dictionary;
+
 	/**
 	 * @author Francis Bourre
 	 */
@@ -26,12 +32,44 @@ package net.pixlib.services
 		extends AbstractCommand 
 		implements Service
 	{
-		protected var _args 	: Array;
-		protected var _result 	: Object;
+		static private var _POOL : Dictionary = new Dictionary();
+		
+		static protected function isRegistered( o : AbstractService ) : Boolean
+		{
+			return AbstractService._POOL[ o ];
+		}
+
+		static protected function register( o : AbstractService ) : void
+		{
+			if ( AbstractService._POOL[ o ] == null )
+			{
+				AbstractService._POOL[ o ] = true;
+
+			} else
+			{
+				PalmerDebug.WARN( o + " is already registered" );
+			}
+		}
+		
+		static protected function unregister( o : AbstractService ) : void
+		{
+			if( AbstractService._POOL[ o ] != null )
+			{
+				delete AbstractService._POOL[ o ];
+			} 
+			else
+			{
+				PalmerDebug.WARN( o + " cannot be unregistered" );
+			}
+		}
+
+		private var _result 	: Object;
+		private var _args 		: Array;
+		protected var _deserializer : Deserializer;
 
 		public function setResult( result : Object ) : void
 		{
-			_result = result;
+			_result = _deserializer ? _deserializer.deserialize( result, _result ) : result;
 		}
 		
 		public function getResult() : Object
@@ -54,14 +92,24 @@ package net.pixlib.services
 			return _oEB.getListenerCollection();
 		}
 
-		public function setArguments(...rest) : void
+		public function setArguments( ...rest ) : void
 		{
 			_args = rest.concat();
 		}
 
-		public function getArguments() : Object
+		final public function getArguments() : Object
 		{
 			return _args;
+		}
+
+		override protected function onExecute( e : Event = null ) : void
+		{
+			AbstractService.register( this );
+		}
+		
+		override protected function onCancel() : void
+		{
+			//TODO implementation
 		}
 
 		public function fireResult( e : Event = null ) : void
@@ -76,9 +124,10 @@ package net.pixlib.services
 
 		public function release() : void
 		{
-			_oEB.removeAllListeners( );
-			_args = null;
-			_result = null;
+			_oEB.removeAllListeners();
+			_args 			= null;
+			_result 		= null;
+			_deserializer 	= null;
 		}
 
 		public function addEventListener( type : String, listener : Object, ... rest ) : Boolean
@@ -89,4 +138,51 @@ package net.pixlib.services
 		public function removeEventListener( type : String, listener : Object ) : Boolean
 		{
 			return _oEB.removeEventListener( type, listener );
-		}	}}
+		}
+		
+		public function setDeserializer( deserializer : Deserializer, target : Object = null ) : void
+		{
+			_deserializer 	= deserializer;			_result 		= target;		}
+
+		protected function setExecutionHelper( helper : ValueObject ) : void
+		{
+			var msg : String = this + ".setExecutionHelper() is unsupported.";
+			getLogger().error( msg );
+			throw new UnsupportedOperationException( msg );	
+		}
+		
+		protected function getRemoteArguments() : Array
+		{
+			var msg : String = this + ".getRemoteArguments() is unsupported.";
+			getLogger().error( msg );
+			throw new UnsupportedOperationException( msg );	
+		}
+		
+		/**
+		 * Triggered when result is received.
+		 */
+		final protected function onResultHandler( o : Object ) : void
+		{
+			if ( isRegistered( this ) )
+			{
+				AbstractService.unregister( this );
+				setResult( o );
+				fireResult();
+				fireCommandEndEvent();
+			}
+		}
+
+		/**
+		 * Triggered when an error occured.
+		 */
+		final protected function onFaultHandler( o : Object ) : void
+		{
+			if ( isRegistered( this ) )
+			{
+				AbstractService.unregister( this );
+				setResult( o );
+				fireError();
+				fireCommandEndEvent();
+			}
+		}
+	}}

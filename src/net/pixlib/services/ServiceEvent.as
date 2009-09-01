@@ -15,8 +15,8 @@
  */
 package net.pixlib.services 
 {
-	import net.pixlib.events.BasicEvent;	
-	
+	import net.pixlib.events.BasicEvent;
+
 	/**
 	 * @author Francis Bourre
 	 */
