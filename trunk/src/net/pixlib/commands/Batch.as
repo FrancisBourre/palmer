@@ -185,15 +185,28 @@ package net.pixlib.commands
 		 * Starts the execution of the batch. The received event 
 		 * is registered and then passed to sub commands.
 		 */
-		override public function execute( e : Event = null ) : void
+		override protected function onExecute( e : Event = null ) : void
 		{
 			_eEvent = e;
 			_nIndex = -1;
-			_bIsRunning = true;
-			
+
 			if( _bReversed ) _aCommands.reverse();
-			
 			if( _hasNext( ) ) _next( ).execute( _eEvent );
+		}
+		
+		override protected function onCancel() : void
+		{
+			//TODO implementation
+		}
+		
+		/**
+		 * Called when the command process is beginning.
+		 * 
+		 * @param	e	event dispatched by the command
+		 */
+		public function onCommandStart( e : Event ) : void
+		{
+			// do nothing.
 		}
 
 		/**
@@ -206,11 +219,10 @@ package net.pixlib.commands
 			if( _hasNext( ) )
 			{
 				_next( ).execute( _bUseEventFlow ? e : _eEvent );
-			} 
-			else
+
+			}  else
 			{
-				_bIsRunning = false;
-				fireCommandEndEvent( );
+				fireCommandEndEvent();
 			}
 		}
 

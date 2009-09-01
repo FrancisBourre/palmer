@@ -27,10 +27,11 @@ package net.pixlib.ioc.control
 	public class BuildNull
 		extends AbstractCommand
 	{
-		override public function execute( e : Event = null ) : void 
+		override protected function onExecute( e : Event = null ) : void 
 		{
 			var constructor : Constructor = ( e as ValueObjectEvent ).getValueObject( ) as Constructor;
 			constructor.result = null;
+			fireCommandEndEvent();
 		}
 	}
 }

@@ -15,9 +15,12 @@
  */
 package net.pixlib.services 
 {
+	import net.pixlib.events.BasicEvent;
+
 	/**
 	 * @author Francis Bourre
 	 */	public interface ServiceListener 
 	{
 		function onDataResult	( event : ServiceEvent ) : void;
-		function onDataError	( event : ServiceEvent ) : void;	}}
+		function onDataError	( event : ServiceEvent ) : void;
+		function onCommandEnd	( event : BasicEvent ) : void;	}}

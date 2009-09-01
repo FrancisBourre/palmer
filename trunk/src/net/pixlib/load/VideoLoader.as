@@ -25,6 +25,7 @@ package net.pixlib.load
 	import net.pixlib.media.NetStreamStatus;
 	import net.pixlib.media.video.VideoStream;
 
+	import flash.events.Event;
 	import flash.events.NetStatusEvent;
 	import flash.events.SecurityErrorEvent;
 	import flash.media.Video;
@@ -32,6 +33,7 @@ package net.pixlib.load
 	import flash.net.NetStream;
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
+
 	/**
 	 * Loader implementation for video file.
 	 * 
@@ -165,18 +167,32 @@ package net.pixlib.load
 		 */
 		override public function load( url : URLRequest = null, context : LoaderContext = null ) : void
 		{
-			if( url ) setURL(url);
-			
+			if( url ) setURL( url );
+			if( context ) setContext( context );
+			execute();
+		}
+
+		/**
+		 * 
+		 */
+		public function getVideoStream( ) : VideoStream
+		{
+			return oDisplay;
+		}
+
+		//--------------------------------------------------------------------
+		// Protected methods
+		//--------------------------------------------------------------------
+		
+		override protected function onExecute( e : Event = null ) : void
+		{
 			if ( getURL().url.length > 0 )
 			{
 				if( !LoaderLocator.getInstance().isRegistered(getName()) )
 				{
 					onInitialize();
 				}
-				
-				if( context ) setContext(context);
-				
-				_bIsRunning = true;
+
 				bLoaded = false;
 				
 				if( oStream ) 
@@ -192,21 +208,15 @@ package net.pixlib.load
 					oConnection.close();
 					oConnection = null;
 				}
-								connect();
+
+				connect();
 			}
 		}
-
-		/**
-		 * 
-		 */
-		public function getVideoStream( ) : VideoStream
+		
+		override protected function onCancel() : void
 		{
-			return oDisplay;
+			//TODO implementation
 		}
-
-		//--------------------------------------------------------------------
-		// Protected methods
-		//--------------------------------------------------------------------
 		
 		/**
 		 * 
@@ -375,10 +385,9 @@ package net.pixlib.load
 					{
 						bLoaded = true;
 						getVideoStream().palmer_VideoLoader::setLoaded(true);
-						
-						_bIsRunning = false;
-					}
-					else
+						fireCommandEndEvent();
+
+					} else
 					{
 						getVideoStream().palmer_VideoLoader::fireEventType(MediaStreamEvent.onMediaPlayEVENT);
 					}

@@ -16,16 +16,13 @@
 package net.pixlib.events 
 {
 	import net.pixlib.commands.AbstractCommand;
-	import net.pixlib.commands.Command;
-	import net.pixlib.commands.CommandListener;
 	import net.pixlib.commands.Delegate;
 	import net.pixlib.exceptions.IllegalArgumentException;
 	import net.pixlib.log.PalmerDebug;
-	import net.pixlib.log.PalmerStringifier;
 	import net.pixlib.transitions.TickListener;
 	import net.pixlib.utils.ClassUtils;
-	
-	import flash.events.Event;		
+
+	import flash.events.Event;
 
 	/**
 	 * The EventCallbackAdapter class.
@@ -33,15 +30,14 @@ package net.pixlib.events
 	 * @author 	Francis Bourre
 	 */
 	public class EventCallbackAdapter 
-		implements Command, TickListener
+		extends AbstractCommand
+		implements TickListener
 	{
-		protected var _oEB : EventBroadcaster;
-		protected var _cArgumentCallbackFactoryClass : Class;
-		protected var _oCallbackTarget : Object;		protected var _a : Array;
+		protected var _cArgumentCallbackFactoryClass 	: Class;
+		protected var _oCallbackTarget 					: Object;		protected var _a 								: Array;
 
 		public function EventCallbackAdapter( argumentCallbackFactoryClass : Class = null, callbackTarget : Object = null, ... rest ) 
 		{
-			_oEB = new EventBroadcaster ( this );
 			if ( argumentCallbackFactoryClass != null ) setArgumentCallbackFactoryClass( argumentCallbackFactoryClass );			if ( callbackTarget != null ) setCallbackTarget( callbackTarget );
 			_a = rest;
 		}
@@ -145,7 +141,7 @@ package net.pixlib.events
 			execute( e );
 		}
 
-		public function execute( event : Event = null ) : void
+		override protected function onExecute( event : Event = null ) : void
 		{
 			try
 			{
@@ -167,76 +163,4 @@ package net.pixlib.events
 		public function onTick( e : Event = null ) : void
 		{
 			execute( e );
-		}
-
-		/**
-		 * Returns the string representation of this instance.
-		 * 
-		 * @return the string representation of this instance
-		 */
-		public function toString() : String 
-		{
-			return PalmerStringifier.stringify( this );
-		}
-		
-		//
-		/**
-		 * Implementation of the <code>Runnable</code> interface. 
-		 * A call to <code>run()</code> is equivalent to a call to
-		 * <code>execute</code> without argument.
-		 */
-		public function run() : void
-		{
-			execute();
-		}
-		
-		/**
-		 * Returns <code>true</code> if this command is currently
-		 * processing.
-		 * 
-		 * @return	<code>true</code> if this command is currently
-		 * 			processing.
-		 */
-		public function isRunning () : Boolean
-		{
-			return false;
-		}
-		
-		/**
-		 * Fires <code>onCommandEnd</code> event to the listeners
-		 * of this command. 
-		 */
-		public function fireCommandEndEvent() : void
-		{
-			_oEB.broadcastEvent( new BasicEvent ( AbstractCommand.onCommandEndEVENT, this ) );
-		}
-		
-		/**
-		 * Adds a listener that will be notified about end process.
-		 * <p>
-		 * The <code>addListener</code> method supports custom arguments
-		 * provided by <code>EventBroadcaster.addEventListener()</code> method.
-		 * </p> 
-		 * @param	listener	listener that will receive events
-		 * @param	rest		optional arguments
-		 * @return	<code>true</code> if the listener has been added
-		 * @see		net.pixlib.events.EventBroadcaster#addEventListener()
-		 * 			EventBroadcaster.addEventListener() documentation
-		 */
-		public function addCommandListener( listener : CommandListener, ... rest ) : Boolean
-		{
-			return _oEB.addEventListener.apply( _oEB, rest.length > 0 ? [ AbstractCommand.onCommandEndEVENT, listener ].concat( rest ) : [ AbstractCommand.onCommandEndEVENT, listener ] );
-		}
-		
-		/**
-		 * Removes listener from receiving any end process information.
-		 * 
-		 * @param	listener	listener to remove
-		 * @return	<code>true</code> if the listener has been removed
-		 * @see		net.pixlib.events.EventBroadcaster#addEventListener()
-		 * 			EventBroadcaster.addEventListener() documentation
-		 */
-		public function removeCommandListener( listener : CommandListener ) : Boolean
-		{
-			return _oEB.removeEventListener( AbstractCommand.onCommandEndEVENT, listener );
 		}	}}

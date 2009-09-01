@@ -79,7 +79,7 @@ package net.pixlib.ioc.parser.factory.xml
 			var loader : GraphicLoader = event.getLoader( ) as GraphicLoader;
 			loader.setTarget( getApplicationLoader( ).getDisplayObjectBuilder( ).getRootTarget( ) );
 			
-			getApplicationLoader( ).setDisplayLoader( loader.getView( ), info );
+			getApplicationLoader( ).setDisplayLoader( loader.getDisplayObject( ), info );
 			
 			release( event );
 			

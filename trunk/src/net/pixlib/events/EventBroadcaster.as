@@ -19,14 +19,14 @@ package net.pixlib.events
 	import net.pixlib.collections.HashMap;
 	import net.pixlib.collections.Iterator;
 	import net.pixlib.collections.WeakCollection;
-	import net.pixlib.commands.Delegate;
 	import net.pixlib.exceptions.IllegalArgumentException;
 	import net.pixlib.exceptions.UnsupportedOperationException;
 	import net.pixlib.log.PalmerDebug;
 	import net.pixlib.log.PalmerStringifier;
-	
+
 	import flash.events.Event;
-	import flash.utils.getQualifiedClassName;	
+	import flash.utils.Dictionary;
+	import flash.utils.getQualifiedClassName;
 
 	/**
 	 * The <code>EventBroadcaster</code> class is the cornerstone of
@@ -43,13 +43,13 @@ package net.pixlib.events
 	 * With the <code>EventBroadcaster</code> class it's possible to work with many kinds
 	 * of listeners, as listed below :
 	 * <ul>
-	 * <li>Method closure, or delegate method. You simply have to pass a reference to the
-	 * function in function for register/unregister listeners, then that method is called
-	 * with the event object as argument.</li>
+	 * <li>Method closure. You simply have to pass a reference to the function in function 
+	 * for register/unregister listeners, then that method is called with the event object 
+	 * as argument.</li>
 	 * <li>Objects implementing specific listener interface (as with Swing in java), in that
 	 * case the function with the same name that the event type is called with the event
 	 * object as argument.</li>
-	 * <li>An object which implement the <code>handleEvent</code> function, in that case, 
+	 * <li>An object which implements the <code>handleEvent</code> function, in that case, 
 	 * if the object doesn't have a function with a name corresponding to the event type
 	 * the <code>handleEvent</code> function is called with the event object as argument.</li>
 	 * </ul>
@@ -83,13 +83,13 @@ package net.pixlib.events
 	{
 		static private var _oI : EventBroadcaster = null;
 
-		protected var _oSource : Object;
-
-		protected var _mAll : Collection;
-		protected var _mType : HashMap;
-		protected var _mEventListener : HashMap;
-		protected var _mDelegate : HashMap;
-		protected var _cType : Class;
+		protected var _oSource 			: Object;
+		protected var _mAll 			: Collection;
+		protected var _mType 			: Dictionary;
+		protected var _nType 			: int;
+		protected var _mEventListener 	: HashMap;
+		protected var _mCallbackArgs 	: Dictionary;
+		protected var _cType 			: Class;
 
 		/**
 		 * Creates an new <code>EventBroadcaster</code> object with the passed-in
@@ -108,10 +108,10 @@ package net.pixlib.events
 		{
 			_oSource = ( source == null ) ? this : source;
 
-			_mAll = new WeakCollection();
-			_mType = new HashMap();
+			_mAll 			= new WeakCollection();
+			_mType 			= new Dictionary();
 			_mEventListener = new HashMap();
-			_mDelegate = new HashMap();
+			_mCallbackArgs 	= new Dictionary();
 
 			setListenerType( type );
 		}
@@ -144,7 +144,7 @@ package net.pixlib.events
 		 */
 		public function hasListenerCollection( type : String ) : Boolean
 		{
-			return _mType.containsKey( type );
+			return _mType[type] != null;
 		}
 
 		/**
@@ -161,7 +161,8 @@ package net.pixlib.events
 			var i : Iterator = _mAll.iterator();
 			while ( i.hasNext() )
 			{
-				if ( !(i.next() is type) )
+				var listener : Object = i.next();
+				if ( !(listener is Function && !(listener is type) ) )
 				{
 					var msg : String = this + ".setListenerType( " + type
 					+ " ) failed, your listener must be '" + _cType + "' typed";
@@ -189,7 +190,7 @@ package net.pixlib.events
 		 */
 		public function getListenerCollection( type : String = null ) : Collection
 		{
-			return ( type != null ) ? _mType.get( type ) : _mAll;
+			return ( type != null ) ? _mType[type] : _mAll;
 		}
 
 		/**
@@ -202,9 +203,9 @@ package net.pixlib.events
 		{
 			if ( hasListenerCollection( type ) )
 			{
-				var i : Iterator = ( _mType.get( type ) as Collection ).iterator();
+				var i : Iterator = _mType[type].iterator();
 				while ( i.hasNext() ) _removeReference( type, i.next() );
-				_mType.remove( type );
+				_mType[type] = null;
 			}
 		}
 
@@ -232,19 +233,8 @@ package net.pixlib.events
 			{
 				if ( hasListenerCollection( type ) )
 				{
-					if( listener is Function )
-					{ 
-						if( _mDelegate.containsKey( listener ) )
-						{
-							return getListenerCollection( type ).contains( _mDelegate.get( listener ) );//TODO
+					return getListenerCollection( type ).contains( listener );
 
-						} else return false;
-
-					} else
-					{
-						return getListenerCollection( type ).contains( listener );
-					}
-					
 				} else
 				{
 					return false;
@@ -255,38 +245,28 @@ package net.pixlib.events
 		/**
 		 * Adds the passed-in listener as listener for all events dispatched
 		 * by this event broadcaster. The function returns <code>true</code>
-		 * if the listener have been added at the end of the call. If the
+		 * if the listener has been added at the end of the call. If the
 		 * listener is already registered in this event broadcaster the function
 		 * returns <code>false</code>.
 		 * <p>
-		 * Note : The <code>addListener</code> function doesn't accept functions
-		 * as listener, functions could only register for a single event.
+		 * Note : the listener could be either an object or a function.
 		 * </p>
+		 * 
 		 * @param	listener	the listener object to add as global listener
 		 * @return	<code>true</code> if the listener have been added during this call
 		 * @throws 	<code>IllegalArgumentException</code> — If the passed-in listener
 		 * 			listener doesn't match the listener type supported by this event
-		 * 			broadcaster
-		 * @throws 	<code>IllegalArgumentException</code> — If the passed-in listener
-		 * 			is a function
+		 * 			broadcaster and is not a Function.
 		 */
 		public function addListener( listener : Object ) : Boolean
 		{
-			if ( _cType != null && !( listener is _cType ) )
+			if ( _cType != null && !( listener is _cType ) && !(listener is Function) )
 			{
 				var msg0 : String = this + ".addListener( " + listener
 				+ " ) failed, your listener must be '" + _cType + "' typed";
 			
 				PalmerDebug.ERROR( msg0 );
 				throw( new IllegalArgumentException( msg0 ) );
-
-			} else if ( listener is Function )
-			{
-				var msg1 : String = this + ".addListener( " + listener
-				+ " ) failed, your listener can't be Function typed";
-				
-				PalmerDebug.ERROR( msg1 );
-				throw( new IllegalArgumentException( msg1 ) );
 
 			} else
 			{
@@ -311,26 +291,13 @@ package net.pixlib.events
 		 * 						this event broadcaster object
 		 * @return	<code>true</code> if the object have been successfully
 		 * 			removed from this event broadcaster
-		 * @throws 	<code>IllegalArgumentException</code> — If the passed-in listener
-		 * 			is a function
 		 */
 		public function removeListener( listener : Object ) : Boolean
 		{
-			if ( listener is Function )
-			{
-				var msg : String = this + ".removeListener( " + listener
-				+ " ) failed, your listener can't be Function typed";
-
-				PalmerDebug.ERROR( msg );
-				throw( new IllegalArgumentException( msg ) );
-
-			} else
-			{
-				var b : Boolean = _flushReference( listener );
-				b = b || _mAll.contains( listener );
-				_mAll.remove( listener );
-				return b;
-			}
+			var b : Boolean = _flushReference( listener );
+			b = b || _mAll.contains( listener );
+			_mAll.remove( listener );
+			return b;
 		}
 
 		/**
@@ -343,10 +310,9 @@ package net.pixlib.events
 		 * have a function with the same name than <code>type</code> or at least a
 		 * <code>handleEvent</code> function.</li>
 		 * <li>The passed-in listener is a function : 
-		 * A <code>Delegate</code> object is created and then
-		 * added as listener for the event type. There is no restriction on the name of 
-		 * the function. If the <code>rest</code> is not empty, all elements in it is 
-		 * used as additional arguments into the delegate object. 
+		 * There is no restriction concerning the name of the function. If the <code>rest</code> 
+		 * is not empty, all elements in it will be used as additional arguments when 
+		 * event callback will happen. 
 		 * </ol>
 		 * 
 		 * @param	type		name of the event for which register the listener
@@ -362,20 +328,9 @@ package net.pixlib.events
 		{
 			if ( !( isRegistered( listener ) ) )
 			{
-
-				if ( listener is Function )
+				if ( listener is Function && rest )
 				{
-					if ( _mDelegate.containsKey( listener ) ) 
-					{
-						return false;
-
-					} else
-					{
-						var d : Delegate = new Delegate( listener as Function );
-						if ( rest ) d.setArgumentsArray( rest );
-						_mDelegate.put( listener, d );
-						listener = d;
-					}
+					_mCallbackArgs[listener] = rest;
 
 				} else if ( listener.hasOwnProperty( type ) && ( listener[type] is Function ) )
 				{
@@ -396,11 +351,12 @@ package net.pixlib.events
 					throw( new UnsupportedOperationException( msg ) );
 				}
 
-				if ( !(hasListenerCollection(type)) ) _mType.put( type, new WeakCollection() );
+				if ( !(hasListenerCollection(type)) ) _mType[type] = new WeakCollection();
 
 				if ( getListenerCollection( type ).add( listener ) ) 
 				{
 					_storeReference( type, listener );
+					_nType++;
 					return true;
 
 				} else
@@ -420,7 +376,7 @@ package net.pixlib.events
 		 * 
 		 * @param	type		name of the event for which unregister the listener
 		 * @param	listener	object or function to be unregistered
-		 * @return	<code>true</code> if the listener have been successfully removed
+		 * @return	<code>true</code> if the listener has been successfully removed
 		 * 			as listener for the passed-in event
 		 */
 		public function removeEventListener( type : String, listener : Object ) : Boolean
@@ -429,12 +385,11 @@ package net.pixlib.events
 			{
 				var c : Collection = getListenerCollection( type );
 
-				if ( listener is Function ) listener = _mDelegate.remove( listener );
-
 				if ( c.remove( listener ) )
 				{
 					_removeReference( type, listener );
 					if ( c.isEmpty() ) removeListenerCollection( type );
+					_nType--;
 					return true;
 
 				} else
@@ -454,9 +409,10 @@ package net.pixlib.events
 		public function removeAllListeners() : void
 		{
 			_mAll.clear();
-			_mType.clear();
+			_mType = new Dictionary();
+			_nType = 0;
 			_mEventListener.clear();
-			_mDelegate.clear();
+			_mCallbackArgs = new Dictionary();
 		}
 
 		/**
@@ -468,7 +424,7 @@ package net.pixlib.events
 		 */
 		public function isEmpty() : Boolean
 		{
-			return _mAll.isEmpty() && _mType.isEmpty();
+			return _mAll.isEmpty() && (_nType == 0);
 		}
 		
 		/**
@@ -546,7 +502,11 @@ package net.pixlib.events
 			{
 				var listener : Object = a[l];
 
-				if ( listener.hasOwnProperty( type ) && listener[ type ] is Function )
+				if ( listener is Function )
+				{
+					(listener as Function).apply( null, (_mCallbackArgs[listener] != null) ? [e].concat( _mCallbackArgs[listener] ) : [e] );
+					
+				} else if ( listener.hasOwnProperty( type ) && listener[ type ] is Function )
 				{
 					listener[type](e);
 
@@ -605,6 +565,8 @@ package net.pixlib.events
 
 		private function _removeReference( type : String, listener : Object ) : void
 		{
+			if ( listener is Function && (_mCallbackArgs[listener] != null) ) _mCallbackArgs[listener] = null;
+
 			var m : HashMap = _mEventListener.get( listener );
 			m.remove( type );
 			if ( m.isEmpty() ) _mEventListener.remove( listener );
@@ -612,6 +574,8 @@ package net.pixlib.events
 
 		private function _flushReference( listener : Object ) : Boolean
 		{
+			if ( listener is Function && (_mCallbackArgs[listener] != null) ) _mCallbackArgs[listener] = null;
+
 			var b : Boolean = false;
 			var m : HashMap = _mEventListener.get( listener );
 			if ( m != null )

@@ -62,8 +62,11 @@ package net.pixlib.commands
 	 * of all commands.</p> 
 	 * 
 	 * @author Romain Ecarnot
+	 * @author Francis Bourre
 	 */
-	public class Sequencer extends AbstractCommand implements MacroCommand, CommandListener
+	public class Sequencer 
+		extends AbstractCommand 
+		implements MacroCommand, CommandListener
 	{
 		//--------------------------------------------------------------------
 		// Events
@@ -240,7 +243,7 @@ package net.pixlib.commands
 		 */
 		public function removeCommand( command : Command ) : Boolean
 		{
-			if( !_bIsRunning )
+			if( !isRunning() )
 			{
 				var id : int = aCommands.indexOf( command ); 
 				if ( id == -1 ) return false;
@@ -268,18 +271,30 @@ package net.pixlib.commands
 		 * Starts the execution of the batch. The received event 
 		 * is registered and then passed to sub commands.
 		 */
-		override public function execute( e : Event = null ) : void
+		override protected function onExecute( e : Event = null ) : void
 		{
-			if( !_bIsRunning && size() > 0 )
+			if( !isRunning()  && size() > 0 )
 			{
 				eEvent = e;
 				nIndex = 0;
-				_bIsRunning = true;
-				
 				fireStartEvent();
-				
 				executeNextCommand( eEvent );
 			}
+		}
+		
+		override protected function onCancel() : void
+		{
+			//TODO implementation
+		}
+		
+		/**
+		 * Called when the command process is beginning.
+		 * 
+		 * @param	e	event dispatched by the command
+		 */
+		public function onCommandStart( e : Event ) : void
+		{
+			// do nothing.
 		}
 		
 		/**
@@ -298,8 +313,6 @@ package net.pixlib.commands
 			else
 			{
 				nIndex = 0;
-				_bIsRunning = false;
-				
 				fireEndEvent();
 				fireCommandEndEvent( );
 			}
@@ -328,7 +341,7 @@ package net.pixlib.commands
 		 */
 		public function clear() : void
 		{
-			if( !_bIsRunning )
+			if( !isRunning() )
 			{
 				aCommands = new Vector.<Command>( );
 			}
@@ -407,7 +420,7 @@ package net.pixlib.commands
 		 */
 		protected function addCommandAt( index : uint, command : Command ) : Boolean
 		{
-			if( !_bIsRunning )
+			if( !isRunning()  )
 			{
 				var l : uint = aCommands.length;
 				

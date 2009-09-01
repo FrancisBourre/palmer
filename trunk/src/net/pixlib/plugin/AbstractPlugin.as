@@ -35,7 +35,8 @@ package net.pixlib.plugin
 	 * 
 	 * @author 	Francis Bourre
 	 */
-	public class AbstractPlugin implements Plugin
+	public class AbstractPlugin 
+		implements Plugin
 	{
 		//--------------------------------------------------------------------
 		// Protected properties

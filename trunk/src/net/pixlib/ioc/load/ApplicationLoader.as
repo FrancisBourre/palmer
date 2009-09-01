@@ -333,9 +333,21 @@ package net.pixlib.ioc.load
 			initParsing();
 			runParsing( rawData );	
 		}
+		
+		/**
+		 * Triggered when Ioc Parsing is beginning.
+		 * 
+		 * @param	e	event dispatched by the command
+		 */
+		public function onCommandStart( e : Event ) : void
+		{
+			// do nothing.
+		}
 
 		/**
 		 * Triggered when Ioc Parsing is complete.
+		 * 
+		 * @param	e	event dispatched by the command
 		 */
 		public function onCommandEnd( event : Event ) : void
 		{

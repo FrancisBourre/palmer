@@ -15,10 +15,11 @@
  */
 package net.pixlib.services 
 {
-	import net.pixlib.core.LocatorListener;		
+	import net.pixlib.core.LocatorListener;
 
 	/**
 	 * @author Francis Bourre
-	 */	public interface ServiceLocatorListener extends LocatorListener
+	 */	public interface ServiceLocatorListener 
+		extends LocatorListener
 	{
 	}}

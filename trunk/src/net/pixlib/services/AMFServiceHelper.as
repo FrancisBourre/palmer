@@ -13,25 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.pixlib.ioc.control 
+package net.pixlib.services 
 {
-	import net.pixlib.commands.AbstractCommand;
-	import net.pixlib.events.ValueObjectEvent;
-	import net.pixlib.ioc.assembler.locator.Constructor;
-	
-	import flash.events.Event;	
+	import net.pixlib.core.ValueObject;
 
 	/**
 	 * @author Francis Bourre
 	 */
-	public class BuildObject
-		extends AbstractCommand
+	public class AMFServiceHelper 
+		implements ValueObject 
 	{
-		override protected function onExecute( e : Event = null ) : void 
+		public var gateway 	: String;
+		public var method 	: String;
+		public var timeout 	: uint;		public var encoding : uint;
+		
+		/**
+		 * @param	gateway		
+		 * @param	method		
+		 * @param	timeout		
+		 * @param	encoding		
+		 */	
+		public function AMFServiceHelper ( gateway : String, method : String, timeout : uint = 3000, encoding : uint = 3 ) 
 		{
-			var constructor : Constructor = ( e as ValueObjectEvent ).getValueObject( ) as Constructor;
-			constructor.result = {};
-			fireCommandEndEvent();
+			this.gateway 	= gateway;
+			this.method 	= method;			this.timeout 	= timeout;
+			this.encoding 	= encoding;
 		}
 	}
 }

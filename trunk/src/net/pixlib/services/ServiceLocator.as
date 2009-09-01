@@ -15,7 +15,7 @@
  */
 package net.pixlib.services 
 {
-	import net.pixlib.core.AbstractLocator;		
+	import net.pixlib.core.AbstractLocator;
 
 	/**
 	 * @author Francis Bourre

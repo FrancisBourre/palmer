@@ -16,22 +16,18 @@
 package net.pixlib.load
 {
 	import net.pixlib.commands.AbstractCommand;
-	import net.pixlib.commands.Command;
-	import net.pixlib.commands.CommandListener;
-	import net.pixlib.events.EventBroadcaster;
+	import net.pixlib.events.CommandEvent;
 	import net.pixlib.exceptions.IllegalArgumentException;
-	import net.pixlib.exceptions.IllegalStateException;
 	import net.pixlib.exceptions.NullPointerException;
+	import net.pixlib.load.Loader;
 	import net.pixlib.load.strategy.LoadStrategy;
 	import net.pixlib.log.PalmerDebug;
-	import net.pixlib.log.PalmerStringifier;
-	
+
 	import flash.events.Event;
 	import flash.net.URLRequest;
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
 	import flash.utils.Dictionary;
-	import flash.utils.getTimer;		
 
 	/**
 	 *  Dispatched when loader starts loading.
@@ -74,9 +70,10 @@ package net.pixlib.load
 	 * @author 	Francis Bourre
 	 */
 	public class AbstractLoader 
-		implements 	net.pixlib.load.Loader, Command
+		extends AbstractCommand
+		implements 	net.pixlib.load.Loader
 	{
-		static private var _oPool : Dictionary = new Dictionary( );
+		static private var _oPool : Dictionary = new Dictionary();
 
 		/**
 		 * @private
@@ -115,9 +112,7 @@ package net.pixlib.load
 		// Protected properties
 		//--------------------------------------------------------------------
 
-		protected var _oEB : EventBroadcaster;
 		protected var _sName : String;
-		protected var _nTimeOut : Number;
 		protected var _URL : URLRequest;
 		protected var _sURL : String;
 		protected var _bAntiCache : Boolean;
@@ -125,9 +120,7 @@ package net.pixlib.load
 
 		protected var _loadStrategy : LoadStrategy;		protected var _oContext : LoaderContext;
 		protected var _oContent : Object;
-		protected var _bIsRunning : Boolean;
 		protected var _nLastBytesLoaded : Number;
-		protected var _nTime : int;
 		
 		protected var _bMustUnregister : Boolean;
 		
@@ -143,23 +136,16 @@ package net.pixlib.load
 		 */
 		public function AbstractLoader( strategy : LoadStrategy = null )
 		{
+			super();
+
+			_oEB.setListenerType( LoaderListener );
+
 			_loadStrategy = (strategy != null) ? strategy : new NullLoadStrategy( );
 			_loadStrategy.setOwner( this );
 
-			_oEB = new EventBroadcaster( this, LoaderListener );
-			_nTimeOut = 10000;
 			_bAntiCache = false;
 			_sPrefixURL = "";
 			_oContext = new LoaderContext( false, ApplicationDomain.currentDomain );
-			_bIsRunning = false;
-		}
-
-		/**
-		 * @copy #load()
-		 */
-		public function execute( e : Event = null ) : void
-		{
-			load( );
 		}
 
 		/**
@@ -177,51 +163,9 @@ package net.pixlib.load
 		{
 			if ( url ) setURL( url );
 			if ( context ) setContext( context );
-			
-			if ( getURL( ).url.length > 0 )
-			{
-				_nLastBytesLoaded = 0;
-				_nTime = getTimer( );
+			execute();
+		}
 
-				registerLoaderToPool( this );
-				
-				_bIsRunning = true;
-				
-				_loadStrategy.load( getURL( ), getContext() );
-			} 
-			else
-			{
-				var msg : String = this + ".load() can't retrieve file url.";
-				PalmerDebug.ERROR( msg );
-				throw new NullPointerException( msg );
-			}
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function run() : void
-		{
-			if ( !isRunning( ) )
-			{
-				execute( );
-			} 
-			else
-			{
-				var msg : String = this + ".run() called wheras an operation is currently running";
-				PalmerDebug.ERROR( msg );
-				throw new IllegalStateException( msg );
-			}
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function isRunning() : Boolean
-		{
-			return _bIsRunning;
-		}
-		
 		/**
 		 * @inheritDoc
 		 */
@@ -327,23 +271,7 @@ package net.pixlib.load
 		{
 			return _oEB.removeEventListener( type, listener );
 		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function addCommandListener( listener : CommandListener, ... rest ) : Boolean
-		{
-			return _oEB.addEventListener.apply( _oEB, rest.length > 0 ? [ AbstractCommand.onCommandEndEVENT, listener ].concat( rest ) : [ AbstractCommand.onCommandEndEVENT, listener ] );
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function removeCommandListener( listener : CommandListener ) : Boolean
-		{
-			return _oEB.removeEventListener( AbstractCommand.onCommandEndEVENT, listener );
-		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
@@ -385,25 +313,7 @@ package net.pixlib.load
 		{
 			_sPrefixURL = sURL;
 		}
-		
-		/**
-		 * Returns the loading timeout limit
-		 * 
-		 * @see #setTimeOut()
-		 */
-		final public function getTimeOut() : Number
-		{
-			return _nTimeOut;
-		}
-		
-		/**
-		 * Sets a loading timeout limit.
-		 */
-		final public function setTimeOut( n : Number ) : void
-		{
-			_nTimeOut = Math.max( 1000, n );
-		}
-		
+
 		/**
 		 * Releases instance and all registered listeners.
 		 */
@@ -434,6 +344,14 @@ package net.pixlib.load
 		{	
 			_oContent = content;
 		}
+
+		/**
+		 * @inheritDoc
+		 */
+		public function fireOnLoadStartEvent() : void
+		{
+			fireEventType( LoaderEvent.onLoadStartEVENT );
+		}
 		
 		/**
 		 * @inheritDoc
@@ -448,17 +366,8 @@ package net.pixlib.load
 		 */
 		final public function fireOnLoadInitEvent() : void
 		{
-			_bIsRunning = false;
-			onInitialize( );
-			unregisterLoaderFromPool( this );
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function fireOnLoadStartEvent() : void
-		{
-			fireEventType( LoaderEvent.onLoadStartEVENT );
+			onInitialize();
+			fireCommandEndEvent();
 		}
 		
 		/**
@@ -467,6 +376,7 @@ package net.pixlib.load
 		public function fireOnLoadErrorEvent( message : String = "" ) : void
 		{
 			fireEventType( LoaderEvent.onLoadErrorEVENT, message );
+			fireCommandEndEvent();
 		}
 		
 		/**
@@ -474,29 +384,10 @@ package net.pixlib.load
 		 */
 		public function fireOnLoadTimeOut() : void
 		{
-			unregisterLoaderFromPool( this );
 			fireEventType( LoaderEvent.onLoadTimeOutEVENT );
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		final public function fireCommandEndEvent() : void
-		{
-			fireEventType( AbstractCommand.onCommandEndEVENT );
+			fireCommandEndEvent();
 		}
 
-		/**
-		 * Returns the string representation of this instance.
-		 * 
-		 * @return the string representation of this instance
-		 */
-		public function toString() : String 
-		{
-			return PalmerStringifier.stringify( this );
-		}
-		
-		
 		//--------------------------------------------------------------------
 		// Protected methods
 		//--------------------------------------------------------------------
@@ -567,7 +458,42 @@ package net.pixlib.load
 		{
 			return new LoaderEvent( type, this, errorMessage );
 		}
+		
+		/**
+		 * @copy #load()
+		 */
+		override protected function onExecute( e : Event = null ) : void
+		{
+			if ( getURL( ).url.length > 0 )
+			{
+				_nLastBytesLoaded = 0;
+				_loadStrategy.load( getURL( ), getContext() );
 
+			} else
+			{
+				var msg : String = this + ".load() can't retrieve file url.";
+				PalmerDebug.ERROR( msg );
+				throw new NullPointerException( msg );
+			}
+		}
+		
+		override protected function onCancel() : void
+		{
+			release();
+		}
+		
+		override protected function broadcastCommandStartEvent() : void
+		{
+			registerLoaderToPool( this );
+			fireEventType( CommandEvent.onCommandStartEVENT );
+		}
+
+		override protected function broadcastCommandEndEvent() : void
+		{
+			fireEventType( CommandEvent.onCommandEndEVENT );
+			unregisterLoaderFromPool( this );
+		}
+		
 		//
 		private function _getStringTimeStamp() : String
 		{

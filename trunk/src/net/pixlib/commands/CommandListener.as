@@ -26,6 +26,13 @@ package net.pixlib.commands
 	public interface CommandListener
 	{
 		/**
+		 * Called when the command process is beginning.
+		 * 
+		 * @param	e	event dispatched by the command
+		 */
+		function onCommandStart ( e : Event ) : void;
+
+		/**
 		 * Called when the command process is over.
 		 * 
 		 * @param	e	event dispatched by the command

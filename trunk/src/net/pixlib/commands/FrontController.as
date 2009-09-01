@@ -247,9 +247,19 @@ package net.pixlib.commands
 				cmd.execute( event );
 			}
 		}
+		
+		/**
+		 * Called when the command process is beginning.
+		 * 
+		 * @param	e	event dispatched by the command
+		 */
+		public function onCommandStart( e : Event ) : void
+		{
+			// do nothing.
+		}
 
 		/**
-		 * Catch callback events from asynchronous commands thiggered
+		 * Catch callback events from asynchronous commands triggered
 		 * by this front controller. When the controller receive an event
 		 * from the command, that command is removed from the controller
 		 * storage.

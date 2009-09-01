@@ -27,7 +27,7 @@ package net.pixlib.ioc.control
 	public class BuildString
 		extends AbstractCommand
 	{
-		override public function execute( e : Event = null ) : void 
+		override protected function onExecute( e : Event = null ) : void
 		{
 			var constructor : Constructor = ( e as ValueObjectEvent ).getValueObject( ) as Constructor;
 
@@ -37,6 +37,7 @@ package net.pixlib.ioc.control
 			if ( value.length <= 0 ) getLogger().warn( this + ".build(" + value + ") returns empty String." );
 
 			constructor.result = value;
+			fireCommandEndEvent();
 		}
 	}
 }

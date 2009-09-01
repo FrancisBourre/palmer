@@ -17,6 +17,7 @@
 package net.pixlib.ioc.parser.factory 
 {
 	import net.pixlib.commands.AbstractCommand;
+	import net.pixlib.events.CommandEvent;
 	import net.pixlib.exceptions.IllegalArgumentException;
 	import net.pixlib.exceptions.NullPointerException;
 	import net.pixlib.exceptions.PrivateConstructorException;
@@ -26,8 +27,8 @@ package net.pixlib.ioc.parser.factory
 	import net.pixlib.ioc.load.ApplicationLoaderState;
 	import net.pixlib.ioc.parser.ContextParserEvent;
 	import net.pixlib.ioc.parser.factory.ParserCommand;
-	
-	import flash.events.Event;	
+
+	import flash.events.Event;
 
 	/**
 	 * @author Romain Ecarnot
@@ -89,7 +90,7 @@ package net.pixlib.ioc.parser.factory
 		/**
 		 * @inheritDoc
 		 */
-		final override public function execute( event : Event = null ) : void
+		final override protected function onExecute( event : Event = null ) : void
 		{
 			var msg : String;
 			
@@ -120,9 +121,14 @@ package net.pixlib.ioc.parser.factory
 			}
 		}
 		
-		final override public function fireCommandEndEvent() : void
+		final override protected function onCancel() : void
 		{
-			_oEB.broadcastEvent( new ContextParserEvent( AbstractCommand.onCommandEndEVENT, null, getApplicationLoader(), getContextData() ) );
+			//TODO implementation
+		}
+		
+		final override protected function broadcastCommandEndEvent() : void
+		{
+			_oEB.broadcastEvent( new ContextParserEvent( CommandEvent.onCommandEndEVENT, null, getApplicationLoader(), getContextData() ) );
 		}
 		
 

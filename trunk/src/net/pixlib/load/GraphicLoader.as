@@ -91,11 +91,11 @@ package net.pixlib.load
 			{
 				if ( _index != -1 )
 				{
-					_target.addChildAt( getView( ), _index );
+					_target.addChildAt( getDisplayObject( ), _index );
 				} 
 				else
 				{
-					_target.addChild( getView( ) );
+					_target.addChild( getDisplayObject( ) );
 				}
 			} 
 		}
@@ -140,7 +140,7 @@ package net.pixlib.load
 			{
 				try
 				{
-					getView().name = getName();
+					getDisplayObject().name = getName();
 				}
 				catch( e : Error )
 				{
@@ -154,7 +154,7 @@ package net.pixlib.load
 		 */
 		public function show() : void
 		{
-			getView( ).visible = true;
+			getDisplayObject( ).visible = true;
 		}
 		
 		/**
@@ -162,7 +162,7 @@ package net.pixlib.load
 		 */
 		public function hide() : void
 		{
-			getView( ).visible = false;
+			getDisplayObject( ).visible = false;
 		}
 		
 		/**
@@ -172,7 +172,7 @@ package net.pixlib.load
 		 */
 		public function isVisible() : Boolean
 		{
-			return getView( ).visible;
+			return getDisplayObject( ).visible;
 		}
 		
 		/**
@@ -188,7 +188,7 @@ package net.pixlib.load
 		 */
 		override public function release() : void
 		{
-			if ( getContent( ) && _target && _target.contains( getView( ) ) ) _target.removeChild( getView( ) );
+			if ( getContent( ) && _target && _target.contains( getDisplayObject( ) ) ) _target.removeChild( getDisplayObject( ) );
 			
 			super.release( );
 		}
@@ -198,7 +198,7 @@ package net.pixlib.load
 		 * 
 		 * @return The display object.
 		 */
-		public function getView() : DisplayObjectContainer
+		public function getDisplayObject() : DisplayObjectContainer
 		{
 			return _oBitmapContainer ? _oBitmapContainer : super.getContent( ) as DisplayObjectContainer;
 		}
@@ -208,7 +208,7 @@ package net.pixlib.load
 		 */
 		override public function getContent() : Object
 		{
-			return getView();
+			return getDisplayObject();
 		}
 		
 		/**
