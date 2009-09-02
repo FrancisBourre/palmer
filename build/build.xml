@@ -228,7 +228,35 @@
 		<antcall target="docs.CopyIncludes"/>
 		<antcall target="docs.Inject"/>
 		
-	</target>	
+	</target>
+	
+	<!--**************************************************** 
+		FlexPMD
+	*****************************************************-->
+
+	<taskdef name="flexPmd" 
+             classname="com.adobe.ac.pmd.ant.FlexPmdAntTask" 
+             classpath="${flexpmd.dir}/lib/flex-pmd-ant-task-${flexpmd.version}.jar">
+        <classpath>
+            <pathelement location="${flexpmd.dir}/lib/flex-pmd-ruleset-api-${flexpmd.version}.jar"/>
+            <pathelement location="${flexpmd.dir}/lib/flex-pmd-ruleset-${flexpmd.version}.jar"/>
+            <pathelement location="${flexpmd.dir}/lib/flex-pmd-core-${flexpmd.version}.jar"/>
+            <pathelement location="${flexpmd.dir}/lib/as3-plugin-utils-${flexpmd.version}.jar"/>
+            <pathelement location="${flexpmd.dir}/lib/as3-parser-${flexpmd.version}.jar"/>
+            <pathelement location="${flexpmd.dir}/lib/pmd-4.2.2.jar"/>
+        	<pathelement location="${flexpmd.dir}/lib/commons-lang-2.4.jar"/>
+        	<pathelement location="${flexpmd.dir}/lib/flex-pmd-files-${flexpmd.version}.jar"/>
+        	<pathelement location="${flexpmd.dir}/lib/as3-parser-api-${flexpmd.version}.jar"/>
+        </classpath>
+    </taskdef>
+
+    <target name="flexPmd">
+        <flexPmd 
+            sourceDirectory="${src.dir}" 
+            outputDirectory="${bin.dir}" 
+            ruleSet="${flexpmd.dir}/pmd.xml"/>
+    </target>
+
 	
 	<!--**************************************************** 
 		MISC TASKS
