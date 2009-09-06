@@ -16,7 +16,7 @@
 package net.pixlib.core
 {
 	import net.pixlib.events.BasicEvent;
-	import net.pixlib.log.*;	
+	import net.pixlib.log.PalmerStringifier;
 
 	/**
 	 * @author Francis Bourre
