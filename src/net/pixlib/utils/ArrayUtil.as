@@ -73,7 +73,7 @@ package net.pixlib.utils {
 		{
 			if( !source || source.length < 1 ) return null;
 			
-			var index : Number = Random.nextInt( source.length );//FIXME test !!!
+			var index : Number = Random.nextInt( source.length );
 			
 			try
 			{
