@@ -15,7 +15,7 @@
  */
 package net.pixlib.commands
 {
-	import flash.events.Event;		
+	import net.pixlib.events.CommandEvent;
 
 	/**
 	 * Interface for objects which want to be notified of execution end
@@ -30,13 +30,13 @@ package net.pixlib.commands
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		function onCommandStart ( e : Event ) : void;
+		function onCommandStart ( e : CommandEvent ) : void;
 
 		/**
 		 * Called when the command process is over.
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		function onCommandEnd ( e : Event ) : void;
+		function onCommandEnd ( e : CommandEvent ) : void;
 	}
 }

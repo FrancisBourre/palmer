@@ -167,6 +167,16 @@ package net.pixlib.commands
 			return (_oEB.removeEventListener( CommandEvent.onCommandStartEVENT, listener ) 
 			&& _oEB.removeEventListener( CommandEvent.onCommandEndEVENT, listener ));
 		}
+		
+		public function addEventListener( type : String, listener : Object, ... rest ) : Boolean
+		{
+			return _oEB.addEventListener.apply( _oEB, rest.length > 0 ? [ type, listener ].concat( rest ) : [ type, listener ] );
+		}
+
+		public function removeEventListener( type : String, listener : Object ) : Boolean
+		{
+			return _oEB.removeEventListener( type, listener );
+		}
 
 		/**
 		 * Returns a reference to the owner of this command.

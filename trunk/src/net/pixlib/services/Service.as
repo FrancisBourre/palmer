@@ -28,7 +28,7 @@ package net.pixlib.services
 		extends Command
 	{
 		function setResult( result : Object ) : void;
-		function getResult() : Object;
+		function getResult() : Object;		function getRawResult() : Object;
 		function addServiceListener( listener : ServiceListener ) : Boolean;
 		function removeServiceListener( listener : ServiceListener ) : Boolean;
 		function getServiceListener() : Collection;

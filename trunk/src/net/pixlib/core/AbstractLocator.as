@@ -316,11 +316,11 @@ package net.pixlib.core
 		/**
 		 * Return the class type of elements in this container.
 		 * <p>
-		 * An untyped container returns <code>null</code>, as the
-		 * wildcard type (<code>*</code>) is not a <code>Class</code>
-		 * and <code>Object</code> class doesn't fit for primitive types.
+		 * An untyped container returns null, as the wildcard 
+		 * type * is not a Class and Object class doesn't fit 
+		 * for primitive types.
 		 * </p>
-		 * @return <code>Class</code> type of the container's elements
+		 * @return Class type of the container's elements
 		 */
 		public function getType() : Class
 		{
@@ -355,17 +355,11 @@ package net.pixlib.core
 			return _oEB.removeEventListener( type, listener );
 		}
 
-		/**
-		 * @copy net.pixlib.events.Broadcaster#addListener()
-		 */
 		public function addListener( listener : LocatorListener ) : Boolean
 		{
 			return _oEB.addListener( listener );
 		}
 
-		/**
-		 * @copy net.pixlib.events.Broadcaster#removeListener()
-		 */
 		public function removeListener( listener : LocatorListener ) : Boolean
 		{
 			return _oEB.removeListener( listener );

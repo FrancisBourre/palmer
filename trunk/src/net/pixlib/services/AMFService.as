@@ -127,7 +127,7 @@ package net.pixlib.services
 		 */
 		override protected function onExecute( e : Event = null ) : void
 		{
-			super.execute( e );
+			super.onExecute( e );
 			
 			if ( _helper is AMFServiceHelper )
 			{

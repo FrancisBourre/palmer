@@ -16,6 +16,7 @@
 package net.pixlib.commands
 {
 	import net.pixlib.core.AbstractLocator;
+	import net.pixlib.events.CommandEvent;
 	import net.pixlib.events.EventBroadcaster;
 	import net.pixlib.exceptions.IllegalArgumentException;
 	import net.pixlib.exceptions.NoSuchElementException;
@@ -23,9 +24,9 @@ package net.pixlib.commands
 	import net.pixlib.plugin.Plugin;
 	import net.pixlib.plugin.PluginDebug;
 	import net.pixlib.utils.ClassUtils;
-	
+
 	import flash.events.Event;
-	import flash.utils.Dictionary;	
+	import flash.utils.Dictionary;
 
 	/**
 	 * A base class for an application specific front controller,
@@ -253,7 +254,7 @@ package net.pixlib.commands
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		public function onCommandStart( e : Event ) : void
+		public function onCommandStart( e : CommandEvent ) : void
 		{
 			// do nothing.
 		}
@@ -266,7 +267,7 @@ package net.pixlib.commands
 		 * 
 		 * @param	e	event object propagated by the command
 		 */
-		public function onCommandEnd ( e : Event ) : void
+		public function onCommandEnd ( e : CommandEvent ) : void
 		{
 			delete _dCommands[ e.target ];
 		}

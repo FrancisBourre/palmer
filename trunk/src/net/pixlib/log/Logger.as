@@ -178,7 +178,7 @@ package net.pixlib.log
 		 * <li>The passed-in listener is a function : 
 		 * A <code>Delegate</code> object is created and then
 		 * added as listener for the event type . There is no restriction on the name
-		 * of the function.
+		 * of the function.</li>
 		 * </ol>
 		 * 
 		 * @param 	type		name of the event for which register the listener
