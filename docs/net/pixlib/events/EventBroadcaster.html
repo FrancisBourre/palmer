@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="EventBroadcaster,net.pixlib.events.EventBroadcaster,NO_CHANNEL,SYSTEM_CHANNEL,_a,_broadcasterClass,_cArgumentCallbackFactoryClass,_cType,_mAll,_mCallbackArgs,_mChannel,_mEventListener,_mType,_nType,_oCallbackTarget,_oDefaultChannel,_oDimension,_oSource,_oTarget,_o,_sType,onCommandEndEVENT,onCommandStartEVENT,target,type,_broadcastEvent,addArgumentsArray,addArguments,addEventListener,addEventListener,addEventListener,addListener,addListener,addListener,broadcastEvent,broadcastEvent,broadcastEvent,clone,clone,clone,clone,clone,clone,clone,clone,dispatchEvent,empty,getArgumentCallbackFactoryClass,getArgumentCallbackFactoryInstance,getArguments,getArguments,getBoolean,getCallbackTarget,getCallbackTargetCaller,getChannelDispatcher,getChannelDispatcher,getCommand,getDefaultChannel,getDefaultDispatcher,getDimension,getInstance,getInstance,getListenerCollection,getNumber,getObject,getString,getTarget,getType,getValueObject,handleEvent,hasChannelDispatcher,hasChannelListener,hasListenerCollection,hasListenerCollection,isEmpty,isRegistered,isRegistered,isRegistered,onExecute,onTick,releaseChannelDispatcher,removeAllListeners,removeAllListeners,removeEventListener,removeEventListener,removeEventListener,removeListener,removeListener,removeListener,removeListenerCollection,setArgumentCallbackFactoryClass,setArgumentsArray,setArguments,setCallbackTarget,setDefaultChannel,setListenerType,setTarget,setType,toString,toString,toString,toString,toString"><title>net.pixlib.events.EventBroadcaster</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'EventBroadcaster - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/events/EventBroadcaster.html&amp;net/pixlib/events/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">EventBroadcaster</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("EventBroadcaster"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.events</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  EventBroadcaster</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">EventBroadcaster  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../net/pixlib/events/Broadcaster.html">Broadcaster</a></td></tr><tr><td class="classHeaderTableLabel">Subclasses</td><td> <a href="../../../net/pixlib/plugin/PluginBroadcaster.html">PluginBroadcaster</a></td></tr></table><p></p><p></p><p></p>
+	 The <code>EventBroadcaster</code> class is the cornerstone of
+	 the Lowra event system. The main reason which explains the presence
+	 of this object whereas the existence of the native <code>EventDispatcher</code>
+	 class is the lack of flexibility of that class :
+	 <ul>
+	                 <li>It's not possible to add an object as listener for many events in a single call.</li>
+	                 <li>It's not possible to force the presence of specific function in a listener object.</li>
+	                 <li>It's not possible to reuse an event previously dispatched without having to create
+	 a custom event object which overrides the <code>clone</code> function.</li>
+	              </ul>
+	              <p>
+	 With the <code>EventBroadcaster</code> class it's possible to work with many kinds
+	 of listeners, as listed below :
+	 <ul>
+	                    <li>Method closure. You simply have to pass a reference to the function in function 
+	 for register/unregister listeners, then that method is called with the event object 
+	 as argument.</li>
+	                    <li>Objects implementing specific listener interface (as with Swing in java), in that
+	 case the function with the same name that the event type is called with the event
+	 object as argument.</li>
+	                    <li>An object which implements the <code>handleEvent</code> function, in that case, 
+	 if the object doesn't have a function with a name corresponding to the event type
+	 the <code>handleEvent</code> function is called with the event object as argument.</li>
+	                 </ul>
+	              </p>
+               <p>
+	 The Lowra's event broadcaster also offer many methods to dispatch event from
+	 different type of events object. More formally, it's possible to dispatch 
+	 an event object, or an anonymous object which will be converted into a 
+	 <code>DynBasicEvent</code> before the broadcast, all of its properties are
+	 then copied into this event object.
+	 </p>
+               <p>
+	 Another big difference with the native dispatcher is the fact that listeners
+	 are systematically stored using weak references, restricting the usage of
+	 anonymous listeners which can't be unregistered due to the lack of reference
+	 to it. 
+	 </p>
+               <p>
+	 Composition is privileged over inheritance by the use of a source object 
+	 parameter for the broadcaster. That property, if set, result in that all
+	 event objects dispatched by the <code>EventBroadcaster</code> which have
+	 their <code>target</code> set to <code>null</code> will have that object
+	 as source instead of the dispatcher itself.
+	 </p>
+               <p>
+	 Optionally the <code>EventBroadcaster</code> can restrict the type 
+	 of listeners to a specific type, in that case the broadcaster only
+	 accept the registration of objects which implements or extends the
+	 specified <code>Class</code>.
+	 </p>
+	           <p></p><br/><hr></div><a name="propertySummary"></a><a name="protectedPropertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProtectedProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_cType" class="signatureLink">_cType</a> : Class<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_mAll" class="signatureLink">_mAll</a> : <a href="../../../net/pixlib/collections/Collection.html">Collection</a><div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_mCallbackArgs" class="signatureLink">_mCallbackArgs</a> : Dictionary<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_mEventListener" class="signatureLink">_mEventListener</a> : <a href="../../../net/pixlib/collections/HashMap.html">HashMap</a><div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_mType" class="signatureLink">_mType</a> : Dictionary<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_nType" class="signatureLink">_nType</a> : int<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_oSource" class="signatureLink">_oSource</a> : Object<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#EventBroadcaster()" class="signatureLink">EventBroadcaster</a>(source:Object = null, type:Class = null)</div><div class="summaryTableDescription">
+		 Creates an new EventBroadcaster object with the passed-in
+		 source object as source for events.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addEventListener()" class="signatureLink">addEventListener</a>(type:String, listener:Object, ... rest):Boolean</div><div class="summaryTableDescription">
+		 Adds an event listener for the specified event type.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addListener()" class="signatureLink">addListener</a>(listener:Object):Boolean</div><div class="summaryTableDescription">
+		 Adds the passed-in listener as listener for all events dispatched
+		 by this event broadcaster.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#broadcastEvent()" class="signatureLink">broadcastEvent</a>(e:Event):void</div><div class="summaryTableDescription">
+		 Broadcast the passed-in event object to listeners
+		 according to the event's type.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#dispatchEvent()" class="signatureLink">dispatchEvent</a>(o:Object):void</div><div class="summaryTableDescription">
+		 Broadcast an event using an anonymous object.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getInstance()" class="signatureLink">getInstance</a>():<a href="../../../net/pixlib/events/EventBroadcaster.html">EventBroadcaster</a></div><div class="summaryTableDescription">[static] 
+		 Returns a static instance of the class.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getListenerCollection()" class="signatureLink">getListenerCollection</a>(type:String = null):<a href="../../../net/pixlib/collections/Collection.html">Collection</a></div><div class="summaryTableDescription">
+		 Returns a Collection view of listeners for the passed-in
+		 event type.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#hasListenerCollection()" class="signatureLink">hasListenerCollection</a>(type:String):Boolean</div><div class="summaryTableDescription">
+		 Returns true if this event broadcaster has 
+		 listeners for the passed-in event type.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isEmpty()" class="signatureLink">isEmpty</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this event broadcaster contains
+		 no listeners for any event.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isRegistered()" class="signatureLink">isRegistered</a>(listener:Object, type:String = null):Boolean</div><div class="summaryTableDescription">
+		 Returns true if the passed-in listener object is registered
+		 as listener for the passed-in event type.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAllListeners()" class="signatureLink">removeAllListeners</a>():void</div><div class="summaryTableDescription">
+		 Removes all listeners registered in this event broadcaster.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeEventListener()" class="signatureLink">removeEventListener</a>(type:String, listener:Object):Boolean</div><div class="summaryTableDescription">
+		 Removes the passed-in listener for listening the specified event.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeListener()" class="signatureLink">removeListener</a>(listener:Object):Boolean</div><div class="summaryTableDescription">
+		 Removes the passed-in listener object from this event
+		 broadcaster.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeListenerCollection()" class="signatureLink">removeListenerCollection</a>(type:String):void</div><div class="summaryTableDescription">
+		 Removes the complete collection of listeners for a specified
+		 event type.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#setListenerType()" class="signatureLink">setListenerType</a>(type:Class):void</div><div class="summaryTableDescription">
+		 Defines the type of listeners this event broadcaster support.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toString()" class="signatureLink">toString</a>():String</div><div class="summaryTableDescription">
+		 Returns the String representation of
+		 this object.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr></table></div><a name="protectedMethodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProtectedMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#_broadcastEvent()" class="signatureLink">_broadcastEvent</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>, e:Event):void</div><div class="summaryTableDescription">
+		 Broadcast the passed-in event to the listeners contained in the passed-in
+		 Collection.</div></td><td class="summaryTableOwnerCol">EventBroadcaster</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="_cType"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_cType</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>protected var _cType:Class</code><p></p></div><a name="propertyDetail"></a><a name="_mAll"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_mAll</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _mAll:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code><p></p></div><a name="propertyDetail"></a><a name="_mCallbackArgs"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_mCallbackArgs</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _mCallbackArgs:Dictionary</code><p></p></div><a name="propertyDetail"></a><a name="_mEventListener"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_mEventListener</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _mEventListener:<a href="../../../net/pixlib/collections/HashMap.html">HashMap</a></code><p></p></div><a name="propertyDetail"></a><a name="_mType"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_mType</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _mType:Dictionary</code><p></p></div><a name="propertyDetail"></a><a name="_nType"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_nType</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _nType:int</code><p></p></div><a name="propertyDetail"></a><a name="_oSource"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_oSource</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _oSource:Object</code><p></p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="EventBroadcaster()"></a><a name="EventBroadcaster(Object,Class)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">EventBroadcaster</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function EventBroadcaster(source:Object = null, type:Class = null)</code><p></p><p>
+		 Creates an new <code>EventBroadcaster</code> object with the passed-in
+		 <code>source</code> object as source for events. If the <code>source</code>
+		 parameter is omitted the source of events will be this event broadcaster.
+		 <p>
+		 Optionnaly the type of listeners objects can be restricted, in that
+		 case you just have to pass the class of listener in the <code>type</code>
+		 parameter.
+		 </p> 
+		 </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">source</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; an object used as target instead of this event broadcaster
+		 					for event object which have a <code>null</code> target
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">type</span>:Class</code> (default = <code>null</code>)<code></code> &mdash; an optional class for listener
+		 </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="_broadcastEvent()"></a><a name="_broadcastEvent(net.pixlib.collections.Collection,flash.events.Event)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_broadcastEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> protected function _broadcastEvent(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>, e:Event):void</code><p></p><p></p><p>
+		 Broadcast the passed-in event to the listeners contained in the passed-in
+		 <code>Collection</code>.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; <code>Collection</code> of listeners to which send the event
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">e</span>:Event</code> &mdash; event to broadcast to listeners
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; If one listener is an object
+		 			which have neither a function with the same name than the event type nor
+		 			a function called <code>handleEvent</code>
+		 </td></tr></table></div><a name="addEventListener()"></a><a name="addEventListener(String,Object,restParam)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addEventListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addEventListener(type:String, listener:Object, ... rest):Boolean</code><p></p><p></p><p>
+		 Adds an event listener for the specified event type.
+		 There is two behaviors for the <code>addEventListener</code>
+		 function : 
+		 <ol>
+		 <li>The passed-in listener is an object : 
+		 The object is added as listener only for the specified event, the object must
+		 have a function with the same name than <code>type</code> or at least a
+		 <code>handleEvent</code> function.</li>
+		 <li>The passed-in listener is a function : 
+		 There is no restriction concerning the name of the function. If the <code>rest</code> 
+		 is not empty, all elements in it will be used as additional arguments when 
+		 event callback will happen. </li>
+		 </ol>
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:String</code> &mdash; 	name of the event for which register the listener
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">listener</span>:Object</code> &mdash; object or function which will receive this event
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code>... <span class="label">rest</span></code> &mdash; 	additional arguments for the function listener
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the function have been succesfully added as
+		 			listener fot the passed-in event
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; If the listener is an object
+		 			which have neither a function with the same name than the event type nor
+		 			a function called <code>handleEvent</code>
+		 </td></tr></table></div><a name="addListener()"></a><a name="addListener(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addListener(listener:Object):Boolean</code><p></p><p></p><p>
+		 Adds the passed-in listener as listener for all events dispatched
+		 by this event broadcaster. The function returns <code>true</code>
+		 if the listener has been added at the end of the call. If the
+		 listener is already registered in this event broadcaster the function
+		 returns <code>false</code>.
+		 <p>
+		 Note : the listener could be either an object or a function.
+		 </p>
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">listener</span>:Object</code> &mdash; the listener object to add as global listener
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the listener have been added during this call
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in listener
+		 			listener doesn't match the listener type supported by this event
+		 			broadcaster and is not a Function.
+		 </td></tr></table></div><a name="broadcastEvent()"></a><a name="broadcastEvent(flash.events.Event)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">broadcastEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function broadcastEvent(e:Event):void</code><p></p><p></p><p>
+		 Broadcast the passed-in event object to listeners
+		 according to the event's type. The event is broadcasted
+		 to both listeners registered specifically for this event
+		 type and global listeners in the broadcaster.
+		 <p>
+		 If the <code>target</code> property of the passed-in event
+		 is <code>null</code>, it will be set using the value of the
+		 source property of this event broadcaster.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">e</span>:Event</code> &mdash; event object to broadcast
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; If one listener is an object
+		 			which have neither a function with the same name than the event type nor
+		 			a function called <code>handleEvent</code>
+		 </td></tr></table></div><a name="dispatchEvent()"></a><a name="dispatchEvent(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">dispatchEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function dispatchEvent(o:Object):void</code><p></p><p></p><p>
+		 Broadcast an event using an anonymous object. 
+		 The only requirement for objects passed as argument in
+		 this function is that they must have a <code>type</code>
+		 property. The <code>target</code> property will be set
+		 with this event broadcaster's source if there is no source
+		 specified.
+		 <p>
+		 The concret event object broadcasted to listener is a
+		 <code>DynBasicEvent</code> decorated with the property
+		 of the passed-in object.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; an anonymous object used to decorate a
+		 				<code>DynBasicEvent</code>
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; If one listener is an object
+		 			which have neither a function with the same name than the event type nor
+		 			a function called <code>handleEvent</code>
+		 </td></tr></table></div><a name="getInstance()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getInstance</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function getInstance():<a href="../../../net/pixlib/events/EventBroadcaster.html">EventBroadcaster</a></code><p></p><p></p><p>
+		 Returns a static instance of the class.
+		 <p>
+		 The presence of a <code>getInstance</code> method in the
+		 <code>EventBroadcaster</code> class doesn't mean that the class
+		 is a singleton, it's simply a convenient way to let application
+		 developers broadcasting events that correspond to user gestures
+		 and requests over the whole application.
+		 </p>
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/events/EventBroadcaster.html">EventBroadcaster</a></code> &mdash; a static instance of the class
+		 </td></tr></table></div><a name="getListenerCollection()"></a><a name="getListenerCollection(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getListenerCollection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getListenerCollection(type:String = null):<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code><p></p><p></p><p>
+		 Returns a <code>Collection</code> view of listeners for the passed-in
+		 event type. The returned collection is a reference to the internal collection
+		 of this event broadcaster, resulting that there's no guarantee that collection
+		 cannot be altered by another object. If the <code>type</code> parameter is
+		 omitted, the function returns the collection of global listeners objects (all
+		 objects that haven't register for a specific event).
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:String</code> (default = <code>null</code>)<code></code> &mdash; the event name for which get a collection, if not
+		 					defined, the collection of global listeners  is returned
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; <code>Collection</code> of listeners corresponding to the
+		 			passed-in event type
+		 </td></tr></table></div><a name="hasListenerCollection()"></a><a name="hasListenerCollection(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">hasListenerCollection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function hasListenerCollection(type:String):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this event broadcaster has 
+		 listeners for the passed-in event type.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:String</code> &mdash; name of the event for which look for listener
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this event broadcaster has 
+		 			listeners for the passed-in event type
+		 </td></tr></table></div><a name="isEmpty()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isEmpty():Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this event broadcaster contains
+		 no listeners for any event.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this event broadcaster contains
+		 			no listeners for any event.
+		 </td></tr></table></div><a name="isRegistered()"></a><a name="isRegistered(Object,String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isRegistered</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isRegistered(listener:Object, type:String = null):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if the passed-in listener object is registered
+		 as listener for the passed-in event type. If the <code>type</code> parameter
+		 is omitted, the function returns <code>true</code> only if the listener is 
+		 registered as global listener.
+		 <p>
+		 Note : the listener could be either an object or a function.
+		 </p>
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">listener</span>:Object</code> &mdash; object to look for registration
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">type</span>:String</code> (default = <code>null</code>)<code></code> &mdash; 	event type to look at
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the passed-in listener should receive notification
+		 			of the passed-in event type
+		 </td></tr></table></div><a name="removeAllListeners()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAllListeners</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAllListeners():void</code><p></p><p></p><p>
+		 Removes all listeners registered in this event broadcaster.
+		 </p></div><a name="removeEventListener()"></a><a name="removeEventListener(String,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeEventListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeEventListener(type:String, listener:Object):Boolean</code><p></p><p></p><p>
+		 Removes the passed-in listener for listening the specified event. The
+		 listener could be either an object or a function.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:String</code> &mdash; 	name of the event for which unregister the listener
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">listener</span>:Object</code> &mdash; object or function to be unregistered
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the listener has been successfully removed
+		 			as listener for the passed-in event
+		 </td></tr></table></div><a name="removeListener()"></a><a name="removeListener(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeListener(listener:Object):Boolean</code><p></p><p></p><p>
+		 Removes the passed-in listener object from this event
+		 broadcaster. The object is removed as listener for all
+		 events the broadcaster may dispatch.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">listener</span>:Object</code> &mdash; the listener object to remove from
+		 						this event broadcaster object
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object have been successfully
+		 			removed from this event broadcaster
+		 </td></tr></table></div><a name="removeListenerCollection()"></a><a name="removeListenerCollection(String)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeListenerCollection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeListenerCollection(type:String):void</code><p></p><p></p><p>
+		 Removes the complete collection of listeners for a specified
+		 event type.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:String</code> &mdash; the event type for which remove all listeners
+		 </td></tr></table></p></div><a name="setListenerType()"></a><a name="setListenerType(Class)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">setListenerType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function setListenerType(type:Class):void</code><p></p><p></p><p>
+		 Defines the type of listeners this event broadcaster support.
+		 Functions are not concerned by this restriction.
+		  
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:Class</code> &mdash; the type of the listener this event broadcaster support
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If one of the listener
+		 			already contained in this event broadcaster doesn't match the
+		 			passed-ni type
+		 </td></tr></table></div><a name="toString()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toString():String</code><p></p><p></p><p>
+		 Returns the <code>String</code> representation of
+		 this object. 
+		 <p>
+		 The function return a string like
+		 <code>net.pixlib.events::EventBroadcaster&lt;ListenerType&gt;</code>
+		 for a typed broadcaster. The string between the &lt;
+		 and > is the name of the type of the broadcaster's
+		 global listeners. If the broadcaster is an untyped broadcaster
+		 the function will simply return the result of the
+		 <code>PixlibStringifier.stringify</code> call.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; <code>String</code> representation of
+		 		   this object.
+		 </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->

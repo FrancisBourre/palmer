@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="List,net.pixlib.collections.List,_init,add,add,add,add,add,add,add,add,addAll,addAll,addAll,addAll,addAll,addAllAt,addAllAt,addAllAt,addAt,addAt,addAt,clear,clear,clear,clear,clear,clear,clear,columnIterator,contains,contains,contains,contains,contains,containsAll,containsAll,containsAll,containsAll,containsAll,containsKey,containsValue,equals,get,get,get,get,getColumnNames,getItemAt,getItems,getKeys,getLength,getType,getType,getType,getType,getValues,hasNext,hasNext,hasNext,hasNext,hasNext,hasPrevious,hasPrevious,hasPrevious,indexOf,indexOf,indexOf,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isTyped,isTyped,isTyped,isTyped,isValidCollection,isValidCollection,isValidCollection,isValidIndex,isValidIndex,isValidIndexForAdd,isValidObject,isValidType,isValidType,isValidType,iterator,iterator,iterator,iterator,iterator,iterator,lastIndexOf,lastIndexOf,lastIndexOf,listIterator,listIterator,listIterator,matchType,matchType,matchType,matchType,next,next,next,next,next,nextIndex,nextIndex,nextIndex,parseRawData,peek,peek,poll,pop,previous,previous,previous,previousIndex,previousIndex,previousIndex,push,put,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,removeAll,removeAll,removeAll,removeAll,removeAll,removeAt,removeAt,removeAt,retainAll,retainAll,retainAll,retainAll,retainAll,search,set,set,set,set,set,set,size,size,size,size,size,size,subList,subList,subList,swap,toArray,toArray,toArray,toArray,toArray,toString,toString,toString,toString,toString,toString"><title>net.pixlib.collections.List</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'List - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/collections/List.html&amp;net/pixlib/collections/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">List</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("List"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.collections</a></td></tr><tr><td class="classHeaderTableLabel">Interface</td><td class="classSignature">public  interface  List extends  <a href="../../../net/pixlib/collections/Collection.html">Collection</a> ,  <a href="../../../net/pixlib/collections/Iterable.html">Iterable</a> </td></tr><tr><td class="classHeaderTableLabel">Implementors</td><td> <a href="../../../net/pixlib/collections/Set.html">Set</a>,  <a href="../../../net/pixlib/collections/Stack.html">Stack</a></td></tr></table><p></p><p></p><p></p>
+	 An ordered collection (also known as a sequence). 
+	 The user of this interface has precise control over where
+	 in the list each element is inserted. The user can access
+	 elements by their integer index (position in the list),
+	 and search for elements in the list.
+	 
+	 <p>Unlike sets, lists typically allow duplicate elements.
+	 More formally, lists typically allow pairs of elements
+	 e1 and e2 such that e1 strictly equals e2, and they typically
+	 allow multiple <code>null</code> elements if they allow null 
+	 elements at all. It is not inconceivable that someone might 
+	 wish to implement a list that prohibits duplicates, by throwing
+	 runtime exceptions when the user attempts to insert them,
+	 but we expect this usage to be rare.</p>
+	 
+	              <p>The <code>List</code> interface places additional stipulations,
+	 beyond those specified in the <code>Collection</code> interface,
+	 on the contracts of the iterator, add and remove methods. 
+	 Declarations for other inherited methods are also included
+	 here for convenience.</p>
+	 
+	              <p>The <code>List</code> interface provides four methods for 
+	 positional (indexed) access to list elements. Lists (like arrays)
+	 are zero based. Note that these operations may execute in
+	 time proportional to the index value for some implementations.
+	 Thus, iterating over the elements in a list is typically
+	 preferable to indexing through it if the caller does
+	 not know the implementation.</p>
+	 
+	              <p>The <code>List</code> interface provides a special iterator, 
+	 called a <code>ListIterator</code>, that allows element insertion 
+	 and replacement, and bidirectional access in addition to the normal 
+	 operations that the <code>Iterator</code> interface provides. 
+	 A method is provided to obtain a list iterator that starts at a 
+	 specified position in the list.</p>
+	 
+	              <p>The <code>List</code> interface provides two methods to search for
+	 a specified object. From a performance standpoint, these
+	 methods should be used with caution. In many implementations
+	 they will perform costly linear searches.</p>
+	 
+	              <p>The <code>List</code> interface provides two methods to efficiently
+	 insert and remove multiple elements at an arbitrary point
+	 in the list.</p>
+	 
+	              <p>Some list implementations have restrictions on the
+	 elements that they may contain. For example, some
+	 implementations prohibit null elements, and some have
+	 restrictions on the types of their elements. Attempting
+	 to add an ineligible element throws an unchecked exception,
+	 typically <code>NullPointerException</code> or 
+	 <code>ClassCastException</code>.
+	 Attempting to query the presence of an ineligible element
+	 may throw an exception, or it may simply return false;
+	 some implementations will exhibit the former behavior
+	 and some will exhibit the latter. More generally, attempting
+	 an operation on an ineligible element whose completion would
+	 not result in the insertion of an ineligible element into
+	 the list may throw an exception or it may succeed, at the
+	 option of the implementation. Such exceptions are marked as
+	 "optional" in the specification for this interface.</p>
+	 
+	           <p></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="Collection.html" target="">Collection</a></div><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><div class="showHideLinks"><div id="hideInheritedMethod" class="hideInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(false,'Method');"><img class="showHideLinkImage" src="../../../images/expanded.gif"> Hide Inherited Public Methods</a></div><div id="showInheritedMethod" class="showInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(true,'Method');"><img class="showHideLinkImage" src="../../../images/collapsed.gif"> Show Inherited Public Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#add()" class="signatureLink">add</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+	     Ensures that this collection contains the specified element (optional
+	     operation).</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#addAll()" class="signatureLink">addAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+	     Adds all of the elements in the specified collection to this collection
+	     (optional operation).</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAllAt()" class="signatureLink">addAllAt</a>(index:uint, c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Inserts all of the elements in the specified collection
+		 into this list at the specified position (optional operation).</div></td><td class="summaryTableOwnerCol">List</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAt()" class="signatureLink">addAt</a>(index:uint, o:Object):void</div><div class="summaryTableDescription">
+		 Inserts the specified element at the specified position
+		 in this list (optional operation).</div></td><td class="summaryTableOwnerCol">List</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#clear()" class="signatureLink">clear</a>():void</div><div class="summaryTableDescription">
+	     Removes all of the elements from this collection (optional operation).</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#contains()" class="signatureLink">contains</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+	     Returns true if this collection contains the specified
+	     element.</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#containsAll()" class="signatureLink">containsAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+	     Returns true if this collection contains all of the elements
+	     in the specified collection.</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#get()" class="signatureLink">get</a>(index:uint):Object</div><div class="summaryTableDescription">
+		 Returns the element at the specified position in this list.</div></td><td class="summaryTableOwnerCol">List</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#indexOf()" class="signatureLink">indexOf</a>(o:Object):int</div><div class="summaryTableDescription">
+		 Returns the index in this list of the first occurrence
+		 of the specified element, or -1 if this list does not
+		 contain this element.</div></td><td class="summaryTableOwnerCol">List</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#isEmpty()" class="signatureLink">isEmpty</a>():Boolean</div><div class="summaryTableDescription">
+	     Returns true if this collection contains no elements.</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Iterable.html#iterator()" class="signatureLink">iterator</a>():<a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></div><div class="summaryTableDescription">
+	     Returns an iterator over the elements in this collection.</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Iterable.html">Iterable</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#lastIndexOf()" class="signatureLink">lastIndexOf</a>(o:Object):int</div><div class="summaryTableDescription">
+		 Returns the index in this list of the last occurrence of the
+		 specified element, or -1 if this list does not contain this
+		 element.</div></td><td class="summaryTableOwnerCol">List</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#listIterator()" class="signatureLink">listIterator</a>(index:uint = 0):<a href="../../../net/pixlib/collections/ListIterator.html">ListIterator</a></div><div class="summaryTableDescription">
+		 Returns a list iterator of the elements in this list
+		 (in proper sequence), starting at the specified position
+		 in this list.</div></td><td class="summaryTableOwnerCol">List</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#remove()" class="signatureLink">remove</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+	     Removes a single instance of the specified element from this
+	     collection, if this collection contains one or more such
+	     elements.</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#removeAll()" class="signatureLink">removeAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+	     
+	     Removes all this collection's elements that are also contained in the
+	     specified collection (optional operation).</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAt()" class="signatureLink">removeAt</a>(index:uint):Boolean</div><div class="summaryTableDescription">
+		 Removes the element at the specified position in this list
+		 (optional operation).</div></td><td class="summaryTableOwnerCol">List</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#retainAll()" class="signatureLink">retainAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+	     Retains only the elements in this collection that are contained in the
+	     specified collection (optional operation).</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#set()" class="signatureLink">set</a>(index:uint, o:Object):Object</div><div class="summaryTableDescription">
+		 Replaces the element at the specified position in this
+		 list with the specified element (optional operation).</div></td><td class="summaryTableOwnerCol">List</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#size()" class="signatureLink">size</a>():uint</div><div class="summaryTableDescription">
+	     Returns the number of elements in this collection.</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#subList()" class="signatureLink">subList</a>(fromIndex:uint, toIndex:uint):<a href="../../../net/pixlib/collections/List.html">List</a></div><div class="summaryTableDescription">
+		 Returns a view of the portion of this list between the specified
+		 fromIndex, inclusive, and toIndex, exclusive.</div></td><td class="summaryTableOwnerCol">List</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/collections/Collection.html#toArray()" class="signatureLink">toArray</a>():Array</div><div class="summaryTableDescription">
+	     Returns an array containing all of the elements in this collection.</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/collections/Collection.html">Collection</a></td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="addAllAt()"></a><a name="addAllAt(uint,net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAllAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function addAllAt(index:uint, c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Inserts all of the elements in the specified collection
+		 into this list at the specified position (optional operation).
+		 Shifts the element currently at that position (if any)
+		 and any subsequent elements to the right (increases their
+		 indices). The new elements will appear in this list in the
+		 order that they are returned by the specified collection's
+		 iterator. The behavior of this operation is unspecified if
+		 the specified collection is modified while the operation
+		 is in progress. (Note that this will occur if the specified
+		 collection is this list, and it's nonempty.)
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; index at which to insert first element
+		 		  		from the specified collection.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; c elements to be inserted into this list.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; if the addAll method
+		 		   	is not supported by this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of an element in the
+		 		   	specified collection prevents it from being added to this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified collection contains
+		 		   	one or more null elements and this list does not support null
+		 		   	elements, or if the specified collection is null.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; if some aspect of an element in the
+		 		   	specified collection prevents it from being added to this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; if the index is out of range
+		 		   	(index &lt; 0 || index > size()).
+		 </td></tr></table></div><a name="addAt()"></a><a name="addAt(uint,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAt(index:uint, o:Object):void</code><p></p><p></p><p>
+		 Inserts the specified element at the specified position
+		 in this list (optional operation). Shifts the element
+		 currently at that position (if any) and any subsequent
+		 elements to the right (adds one to their indices).
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; index at which the specified element
+		 		   		is to be inserted.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; element to be inserted.
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; if the add method is not
+		 		   	supported by this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of the specified
+		 		   	element prevents it from being added to this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified element
+		 		   	is null and this list does not support null elements.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; if some aspect of the specified
+		 		   	element prevents it from being added to this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; if the index is out of range
+		 		   	(index &lt; 0 || index > size()).
+		 </td></tr></table></div><a name="get()"></a><a name="get(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">get</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function get(index:uint):Object</code><p></p><p></p><p>
+		 Returns the element at the specified position in this list.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; index of element to return.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; the element at the specified position in this list.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; if the index is out of range
+		 		   	(index &lt; 0 || index >= size()).
+		 </td></tr></table></div><a name="indexOf()"></a><a name="indexOf(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">indexOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function indexOf(o:Object):int</code><p></p><p></p><p>
+		 Returns the index in this list of the first occurrence
+		 of the specified element, or -1 if this list does not
+		 contain this element. More formally, returns the lowest
+		 index i such that (o==null ? get(i)==null : o.equals(get(i))),
+		 or -1 if there is no such index.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; element to search for.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; the index in this list of the first occurrence of
+		 		   	the specified element, or -1 if this list does not
+		 		   	contain this element.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the type of the specified
+		 		   	element is incompatible with this list (optional).
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified element is
+		 		   	null and this list does not support null elements (optional).
+		 </td></tr></table></div><a name="lastIndexOf()"></a><a name="lastIndexOf(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">lastIndexOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function lastIndexOf(o:Object):int</code><p></p><p></p><p>
+		 Returns the index in this list of the last occurrence of the
+		 specified element, or -1 if this list does not contain this
+		 element. More formally, returns the highest index i such that
+		 (o==null ? get(i)==null : o.equals(get(i))), or -1 if
+		 there is no such index.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; element to search for.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; the index in this list of the last occurrence of the
+		 		   	specified element, or -1 if this list does not
+		 		   	contain this element.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the type of the specified
+		 		   	element is incompatible with this list (optional).
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified element
+		 		   	is null and this list does not support null
+		 		   	elements (optional).
+		 </td></tr></table></div><a name="listIterator()"></a><a name="listIterator(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">listIterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function listIterator(index:uint = 0):<a href="../../../net/pixlib/collections/ListIterator.html">ListIterator</a></code><p></p><p></p><p>
+		 Returns a list iterator of the elements in this list
+		 (in proper sequence), starting at the specified position
+		 in this list. The specified index indicates the first
+		 element that would be returned by an initial call to the
+		 next method. An initial call to the previous method would
+		 return the element with the specified index minus one.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; index of first element to be returned
+		 		  	from the list iterator (by a call to the next method).
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/ListIterator.html">ListIterator</a></code> &mdash; a list iterator of the elements in this list
+		 		   	(in proper sequence), starting at the specified
+		 		   	position in this list.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; if the index is out of
+		 		   	range (index &lt; 0 || index > size()).
+		 </td></tr></table></div><a name="removeAt()"></a><a name="removeAt(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAt(index:uint):Boolean</code><p></p><p></p><p>
+		 Removes the element at the specified position in this list
+		 (optional operation). Shifts any subsequent elements
+		 to the left (subtracts one from their indices). Returns
+		 the element that was removed from the list.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; the index of the element to removed.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; the element previously at the specified position.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; if the remove method
+		 		   	is not supported by this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; if the index is out of range
+		 		   	(index &lt; 0 || index >= size()).
+		 </td></tr></table></div><a name="set()"></a><a name="set(uint,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">set</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function set(index:uint, o:Object):Object</code><p></p><p></p><p>
+		 Replaces the element at the specified position in this
+		 list with the specified element (optional operation).
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; index of element to replace.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; element to be stored at the specified position.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; the element previously at the specified position.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; if the set method is
+		 		   	not supported by this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of the specified
+		 		   	element prevents it from being added to this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified element is
+		 		   	null and this list does not support null elements.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; if some aspect of the
+		 		   	specified element prevents it from being added to this list.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; if the index is out of range
+		 		   	(index &lt; 0 || index >= size()).
+		 </td></tr></table></div><a name="subList()"></a><a name="subList(uint,uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">subList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function subList(fromIndex:uint, toIndex:uint):<a href="../../../net/pixlib/collections/List.html">List</a></code><p></p><p></p><p>
+		 Returns a view of the portion of this list between the specified
+		 fromIndex, inclusive, and toIndex, exclusive. (If fromIndex and
+		 toIndex are equal, the returned list is empty.) The returned
+		 list is backed by this list, so non-structural changes in the
+		 returned list are reflected in this list, and vice-versa. The
+		 returned list supports all of the optional list operations
+		 supported by this list.
+		 
+		 <p>This method eliminates the need for explicit range operations
+		 (of the sort that commonly exist for arrays). Any operation
+		 that expects a list can be used as a range operation by passing
+		 a subList view instead of a whole list. For example, the following
+		 idiom removes a range of elements from a list :</p>
+		 
+		 <div class="listing"><pre>list.subList(from, to).clear();</pre></div>
+		  
+		 <p>Similar idioms may be constructed for indexOf and lastIndexOf,
+		 and all of the algorithms in the Collections class can be
+		 applied to a subList.</p>
+		 
+		 <p>The semantics of the list returned by this method become
+		 undefined if the backing list (i.e., this list) is structurally
+		 modified in any way other than via the returned list. (Structural
+		 modifications are those that change the size of this list, or
+		 otherwise perturb it in such a fashion that iterations in progress
+		 may yield incorrect results.)</p>
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">fromIndex</span>:uint</code> &mdash; 	low endpoint (inclusive) of the subList.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">toIndex</span>:uint</code> &mdash; 	high endpoint (exclusive) of the subList.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/List.html">List</a></code> &mdash; a view of the specified range within this list.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; for an illegal endpoint index
+		 		   	value (fromIndex &lt; 0 || toIndex > size || fromIndex > toIndex).
+		 </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->

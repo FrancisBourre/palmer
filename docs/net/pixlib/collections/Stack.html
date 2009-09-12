@@ -1,0 +1,630 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="Stack,net.pixlib.collections.Stack,_aArray,_aColumNames,_aItems,_aKeys,_aQueue,_aSet,_aStack,_bAdded,_bAdded,_bRemoved,_bRemoved,_bRemoved,_d,_n,_nGap,_nIndex,_nIndex,_nIndex,_nSize,_nSize,_nSize,_oKeyDico,_oObject,_oType,_oType,_oType,_oValueDico,_sString,index,length,list,_init,add,add,add,add,add,add,add,add,addAll,addAll,addAll,addAll,addAll,addAllAt,addAllAt,addAllAt,addAt,addAt,addAt,clear,clear,clear,clear,clear,clear,clear,columnIterator,contains,contains,contains,contains,contains,containsAll,containsAll,containsAll,containsAll,containsAll,containsKey,containsValue,equals,get,get,get,get,getColumnNames,getItemAt,getItems,getKeys,getLength,getType,getType,getType,getType,getValues,hasNext,hasNext,hasNext,hasNext,hasNext,hasPrevious,hasPrevious,hasPrevious,indexOf,indexOf,indexOf,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isTyped,isTyped,isTyped,isTyped,isValidCollection,isValidCollection,isValidCollection,isValidIndex,isValidIndex,isValidIndexForAdd,isValidObject,isValidType,isValidType,isValidType,iterator,iterator,iterator,iterator,iterator,iterator,lastIndexOf,lastIndexOf,lastIndexOf,listIterator,listIterator,listIterator,matchType,matchType,matchType,matchType,next,next,next,next,next,nextIndex,nextIndex,nextIndex,parseRawData,peek,peek,poll,pop,previous,previous,previous,previousIndex,previousIndex,previousIndex,push,put,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,removeAll,removeAll,removeAll,removeAll,removeAll,removeAt,removeAt,removeAt,retainAll,retainAll,retainAll,retainAll,retainAll,search,set,set,set,set,set,set,size,size,size,size,size,size,subList,subList,subList,swap,toArray,toArray,toArray,toArray,toArray,toString,toString,toString,toString,toString,toString"><title>net.pixlib.collections.Stack</title><script src="../../../AC_OETags.js" type="text/javascript"></script></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'Stack - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/collections/Stack.html&amp;net/pixlib/collections/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Stack</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#includeExamplesSummary">Examples</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Stack"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,true,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.collections</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  Stack</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Stack  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../net/pixlib/collections/List.html">List</a>,  <a href="../../../net/pixlib/collections/TypedContainer.html">TypedContainer</a></td></tr></table><p></p><p></p><p></p>
+	 The Stack class represents a last-in-first-out (LIFO) stack
+	 of objects. The usual <code>push</code> and <code>pop</code>
+	 operations are provided, as well as a method to <code>peek</code>
+	 at the top item on the stack, a method to test for whether the stack
+	 is empty, and a method to <code>search</code> the stack for an item
+	 and discover how far it is from the top.
+	 <p>
+	 When a stack is first created, it contains no items.
+	 </p>
+	           <p></p><p><a href="#includeExamplesSummary">View the examples</a></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="List.html" target="">List</a></div><br/><hr></div><a name="propertySummary"></a><a name="protectedPropertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProtectedProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_aStack" class="signatureLink">_aStack</a> : Array<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_oType" class="signatureLink">_oType</a> : Class<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">Stack</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#Stack()" class="signatureLink">Stack</a>(type:Class = null, content:Array = null)</div><div class="summaryTableDescription">
+		 Create an empty Stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#add()" class="signatureLink">add</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Appends the specified element to the end of this stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAll()" class="signatureLink">addAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Appends all of the elements in the specified Collection
+		 to the end of this stack, in the order that
+		 they are returned by the specified Collection's Iterator.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAllAt()" class="signatureLink">addAllAt</a>(index:uint, c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Inserts all of the elements in the specified Collection into
+		 this stack at the specified position.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAt()" class="signatureLink">addAt</a>(index:uint, o:Object):void</div><div class="summaryTableDescription">
+		 Inserts the specified element at the specified position
+		 in this stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clear()" class="signatureLink">clear</a>():void</div><div class="summaryTableDescription">
+		 Removes all of the elements from this Stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#contains()" class="signatureLink">contains</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Returns true if this stack contains at least
+		 one occurence of the specified element.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#containsAll()" class="signatureLink">containsAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Returns true if this Stack contains all of the elements
+		 in the specified Collection.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#get()" class="signatureLink">get</a>(index:uint):Object</div><div class="summaryTableDescription">
+		 Returns the Object stored at the passed-in
+		 index in this stack object.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getType()" class="signatureLink">getType</a>():Class</div><div class="summaryTableDescription">
+	     Return the current type allowed in the Stack
+	     
+	     </div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#indexOf()" class="signatureLink">indexOf</a>(o:Object):int</div><div class="summaryTableDescription">
+		 Searches for the first occurence of the given argument.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isEmpty()" class="signatureLink">isEmpty</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this stack contains no elements.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isTyped()" class="signatureLink">isTyped</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this stack perform a verification
+		 of the type of elements.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidCollection()" class="signatureLink">isValidCollection</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in Collection is a valid
+		 collection for use with the addAll, addAllAt,
+		 removeAll, retainAll and
+		 containsAll methods.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidIndex()" class="signatureLink">isValidIndex</a>(index:uint):void</div><div class="summaryTableDescription">
+		 Verify that the passed-in uint index is a
+		 valid index for this Stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidType()" class="signatureLink">isValidType</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in object type match the current 
+		 Stack element's type.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#iterator()" class="signatureLink">iterator</a>():<a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></div><div class="summaryTableDescription">
+		 Returns an iterator over the elements in this list
+		 in proper sequence.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#lastIndexOf()" class="signatureLink">lastIndexOf</a>(o:Object):int</div><div class="summaryTableDescription">
+		 Returns the index of the last occurrence of the specified
+		 object in this Stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#listIterator()" class="signatureLink">listIterator</a>(index:uint = 0):<a href="../../../net/pixlib/collections/ListIterator.html">ListIterator</a></div><div class="summaryTableDescription">
+		 Returns a list iterator of the elements in this list
+		 (in proper sequence), starting at the specified position
+		 in the list.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#matchType()" class="signatureLink">matchType</a>(o:*):Boolean</div><div class="summaryTableDescription">
+		 Verify if the passed-in object can be inserted in the
+		 current Stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#peek()" class="signatureLink">peek</a>():Object</div><div class="summaryTableDescription">
+		 Looks at the object at the top of this stack
+		 without removing it from the stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#pop()" class="signatureLink">pop</a>():Object</div><div class="summaryTableDescription">
+		 Removes the object at the top of this stack and returns
+		 that object as the value of this function.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#push()" class="signatureLink">push</a>(item:Object):Object</div><div class="summaryTableDescription">
+		 Pushes an item onto the top of this stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#remove()" class="signatureLink">remove</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Removes a single instance of the specified element from this
+	     stack, if this stack contains one or more such elements.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAll()" class="signatureLink">removeAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Removes from this stack all of its elements that are contained
+		 in the specified collection (optional operation).</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAt()" class="signatureLink">removeAt</a>(index:uint):Boolean</div><div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#retainAll()" class="signatureLink">retainAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Retains only the elements in this stack that are contained
+		 in the specified collection (optional operation).</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#search()" class="signatureLink">search</a>(o:Object):int</div><div class="summaryTableDescription">
+		 Searches for the first occurence of the given argument.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#set()" class="signatureLink">set</a>(index:uint, o:Object):Object</div><div class="summaryTableDescription">
+		 Insert the passed-in Object in this stack
+		 at the specified index.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#size()" class="signatureLink">size</a>():uint</div><div class="summaryTableDescription">
+		 Returns the number of components in this Stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#subList()" class="signatureLink">subList</a>(fromIndex:uint, toIndex:uint):<a href="../../../net/pixlib/collections/List.html">List</a></div><div class="summaryTableDescription">
+	     Returns a view of the portion of this List between fromIndex,
+	     inclusive, and toIndex, exclusive.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toArray()" class="signatureLink">toArray</a>():Array</div><div class="summaryTableDescription">
+		 Returns an array containing all the elements in this stack.</div></td><td class="summaryTableOwnerCol">Stack</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toString()" class="signatureLink">toString</a>():String</div><div class="summaryTableDescription">
+		 Returns the String representation of
+		 this object.</div></td><td class="summaryTableOwnerCol">Stack</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="_aStack"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_aStack</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>protected var _aStack:Array</code><p></p></div><a name="propertyDetail"></a><a name="_oType"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_oType</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _oType:Class</code><p></p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="Stack()"></a><a name="Stack(Class,Array)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">Stack</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function Stack(type:Class = null, content:Array = null)</code><p></p><p>
+		 Create an empty Stack.
+		 <p>
+		 You can pass the type for stack elements as argument
+		 of the constructor. In that case the stack is considered
+		 as typed
+		 </p> 
+		 </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:Class</code> (default = <code>null</code>)<code></code> &mdash; A <code>Class</code> instance used as type for elements
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">content</span>:Array</code> (default = <code>null</code>)<code></code></td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of the specified
+		 		   	elements prevents it from being added to this list.
+		 </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="add()"></a><a name="add(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">add</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function add(o:Object):Boolean</code><p></p><p></p><p>
+		 Appends the specified element to the end of this stack.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 	element to be appended to this Stack
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this stack has changed as result
+		 			of the call (as per the general contract of Collection.add).
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of the specified
+		 		   	element prevents it from being added to this list.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Stack.html#push()" target="">push()</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">Adding elements to an untyped stack
+		 <div class="listing"><pre>
+         var stack : Stack = new Stack();
+         
+         stack.add( 50 );
+         stack.add( "foo" );
+         
+         trace( stack.add( "foo" ) ); // true, because stack allow one or more entries
+                                         // for an element
+         
+         trace( stack.size() ); // 3
+         </pre></div>
+		 
+		 Adding elements to a typed stack
+		 <div class="listing"><pre>
+         var stack : Stack = new Stack( String );
+         
+         stack.add( "foo" );
+         
+         trace( stack.add( "foo" ) ); // true, because stack allow one or more occurrences
+                                         // for an element
+                                         
+         try
+         {
+             stack.add( 50 ); // fail, as 50 is not a string
+         }
+         catch( e : ClassCastException )
+         {
+             trace ( e );
+         }
+         
+         trace( stack.size() ); // 2
+         </pre></div>
+		 </div></div><a name="addAll()"></a><a name="addAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Appends all of the elements in the specified Collection
+		 to the end of this stack, in the order that
+		 they are returned by the specified Collection's Iterator. 
+		 The behavior of this operation is undefined if the
+		 specified Collection is modified while the operation
+		 is in progress. (This implies that the behavior of this
+		 call is undefined if the specified Collection is this
+		 stack, and this stack is nonempty.)
+		 <p>
+		 The rules which govern collaboration between typed and untyped
+		 <code>Collection</code> are described in the <code>isValidCollection</code>
+		 descrition, all rules described there are supported by the
+		 <code>containsAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	elements to be inserted into this stack.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this stack changed as a result of the call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of an element of the specified
+	     	       collection prevents it from being added to this collection.
+	     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the passed in collection is null.
+	     </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Stack.html#add()" target="">add()</a><br/><a href="Stack.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div></div><a name="addAllAt()"></a><a name="addAllAt(uint,net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAllAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAllAt(index:uint, c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Inserts all of the elements in the specified Collection into
+		 this stack at the specified position. Shifts the element
+		 currently at that position (if any) and any subsequent
+		 elements to the right (increases their indices). The new
+		 elements will appear in the stack in the order that
+		 they are returned by the specified Collection's iterator.
+		 <p>
+		 The rules which govern collaboration between typed and untyped
+		 <code>Collection</code> are described in the <code>isValidCollection</code>
+		 descrition, all rules described there are supported by the
+		 <code>containsAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index at which to insert
+		 					first element from the specified collection.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 		elements to be inserted into this stack.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this stack changed as a result of the call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; index is out of range
+		 		   	(index &lt; 0 || index > size()).
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of an element of
+		 			the specified collection prevents it from being added to this collection.
+	     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the passed in collection is null.
+	     </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Stack.html#add()" target="">add()</a><br/><a href="Stack.html#addAt()" target="">addAt()</a><br/><a href="Stack.html#addAll()" target="">addAll()</a><br/><a href="Stack.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div></div><a name="addAt()"></a><a name="addAt(uint,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAt(index:uint, o:Object):void</code><p></p><p></p><p>
+		 Inserts the specified element at the specified position
+		 in this stack. Shifts the element currently at that
+		 position (if any) and any subsequent elements to the
+		 right (adds one to their indices).
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index at which the specified
+		 					element is to be inserted.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 		element to be inserted.
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; index is out of range
+		 		   	(index &lt; 0 || index > size()).
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of the specified
+		 		   	element prevents it from being added to this list.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Stack.html#add()" target="">add()</a></div></div><a name="clear()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function clear():void</code><p></p><p></p><p>
+		 Removes all of the elements from this <code>Stack</code>. 
+		 The <code>Stack</code> will be empty after this call returns
+		 (unless it throws an exception).
+		 </p></div><a name="contains()"></a><a name="contains(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">contains</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function contains(o:Object):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this stack contains at least
+		 one occurence of the specified element. Moreformally,
+		 returns <code>true</code> if and only if this stack contains
+		 at least an element <code>e</code> such that <code>o === e</code>.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>Object</code> whose presence in this stack
+		 			  	is to be tested.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this stack contains the specified
+		 			element.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this stack
+		 </td></tr></table></div><a name="containsAll()"></a><a name="containsAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">containsAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function containsAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Returns true if this <code>Stack</code> contains all of the elements
+		 in the specified Collection.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	a collection whose elements will be tested for
+		          containment in this <code>Stack</code>
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this <code>Stack</code> contains all of the elements
+		         	in the specified collection.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the passed in collection is null.
+		 </td></tr></table></div><a name="get()"></a><a name="get(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">get</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function get(index:uint):Object</code><p></p><p></p><p>
+		 Returns the <code>Object</code> stored at the passed-in
+		 <code>index</code> in this stack object.
+		 <p>
+		 If the passed-in <code>index</code> is not a valid index
+		 for this stack, the function throw an 
+		 <code>IndexOutOfBoundsException</code> exception.
+		 </p> 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index of the entry to get.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; <code>Object</code> stored at the specified <code>index</code>
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; The passed-in
+		 			index is not a valid index for this stack
+		 </td></tr></table></div><a name="getType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getType():Class</code><p></p><p></p><p>
+	     Return the current type allowed in the <code>Stack</code>
+	     
+	     </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Class</code> &mdash; <code>Class</code> used to type checking.
+	     </td></tr></table></div><a name="indexOf()"></a><a name="indexOf(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">indexOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function indexOf(o:Object):int</code><p></p><p></p><p>
+		 Searches for the first occurence of the given argument.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 	an object
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; the index of the first occurrence of the object argument
+		 		   	in this stack, that is, the smallest value <code>k</code>
+		 		   	such that <code>(elem === elementData[k]) && (k >= index)</code>
+		 		   	is true; returns <code>-1</code> if the object is not found.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this stack
+		 </td></tr></table></div><a name="isEmpty()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isEmpty():Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this stack contains no elements.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this stack contains no elements.
+		 </td></tr></table></div><a name="isTyped()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isTyped</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isTyped():Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this stack perform a verification
+		 of the type of elements.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this stack perform a verification
+		 			of the type of elements.
+		 </td></tr></table></div><a name="isValidCollection()"></a><a name="isValidCollection(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidCollection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidCollection(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in <code>Collection</code> is a valid
+		 collection for use with the <code>addAll</code>, <code>addAllAt</code>,
+		 <code>removeAll</code>, <code>retainAll</code> and
+		 <code>containsAll</code> methods.
+		 <p>
+		 When dealing with typed and untyped collection, the following rules apply : 
+		 <ul>
+		 <li>Two typed collection, which have the same type, can collaborate each other.</li>
+		 <li>Two untyped collection can collaborate each other.</li>
+		 <li>An untyped collection can add, remove, retain or contains any typed collection
+		 of any type without throwing errors.</li>
+		 <li>A typed collection will always fail when attempting to add, remove, retain
+		 or contains an untyped collection.</li>
+		 </ul></p><p>
+		 If the passed-in <code>Collection</code> is null the method throw a
+		 <code>NullPointerException</code> error.
+		 </p>
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; <code>Collection</code> to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; boolean <code>true</code> if the collection is valid, 
+		 			either <code>false</code> 			
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			is <code>null</code>
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Stack.html#addAll()" target="">addAll()</a><br/><a href="Stack.html#removeAll()" target="">removeAll()</a><br/><a href="Stack.html#retainAll()" target="">retainAll()</a><br/><a href="Stack.html#containsAll()" target="">containsAll()</a></div></div><a name="isValidIndex()"></a><a name="isValidIndex(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidIndex</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidIndex(index:uint):void</code><p></p><p></p><p>
+		 Verify that the passed-in <code>uint</code> index is a
+		 valid index for this <code>Stack</code>. If not, an 
+		 <code>IndexOutOfBoundsException</code> exception is
+		 thrown.
+		  
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index to verify
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; The passed-in
+		 			index is not a valid index for this stack
+		 </td></tr></table></div><a name="isValidType()"></a><a name="isValidType(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidType(o:Object):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in object type match the current 
+		 <code>Stack</code> element's type. 
+		 <p>
+		 In the case that the stack is untyped the function
+		 will always returns <code>true</code>.
+		 </p><p>
+		 In the case that the object's type prevents it to be added
+		 as element for this stack the method will throw
+		 a <code>ClassCastException</code>.
+		 </p> 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>Object</code> to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object is elligible for this
+		 			stack object, either <code>false</code>.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this stack
+		 </td></tr></table></div><a name="iterator()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">iterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function iterator():<a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></code><p></p><p></p><p>
+		 Returns an iterator over the elements in this list
+		 in proper sequence. The elements are returned according
+		 to the LIFO order of the stack.
+		 <p>
+		 This implementation returns a straightforward implementation
+		 of the iterator interface.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></code> &mdash; an iterator over the elements in this list in proper sequence.
+		 </td></tr></table></div><a name="lastIndexOf()"></a><a name="lastIndexOf(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">lastIndexOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function lastIndexOf(o:Object):int</code><p></p><p></p><p>
+		 Returns the index of the last occurrence of the specified
+		 object in this <code>Stack</code>.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; the desired component.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; the index of the first occurrence of the object argument
+		 		   	in this stack, that is, the largest value <code>k</code>
+		 		   	such that <code>(elem === elementData[k])</code> is true;
+		 		   	returns <code>-1</code> if the object is not found.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this stack	
+		 </td></tr></table></div><a name="listIterator()"></a><a name="listIterator(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">listIterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function listIterator(index:uint = 0):<a href="../../../net/pixlib/collections/ListIterator.html">ListIterator</a></code><p></p><p></p><p>
+		 Returns a list iterator of the elements in this list
+		 (in proper sequence), starting at the specified position
+		 in the list. The specified index indicates the first
+		 element that would be returned by an initial call to
+		 the next method. An initial call to the previous method
+		 would return the element with the specified index minus one.
+		 <p>
+		 This implementation returns a straightforward implementation
+		 of the ListIterator interface that extends the implementation
+		 of the Iterator interface returned by the iterator() method.
+		 The ListIterator implementation relies on the backing list's
+		 <code>get(int)</code>, <code>set(int, Object)</code>, 
+		 <code>add(int, Object)</code> and <code>remove(int)</code>
+		 methods.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; 	<code>uint</code> index of the first element
+		 					to be returned from	the list iterator (by
+		 					a call to the next method).
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/ListIterator.html">ListIterator</a></code> &mdash; a list iterator of the elements in this list (in proper sequence),
+		         	starting at the specified position in the list.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; index is out of range
+		 		   	(index &lt; 0 || index > size()).
+		 </td></tr></table></div><a name="matchType()"></a><a name="matchType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">matchType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function matchType(o:*):Boolean</code><p></p><p></p><p>
+		 Verify if the passed-in object can be inserted in the
+		 current <code>Stack</code>.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; Object to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object can be inserted in
+		 the <code>Stack</code>, either <code>false</code>.
+		 </td></tr></table></div><a name="peek()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">peek</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function peek():Object</code><p></p><p></p><p>
+		 Looks at the object at the top of this stack
+		 without removing it from the stack.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; the object at the top of this stack
+		 		   (the last item of the object).
+		 </td></tr></table></div><a name="pop()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">pop</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function pop():Object</code><p></p><p></p><p>
+		 Removes the object at the top of this stack and returns
+		 that object as the value of this function.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; The object at the top of this stack
+		 		   (the last item of the <code>Stack</code> object).
+		 </td></tr></table></div><a name="push()"></a><a name="push(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">push</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function push(item:Object):Object</code><p></p><p></p><p>
+		 Pushes an item onto the top of this stack. 
+		 This has exactly the same effect as:
+		 
+ 		 <div class="listing"><pre>add(item)</pre></div>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">item</span>:Object</code> &mdash; the item to be pushed onto this stack..
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; the item argument.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Stack.html#add()" target="">add()</a></div></div><a name="remove()"></a><a name="remove(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">remove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function remove(o:Object):Boolean</code><p></p><p></p><p>
+		 Removes a single instance of the specified element from this
+	     stack, if this stack contains one or more such elements.
+	     Returns <code>true</code> if this stack contained the specified
+	     element (or equivalently, if this collection changed as a result
+	     of the call).
+	     <p>
+	     In order to remove all occurences of an element you have to call
+	     the <code>remove</code> method as long as the stack contains an
+	     occurrence of the passed-in element. Typically, the construct to
+	     remove all occurrences of an element should look like that :
+	     <div class="listing"><pre>
+         while( stack.contains( element ) ) stack.remove( element );
+         </pre></div>
+	     </p><p>
+		 If the current stack object is typed and if the passed-in object's  
+		 type prevents it to be added (and then removed) in this stack,
+		 the function throws a <code>ClassCastException</code>.
+		 </p> 
+	     </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 	<code>object</code> to be removed from this stack,
+	     			  	if present.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the stack contained the 
+		 			specified element.
+	     </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this stack
+		 </td></tr></table><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Stack.remove()</code> method with an untyped stack : 
+		 <div class="listing"><pre>
+         var stack : Stack = new Stack();
+         stack.add ( "foo" );
+         stack.add ( "foo" );
+         
+         trace( stack.size() ); // 1
+         trace( stack.remove( "foo" ) ); // true, the first occurence of 'foo' have
+                                            // been removed from the stack
+         
+         trace( stack.size() ); // 1
+         trace( stack.remove( "foo" ) ); // true, the passed-in value has always
+                                            // an occurence contained in the stack
+         
+         trace( stack.size() ); // 0
+         trace( stack.remove( "foo" ) ); // false, as there is no more occurence
+                                            // in the stack
+         </pre></div>
+		 
+		 Using the <code>Stack.remove()</code> method with a typed stack :
+		 
+		 <div class="listing"><pre>
+         var stack : Stack = new Stack( String );
+         stack.add ( "foo" );
+         
+         trace( stack.size() ); // 1
+         trace( stack.remove( "foo" ) ); // true, the passed-in value have been removed
+         
+         // the code below will produce an exception
+         try
+         {
+             stack.remove( 45 ); // fail, as the passed-in value is not of type string
+         }
+         catch( e : ClassCastException )
+         {
+             trace ( e );  
+         }
+         </pre></div>
+		 </div></div><a name="removeAll()"></a><a name="removeAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Removes from this stack all of its elements that are contained
+		 in the specified collection (optional operation). At the end
+		 of the call there's no occurences of any elements contained
+		 in the passed-in collection.
+		 <p>
+		 The rules which govern collaboration between typed and untyped
+		 <code>Collection</code> are described in the <code>isValidCollection</code>
+		 descrition, all rules described there are supported by the
+		 <code>removeAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	<code>Collection</code> that defines which elements will be
+		 			  	removed from this stack.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this stack changed as a result
+		 			of the call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified collection is
+		          <code>null</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.    
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Stack.html#remove()" target="">remove()</a><br/><a href="Stack.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Stack.removeAll()</code> with untyped stacks
+		 <div class="listing"><pre>
+         var stack1 : Stack = new Stack();
+         var stack2 : Stack = new Stack();
+         
+         stack1.add( 1 );
+         stack1.add( 2 );
+         stack1.add( 3 );
+         stack1.add( 4 );
+         stack1.add( "foo1" );
+         stack1.add( "foo2" );
+         stack1.add( "foo3" );
+         stack1.add( "foo4" );
+         
+         stack2.add( 1 );
+         stack2.add( 3 );
+         stack2.add( "foo1" );
+         stack2.add( "foo3" );
+         
+         trace ( stack1.removeAll ( stack2 ) ) ;// true
+         // stack1 now contains :
+         // 2, 4, 'foo2', 'foo4' 
+         </pre></div>
+		 </div></div><a name="removeAt()"></a><a name="removeAt(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAt(index:uint):Boolean</code><p></p><p></p><p>
+		 Removes the element at the specified position in this stack.
+		 Shifts any subsequent elements to the right (subtracts one from
+		 their indices).
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index at which to remove an element
+		 				  	from the specified <code>Collection</code>.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object have been removed, false otherwise.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; <p>&mdash; The passed-in
+		 			index is not a valid index for this stack
+		 </p></td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Stack.html#remove()" target="">remove()</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Stack.removeAt</code> method with an untyped stack
+		 <div class="listing"><pre>
+         var stack : Stack = new Stack();
+         stack.add( "foo1" );
+         stack.add( "foo2" );
+         stack.add( "foo3" );
+         
+         trace ( stack.removeAt( 2 ) ); // return true, 'foo3' have been removed
+         trace ( stack.removeAt( 0 ) ); // return true, 'foo1' have been removed  
+                                         // and 'foo2' is now at index 0
+         
+         try
+         {
+             stack.removeAt( 1 ); // fail, as stack have only one entry at index 0
+         }
+         catch( e : IndexOutOfBoundsException )
+         {
+             trace( e );
+         }
+         </pre></div>
+		 </div></div><a name="retainAll()"></a><a name="retainAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">retainAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function retainAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Retains only the elements in this stack that are contained
+		 in the specified collection (optional operation). In other words,
+		 removes from this stack all of its elements that are not
+		 contained in the specified collection.
+		 <p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>retainAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	<code>Collection</code> that defines which elements this
+		 			  	stack will retain.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this collection changed as a result of the
+		         	call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified collection is
+		          <code>null</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Stack.html#remove()" target="">remove()</a><br/><a href="Stack.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Stack.retainAll()</code> with untyped stacks
+		 <div class="listing"><pre>
+         var stack1 : Stack = new Stack();
+         var stack2 : Stack = new Stack();
+         
+         stack1.add( 1 );
+         stack1.add( 2 );
+         stack1.add( 3 );
+         stack1.add( 4 );
+         stack1.add( "foo1" );
+         stack1.add( "foo2" );
+         stack1.add( "foo3" );
+         stack1.add( "foo4" );
+         
+         stack2.add( 1 );
+         stack2.add( 3 );
+         stack2.add( "foo1" );
+         stack2.add( "foo3" );
+         
+         trace ( stack1.retainAll ( stack2 ) ) ;// true
+         // stack1 now contains :
+         // 1, 3, 'foo1', 'foo3' 
+         </pre></div>
+		 </div></div><a name="search()"></a><a name="search(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">search</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function search(o:Object):int</code><p></p><p></p><p>
+		 Searches for the first occurence of the given argument.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 	an object to search in the stack
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; the index of the first occurrence of the object argument
+		 		   	in this stack, that is, the smallest value <code>k</code>
+		 		   	such that <code>(elem === elementData[k]) && (k >= index)</code>
+		 		   	is true; returns <code>-1</code> if the object is not found.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this stack
+		 </td></tr></table></div><a name="set()"></a><a name="set(uint,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">set</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function set(index:uint, o:Object):Object</code><p></p><p></p><p>
+		 Insert the passed-in <code>Object</code> in this stack
+		 at the specified <code>index</code>. The method returns
+		 the object previously stored at this index.
+		 <p>
+		 If the passed-in <code>index</code> is not a valid index
+		 for this stack, the function throw an 
+		 <code>IndexOutOfBoundsException</code> exception.
+		 </p><p>
+		 If the passed-in object's type prevents it to be added
+		 in this stack the function will throw a 
+		 <code>ClassCastException</code>.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index at which insert the
+		 					passed-in <code>Object</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 	<code>Object</code> to insert in this stack
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; <code>Object</code> previously stored at the specified
+		 			<code>index</code> or null if the insertion haven't been 
+		 			done.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; The passed-in
+		 			index is not a valid index for this stack
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this stack	
+		 </td></tr></table></div><a name="size()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">size</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function size():uint</code><p></p><p></p><p>
+		 Returns the number of components in this <code>Stack</code>.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>uint</code> &mdash; the number of components in this <code>Stack</code>.
+		 </td></tr></table></div><a name="subList()"></a><a name="subList(uint,uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">subList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function subList(fromIndex:uint, toIndex:uint):<a href="../../../net/pixlib/collections/List.html">List</a></code><p></p><p></p><p>
+	     Returns a view of the portion of this List between fromIndex,
+	     inclusive, and toIndex, exclusive. (If fromIndex and ToIndex
+	     are equal, the returned List is empty.) 
+	     
+	     </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">fromIndex</span>:uint</code> &mdash; 	low endpoint (inclusive) of the subList.
+	     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">toIndex</span>:uint</code> &mdash; 	high endpoint (exclusive) of the subList.
+	     </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/List.html">List</a></code> &mdash; a view of the specified range within this List.
+	     </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; fromIndex or toIndex are
+	     		   	out of range (index &lt; 0 || index > size()).
+	     </td></tr></table></div><a name="toArray()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toArray</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toArray():Array</code><p></p><p></p><p>
+		 Returns an array containing all the elements in this stack.
+		 Obeys the general contract of the <code>Collection.toArray</code>
+		 method.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Array</code> &mdash; <code>Array</code> containing all of the elements
+		 			in this stack.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Collection.html#toArray()" target="">Collection.toArray()</a></div></div><a name="toString()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toString():String</code><p></p><p></p><p>
+		 Returns the <code>String</code> representation of
+		 this object. 
+		 <p>
+		 The function return a string like
+		 <code>net.pixlib.collection::Stack&lt;String&gt;</code>
+		 for a typed collection. The string between the &lt;
+		 and > is the name of the type of the collection's
+		 elements. If the collection is an untyped collection
+		 the function will simply return the result of the
+		 <code>PixlibStringifier.stringify</code> call.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; <code>String</code> representation of
+		 		   this object.
+		 </td></tr></table></div><a name="includeExamplesSummary"></a><div class="detailSectionHeader">Examples</div><div class="detailBody">Using a <code>Stack</code>
+	 <div class="listing"><pre>
+     var stack : Stack = new Stack ( Number );
+     stack.push( 20 );
+     
+     try
+     {
+         stack.push("20"); // fail, as "20" isn't a Number
+     }
+     catch( e : ClassCastException )
+     {
+         trace( e );
+     }
+     </pre></div>
+	 </div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->

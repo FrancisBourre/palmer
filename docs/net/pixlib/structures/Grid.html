@@ -1,0 +1,494 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="Grid,net.pixlib.structures.Grid,add,add,addAll,addAllAt,clear,clone,clone,contains,containsAll,equals,equals,fill,getCoordinates,getDefaulValue,getSize,getType,getVal,initContent,inside,isEmpty,isGridCoords,isTyped,isValidCollection,isValidType,iterator,matchType,overlap,remove,removeAll,removeAllAt,removeAt,retainAll,scale,setContent,setDefaultValue,setSize,setSizeWH,setVal,size,size,substract,surround,toArray,toPoint,toString,toString,toString"><title>net.pixlib.structures.Grid</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'Grid - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/structures/Grid.html&amp;net/pixlib/structures/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Grid</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Grid"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.structures</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  Grid</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Grid  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../net/pixlib/collections/Collection.html">Collection</a>,  <a href="../../../net/pixlib/collections/TypedContainer.html">TypedContainer</a></td></tr></table><p></p><p></p><p></p> 
+	 A <code>Grid</code> is basically a two dimensions data structure
+	 based on the <code>Collection</code> interface.
+	 <p>
+	 By default a <code>Grid</code> object is an untyped collection that
+	 allow duplicate and <code>null</code> elements. You can set your own
+	 default value instead of <code>null</code> by passing it to the grid
+	 constructor.
+	 </p>
+               <p>
+	 Its also possible to restrict the type of grid elements in the constructor
+	 as defined by the <code>TypedContainer</code> interface.
+	 </p>
+               <p>
+	 The <code>Grid</code> class don't support all the methods of the <code>Collection</code>
+	 interface. Here the list of the unsupported methods : 
+	 <ul>
+	 	                  <li>
+                        <code>add</code>
+                     </li>
+	 	                  <li>
+                        <code>addAll</code>
+                     </li>
+	 	                  <li>
+                        <code>isEmpty</code>
+                     </li>
+	                 </ul>
+	              </p>
+               <p>
+	 Instead of using the methods above there are several specific methods to insert data in the
+	 grid : 
+	 <ul>
+	 	                  <li>
+                        <code>setVal</code> : Use it to insert value in the grid at specified coordinates</li>
+	 	                  <li>
+                        <code>setContent</code> : Use it to set the grid with the passed-in array.</li>
+	 	                  <li>
+                        <code>fill</code> : Use it to fill the grid with the same value in all cells.</li>
+	                 </ul>
+	              </p> 
+	           <p></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso">net.pixlib.collection.Collection<br/>net.pixlib.collection.TypedContainer</div><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#Grid()" class="signatureLink">Grid</a>(size:<a href="../../../net/pixlib/structures/Dimension.html">Dimension</a>, a:Array = null, dV:Object = null, t:Class = null)</div><div class="summaryTableDescription">
+		 Create a new grid of passed-in size.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#add()" class="signatureLink">add</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 The add method is unsupported by the Grid class.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAll()" class="signatureLink">addAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 The addAll method is unsupported by the Grid class.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAllAt()" class="signatureLink">addAllAt</a>(p:Point, c:<a href="../../../net/pixlib/structures/Grid.html">Grid</a>):Boolean</div><div class="summaryTableDescription">
+		 Copy the content of the passed-in grid at the specified coordinates.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clear()" class="signatureLink">clear</a>():void</div><div class="summaryTableDescription">
+		 Removes all of the elements from this collection.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#contains()" class="signatureLink">contains</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Returns true if this grid contains at least
+		 one occurence of the specified element.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#containsAll()" class="signatureLink">containsAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Returns true if this grid contains
+		 all of the elements of the specified collection.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#fill()" class="signatureLink">fill</a>(o:Object):void</div><div class="summaryTableDescription">
+		 Fill the current grid with the passed-in value.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getCoordinates()" class="signatureLink">getCoordinates</a>(id:uint):Point</div><div class="summaryTableDescription">
+		 Returns a Point witch is the corresponding
+		 position of the passed-in value.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getDefaulValue()" class="signatureLink">getDefaulValue</a>():Object</div><div class="summaryTableDescription">
+		 Returns the current default value of this grid used
+		 to replace value when removing an element.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getSize()" class="signatureLink">getSize</a>():<a href="../../../net/pixlib/structures/Dimension.html">Dimension</a></div><div class="summaryTableDescription">
+		 Returns the size of the grid as Dimension.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getType()" class="signatureLink">getType</a>():Class</div><div class="summaryTableDescription">
+	     Return the current type allowed in the Grid
+	     
+	     </div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getVal()" class="signatureLink">getVal</a>(p:Point):Object</div><div class="summaryTableDescription">
+		 Returns the element stored at the passed-in coordinate of the
+		 grid.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isEmpty()" class="signatureLink">isEmpty</a>():Boolean</div><div class="summaryTableDescription">
+		 A Grid object is considered as empty if and only if all its cells
+		 contains null or the default value for the current Grid.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isGridCoords()" class="signatureLink">isGridCoords</a>(p:Point):Boolean</div><div class="summaryTableDescription">
+		 Check if a Point object is a valid coordinate
+		 in the current grid.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isTyped()" class="signatureLink">isTyped</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this grid perform a verification
+		 of the type of elements.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidCollection()" class="signatureLink">isValidCollection</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in Collection is a valid
+		 collection for use with the addAll, removeAll,
+		 retainAll and containsAll methods.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidType()" class="signatureLink">isValidType</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in object type match the current 
+		 Grid element's type.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#iterator()" class="signatureLink">iterator</a>():<a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></div><div class="summaryTableDescription">
+		 Returns an iterator over the elements in this collection.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#matchType()" class="signatureLink">matchType</a>(o:*):Boolean</div><div class="summaryTableDescription">
+		 Verify if the passed-in object can be inserted in the
+		 current Grid.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#remove()" class="signatureLink">remove</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Removes a single instance of the specified element from this
+	     grid, if this grid contains one or more such elements.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAll()" class="signatureLink">removeAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription"> 
+		 Removes from this grid all of its elements that are contained
+		 in the specified collection (optional operation).</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAllAt()" class="signatureLink">removeAllAt</a>(p:Point, c:<a href="../../../net/pixlib/structures/Grid.html">Grid</a>):Boolean</div><div class="summaryTableDescription">
+		 Removes the content of the passed-in grid at the specified coordinates.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAt()" class="signatureLink">removeAt</a>(p:Point):Boolean</div><div class="summaryTableDescription">
+		 Removes the value located at the passed-in coordinate.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#retainAll()" class="signatureLink">retainAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Retains only the elements in this queue that are contained
+		 in the specified collection (optional operation).</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#setContent()" class="signatureLink">setContent</a>(a:Array):Boolean</div><div class="summaryTableDescription">
+		 Fill the content with an array of witch length is equal to
+		 the grid size().</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#setDefaultValue()" class="signatureLink">setDefaultValue</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Defines the default value for this grid's cells content.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#setVal()" class="signatureLink">setVal</a>(p:Point, o:Object):Boolean</div><div class="summaryTableDescription">
+		 Defines value of grid cell defining by passed-in Point 
+	 	 coordinate.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#size()" class="signatureLink">size</a>():uint</div><div class="summaryTableDescription">
+	     Returns the number of elements this collection can contains.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toArray()" class="signatureLink">toArray</a>():Array</div><div class="summaryTableDescription">
+		 Returns an array containing all the elements in this grid.</div></td><td class="summaryTableOwnerCol">Grid</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toString()" class="signatureLink">toString</a>():String</div><div class="summaryTableDescription">
+		 Returns the String representation of
+		 this object.</div></td><td class="summaryTableOwnerCol">Grid</td></tr></table></div><a name="protectedMethodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProtectedMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#initContent()" class="signatureLink">initContent</a>():void</div><div class="summaryTableDescription">
+		 Creates the internal two dimensional array used to store
+		 data of the grid.</div></td><td class="summaryTableOwnerCol">Grid</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="Grid()"></a><a name="Grid(net.pixlib.structures.Dimension,Array,Object,Class)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">Grid</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function Grid(size:<a href="../../../net/pixlib/structures/Dimension.html">Dimension</a>, a:Array = null, dV:Object = null, t:Class = null)</code><p></p><p>
+		 Create a new grid of passed-in <code>size</code>.
+		 <p>
+		 If <code>a</code> is set, and if it have the same size that the grid, 
+		 it's used to fill the collection at creation.
+		 </p><p>
+		 If <code>dV</code> is set, all <code>null</code> elements in the grid
+		 will be replaced by <code>dV</code> value.
+		 </p>
+		 
+		 </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">size</span>:<a href="../../../net/pixlib/structures/Dimension.html">Dimension</a></code> &mdash; Size of the grid.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">a</span>:Array</code> (default = <code>null</code>)<code></code> &mdash; An array to fill the grid with.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">dV</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; 	The default value for null elements.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">t</span>:Class</code> (default = <code>null</code>)<code></code></td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ArgumentError</code> </code> &mdash; &mdash; Invalid size passed in Grid constructor.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If objects type contained in the
+		 			passed-in array prevents them to be added into this grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in array length
+		 			doesn't match this grid size
+		 </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="add()"></a><a name="add(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">add</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function add(o:Object):Boolean</code><p></p><p></p><p>
+		 The <code>add</code> method is unsupported by the <code>Grid</code> class.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code></td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; The add method of the Collection interface is unsupported by the Grid Class
+		 </td></tr></table></div><a name="addAll()"></a><a name="addAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 The <code>addAll</code> method is unsupported by the <code>Grid</code> class.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code></td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; The addAll method of the Collection interface is unsupported by the Grid Class
+		 </td></tr></table></div><a name="addAllAt()"></a><a name="addAllAt(flash.geom.Point,net.pixlib.structures.Grid)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAllAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAllAt(p:Point, c:<a href="../../../net/pixlib/structures/Grid.html">Grid</a>):Boolean</code><p></p><p></p><p>
+		 Copy the content of the passed-in grid at the specified coordinates.
+		 The passed-in grid is paste into this grid such the top-left coordinates
+		 will start at the specified <code>Point</code> argument.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">p</span>:Point</code> &mdash; coordinates at which copy the grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/structures/Grid.html">Grid</a></code> &mdash; grid to copy in this grid object
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the passed-in grid have been successfully added
+		 			at the specified coordinates in this grid
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.	
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; If the passed-in point
+		 			is not valid coordinates for this grid.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; If the passed-in grid
+		 			will overlap this grid when copying.		
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Grid.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div></div><a name="clear()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function clear():void</code><p></p><p></p><p>
+		 Removes all of the elements from this collection.
+	     This collection will not be empty after this method.
+	     <p>
+	     If a default value have been defined for the grid
+	     then all cells of the grid contains that value.
+	     </p>
+		 </p></div><a name="contains()"></a><a name="contains(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">contains</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function contains(o:Object):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this grid contains at least
+		 one occurence of the specified element. Moreformally,
+		 returns <code>true</code> if and only if this grid contains
+		 at least an element <code>e</code> such that <code>o === e</code>.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>Object</code> whose presence in this grid
+		 			  	is to be tested.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this grid contains the specified
+		 			element.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr></table></div><a name="containsAll()"></a><a name="containsAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">containsAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function containsAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this grid contains
+		 all of the elements of the specified collection. If the specified
+		 collection is also a <code>Grid</code>, this method returns <code>true</code>
+		 if it is a <i>subliset</i> of this queue.
+		 <p>
+		 If the passed-in <code>Collection</code> is null the method throw a
+		 <code>NullPointerException</code> error.
+		 </p><p>
+		 If the passed-in <code>Collection</code> type is different than the current
+		 one the function will throw an <code>IllegalArgumentException</code>.
+		 However, if the type of this grid is <code>null</code>, 
+		 the passed-in <code>Collection</code> can have any type. 
+		 </p><p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>containsAll</code> method.
+		 </p>
+	     </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	collection to be checked for containment in this collection.
+	     </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this collection contains all of the elements
+	            	in the specified collection
+	     </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.	
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Grid.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a><br/><a href="Grid.html#contains(Object)" target="">contains(Object)</a></div></div><a name="fill()"></a><a name="fill(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">fill</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function fill(o:Object):void</code><p></p><p></p><p>
+		 Fill the current grid with the passed-in value.
+		 <p>
+		 If the passed-in value is a "real" object (not a primitive) then
+		 all cells contains a reference to the same object.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; Value used to fill the grid
+		 </td></tr></table></p></div><a name="getCoordinates()"></a><a name="getCoordinates(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getCoordinates</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getCoordinates(id:uint):Point</code><p></p><p></p><p>
+		 Returns a <code>Point</code> witch is the corresponding
+		 position of the passed-in value.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">id</span>:uint</code> &mdash; <code>uint</code> to convert in a two dimension location
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Point</code> &mdash; <code>Point</code> corresponding location
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; the passed-in index
+		 			is not a valid coordinates for this grid
+		 </td></tr></table></div><a name="getDefaulValue()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getDefaulValue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getDefaulValue():Object</code><p></p><p></p><p>
+		 Returns the current default value of this grid used
+		 to replace value when removing an element.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; element used as default value for the grid's cells
+		 </td></tr></table></div><a name="getSize()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getSize</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getSize():<a href="../../../net/pixlib/structures/Dimension.html">Dimension</a></code><p></p><p></p><p>
+		 Returns the size of the grid as <code>Dimension</code>.
+		 <p>
+		 The returned <code>Dimension</code> is a clone of the
+		 internal one.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/structures/Dimension.html">Dimension</a></code> &mdash; the dimensions of the grid as <code>Dimension</code>
+		 </td></tr></table></div><a name="getType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getType():Class</code><p></p><p></p><p>
+	     Return the current type allowed in the <code>Grid</code>
+	     
+	     </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Class</code> &mdash; <code>Class</code> used to type checking.
+	     </td></tr></table></div><a name="getVal()"></a><a name="getVal(flash.geom.Point)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getVal</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getVal(p:Point):Object</code><p></p><p></p><p>
+		 Returns the element stored at the passed-in coordinate of the
+		 grid.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">p</span>:Point</code> &mdash; Coordinates <code>Point</code> in the grid
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; Value stored at the coorespoding location or <code>null</code>
+		 			if the passed-in coordinates is not a valid coordinates
+		 			for this grid
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; the passed-in point
+		 			is not a valid coordinates for this grid
+		 </td></tr></table></div><a name="initContent()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">initContent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> protected function initContent():void</code><p></p><p></p><p>
+		 Creates the internal two dimensional array used to store
+		 data of the grid.
+		 </p></div><a name="isEmpty()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isEmpty():Boolean</code><p></p><p></p><p>
+		 A <code>Grid</code> object is considered as empty if and only if all its cells
+		 contains <code>null</code> or the default value for the current <code>Grid</code>.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the grid is empty, either <code>false</code>.
+		 </td></tr></table></div><a name="isGridCoords()"></a><a name="isGridCoords(flash.geom.Point)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isGridCoords</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isGridCoords(p:Point):Boolean</code><p></p><p></p><p>
+		 Check if a <code>Point</code> object is a valid coordinate
+		 in the current grid.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">p</span>:Point</code> &mdash; <code>Point</code> object to check
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if passed-in <code>Point</code> is a valid
+		 			coordinate for the current grid
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; the passed-in point
+		 			is not a valid coordinates for this grid
+		 </td></tr></table></div><a name="isTyped()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isTyped</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isTyped():Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this grid perform a verification
+		 of the type of elements.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this grid perform a verification
+		 			of the type of elements.
+		 </td></tr></table></div><a name="isValidCollection()"></a><a name="isValidCollection(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidCollection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidCollection(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in <code>Collection</code> is a valid
+		 collection for use with the <code>addAll</code>, <code>removeAll</code>,
+		 <code>retainAll</code> and <code>containsAll</code> methods.
+		 <p>
+		 When dealing with typed and untyped collection, the following rules apply : 
+		 <ul>
+		 <li>Two typed collection, which have the same type, can collaborate each other.</li>
+		 <li>Two untyped collection can collaborate each other.</li>
+		 <li>An untyped collection can add, remove, retain or contains any typed collection
+		 of any type without throwing errors.</li>
+		 <li>A typed collection will always fail when attempting to add, remove, retain
+		 or contains an untyped collection.</li>
+		 </ul></p><p>
+		 If the passed-in <code>Collection</code> is null the method throw a
+		 <code>NullPointerException</code> error.
+		 </p>
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; <code>Collection</code> to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; boolean <code>true</code> if the collection is valid, 
+		 			either <code>false</code> 			
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			is <code>null</code>
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Grid.html#addAll()" target="">addAll()</a><br/><a href="Grid.html#removeAll()" target="">removeAll()</a><br/><a href="Grid.html#retainAll()" target="">retainAll()</a><br/><a href="Grid.html#containsAll()" target="">containsAll()</a></div></div><a name="isValidType()"></a><a name="isValidType(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidType(o:Object):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in object type match the current 
+		 <code>Grid</code> element's type. 
+		 <p>
+		 In the case that the grid is untyped the function
+		 will always returns <code>true</code>.
+		 </p><p>
+		 In the case that the object's type prevents it to be added
+		 as element for this grid the method will throw
+		 a <code>ClassCastException</code>.
+		 </p> 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>Object</code> to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object is elligible for this
+		 			grid object, either <code>false</code>
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr></table></div><a name="iterator()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">iterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function iterator():<a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></code><p></p><p></p><p>
+		 Returns an iterator over the elements in this collection. Iterations
+		 are performed in the following order : columns first, rows after. 
+		 <p>
+		 Result for a 2x2 grid : 
+		 <ul>
+		 	<li>Cell 0, 0</li>
+		  <li>Cell 1, 0</li>
+		 	<li>Cell 0, 1</li>
+		 	<li>Cell 1, 1</li>
+		 </ul>
+		 </p> 
+	     </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></code> &mdash; an <code>Iterator</code> over the elements in this collection.
+		 </td></tr></table></div><a name="matchType()"></a><a name="matchType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">matchType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function matchType(o:*):Boolean</code><p></p><p></p><p>
+		 Verify if the passed-in object can be inserted in the
+		 current <code>Grid</code>.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; Object to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object can be inserted in
+		 the <code>Grid</code>, either <code>false</code>.
+		 </td></tr></table></div><a name="remove()"></a><a name="remove(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">remove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function remove(o:Object):Boolean</code><p></p><p></p><p>
+		 Removes a single instance of the specified element from this
+	     grid, if this grid contains one or more such elements.
+	     Returns <code>true</code> if this grid contained the specified
+	     element (or equivalently, if this collection changed as a result
+	     of the call).
+	     <p>
+	     In order to remove all occurences of an element you have to call
+	     the <code>remove</code> method as long as the grid contains an
+	     occurrence of the passed-in element. Typically, the construct to
+	     remove all occurrences of an element should look like that :
+	     <div class="listing"><pre>
+         while( grid.contains( element ) ) grid.remove( element );
+         </pre></div>
+	     </p><p>
+		 If the current grid object is typed and if the passed-in object's  
+		 type prevents it to be added (and then removed) in this grid,
+		 the function throws a <code>ClassCastException</code>.
+		 </p><p>
+		 The <code>Grid</code> introduce a specific behavior for its default
+		 value, if the passed-in element is the default value for this grid
+		 the function return <code>null</code> and isnt't modified as result
+		 of the call.
+		 </p>
+	     </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>object</code> to be removed from this grid,
+	     			  if present.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the grid contained the 
+		 			specified element.
+	     </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr></table></div><a name="removeAll()"></a><a name="removeAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p> 
+		 <p>Removes from this grid all of its elements that are contained
+		 in the specified collection (optional operation). At the end
+		 of the call there's no occurences of any elements contained
+		 in the passed-in collection.
+		 </p><p>
+		 The only values which cannot be removed by a call to <code>removeAll</code>
+		 is the default value for this grid. It result that all cells which contained
+		 a value also contained in the passed-in collection are filled with the grid's
+		 default value.
+		 </p><p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>removeAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	<code>Collection</code> that defines which elements will be
+		 			  	removed from this grid.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this grid changed as a result
+		 			of the call.
+	     </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.	
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Grid.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div></div><a name="removeAllAt()"></a><a name="removeAllAt(flash.geom.Point,net.pixlib.structures.Grid)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAllAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAllAt(p:Point, c:<a href="../../../net/pixlib/structures/Grid.html">Grid</a>):Boolean</code><p></p><p></p><p>
+		 Removes the content of the passed-in grid at the specified coordinates.
+		 The passed-in grid is removed from this grid such the top-left coordinates
+		 will start at the specified <code>Point</code> argument.
+		 <p>
+		 The content of the passed-in grid is only removed in the bounds of the grid
+		 in this grid space coordinates. Values which are also stored in the passed-in 
+		 grid but whose coordinates aren't in the bounds of the operation aren't remove.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">p</span>:Point</code> &mdash; coordinates at which remove the grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/structures/Grid.html">Grid</a></code> &mdash; grid to remove from this grid object
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the passed-in grid have been successfully removed
+		 			at the specified coordinates in this grid
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.	
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; If the passed-in point
+		 			is not valid coordinates for this grid.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; If the passed-in grid
+		 			will overlap this grid when removing.		
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Grid.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div></div><a name="removeAt()"></a><a name="removeAt(flash.geom.Point)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAt(p:Point):Boolean</code><p></p><p></p><p>
+		 Removes the value located at the passed-in coordinate.
+		 <p>
+		 If the grid changed after the call the function returns
+		 <code>true</code>. If the passed-in <code>Point</code> isn't
+		 a valid coordinate for this grid the function failed and return
+		 <code>false</code>.
+		 </p><p>
+		 If a default value is set, the cell contains that value instead
+		 of <code>null</code> after the call.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">p</span>:Point</code> &mdash; <code>Point</code> position of the value to remove
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the grid changed as result of the call
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; the passed-in point
+		 			is not a valid coordinates for this grid
+		 </td></tr></table></div><a name="retainAll()"></a><a name="retainAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">retainAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function retainAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Retains only the elements in this queue that are contained
+		 in the specified collection (optional operation). In other words,
+		 removes from this queue all of its elements that are not
+		 contained in the specified collection.
+		 <p>
+		 The only values which cannot be removed by a call to <code>retainAll</code>
+		 is the default value for this grid. It result that all cells which contained
+		 a value that are not contained in the passed-in collection are filled with
+		 the grid's default value.
+		 </p><p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>retainAll</code> method.
+		 </p>
+	     </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	elements to be retained in this collection.
+	     </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this collection changed as a result of the
+	             	call
+	     </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.	
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Grid.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a><br/><a href="Grid.html#remove(Object)" target="">remove(Object)</a><br/><a href="Grid.html#contains(Object)" target="">contains(Object)</a></div></div><a name="setContent()"></a><a name="setContent(Array)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">setContent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function setContent(a:Array):Boolean</code><p></p><p></p><p>
+		 Fill the content with an array of witch length is equal to
+		 the grid <code>size()</code>.
+		 <p>
+		 The call return <code>true</code> only if the <code>Grid</code>
+	 	 changed as results of the call.
+	 	 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">a</span>:Array</code> &mdash; <code>Array</code> to fill the <code>Grid</code>
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the <code>Grid</code> changed as results of the call
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in array length
+		 			doesn't match this grid size
+		 </td></tr></table></div><a name="setDefaultValue()"></a><a name="setDefaultValue(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">setDefaultValue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function setDefaultValue(o:Object):Boolean</code><p></p><p></p><p>
+		 Defines the default value for this grid's cells content. 
+		 When changing the default value of a grid, the cells which
+		 previously contains the old default value will contains the
+		 new one at the end of the call.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; new default value for this grid's cells
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the grid have change as result
+		 			of the call
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr></table></div><a name="setVal()"></a><a name="setVal(flash.geom.Point,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">setVal</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function setVal(p:Point, o:Object):Boolean</code><p></p><p></p><p>
+		 Defines value of grid cell defining by passed-in <code>Point</code> 
+	 	 coordinate.
+	 	 <p>
+	 	 The call return <code>true</code> only if the <code>Grid</code>
+	 	 changed as results of the call.
+	 	 </p> 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">p</span>:Point</code> &mdash; <code>Point</code> position of the cell
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; value to store in the grid
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the <code>Grid</code> changed as results of the call
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; the passed-in point
+		 			is not a valid coordinates for this grid
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this grid
+		 </td></tr></table></div><a name="size()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">size</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function size():uint</code><p></p><p></p><p>
+	     Returns the number of elements this collection can contains.
+	     
+	     </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>uint</code> &mdash; the number of elements this collection can contains.
+	     </td></tr></table></div><a name="toArray()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toArray</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toArray():Array</code><p></p><p></p><p>
+		 Returns an array containing all the elements in this grid.
+		 Obeys the general contract of the <code>Collection.toArray</code>
+		 method.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Array</code> &mdash; <code>Array</code> containing all of the elements
+		 			in this grid.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso">Collection.toArray()</div></div><a name="toString()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toString():String</code><p></p><p></p><p>
+		 Returns the <code>String</code> representation of
+		 this object. 
+		 <p>
+		 The function return a string like
+		 <code>net.pixlib.structures::Grid&lt;String&gt;</code>
+		 for a typed collection. The string between the &lt;
+		 and > is the name of the type of the collection's
+		 elements. If the collection is an untyped collection
+		 the function will simply return the result of the
+		 <code>PixlibStringifier.stringify</code> call.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; <code>String</code> representation of
+		 		   this object.
+		 </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->

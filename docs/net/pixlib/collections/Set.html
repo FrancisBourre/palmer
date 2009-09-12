@@ -1,0 +1,745 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="Set,net.pixlib.collections.Set,_aArray,_aColumNames,_aItems,_aKeys,_aQueue,_aSet,_aStack,_bAdded,_bAdded,_bRemoved,_bRemoved,_bRemoved,_d,_n,_nGap,_nIndex,_nIndex,_nIndex,_nSize,_nSize,_nSize,_oKeyDico,_oObject,_oType,_oType,_oType,_oValueDico,_sString,index,length,list,_init,add,add,add,add,add,add,add,add,addAll,addAll,addAll,addAll,addAll,addAllAt,addAllAt,addAllAt,addAt,addAt,addAt,clear,clear,clear,clear,clear,clear,clear,columnIterator,contains,contains,contains,contains,contains,containsAll,containsAll,containsAll,containsAll,containsAll,containsKey,containsValue,equals,get,get,get,get,getColumnNames,getItemAt,getItems,getKeys,getLength,getType,getType,getType,getType,getValues,hasNext,hasNext,hasNext,hasNext,hasNext,hasPrevious,hasPrevious,hasPrevious,indexOf,indexOf,indexOf,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isTyped,isTyped,isTyped,isTyped,isValidCollection,isValidCollection,isValidCollection,isValidIndex,isValidIndex,isValidIndexForAdd,isValidObject,isValidType,isValidType,isValidType,iterator,iterator,iterator,iterator,iterator,iterator,lastIndexOf,lastIndexOf,lastIndexOf,listIterator,listIterator,listIterator,matchType,matchType,matchType,matchType,next,next,next,next,next,nextIndex,nextIndex,nextIndex,parseRawData,peek,peek,poll,pop,previous,previous,previous,previousIndex,previousIndex,previousIndex,push,put,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,removeAll,removeAll,removeAll,removeAll,removeAll,removeAt,removeAt,removeAt,retainAll,retainAll,retainAll,retainAll,retainAll,search,set,set,set,set,set,set,size,size,size,size,size,size,subList,subList,subList,swap,toArray,toArray,toArray,toArray,toArray,toString,toString,toString,toString,toString,toString"><title>net.pixlib.collections.Set</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'Set - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/collections/Set.html&amp;net/pixlib/collections/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Set</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Set"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.collections</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  Set</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Set  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../net/pixlib/collections/List.html">List</a>,  <a href="../../../net/pixlib/collections/TypedContainer.html">TypedContainer</a></td></tr></table><p></p><p></p><p></p>
+	 A collection that contains no duplicate elements. More formally, sets
+	 contain no pair of elements <code>e1</code> and <code>e2</code> such that
+	 e1 strictly equals e2, and at most one null element. As implied by
+	 its name, this interface models the mathematical <i>set</i> abstraction.
+	 <p>
+	 The <code>Set</code> class places additional stipulations, beyond those
+	 inherited from the <code>Collection</code> interface, on the contracts of the
+	 constructor and on the contracts of the <code>add</code> method. 
+	 Declarations for other inherited methods are also included here for convenience.
+	 (The specifications accompanying these declarations have been tailored to the
+	 <code>Set</code> class, but they do not contain any additional stipulations.)
+	 </p>
+               <p>
+	 The additional stipulation on constructors is, not surprisingly,
+	 that all constructors must create a set that contains no duplicate elements
+	 (as defined above).
+	 </p>
+               <p>
+	 Some set implementations have restrictions on the elements that
+	 they may contain.  For example, some implementations prohibit null elements,
+	 and some have restrictions on the types of their elements.  Attempting to
+	 add an ineligible element throws an unchecked exception, typically
+	 <code>NullPointerException</code> or <code>ClassCastException</code>. 
+	 Attempting to query the presence of an ineligible element may throw an exception,
+	 or it may simply return false; some implementations will exhibit the former
+	 behavior and some will exhibit the latter. More generally, attempting an
+	 operation on an ineligible element whose completion would not result in
+	 the insertion of an ineligible element into the set may throw an
+	 exception or it may succeed, at the option of the implementation.
+	 Such exceptions are marked as "optional" in the specification for this
+	 class. 
+	 </p>
+	           <p></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="Collection.html" target="">Collection</a><br/><a href="TypedContainer.html" target="">TypedContainer</a></div><br/><hr></div><a name="propertySummary"></a><a name="protectedPropertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProtectedProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_aSet" class="signatureLink">_aSet</a> : Array<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_oType" class="signatureLink">_oType</a> : Class<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">Set</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#Set()" class="signatureLink">Set</a>(type:Class = null)</div><div class="summaryTableDescription">
+		 Creates a new set object.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#add()" class="signatureLink">add</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Adds the specified element to this set if it is not already 
+		 present (optional operation).</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAll()" class="signatureLink">addAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Adds all of the elements in the specified Collection 
+		 to this set if they're not already present (optional operation).</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAllAt()" class="signatureLink">addAllAt</a>(index:uint, c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Inserts all of the elements in the specified Collection into
+		 this set at the specified position.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAt()" class="signatureLink">addAt</a>(index:uint, o:Object):void</div><div class="summaryTableDescription">
+		 Inserts the specified element at the specified position
+		 in this set.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clear()" class="signatureLink">clear</a>():void</div><div class="summaryTableDescription">
+		 Removes all of the elements from this set
+		 (optional operation).</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#contains()" class="signatureLink">contains</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Returns true if this set contains the
+		 specified element.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#containsAll()" class="signatureLink">containsAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Returns true if this set contains
+		 all of the elements of the specified collection.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#equals()" class="signatureLink">equals</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Compares the specified object with this set for equality.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#get()" class="signatureLink">get</a>(index:uint):Object</div><div class="summaryTableDescription">
+		 Returns the Object stored at the passed-in
+		 index in this set object.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getType()" class="signatureLink">getType</a>():Class</div><div class="summaryTableDescription">
+		 Return the class type of element in this set object.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#indexOf()" class="signatureLink">indexOf</a>(o:Object):int</div><div class="summaryTableDescription">
+		 Returns the index of the object in this set		 
+		 
+		 </div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isEmpty()" class="signatureLink">isEmpty</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this set contains no elements.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isTyped()" class="signatureLink">isTyped</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this set perform a verification
+		 of the type of elements.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidCollection()" class="signatureLink">isValidCollection</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in Collection is a valid
+		 collection for use with the addAll, removeAll,
+		 retainAll and containsAll methods.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidIndex()" class="signatureLink">isValidIndex</a>(index:uint):void</div><div class="summaryTableDescription">
+		 Verify that the passed-in uint index is a
+		 valid index for this Set.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidIndexForAdd()" class="signatureLink">isValidIndexForAdd</a>(index:uint):void</div><div class="summaryTableDescription">
+		 Verify that the passed-in uint index is a
+		 valid index for an insertion in this Set.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidObject()" class="signatureLink">isValidObject</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in object is valid for this Set
+		 (well-typed, not already present in the set).</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidType()" class="signatureLink">isValidType</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in object type match the current 
+		 Set element's type.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#iterator()" class="signatureLink">iterator</a>():<a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></div><div class="summaryTableDescription">
+		 Returns an iterator over the elements in this set.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#lastIndexOf()" class="signatureLink">lastIndexOf</a>(o:Object):int</div><div class="summaryTableDescription">
+		 Returns the index of the last occurrence of the specified
+		 object in this Set.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#listIterator()" class="signatureLink">listIterator</a>(index:uint = 0):<a href="../../../net/pixlib/collections/ListIterator.html">ListIterator</a></div><div class="summaryTableDescription">
+		 Returns a list iterator of the elements in this list
+		 (in proper sequence), starting at the specified position
+		 in the list.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#matchType()" class="signatureLink">matchType</a>(o:*):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in object type match the current 
+		 set element's type.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#remove()" class="signatureLink">remove</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Removes the specified element from this set
+		 if it is present (optional operation).</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAll()" class="signatureLink">removeAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Removes from this set all of its elements that are contained
+		 in the specified collection (optional operation).</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAt()" class="signatureLink">removeAt</a>(index:uint):Boolean</div><div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#retainAll()" class="signatureLink">retainAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Retains only the elements in this set that are contained
+		 in the specified collection (optional operation).</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#set()" class="signatureLink">set</a>(index:uint, o:Object):Object</div><div class="summaryTableDescription">
+		 Insert the passed-in Object in this set
+		 at the specified index.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#size()" class="signatureLink">size</a>():uint</div><div class="summaryTableDescription">
+		 Returns the number of elements in this set (its cardinality).</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#subList()" class="signatureLink">subList</a>(fromIndex:uint, toIndex:uint):<a href="../../../net/pixlib/collections/List.html">List</a></div><div class="summaryTableDescription">
+	     Returns a view of the portion of this List between fromIndex,
+	     inclusive, and toIndex, exclusive.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#swap()" class="signatureLink">swap</a>(index1:uint, index2:uint):void</div><div class="summaryTableDescription">
+		Swap two objects stored in the passed-in index
+		
+		If the passed-in index are not valid index
+		for this set, the function throw an 
+		IndexOutOfBoundsException exception.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toArray()" class="signatureLink">toArray</a>():Array</div><div class="summaryTableDescription">
+		 Returns an array containing all the elements in this set.</div></td><td class="summaryTableOwnerCol">Set</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toString()" class="signatureLink">toString</a>():String</div><div class="summaryTableDescription">
+		 Returns the String representation of
+		 this object.</div></td><td class="summaryTableOwnerCol">Set</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="_aSet"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_aSet</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>protected var _aSet:Array</code><p></p></div><a name="propertyDetail"></a><a name="_oType"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_oType</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _oType:Class</code><p></p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="Set()"></a><a name="Set(Class)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">Set</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function Set(type:Class = null)</code><p></p><p>
+		 Creates a new set object. If the <code>type</code>
+		 argument is defined, the set is considered as typed, and then
+		 the type of all elements inserted in this set is checked.
+		 
+		 </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:Class</code> (default = <code>null</code>)<code></code> &mdash; <code>Class</code> type for elements of this set
+		 </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="add()"></a><a name="add(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">add</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function add(o:Object):Boolean</code><p></p><p></p><p>
+		 Adds the specified element to this set if it is not already 
+		 present (optional operation).  More formally, adds the specified
+		 element, <code>o</code>, to this set if this set contains no
+		 element <code>e</code> such that <code>o === e</code>. If this set
+		 already contains the specified element, the call leaves this set
+		 unchanged and returns <code>false</code>. In combination with the
+		 restriction on constructors, this ensures that sets never contain
+		 duplicate elements.
+		 <p>
+		 The stipulation above does not imply that sets must accept all
+		 elements; sets may refuse to add any particular element, including
+		 <code>null</code>, and throwing an exception, as described in the
+		 specification for <code>Collection.add</code>. Individual set
+		 implementations should clearly document any restrictions on the the
+		 elements that they may contain.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; element to be added to this set.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this set did not already contain the specified
+		         	element.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this set
+		 </td></tr></table><br/><span class="label"> Example </span><br/><div class="detailBody">How to use the <code>Set.add</code> method
+		 <div class="listing"><pre>
+         var set : Set = new Set( String );
+         
+         set.add( "foo" );
+         
+         set.add( "foo" ); // return false, as 'foo' already exist in this set
+         
+         set.add( 25 ); // throw a ClassCastException, as 25 is not a string 
+         </pre></div>
+		 
+		 In comparison with Java, where object which have all of their properties
+		 equals are considered as equals, AS3 doesn't allow that, except if objects
+		 provides an <code>equals</code> method which is used instead of the 
+		 <code>==</code> or <code>===</code> operators. Nevertheless, the <code>Set</code>
+		 class use the native operator to perform comparison, thus two objects with
+		 equals properties are considered as differents.
+		 
+		 <div class="listing"><pre>
+         var set : Set = new Set( Object );
+         var o : Object = { x : 50, y : 100 };
+         
+         set.add( o ); 
+         set.add( o ); // return false, as o' already exist in this set
+         
+         set.add( { x : 50, y : 100 } ); // return true, as the argument is not
+                                            // the same object than o, even if all
+                                            // their properties are equals
+         </pre></div>
+		 </div></div><a name="addAll()"></a><a name="addAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Adds all of the elements in the specified <code>Collection</code> 
+		 to this set if they're not already present (optional operation).
+		 If the specified collection is also a set, the <code>addAll</code>
+		 operation effectively modifies this set so that its value is the 
+		 <i>union</i> of the two sets. The behavior of this operation is
+		 unspecified if the specified collection is modified while the
+		 operation is in progress.
+		 <p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>addAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	<code>Collection</code> whose elements are to be added to this set.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this set changed as a result of the call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this set
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.	
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Set.html#add()" target="">add()</a><br/><a href="Set.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">How the <code>Set.addAll</code> method works with types 
+		 <p>
+		 Let say that you have two typed sets <code>typedSet1</code>
+		 and <code>typedSet1</code>.
+		 </p> 
+		 <div class="listing"><pre>
+         var typedSet1 : Set = new Set( String );
+         var typedSet2 : Set = new Set( String );
+         
+         typedSet1.add( "foo1" );
+         typedSet1.add( "foo2" );
+         typedSet1.add( "foo3" );
+         typedSet1.add( "foo4" );
+         
+         typedSet2.add( "foo3" );
+         typedSet2.add( "foo4" );
+         typedSet2.add( "foo5" );
+         typedSet2.add( "foo6" );
+         </pre></div>
+		 
+		 And two untyped sets <code>untypedSet1</code>
+		 and <code>untypedSet1</code>. 
+		 
+		 <div class="listing"><pre>
+         var untypedSet1 : Set = new Set();
+         var untypedSet2 : Set = new Set();
+         
+         untypedSet1.add( 1 );
+         untypedSet1.add( 2 );
+         untypedSet1.add( 3 );
+         untypedSet1.add( "foo1" );
+         
+         untypedSet1.add( 3 );
+         untypedSet1.add( 4 );
+         untypedSet1.add( 5 );
+         untypedSet1.add( "foo1" );
+         </pre></div>
+		 
+		 The two operations below will work as expected, 
+		 realizing an union between <code>Set</code>s objects.
+		 
+		 <div class="listing"><pre>
+         
+         typedSet1.addAll ( typedSet2 );
+         // will produce a set containing : 
+         // 'foo1'
+         // 'foo2'
+         // 'foo3'
+         // 'foo4'
+         // 'foo5'
+         // 'foo6'
+         
+         untypedSet1.addAll ( untypedSet2 );
+         // will produce a set containing : 
+         // 'foo1'
+         // 1
+         // 2
+         // 3
+         // 4
+         // 5
+         </pre></div>
+		 
+		 As an untyped set can contain any types of objects at the
+		 same time, the code below is always valid.
+		 
+		 <div class="listing"><pre>
+         untypedSet1.addAll( typedSet2 );
+         // will produce a set containing : 
+         // 'foo1'
+         // 'foo3'
+         // 'foo4'
+         // 'foo5'
+         // 'foo6'
+         // 1
+         // 2
+         // 3
+         // 4
+         // 5
+         </pre></div>
+		 
+		 But if you try to add an untyped collection to a typed one
+		 the call will fail with an exception.
+		 
+		 <div class="listing"><pre>
+         try
+         {
+             typedSet2.addAll( untypedSet2 );
+         }
+         catch( e : IllegalArgumentException )
+         {
+             trace( e ); 
+             // The passed-in collection with type 'null' has not the same type 
+             // than net.pixlib.collections::Set&lt;String&gt;
+         }
+         </pre></div>
+		 </div></div><a name="addAllAt()"></a><a name="addAllAt(uint,net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAllAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAllAt(index:uint, c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Inserts all of the elements in the specified Collection into
+		 this set at the specified position. Shifts the element
+		 currently at that position (if any) and any subsequent
+		 elements to the right (increases their indices). The new
+		 elements will appear in the stack in the order that
+		 they are returned by the specified Collection's iterator.
+		 <p>
+		 The rules which govern collaboration between typed and untyped
+		 <code>Collection</code> are described in the <code>isValidCollection</code>
+		 descrition, all rules described there are supported by the
+		 <code>containsAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index at which to insert
+		 					first element from the specified collection.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 		elements to be inserted into this stack.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this set changed as a result of the call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; index is out of range
+		 		   	(index &lt; 0 || index > size()).
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of an element of
+		 			the specified collection prevents it from being added to this collection.
+	     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the passed in collection is null.
+	     </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Set.html#add()" target="">add()</a><br/><a href="Set.html#addAt()" target="">addAt()</a><br/><a href="Set.html#addAll()" target="">addAll()</a><br/><a href="Set.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div></div><a name="addAt()"></a><a name="addAt(uint,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAt(index:uint, o:Object):void</code><p></p><p></p><p>
+		 Inserts the specified element at the specified position
+		 in this set. Shifts the element currently at that
+		 position (if any) and any subsequent elements to the
+		 right (adds one to their indices).
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index at which the specified
+		 					element is to be inserted.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 		element to be inserted.
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; index is out of range
+		 		   	(index &lt; 0 || index > size()).
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; if the class of the specified
+		 		   	element prevents it from being added to this list.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Set.html#add()" target="">add()</a></div></div><a name="clear()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function clear():void</code><p></p><p></p><p>
+		 Removes all of the elements from this set
+		 (optional operation). This set will be empty
+		 after this call returns (unless it throws an exception).
+		 </p></div><a name="contains()"></a><a name="contains(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">contains</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function contains(o:Object):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this set contains the
+		 specified element. More formally, returns <code>true</code> if
+		 and only if this set contains an element <code>e</code>
+		 such that <code>o === e</code>.
+		 		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>Object</code> whose presence in this set
+		 			  	is to be tested.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this set contains the specified
+		 			element.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this set
+		 </td></tr></table></div><a name="containsAll()"></a><a name="containsAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">containsAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function containsAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this set contains
+		 all of the elements of the specified collection. If the specified
+		 collection is also a <code>Set</code>, this method returns <code>true</code>
+		 if it is a <i>subset</i> of this set.
+		 <p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>containsAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; <code>Collection</code> to be checked for containment in this set.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this set contains all of the elements of the
+		 	       	specified collection.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified collection is
+		         	<code>null</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Set.html#contains()" target="">contains()</a><br/><a href="Set.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div></div><a name="equals()"></a><a name="equals(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">equals</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function equals(o:Object):Boolean</code><p></p><p></p><p>
+		 Compares the specified object with this set for equality.
+		 Returns <code>true</code> if the specified object is also a <code>Set</code>,
+		 the two sets have the same size, and every member of the specified
+		 <code>Set</code> is contained in this set (or equivalently,
+		 every member of this set is contained in the specified
+		 set). This definition ensures that the equals method works
+		 properly across different implementations of the set class.
+		 		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 	<code>Object</code> to be compared for equality with this
+		 			  	set.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the specified Object is equal to this
+		 			set.
+		 </td></tr></table></div><a name="get()"></a><a name="get(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">get</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function get(index:uint):Object</code><p></p><p></p><p>
+		 Returns the <code>Object</code> stored at the passed-in
+		 <code>index</code> in this set object.
+		 <p>
+		 If the passed-in <code>index</code> is not a valid index
+		 for this set, the function throw an 
+		 <code>IndexOutOfBoundsException</code> exception.
+		 </p> 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index of the entry to get.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; <code>Object</code> stored at the specified <code>index</code>
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; The passed-in
+		 			index is not a valid index for this set
+		 </td></tr></table></div><a name="getType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getType():Class</code><p></p><p></p><p>
+		 Return the class type of element in this set object.
+		 <p>
+		 An untyped set returns <code>null</code>, as the
+		 wildcard type (<code>*</code>) is not a <code>Class</code>
+		 and <code>Object</code> class doesn't fit for primitive types.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Class</code> &mdash; <code>Class</code> type of the set's elements
+		 </td></tr></table></div><a name="indexOf()"></a><a name="indexOf(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">indexOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function indexOf(o:Object):int</code><p></p><p></p><p>
+		 Returns the index of the object in this set		 
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 	the object to find
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; <code>int</code> index of the passed object in this
+		 			set, either if the object isn't contained
+		 			in this set the function return <code>-1</code>
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this stack	
+		 </td></tr></table></div><a name="isEmpty()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isEmpty():Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this set contains no elements.
+		 		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this set contains no elements.
+		 </td></tr></table></div><a name="isTyped()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isTyped</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isTyped():Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this set perform a verification
+		 of the type of elements.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this set perform a verification
+		 			of the type of elements.
+		 </td></tr></table></div><a name="isValidCollection()"></a><a name="isValidCollection(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidCollection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidCollection(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in <code>Collection</code> is a valid
+		 collection for use with the <code>addAll</code>, <code>removeAll</code>,
+		 <code>retainAll</code> and <code>containsAll</code> methods.
+		 <p>
+		 When dealing with typed and untyped collection, the following rules apply : 
+		 <ul>
+		 <li>Two typed collection, which have the same type, can collaborate each other.</li>
+		 <li>Two untyped collection can collaborate each other.</li>
+		 <li>An untyped collection can add, remove, retain or contains any typed collection
+		 of any type without throwing errors.</li>
+		 <li>A typed collection will always fail when attempting to add, remove, retain
+		 or contains an untyped collection.</li>
+		 </ul></p><p>
+		 If the passed-in <code>Collection</code> is null the method throw a
+		 <code>NullPointerException</code> error.
+		 </p>
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; <code>Collection</code> to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; boolean <code>true</code> if the collection is valid, 
+		 			either <code>false</code> 			
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			is <code>null</code>
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Set.html#addAll()" target="">addAll()</a><br/><a href="Set.html#removeAll()" target="">removeAll()</a><br/><a href="Set.html#retainAll()" target="">retainAll()</a><br/><a href="Set.html#containsAll()" target="">containsAll()</a></div></div><a name="isValidIndex()"></a><a name="isValidIndex(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidIndex</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidIndex(index:uint):void</code><p></p><p></p><p>
+		 Verify that the passed-in <code>uint</code> index is a
+		 valid index for this <code>Set</code>. If not, an 
+		 <code>IndexOutOfBoundsException</code> exception is
+		 thrown.
+		  
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index to verify
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; The passed-in
+		 			index is not a valid index for this set
+		 </td></tr></table></div><a name="isValidIndexForAdd()"></a><a name="isValidIndexForAdd(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidIndexForAdd</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidIndexForAdd(index:uint):void</code><p></p><p></p><p>
+		 Verify that the passed-in <code>uint</code> index is a
+		 valid index for an insertion in this <code>Set</code>. 
+		 If not, an <code>IndexOutOfBoundsException</code> exception 
+		 is thrown.
+		  
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index to verify
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; The passed-in
+		 			index is not a valid index for this set
+		 </td></tr></table></div><a name="isValidObject()"></a><a name="isValidObject(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidObject</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidObject(o:Object):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in object is valid for this <code>Set</code>
+		 (well-typed, not already present in the set).
+		 <p>
+		 In the case that the object's type prevents it to be added
+		 as element for this set the method will throw
+		 a <code>ClassCastException</code>.
+		 </p> 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object is valid
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this set
+		 </td></tr></table></div><a name="isValidType()"></a><a name="isValidType(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidType(o:Object):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in object type match the current 
+		 <code>Set</code> element's type. 
+		 <p>
+		 In the case that the set is untyped the function will
+		 always returns <code>true</code>.
+		 </p><p>
+		 In the case that the object's type prevents it to be added
+		 as element for this set the method will throw
+		 a <code>ClassCastException</code>.
+		 </p> 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>Object</code> to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object is elligible for this
+		 			set object, either <code>false</code>.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this set
+		 </td></tr></table></div><a name="iterator()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">iterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function iterator():<a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></code><p></p><p></p><p>
+		 Returns an iterator over the elements in this set. 
+		 The elements are returned in no particular order (unless this
+		 set is an instance of some class that provides
+		 a guarantee).
+		 		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></code> &mdash; an iterator over the elements in this set.
+		 </td></tr></table></div><a name="lastIndexOf()"></a><a name="lastIndexOf(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">lastIndexOf</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function lastIndexOf(o:Object):int</code><p></p><p></p><p>
+		 Returns the index of the last occurrence of the specified
+		 object in this <code>Set</code>.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; the desired component.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>int</code> &mdash; the index of the first occurrence of the object argument
+		 		   	in this stack, that is, the largest value <code>k</code>
+		 		   	such that <code>(elem === elementData[k])</code> is true;
+		 		   	returns <code>-1</code> if the object is not found.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this stack	
+		 </td></tr></table></div><a name="listIterator()"></a><a name="listIterator(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">listIterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function listIterator(index:uint = 0):<a href="../../../net/pixlib/collections/ListIterator.html">ListIterator</a></code><p></p><p></p><p>
+		 Returns a list iterator of the elements in this list
+		 (in proper sequence), starting at the specified position
+		 in the list. The specified index indicates the first
+		 element that would be returned by an initial call to
+		 the next method. An initial call to the previous method
+		 would return the element with the specified index minus one.
+		 <p>
+		 This implementation returns a straightforward implementation
+		 of the ListIterator interface that extends the implementation
+		 of the Iterator interface returned by the iterator() method.
+		 The ListIterator implementation relies on the backing list's
+		 <code>get(int)</code>, <code>set(int, Object)</code>, 
+		 <code>add(int, Object)</code> and <code>remove(int)</code>
+		 methods.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> (default = <code>0</code>)<code></code> &mdash; 	<code>uint</code> index of the first element
+		 					to be returned from	the list iterator (by
+		 					a call to the next method).
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/ListIterator.html">ListIterator</a></code> &mdash; a list iterator of the elements in this list (in proper sequence),
+		         	starting at the specified position in the list.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; index is out of range
+		 		   	(index &lt; 0 || index > size()).
+		 </td></tr></table></div><a name="matchType()"></a><a name="matchType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">matchType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function matchType(o:*):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in object type match the current 
+		 set element's type. 
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object is elligible for this
+		 			set object, either <code>false</code>.
+		 </td></tr></table></div><a name="remove()"></a><a name="remove(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">remove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function remove(o:Object):Boolean</code><p></p><p></p><p>
+		 Removes the specified element from this set
+		 if it is present (optional operation). More formally,
+		 removes an element <code>e</code> such that
+		 <code>o === e</code>, if the set contains
+		 such an element. Returns <code>true</code> if the set
+		 contained the specified element (or equivalently, if the
+		 set changed as a result of the call). 
+		 (The set will not contain the specified element
+		 once the call returns.)
+		 		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 	<code>object</code> to be removed from this <code>Set</code>,
+		 				if present.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the set contained the specified element.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this set
+		 </td></tr></table><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Set.remove()</code> method of an untyped set : 
+		 <div class="listing"><pre>
+         var set : Set = new Set();
+         set.add ( "foo" );
+         
+         trace( set.size() ); // 1
+         trace( set.remove( "foo" ) ); // true, the passed-in value have been removed
+         
+         trace( set.size() ); // 0
+         trace( set.remove( "foo" ) ); // false, the passed-in value is no longer stored in this set
+         </pre></div>
+		 
+		 Using the <code>Set.remove()</code> method of a typed set :
+		 
+		 <div class="listing"><pre>
+         var set : Set = new Set( String );
+         set.add ( "foo" );
+         
+         trace( set.size() ); // 1
+         trace( set.remove( "foo" ) ); // true, the passed-in value have been removed
+         
+         // the code below will produce an exception
+         try
+         {
+             set.remove( 45 ); // fail, as the passed-in value is not of type string
+         }
+         catch( e : ClassCastException )
+         {
+             trace ( e );  
+         }
+         </pre></div>
+		 </div></div><a name="removeAll()"></a><a name="removeAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Removes from this set all of its elements that are contained
+		 in the specified collection (optional operation). If the specified
+		 <code>Collection</code> is also a <code>Set</code>, this operation
+		 effectively modifies this set so that its value is the
+		 <i>asymmetric set difference</i> of the two sets.
+		 <p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>removeAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	<code>Collection</code> that defines which elements will be
+		 			  	removed from this set.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this set changed as a result
+		 			of the call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified collection is
+		          <code>null</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.    
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Set.html#remove()" target="">remove()</a><br/><a href="Set.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Set.removeAll()</code> with untyped sets
+		 <div class="listing"><pre>
+         var set1 : Set = new Set();
+         var set2 : Set = new Set();
+         
+         set1.add( 1 );
+         set1.add( 2 );
+         set1.add( 3 );
+         set1.add( 4 );
+         set1.add( "foo1" );
+         set1.add( "foo2" );
+         set1.add( "foo3" );
+         set1.add( "foo4" );
+         
+         set2.add( 1 );
+         set2.add( 3 );
+         set2.add( "foo1" );
+         set2.add( "foo3" );
+         
+         trace ( set1.removeAll ( set2 ) ) ;// true
+         // set1 now contains :
+         // 2, 4, 'foo2', 'foo4' 
+         </pre></div>
+		 </div></div><a name="removeAt()"></a><a name="removeAt(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAt</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAt(index:uint):Boolean</code><p></p><p></p><p>
+		 Removes the element at the specified position in this set.
+		 Shifts any subsequent elements to the right (subtracts one from
+		 their indices).
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index at which to remove an element
+		 				  	from the specified <code>Collection</code>.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object have been removed, false otherwise.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; <p>&mdash; The passed-in
+		 			index is not a valid index for this set
+		 </p></td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Set.html#remove()" target="">remove()</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Set.removeAt</code> method with an untyped set
+		 <div class="listing"><pre>
+         var set : Set = new Set();
+         set.add( "foo1" );
+         set.add( "foo2" );
+         set.add( "foo3" );
+         
+         trace ( set.removeAt( 2 ) ); // return true, 'foo3' have been removed
+         trace ( set.removeAt( 0 ) ); // return true, 'foo1' have been removed  
+                                         // and 'foo2' is now at index 0
+         
+         try
+         {
+             set.removeAt( 1 ); // fail, as set have only one entry at index 0
+         }
+         catch( e : IndexOutOfBoundsException )
+         {
+             trace( e );
+         }
+         </pre></div>
+		 </div></div><a name="retainAll()"></a><a name="retainAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">retainAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function retainAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Retains only the elements in this set that are contained
+		 in the specified collection (optional operation).  In other words,
+		 removes from this set all of its elements that are not
+		 contained in the specified collection.  If the specified collection
+		 is also a <code>Set</code>, this operation effectively modifies this
+		 set so that its value is the <i>intersection</i> of the
+		 two sets.
+		 <p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>retainAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	<code>Collection</code> that defines which elements this
+		 			  	set will retain.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this collection changed as a result of the
+		         	call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified collection is
+		          <code>null</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Set.html#remove()" target="">remove()</a><br/><a href="Set.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Set.retainAll()</code> with untyped sets
+		 <div class="listing"><pre>
+         var set1 : Set = new Set();
+         var set2 : Set = new Set();
+         
+         set1.add( 1 );
+         set1.add( 2 );
+         set1.add( 3 );
+         set1.add( 4 );
+         set1.add( "foo1" );
+         set1.add( "foo2" );
+         set1.add( "foo3" );
+         set1.add( "foo4" );
+         
+         set2.add( 1 );
+         set2.add( 3 );
+         set2.add( "foo1" );
+         set2.add( "foo3" );
+         
+         trace ( set1.retainAll ( set2 ) ) ;// true
+         // set1 now contains :
+         // 1, 3, 'foo1', 'foo3' 
+         </pre></div>
+		 </div></div><a name="set()"></a><a name="set(uint,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">set</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function set(index:uint, o:Object):Object</code><p></p><p></p><p>
+		 Insert the passed-in <code>Object</code> in this set
+		 at the specified <code>index</code>. The method returns
+		 the object previously stored at this index.
+		 <p>
+		 If the passed-in <code>index</code> is not a valid index
+		 for this set, the function throw an 
+		 <code>IndexOutOfBoundsException</code> exception.
+		 </p><p>
+		 If the passed-in object's type prevents it to be added
+		 in this set the function will throw a 
+		 <code>ClassCastException</code>.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index</span>:uint</code> &mdash; 	<code>uint</code> index at which insert the
+		 					passed-in <code>Object</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; 	<code>Object</code> to insert in this set
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; <code>Object</code> previously stored at the specified
+		 			<code>index</code> or null if the insertion haven't been 
+		 			done.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; The passed-in
+		 			index is not a valid index for this set
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this set	
+		 </td></tr></table></div><a name="size()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">size</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function size():uint</code><p></p><p></p><p>
+		 Returns the number of elements in this set (its cardinality). 
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>uint</code> &mdash; <code>Number</code> of elements in this set (its cardinality).
+		 </td></tr></table></div><a name="subList()"></a><a name="subList(uint,uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">subList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function subList(fromIndex:uint, toIndex:uint):<a href="../../../net/pixlib/collections/List.html">List</a></code><p></p><p></p><p>
+	     Returns a view of the portion of this List between fromIndex,
+	     inclusive, and toIndex, exclusive. (If fromIndex and ToIndex
+	     are equal, the returned List is empty.) 
+	     
+	     </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">fromIndex</span>:uint</code> &mdash; 	low endpoint (inclusive) of the subList.
+	     </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">toIndex</span>:uint</code> &mdash; 	high endpoint (exclusive) of the subList.
+	     </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/List.html">List</a></code> &mdash; a view of the specified range within this List.
+	     </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; fromIndex or toIndex are
+	     		   	out of range (index &lt; 0 || index > size()).
+	     </td></tr></table></div><a name="swap()"></a><a name="swap(uint,uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">swap</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function swap(index1:uint, index2:uint):void</code><p></p><p></p><p>
+		Swap two objects stored in the passed-in index
+		<p>
+		If the passed-in <code>index</code> are not valid index
+		for this set, the function throw an 
+		<code>IndexOutOfBoundsException</code> exception.
+		</p><p>
+		</p>
+		</p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">index1</span>:uint</code> &mdash; <code>uint</code> index of the first <code>Object</code>.
+		</td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">index2</span>:uint</code> &mdash; <code>uint</code> index of the second <code>Object</code>.
+		</td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>IndexOutOfBoundsException</code> </code> &mdash; &mdash; The passed-in
+		index are not valid index for this set
+		</td></tr></table></div><a name="toArray()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toArray</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toArray():Array</code><p></p><p></p><p>
+		 Returns an array containing all the elements in this set.
+		 Obeys the general contract of the <code>Collection.toArray</code>
+		 method.
+		 		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Array</code> &mdash; <code>Array</code> containing all of the elements in this set.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Collection.html#toArray()" target="">Collection.toArray()</a></div></div><a name="toString()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toString():String</code><p></p><p></p><p>
+		 Returns the <code>String</code> representation of
+		 this object. 
+		 <p>
+		 The function return a string like
+		 <code>net.pixlib.collection::Set&lt;String&gt;</code>
+		 for a typed collection. The string between the &lt;
+		 and > is the name of the type of the collection's
+		 elements. If the collection is an untyped collection
+		 the function will simply return the result of the
+		 <code>PixlibStringifier.stringify</code> call.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; <code>String</code> representation of
+		 		   this object.
+		 </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->

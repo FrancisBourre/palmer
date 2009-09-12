@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="Range,net.pixlib.structures.Range,height,max,min,width,add,add,addAll,addAllAt,clear,clone,clone,contains,containsAll,equals,equals,fill,getCoordinates,getDefaulValue,getSize,getType,getVal,initContent,inside,isEmpty,isGridCoords,isTyped,isValidCollection,isValidType,iterator,matchType,overlap,remove,removeAll,removeAllAt,removeAt,retainAll,scale,setContent,setDefaultValue,setSize,setSizeWH,setVal,size,size,substract,surround,toArray,toPoint,toString,toString,toString"><title>net.pixlib.structures.Range</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'Range - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/structures/Range.html&amp;net/pixlib/structures/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Range</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Range"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.structures</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  Range</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Range  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><p></p><p></p>
+	 A range represent a space of numeric values.
+	 
+	 Simple examples of <code>Range</code> usage
+	 <div class="listing"><pre>
+       var r1 : Range = new Range(10, 100);
+       var r2 : Range = new Range(5, 50);
+       var r3 : Range = new Range(60, 600);
+       
+       var b1 : Boolean = r1.overlap(r2); //true
+       var b2 : Boolean = r2.overlap(r3); //false
+       var b3 : Boolean = r1.overlap(r3); //true
+     </pre></div>
+	 
+	           <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#max" class="signatureLink">max</a> : Number<div class="summaryTableDescription">
+		 Upper limit of the range.</div></td><td class="summaryTableOwnerCol">Range</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#min" class="signatureLink">min</a> : Number<div class="summaryTableDescription">
+		 Lower limit of the range.</div></td><td class="summaryTableOwnerCol">Range</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#Range()" class="signatureLink">Range</a>(min:Number, max:Number)</div><div class="summaryTableDescription">
+		 Constructs a new Range instance.</div></td><td class="summaryTableOwnerCol">Range</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clone()" class="signatureLink">clone</a>():<a href="../../../net/pixlib/structures/Range.html">Range</a></div><div class="summaryTableDescription">
+		 Returns a copy of the current Range object.</div></td><td class="summaryTableOwnerCol">Range</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#equals()" class="signatureLink">equals</a>(r:<a href="../../../net/pixlib/structures/Range.html">Range</a>):Boolean</div><div class="summaryTableDescription">
+		 Compares the passed-in Range object with the current one.</div></td><td class="summaryTableOwnerCol">Range</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#inside()" class="signatureLink">inside</a>(r:<a href="../../../net/pixlib/structures/Range.html">Range</a>):Boolean</div><div class="summaryTableDescription">
+		 Indicates if passed-in Range instance contain the 
+		 current instance.</div></td><td class="summaryTableOwnerCol">Range</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#overlap()" class="signatureLink">overlap</a>(r:<a href="../../../net/pixlib/structures/Range.html">Range</a>):Boolean</div><div class="summaryTableDescription">
+		 Indicates if passed-in range overlap the current range.</div></td><td class="summaryTableOwnerCol">Range</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#size()" class="signatureLink">size</a>():Number</div><div class="summaryTableDescription">
+		 Returns the size, or length, of the current range.</div></td><td class="summaryTableOwnerCol">Range</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#surround()" class="signatureLink">surround</a>(n:Number):Boolean</div><div class="summaryTableDescription">
+		 Indicates if passed-in value Number is inside range values.</div></td><td class="summaryTableOwnerCol">Range</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toString()" class="signatureLink">toString</a>():String</div><div class="summaryTableDescription">
+		 Returns the string representation of this instance.</div></td><td class="summaryTableOwnerCol">Range</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="max"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">max</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>public var max:Number</code><p></p><p></p><p>
+		 Upper limit of the range.
+		 </p></div><a name="propertyDetail"></a><a name="min"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">min</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public var min:Number</code><p></p><p></p><p>
+		 Lower limit of the range.
+		 </p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="Range()"></a><a name="Range(Number,Number)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">Range</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function Range(min:Number, max:Number)</code><p></p><p>
+		 Constructs a new <code>Range</code> instance.
+		 
+		 <p>Warning : parameter order is important.</p>
+		 
+		 </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">min</span>:Number</code> (default = <code>NaN</code>)<code></code> &mdash; minimum <code>Number</code> value
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">max</span>:Number</code> (default = <code>NaN</code>)<code></code> &mdash; maximum <code>Number</code> value
+		 </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="clone()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function clone():<a href="../../../net/pixlib/structures/Range.html">Range</a></code><p></p><p></p><p>
+		 Returns a copy of the current <code>Range</code> object. 
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/structures/Range.html">Range</a></code> &mdash; A <code>Range</code> object.
+		 </td></tr></table></div><a name="equals()"></a><a name="equals(net.pixlib.structures.Range)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">equals</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function equals(r:<a href="../../../net/pixlib/structures/Range.html">Range</a>):Boolean</code><p></p><p></p><p>
+		 Compares the passed-in <code>Range</code> object with the current one.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">r</span>:<a href="../../../net/pixlib/structures/Range.html">Range</a></code> &mdash; 	A <code>Range</code> to compare.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if passed-in <code>Range</code> is equals to this one, 
+		 			either <code>false</code>
+		 
+		 </td></tr></table></div><a name="inside()"></a><a name="inside(net.pixlib.structures.Range)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">inside</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function inside(r:<a href="../../../net/pixlib/structures/Range.html">Range</a>):Boolean</code><p></p><p></p><p>
+		 Indicates if passed-in <code>Range</code> instance contain the 
+		 current instance.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">r</span>:<a href="../../../net/pixlib/structures/Range.html">Range</a></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if passed-in <code>Range</code> contain this one, 
+		 			either <code>false</code>
+		 </td></tr></table><br/><span class="label"> Example </span><br/><div class="detailBody"><div class="listing"><pre>
+           var r1 : Range = new Range(10, 100);
+           var r2 : Range = new Range(5, 50);
+           var r3 : Range = new Range(40, 80);
+           
+           var b2 : Boolean = r2.inside( r1 ); //false
+           var b3 : Boolean = r3.inside( r1 ); //true
+         </pre></div>
+		 </div></div><a name="overlap()"></a><a name="overlap(net.pixlib.structures.Range)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">overlap</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function overlap(r:<a href="../../../net/pixlib/structures/Range.html">Range</a>):Boolean</code><p></p><p></p><p>
+		 Indicates if passed-in range overlap the current range.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">r</span>:<a href="../../../net/pixlib/structures/Range.html">Range</a></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if passed-in <code>Range</code> overload this one, 
+		 			either <code>false</code>
+		 </td></tr></table><br/><span class="label"> Example </span><br/><div class="detailBody"><div class="listing"><pre>
+           var r1 : Range = new Range(10, 100);
+           var r2 : Range = new Range(5, 50);
+           var r3 : Range = new Range(60, 600);
+           
+           var b1 : Boolean = r1.overlap(r2); //true
+           var b2 : Boolean = r2.overlap(r3); //false
+           var b3 : Boolean = r1.overlap(r3); //true
+         </pre></div>
+		 </div></div><a name="size()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">size</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function size():Number</code><p></p><p></p><p>
+		 Returns the size, or length, of the current range.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Number</code> &mdash; size, or length, of the current range.
+		 </td></tr></table></div><a name="surround()"></a><a name="surround(Number)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">surround</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function surround(n:Number):Boolean</code><p></p><p></p><p>
+		 Indicates if passed-in value <code>Number</code> is inside range values.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">n</span>:Number</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if passed-in <code>Number</code> is inside range,
+		 			either <code>false</code>
+		 </td></tr></table><br/><span class="label"> Example </span><br/><div class="detailBody"><div class="listing"><pre>
+           var r : Range = new Range(10, 100);
+         
+           var b1 : Boolean = r.surround(35); //true
+           var b2 : Boolean = r.surround(127); //false
+           var b3 : Boolean = r.surround(10); //true
+           var b4 : Boolean = r.surround(100); //true
+           var b5 : Boolean = r.surround(5); //false
+         </pre></div>
+		 </div></div><a name="toString()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toString():String</code><p></p><p></p><p>
+		 Returns the string representation of this instance.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; <code>String</code> representation of this instance
+		 </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->

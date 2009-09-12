@@ -1,0 +1,6 @@
+Text for example in net.pixlib.encoding:XMLToObjectDeserializer/protected:getDimension is not valid.
+org.xml.sax.SAXParseException: The entity "gt10" was referenced, but not declared.
+
+Text for example in net.pixlib.encoding:XMLToObjectDeserializer/protected:getRange is not valid.
+org.xml.sax.SAXParseException: The entity "gt10" was referenced, but not declared.
+

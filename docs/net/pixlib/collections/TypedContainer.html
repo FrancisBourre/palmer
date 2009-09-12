@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="TypedContainer,net.pixlib.collections.TypedContainer,_init,add,add,add,add,add,add,add,add,addAll,addAll,addAll,addAll,addAll,addAllAt,addAllAt,addAllAt,addAt,addAt,addAt,clear,clear,clear,clear,clear,clear,clear,columnIterator,contains,contains,contains,contains,contains,containsAll,containsAll,containsAll,containsAll,containsAll,containsKey,containsValue,equals,get,get,get,get,getColumnNames,getItemAt,getItems,getKeys,getLength,getType,getType,getType,getType,getValues,hasNext,hasNext,hasNext,hasNext,hasNext,hasPrevious,hasPrevious,hasPrevious,indexOf,indexOf,indexOf,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isTyped,isTyped,isTyped,isTyped,isValidCollection,isValidCollection,isValidCollection,isValidIndex,isValidIndex,isValidIndexForAdd,isValidObject,isValidType,isValidType,isValidType,iterator,iterator,iterator,iterator,iterator,iterator,lastIndexOf,lastIndexOf,lastIndexOf,listIterator,listIterator,listIterator,matchType,matchType,matchType,matchType,next,next,next,next,next,nextIndex,nextIndex,nextIndex,parseRawData,peek,peek,poll,pop,previous,previous,previous,previousIndex,previousIndex,previousIndex,push,put,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,removeAll,removeAll,removeAll,removeAll,removeAll,removeAt,removeAt,removeAt,retainAll,retainAll,retainAll,retainAll,retainAll,search,set,set,set,set,set,set,size,size,size,size,size,size,subList,subList,subList,swap,toArray,toArray,toArray,toArray,toArray,toString,toString,toString,toString,toString,toString"><title>net.pixlib.collections.TypedContainer</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'TypedContainer - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/collections/TypedContainer.html&amp;net/pixlib/collections/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">TypedContainer</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("TypedContainer"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.collections</a></td></tr><tr><td class="classHeaderTableLabel">Interface</td><td class="classSignature">public  interface  TypedContainer</td></tr><tr><td class="classHeaderTableLabel">Implementors</td><td> <a href="../../../net/pixlib/core/AbstractLocator.html">AbstractLocator</a>,  <a href="../../../net/pixlib/structures/Grid.html">Grid</a>,  <a href="../../../net/pixlib/collections/Queue.html">Queue</a>,  <a href="../../../net/pixlib/collections/Set.html">Set</a>,  <a href="../../../net/pixlib/collections/Stack.html">Stack</a></td></tr></table><p></p><p></p><p></p>
+	 A <code>TypedContainer</code> allow collections and data structures 
+	 to provide runtime type checking over their elements.
+	 <p>
+	 A typed container does not define how elements are inserted into
+	 the container, but provides convenient methods to check type 
+	 of these elements and to know if the container is typed and which
+	 type the container support.
+	 </p>
+               <p>
+	 By convention, the constructor of an implementation of the 
+	 <code>TypedContainer</code> interface will define an optional argument
+	 <code>type</code> such <code>type : Class = null</code> which let
+	 the user of the class define if the container is typed and which 
+	 type the container support.
+	 </p>
+               <p>
+	 When dealing with typed and untyped container, the following rules apply : 
+	 <ul>
+	                    <li>Two typed container, which have the same type, can collaborate each other.</li>
+	                    <li>Two untyped container can collaborate each other.</li>
+	                    <li>An untyped container can add, remove, retain or contains any typed container
+	 of any type without throwing errors.</li>
+	                    <li>A typed container will always fail when attempting to add, remove, retain
+	 or contains an untyped container.</li>
+	                 </ul>
+	              </p> 
+	           <p></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="Queue.html" target="">Queue</a><br/><a href="Set.html" target="">Set</a><br/><a href="Stack.html" target="">Stack</a></div><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getType()" class="signatureLink">getType</a>():Class</div><div class="summaryTableDescription">
+		 Return the class type of elements in this container.</div></td><td class="summaryTableOwnerCol">TypedContainer</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isTyped()" class="signatureLink">isTyped</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this container perform a verification
+		 of the type of elements.</div></td><td class="summaryTableOwnerCol">TypedContainer</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#matchType()" class="signatureLink">matchType</a>(o:*):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in object type match the current 
+		 container element's type.</div></td><td class="summaryTableOwnerCol">TypedContainer</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="getType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function getType():Class</code><p></p><p></p><p>
+		 Return the class type of elements in this container.
+		 <p>
+		 An untyped container returns <code>null</code>, as the
+		 wildcard type (<code>*</code>) is not a <code>Class</code>
+		 and <code>Object</code> class doesn't fit for primitive types.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Class</code> &mdash; <code>Class</code> type of the container's elements
+		 </td></tr></table></div><a name="isTyped()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isTyped</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isTyped():Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this container perform a verification
+		 of the type of elements.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this container perform a verification
+		 			of the type of elements.
+		 </td></tr></table></div><a name="matchType()"></a><a name="matchType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">matchType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function matchType(o:*):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in object type match the current 
+		 container element's type. 
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object is elligible for this
+		 			container, either <code>false</code>.
+		 </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->

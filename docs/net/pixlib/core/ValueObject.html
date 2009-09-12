@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="ValueObject,net.pixlib.core.ValueObject"><title>net.pixlib.core.ValueObject</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'ValueObject - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/core/ValueObject.html&amp;net/pixlib/core/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">ValueObject</td><td class="titleTableSubNav" id="subNav" align="right"></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("ValueObject"); titleBar_setSubNav(false,false,false,false,false,false,false,false,false,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.core</a></td></tr><tr><td class="classHeaderTableLabel">Interface</td><td class="classSignature">public  interface  ValueObject</td></tr><tr><td class="classHeaderTableLabel">Implementors</td><td> <a href="../../../net/pixlib/services/AMFServiceHelper.html">AMFServiceHelper</a>,  <a href="../../../net/pixlib/ioc/assembler/locator/ChannelListener.html">ChannelListener</a>,  <a href="../../../net/pixlib/ioc/assembler/locator/Constructor.html">Constructor</a>,  <a href="../../../net/pixlib/media/video/CuePoint.html">CuePoint</a>,  <a href="../../../net/pixlib/ioc/display/DisplayLoaderInfo.html">DisplayLoaderInfo</a>,  <a href="../../../net/pixlib/ioc/assembler/builder/DisplayObjectInfo.html">DisplayObjectInfo</a>,  <a href="../../../net/pixlib/services/HTTPServiceHelper.html">HTTPServiceHelper</a>,  <a href="../../../net/pixlib/ioc/assembler/locator/Import.html">Import</a>,  <a href="../../../net/pixlib/ioc/assembler/locator/Method.html">Method</a>,  <a href="../../../net/pixlib/ioc/assembler/locator/Property.html">Property</a>,  <a href="../../../net/pixlib/ioc/assembler/locator/Resource.html">Resource</a>,  <a href="../../../net/pixlib/services/SharedObjectServiceHelper.html">SharedObjectServiceHelper</a></td></tr></table><p></p><p></p><p></p>
+	 Some entities contain a group of attributes that are always
+	 accessed together. Accessing these attributes in a fine-grained
+	 manner through a remote interface causes network traffic and high
+	 latency, and consumes server resources unnecessarily.
+	 <p>
+	 A value object (also known as transfer object) is a serializable
+	 class that groups related attributes, forming a composite value.
+	 This class is used as the return type of a remote business method.
+	 Clients receive instances of this class by calling coarse-grained
+	 business methods, and then locally access the fine-grained values
+	 within the value object. Fetching multiple values in one server
+	 roundtrip decreases network traffic and minimizes latency and
+	 server resource usage.
+	 </p>
+               <p>
+	 When a web-service uses a Value Object, the client makes
+	 a single remote method invocation to the web-service to request
+	 the Value Object instead of numerous remote method calls to get
+	 individual attribute values. The web-service then constructs
+	 a new Value Object instance, copies values into the object
+	 and returns it to the client. The client receives the Value Object
+	 and can then invoke accessor (or getter) methods on the Value Object
+	 to get the individual attribute values from the Transfer Object.
+	 Or, the implementation of the Value Object may be such that it makes
+	 all attributes public. Because the Value Object is passed by value
+	 to the client, all calls to the Value Object instance are local
+	 calls instead of remote method invocations.
+	 </p>
+	 
+	           <p></p><br/><hr></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->
