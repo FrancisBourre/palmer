@@ -37,7 +37,7 @@ package net.pixlib.load.strategy
 		 * 	<li>Whether or not to check for the existence of a policy file upon loading the object</li>
 		 * 	<li>The ApplicationDomain for the loaded object</li>
 		 * 	<li>The SecurityDomain for the loaded object</li>
-		 *</ul>
+		 * </ul>
 		 *
 		 * <p>For complete details, see the description of the properties in the 
 		 * <a href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/system/LoaderContext.html" target="_blank">LoaderContext</a> class.</p>

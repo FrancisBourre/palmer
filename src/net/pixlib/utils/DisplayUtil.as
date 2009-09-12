@@ -79,7 +79,7 @@ package net.pixlib.utils
 		 * Resizes passed-in <code>object</code> in <code>max</code> dimension.
 		 * 
 		 * <p>If <code>debug</code> is <code>true</code>, logs source and 
-		 * result dimension using <strong>Palmer</string> Loggin API.</p>
+		 * result dimension using <strong>Palmer</strong> Loggin API.</p>
 		 * 
 		 * @param object	Object to resize
 		 * @param max		Maximum dimension for resizing

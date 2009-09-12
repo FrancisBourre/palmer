@@ -96,7 +96,7 @@ package net.pixlib.events
 		
 		/**
 		 * Returns the <code>EventBroadcaster</code> object associated with
-		 * the passed-in <code>channel<code>. The <code>owner</code> is an optionnal
+		 * the passed-in <code>channel</code>. The <code>owner</code> is an optionnal
 		 * parameter which is used to initialize the newly created <code>EventBroadcaster</code>
 		 * when there is no broadcaster for this channel.
 		 * <p>
@@ -108,7 +108,7 @@ package net.pixlib.events
 		 * @param	owner	an optional object which will used as source if there
 		 * 					is no broadcaster associated to the channel
 		 * @return	the <code>EventBroadcaster</code> object associated with
-		 * 			the passed-in <code>channel<code>
+		 * 			the passed-in <code>channel</code>
 		 */
 		override public function getChannelDispatcher ( channel : EventChannel = null, owner : Object = null ) : Broadcaster
 		{

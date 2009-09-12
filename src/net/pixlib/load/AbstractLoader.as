@@ -157,7 +157,7 @@ package net.pixlib.load
 		}
 
 		/**
-		 * @inheritDoc
+		 * 
 		 */
 		public function load( url : URLRequest = null, context : LoaderContext = null ) : void
 		{

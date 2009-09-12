@@ -25,40 +25,40 @@ package net.pixlib.collections
 	 * 
 	 * <p>Unlike sets, lists typically allow duplicate elements.
 	 * More formally, lists typically allow pairs of elements
-	 * e1 and e2 such that e1 === e2, and they typically
-	 * allow multiple null elements if they allow null elements
-	 * at all. It is not inconceivable that someone might wish
-	 * to implement a list that prohibits duplicates, by throwing
+	 * e1 and e2 such that e1 strictly equals e2, and they typically
+	 * allow multiple <code>null</code> elements if they allow null 
+	 * elements at all. It is not inconceivable that someone might 
+	 * wish to implement a list that prohibits duplicates, by throwing
 	 * runtime exceptions when the user attempts to insert them,
 	 * but we expect this usage to be rare.</p>
 	 * 
-	 * <p>The List interface places additional stipulations,
-	 * beyond those specified in the Collection interface,
+	 * <p>The <code>List</code> interface places additional stipulations,
+	 * beyond those specified in the <code>Collection</code> interface,
 	 * on the contracts of the iterator, add and remove methods. 
 	 * Declarations for other inherited methods are also included
 	 * here for convenience.</p>
 	 * 
-	 * <p>The List interface provides four methods for positional
-	 * (indexed) access to list elements. Lists (like arrays)
+	 * <p>The <code>List</code> interface provides four methods for 
+	 * positional (indexed) access to list elements. Lists (like arrays)
 	 * are zero based. Note that these operations may execute in
 	 * time proportional to the index value for some implementations.
 	 * Thus, iterating over the elements in a list is typically
 	 * preferable to indexing through it if the caller does
 	 * not know the implementation.</p>
 	 * 
-	 * <p>The List interface provides a special iterator, called
-	 * a ListIterator, that allows element insertion and replacement,
-	 * and bidirectional access in addition to the normal operations
-	 * that the Iterator interface provides. A method is provided to
-	 * obtain a list iterator that starts at a specified position
-	 * in the list.</p>
+	 * <p>The <code>List</code> interface provides a special iterator, 
+	 * called a <code>ListIterator</code>, that allows element insertion 
+	 * and replacement, and bidirectional access in addition to the normal 
+	 * operations that the <code>Iterator</code> interface provides. 
+	 * A method is provided to obtain a list iterator that starts at a 
+	 * specified position in the list.</p>
 	 * 
-	 * <p>The List interface provides two methods to search for
+	 * <p>The <code>List</code> interface provides two methods to search for
 	 * a specified object. From a performance standpoint, these
 	 * methods should be used with caution. In many implementations
 	 * they will perform costly linear searches.</p>
 	 * 
-	 * <p>The List interface provides two methods to efficiently
+	 * <p>The <code>List</code> interface provides two methods to efficiently
 	 * insert and remove multiple elements at an arbitrary point
 	 * in the list.</p>
 	 * 
@@ -67,7 +67,8 @@ package net.pixlib.collections
 	 * implementations prohibit null elements, and some have
 	 * restrictions on the types of their elements. Attempting
 	 * to add an ineligible element throws an unchecked exception,
-	 * typically NullPointerException or ClassCastException.
+	 * typically <code>NullPointerException</code> or 
+	 * <code>ClassCastException</code>.
 	 * Attempting to query the presence of an ineligible element
 	 * may throw an exception, or it may simply return false;
 	 * some implementations will exhibit the former behavior
@@ -102,7 +103,7 @@ package net.pixlib.collections
 		 * @throws 	<code>IllegalArgumentException</code> — if some aspect of the specified
 		 * 		   	element prevents it from being added to this list.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — if the index is out of range
-		 * 		   	(index < 0 || index > size()).
+		 * 		   	(index &lt; 0 || index > size()).
 		 */
 		function addAt ( index : uint, o : Object ) : void;
 		
@@ -131,7 +132,7 @@ package net.pixlib.collections
 		 * @throws 	<code>IllegalArgumentException</code> — if some aspect of an element in the
 		 * 		   	specified collection prevents it from being added to this list.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — if the index is out of range
-		 * 		   	(index < 0 || index > size()).
+		 * 		   	(index &lt; 0 || index &gt; size()).
 		 */
 		function addAllAt ( index : uint, c : Collection ) : Boolean
 		
@@ -141,7 +142,7 @@ package net.pixlib.collections
 		 * @param 	index	index of element to return.
 		 * @return 	the element at the specified position in this list.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — if the index is out of range
-		 * 		   	(index < 0 || index >= size()).
+		 * 		   	(index &lt; 0 || index >= size()).
 		 */
 		function get ( index : uint ) : Object;
 		
@@ -196,7 +197,7 @@ package net.pixlib.collections
 		 * 		   	(in proper sequence), starting at the specified
 		 * 		   	position in this list.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — if the index is out of
-		 * 		   	range (index < 0 || index > size()).
+		 * 		   	range (index &lt; 0 || index &gt; size()).
 		 */
 		function listIterator ( index : uint = 0 ) : ListIterator;
 		
@@ -211,7 +212,7 @@ package net.pixlib.collections
 		 * @throws 	<code>UnsupportedOperationException</code> — if the remove method
 		 * 		   	is not supported by this list.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — if the index is out of range
-		 * 		   	(index < 0 || index >= size()).
+		 * 		   	(index &lt; 0 || index >= size()).
 		 */
 		function removeAt ( index : uint ) : Boolean;
 		
@@ -231,7 +232,7 @@ package net.pixlib.collections
 		 * @throws 	<code>IllegalArgumentException</code> — if some aspect of the
 		 * 		   	specified element prevents it from being added to this list.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — if the index is out of range
-		 * 		   	(index < 0 || index >= size()).
+		 * 		   	(index &lt; 0 || index &gt;= size()).
 		 */
 		function set ( index : uint, o : Object ) : Object;
 		
@@ -267,7 +268,7 @@ package net.pixlib.collections
 		 * @param 	toIndex 	high endpoint (exclusive) of the subList.
 		 * @return 	a view of the specified range within this list.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — for an illegal endpoint index
-		 * 		   	value (fromIndex < 0 || toIndex > size || fromIndex > toIndex).
+		 * 		   	value (fromIndex &lt; 0 || toIndex &gt; size || fromIndex &gt; toIndex).
 		 */
 		function subList ( fromIndex : uint, toIndex : uint ) : List;
 	}

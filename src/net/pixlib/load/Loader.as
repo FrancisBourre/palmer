@@ -105,12 +105,36 @@ package net.pixlib.load
 		function getStrategy() : LoadStrategy;
 		
 		/**
-		 * @copy net.pixlib.events.Broadcaster#addListener()
+		 * Adds the passed-in listener as listener for all events dispatched
+		 * by this event broadcaster. The function returns <code>true</code>
+		 * if the listener have been added at the end of the call. If the
+		 * listener is already registered in this event broadcaster the function
+		 * returns <code>false</code>.
+		 * <p>
+		 * Note : The <code>addListener</code> function doesn't accept functions
+		 * as listener, functions could only register for a single event.
+		 * </p>
+		 * @param	listener	the listener object to add as global listener
+		 * @return	<code>true</code> if the listener have been added during this call
+		 * @throws 	<code>IllegalArgumentException</code> — If the passed-in listener
+		 * 			listener doesn't match the listener type supported by this event
+		 * 			broadcaster
+		 * @throws 	<code>IllegalArgumentException</code> — If the passed-in listener
+		 * 			is a function
 		 */
 		function addListener( listener : LoaderListener ) : Boolean;
 		
 		/**
-		 * @copy net.pixlib.events.Broadcaster#removeListener()
+		 * Removes the passed-in listener object from this event
+		 * broadcaster. The object is removed as listener for all
+		 * events the broadcaster may dispatch.
+		 * 
+		 * @param	listener	the listener object to remove from
+		 * 						this event broadcaster object
+		 * @return	<code>true</code> if the object have been successfully
+		 * 			removed from this event broadcaster
+		 * @throws 	<code>IllegalArgumentException</code> — If the passed-in listener
+		 * 			is a function
 		 */
 		function removeListener( listener : LoaderListener ) : Boolean;
 		

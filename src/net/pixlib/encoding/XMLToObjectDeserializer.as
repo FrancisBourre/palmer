@@ -277,7 +277,7 @@ package net.pixlib.encoding
 		 * @example
 		 * <pre class="prettyprint">
 		 * 
-		 * &lt;node type="Dimension"&gt10,100&lt;/node&gt;
+		 * &lt;node type="Dimension"&gt;10,100&lt;/node&gt;
 		 * </pre>
 		 * 
 		 * @param	node	XML Node with dimension informations
@@ -305,7 +305,7 @@ package net.pixlib.encoding
 		 * @example
 		 * <pre class="prettyprint">
 		 * 
-		 * &lt;node type="Dimension"&gt10,10&lt;/node&gt;
+		 * &lt;node type="Dimension"&gt;10,10&lt;/node&gt;
 		 * </pre>
 		 * 
 		 * @param	node	XML Node with range informations

@@ -137,7 +137,7 @@ package net.pixlib.collections
 		 * 					element is to be inserted.
 		 * @param	o 		element to be inserted.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — index is out of range
-		 * 		   	(index < 0 || index > size()).
+		 * 		   	(index &lt; 0 || index &gt; size()).
 		 * @throws 	<code>ClassCastException</code> — if the class of the specified
 		 * 		   	element prevents it from being added to this list.
 		 * @see		#add() add()
@@ -199,7 +199,7 @@ package net.pixlib.collections
 		 * @param 	c 		elements to be inserted into this stack.
 		 * @return 	<code>true</code> if this stack changed as a result of the call.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — index is out of range
-		 * 		   	(index < 0 || index > size()).
+		 * 		   	(index &lt; 0 || index &gt; size()).
 		 * @throws 	<code>ClassCastException</code> — if the class of an element of
 		 * 			the specified collection prevents it from being added to this collection.
 	     * @throws 	<code>NullPointerException</code> — if the passed in collection is null.
@@ -530,7 +530,7 @@ package net.pixlib.collections
 		 * @param	o 	an object to search in the stack
 		 * @return	the index of the first occurrence of the object argument
 		 * 		   	in this stack, that is, the smallest value <code>k</code>
-		 * 		   	such that <code>(elem === elementData[k]) && (k >= index)</code>
+		 * 		   	such that <code>(elem === elementData[k]) &amp;&amp; (k &gt;= index)</code>
 		 * 		   	is true; returns <code>-1</code> if the object is not found.
 		 * @throws 	<code>ClassCastException</code> — If the object's type
 		 * 			prevents it to be added into this stack
@@ -546,7 +546,7 @@ package net.pixlib.collections
 		 * @param	o 	an object
 		 * @return	the index of the first occurrence of the object argument
 		 * 		   	in this stack, that is, the smallest value <code>k</code>
-		 * 		   	such that <code>(elem === elementData[k]) && (k >= index)</code>
+		 * 		   	such that <code>(elem === elementData[k]) &amp;&amp; (k &gt;= index)</code>
 		 * 		   	is true; returns <code>-1</code> if the object is not found.
 		 * @throws 	<code>ClassCastException</code> — If the object's type
 		 * 			prevents it to be added into this stack
@@ -622,7 +622,7 @@ package net.pixlib.collections
 		 * @return 	a list iterator of the elements in this list (in proper sequence),
 		 *         	starting at the specified position in the list.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — index is out of range
-		 * 		   	(index < 0 || index > size()).
+		 * 		   	(index &lt; 0 || index &gt; size()).
 		 */
 		public function listIterator ( index : uint = 0 ) : ListIterator
 		{
@@ -745,7 +745,7 @@ package net.pixlib.collections
 	     * @param	toIndex 	high endpoint (exclusive) of the subList.
 	     * @return 	a view of the specified range within this List.
 	     * @throws 	<code>IndexOutOfBoundsException</code> — fromIndex or toIndex are
-	     * 		   	out of range (index < 0 || index > size()).
+	     * 		   	out of range (index &lt; 0 || index &gt; size()).
 	     */
 	    public function subList ( fromIndex:uint, toIndex:uint ) : List
 		{
@@ -758,11 +758,11 @@ package net.pixlib.collections
 
 		/**
 		 * Verify that the passed-in <code>uint</code> index is a
-		 * valid index for this </code>Stack</code>. If not, an 
+		 * valid index for this <code>Stack</code>. If not, an 
 		 * <code>IndexOutOfBoundsException</code> exception is
 		 * thrown.
 		 *  
-		 * @param	index 	<code>uint<code> index to verify
+		 * @param	index 	<code>uint</code> index to verify
 		 * @throws 	<code>IndexOutOfBoundsException</code> — The passed-in
 		 * 			index is not a valid index for this stack
 		 */
@@ -857,7 +857,7 @@ package net.pixlib.collections
 		 * </p> 
 		 * @param	o <code>Object</code> to verify
 		 * @return  <code>true</code> if the object is elligible for this
-		 * 			stack object, either <cod>false</code>.
+		 * 			stack object, either <code>false</code>.
 		 * @throws 	<code>ClassCastException</code> — If the object's type
 		 * 			prevents it to be added into this stack
 		 */

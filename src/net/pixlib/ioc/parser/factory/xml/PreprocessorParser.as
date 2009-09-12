@@ -43,7 +43,7 @@ package net.pixlib.ioc.parser.factory.xml
 	 * 	<li>ApplicationLoader.addProcessingMethod() job</li>
 	 * 	<li>ApplicationLoader.addProcessor() job</li>
 	 * 	<li>ContextPreprocessorLoader job</li>
-	 * </ul>  
+	 * </ul></p>  
 	 * 
 	 * @example Basic Processor to insert a node into xml context
 	 * <pre class="prettyprint">
@@ -97,7 +97,7 @@ package net.pixlib.ioc.parser.factory.xml
 	 * &lt;preprocessor type="com.project.TestProcessor" url="TestProcessorDLL.swf" method="customMethod" /&gt; 
 	 * </pre>
 	 * 
-	 * <p>Instance arguments are allowed, also <code>factory</code> and <code>singleton-access</code> too.
+	 * <p>Instance arguments are allowed, also <code>factory</code> and <code>singleton-access</code> too.</p>
 	 * 
 	 * @see net.pixlib.ioc.context.processor.ContextProcessor
 	 * 
@@ -114,7 +114,7 @@ package net.pixlib.ioc.parser.factory.xml
 		 * transform xml context data.
 		 * 
 		 * <p>Used only when <code>method</code> attribute is not 
-		 * defined in preprocessor xml node.
+		 * defined in preprocessor xml node.</p>
 		 * 
 		 * @default process
 		 * 

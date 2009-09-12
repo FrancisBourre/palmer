@@ -24,7 +24,7 @@ package net.pixlib.collections
 	/**
 	 * A collection that contains no duplicate elements. More formally, sets
 	 * contain no pair of elements <code>e1</code> and <code>e2</code> such that
-	 * <code>e1 === e2</code>, and at most one null element. As implied by
+	 * e1 strictly equals e2, and at most one null element. As implied by
 	 * its name, this interface models the mathematical <i>set</i> abstraction.
 	 * <p>
 	 * The <code>Set</code> class places additional stipulations, beyond those
@@ -57,7 +57,7 @@ package net.pixlib.collections
 	 * @see 	Collection
 	 * @see		TypedContainer
 	 * @example Using an untyped <code>Set</code>
-	 * <listing>
+	 * <pre>
 	 * var set : Set = new Set();
 	 * 
 	 * set.add( "foo" );
@@ -68,10 +68,10 @@ package net.pixlib.collections
 	 * set.add( false );
 	 * 
 	 * trace( set.size() ); // 3
-	 * </listing>
+	 * </pre>
 	 * 
 	 * Using a typed <code>Set</code>
-	 * <listing>
+	 * <pre>
 	 * var set : Set = new Set( String );
 	 * 
 	 * set.add( "foo" );
@@ -87,7 +87,7 @@ package net.pixlib.collections
 	 * set.add( "hello" );
 	 * 
 	 * trace( set.size() ); // 2
-	 * </listing>
+	 * </pre>
 	 */	
 	public class Set 
 		implements List, TypedContainer
@@ -183,7 +183,7 @@ package net.pixlib.collections
 		 * 					element is to be inserted.
 		 * @param	o 		element to be inserted.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — index is out of range
-		 * 		   	(index < 0 || index > size()).
+		 * 		   	(index &lt; 0 || index &gt; size()).
 		 * @throws 	<code>ClassCastException</code> — if the class of the specified
 		 * 		   	element prevents it from being added to this list.
 		 * @see		#add() add()
@@ -343,7 +343,7 @@ package net.pixlib.collections
 		 * @param 	c 		elements to be inserted into this stack.
 		 * @return 	<code>true</code> if this set changed as a result of the call.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — index is out of range
-		 * 		   	(index < 0 || index > size()).
+		 * 		   	(index &lt; 0 || index &gt; size()).
 		 * @throws 	<code>ClassCastException</code> — if the class of an element of
 		 * 			the specified collection prevents it from being added to this collection.
 	     * @throws 	<code>NullPointerException</code> — if the passed in collection is null.
@@ -769,7 +769,7 @@ package net.pixlib.collections
 		 * @return 	a list iterator of the elements in this list (in proper sequence),
 		 *         	starting at the specified position in the list.
 		 * @throws 	<code>IndexOutOfBoundsException</code> — index is out of range
-		 * 		   	(index < 0 || index > size()).
+		 * 		   	(index &lt; 0 || index &gt; size()).
 		 */
 		public function listIterator( index : uint = 0 ) : ListIterator
 		{
@@ -786,7 +786,7 @@ package net.pixlib.collections
 	     * @param	toIndex 	high endpoint (exclusive) of the subList.
 	     * @return 	a view of the specified range within this List.
 	     * @throws 	<code>IndexOutOfBoundsException</code> — fromIndex or toIndex are
-	     * 		   	out of range (index < 0 || index > size()).
+	     * 		   	out of range (index &lt; 0 || index &gt; size()).
 	     */
 	    public function subList( fromIndex:uint, toIndex:uint ) : List
 		{
@@ -868,11 +868,11 @@ package net.pixlib.collections
 
 		/**
 		 * Verify that the passed-in <code>uint</code> index is a
-		 * valid index for this </code>Set</code>. If not, an 
+		 * valid index for this <code>Set</code>. If not, an 
 		 * <code>IndexOutOfBoundsException</code> exception is
 		 * thrown.
 		 *  
-		 * @param	index 	<code>uint<code> index to verify
+		 * @param	index 	<code>uint</code> index to verify
 		 * @throws 	<code>IndexOutOfBoundsException</code> — The passed-in
 		 * 			index is not a valid index for this set
 		 */
@@ -887,11 +887,11 @@ package net.pixlib.collections
 		}
 		/**
 		 * Verify that the passed-in <code>uint</code> index is a
-		 * valid index for an insertion in this </code>Set</code>. 
+		 * valid index for an insertion in this <code>Set</code>. 
 		 * If not, an <code>IndexOutOfBoundsException</code> exception 
 		 * is thrown.
 		 *  
-		 * @param	index 	<code>uint<code> index to verify
+		 * @param	index 	<code>uint</code> index to verify
 		 * @throws 	<code>IndexOutOfBoundsException</code> — The passed-in
 		 * 			index is not a valid index for this set
 		 */
@@ -1000,7 +1000,7 @@ package net.pixlib.collections
 		 * </p> 
 		 * @param	o <code>Object</code> to verify
 		 * @return  <code>true</code> if the object is elligible for this
-		 * 			set object, either <cod>false</code>.
+		 * 			set object, either <code>false</code>.
 		 * @throws 	<code>ClassCastException</code> — If the object's type
 		 * 			prevents it to be added into this set
 		 */
@@ -1063,7 +1063,7 @@ package net.pixlib.collections
 		 * Return the class type of element in this set object.
 		 * <p>
 		 * An untyped set returns <code>null</code>, as the
-		 * wildcard type (<code>*</code>) is not a <code>Class</code>
+		 * wildcard type (<code>~~</code>) is not a <code>Class</code>
 		 * and <code>Object</code> class doesn't fit for primitive types.
 		 * </p>
 		 * @return <code>Class</code> type of the set's elements

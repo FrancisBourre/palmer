@@ -59,23 +59,23 @@ package net.pixlib.ioc.display
 		 * @param	state	IoC engine state<br />
 		 * Possible values are : 
 		 * <dl>
-		 * 	<dt>PARSE
-		 * 	<dd>Engine parse the xml context file
+		 * 	<dt>PARSE</dt>
+		 * 	<dd>Engine parse the xml context file</dd>
 		 * 	
-		 * 	<dt>DLL
-		 * 	<dd>DLL section starts loading
+		 * 	<dt>DLL</dt>
+		 * 	<dd>DLL section starts loading</dd>
 		 * 	
-		 * 	<dt>RSC
-		 * 	<dd>Resources section starts loading
+		 * 	<dt>RSC</dt>
+		 * 	<dd>Resources section starts loading</dd>
 		 * 	
-		 * 	<dt>GFX
-		 * 	<dd>Display tree starts loading
+		 * 	<dt>GFX</dt>
+		 * 	<dd>Display tree starts loading</dd>
 		 * 	
-		 * 	<dt>BUILD
-		 * 	<dd>Engine build objects, assign channels, and call method-call
+		 * 	<dt>BUILD</dt>
+		 * 	<dd>Engine build objects, assign channels, and call method-call</dd>
 		 * 	
-		 * 	<dt>RUN
-		 * 	<dd>Loading, parsing, building are finished; application is ready.
+		 * 	<dt>RUN</dt>
+		 * 	<dd>Loading, parsing, building are finished; application is ready.</dd>
 		 * </dl>
 		 */
 		function onNameCallback( state : String ) : void;

@@ -126,52 +126,52 @@
 			
 			<!-- PACKAGES DESCRIPTION -->
 			
-			<arg line="-package com.bourre.collection 
+			<arg line="-package net.pixlib.collections 
 						'Contains the collections framework, legacy collection classes.'"/>
 			
-			<arg line="-package com.bourre.commands 
+			<arg line="-package net.pixlib.commands 
 						'Various interfaces, and their implementations, of the Command pattern.'"/>
 			
-			<arg line="-package com.bourre.core 
+			<arg line="-package net.pixlib.core 
 						'Core utilities for objects handling.'"/>
 		
-			<arg line="-package com.bourre.error 
+			<arg line="-package net.pixlib.exceptions
 						'Custom exceptions class thrown by LowRA components.'"/>
 			
-			<arg line="-package com.bourre.events 
+			<arg line="-package net.pixlib.events 
 						'Provides interfaces and classes for dealing with different types
 						 of events fired by LowRA components or for creating your own
 						 event-based components.'"/>
 			
-			<arg line="-package com.bourre.load 
+			<arg line="-package net.pixlib.load 
 						'Contains a complete set of classes for file loading purpose'"/>
 			
-			<arg line="-package com.bourre.load.strategy 
+			<arg line="-package net.pixlib.load.strategy 
 						'Contains custom strategy used by the different loader of LowRA'"/>
 			
-			<arg line="-package com.bourre.log 
+			<arg line="-package net.pixlib.log 
 						'Provides a set of tools application logging and objects stringification'"/>
 			
-			<arg line="-package com.bourre.model
+			<arg line="-package net.pixlib.model
 						'Base objects for model part of the LowRA MVC implementation'"/>
 			
-			<arg line="-package com.bourre.plugin
+			<arg line="-package net.pixlib.plugin
 						'Base objects for plugin creation and communication'"/>
 		
-			<arg line="-package com.bourre.service
+			<arg line="-package net.pixlib.services
 						'Contains abstract classes and utilities for remoting request 
 						 and service-based communication'"/>
 			
-			<arg line="-package com.bourre.transitions
+			<arg line="-package net.pixlib.transitions
 						'Animations framework.'"/>
 			
-			<arg line="-package com.bourre.structures
+			<arg line="-package net.pixlib.structures
 						'Convenient data structures'"/>
 			
-			<arg line="-package com.bourre.utils
+			<arg line="-package net.pixlib.utils
 						'Contains general purpose utility classes and logging layout'"/>
 			
-			<arg line="-package com.bourre.view
+			<arg line="-package net.pixlib.view
 						'Base objects for view part of the LowRA MVC implementation'"/>
 			
 					

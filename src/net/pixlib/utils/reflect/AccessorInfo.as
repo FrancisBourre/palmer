@@ -56,7 +56,7 @@ package net.pixlib.utils.reflect
 		 * <ul>
 		 *   <li>Read only</li>
 		 *   <li>Read and write</li>		 *   <li>Write only</li>
-		 * </ul>
+		 * </ul></p>
 		 * 
 		 * @see #READONLY		 * @see #READWRITE		 * @see #WRITEONLY
 		 */

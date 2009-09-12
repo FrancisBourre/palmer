@@ -296,7 +296,7 @@ package net.pixlib.structures
 		}
 		
 		/** 
-		 * Removes from this grid all of its elements that are contained
+		 * <p>Removes from this grid all of its elements that are contained
 		 * in the specified collection (optional operation). At the end
 		 * of the call there's no occurences of any elements contained
 		 * in the passed-in collection.
@@ -637,7 +637,7 @@ package net.pixlib.structures
 		 * </p> 
 		 * @param	o <code>Object</code> to verify
 		 * @return  <code>true</code> if the object is elligible for this
-		 * 			grid object, either <cod>false</code>
+		 * 			grid object, either <code>false</code>
 		 * @throws 	<code>ClassCastException</code> — If the object's type
 		 * 			prevents it to be added into this grid
 		 */

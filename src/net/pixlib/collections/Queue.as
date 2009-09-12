@@ -654,7 +654,7 @@ package net.pixlib.collections
 		 * Return the class type of elements in this queue object.
 		 * <p>
 		 * An untyped queue returns <code>null</code>, as the
-		 * wildcard type (<code>*</code>) is not a <code>Class</code>
+		 * wildcard type (<code>~~</code>) is not a <code>Class</code>
 		 * and <code>Object</code> class doesn't fit for primitive types.
 		 * </p>
 		 * @return <code>Class</code> type of the queue's elements
@@ -731,7 +731,7 @@ package net.pixlib.collections
 		 * </p> 
 		 * @param	o <code>Object</code> to verify
 		 * @return  <code>true</code> if the object is elligible for this
-		 * 			queue object, either <cod>false</code>.
+		 * 			queue object, either <code>false</code>.
 		 * @throws 	<code>ClassCastException</code> — If the object's type
 		 * 			prevents it to be added into this queue
 		 */

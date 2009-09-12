@@ -137,7 +137,7 @@ package net.pixlib.media.video
 		 * Auto play mode.
 		 * 
 		 * <p>If <code>true</code> video starts playing when 
-		 * loaded ( or buffered ).
+		 * loaded ( or buffered ).</p>
 		 */
 		public function get autoPlay() : Boolean {
 			return _bAutoPlay;
@@ -152,7 +152,7 @@ package net.pixlib.media.video
 		 * Auto resize mode.
 		 * 
 		 * <p>If <code>true</code> video is resized when 
-		 * metadata are received.
+		 * metadata are received.</p>
 		 */
 		public function get autoSize() : Boolean {
 			return _bAutoSize;
@@ -166,7 +166,7 @@ package net.pixlib.media.video
 		/**
 		 * Auto rewind mode.
 		 * 
-		 * <p>If <code>true</code> video is rewinded when finished.
+		 * <p>If <code>true</code> video is rewinded when finished.</p>
 		 */
 		public function get autoRewind() : Boolean {
 			return _bAutoRewind;
@@ -180,7 +180,7 @@ package net.pixlib.media.video
 		/**
 		 * Loop mode.
 		 * 
-		 * <p>If <code>true</code> video restart when finished.
+		 * <p>If <code>true</code> video restart when finished.</p>
 		 */
 		public function get loopPlayback() : Boolean {
 			return _bLoopMode;
