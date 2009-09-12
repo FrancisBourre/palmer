@@ -15,6 +15,7 @@
  */
 package net.pixlib.commands 
 {
+	import net.pixlib.events.CommandEvent;
 	import net.pixlib.commands.MacroCommand;
 	import net.pixlib.events.ObjectEvent;
 	import net.pixlib.exceptions.IllegalStateException;
@@ -292,7 +293,7 @@ package net.pixlib.commands
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		public function onCommandStart( e : Event ) : void
+		public function onCommandStart( e : CommandEvent ) : void
 		{
 			// do nothing.
 		}
@@ -302,7 +303,7 @@ package net.pixlib.commands
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		public function onCommandEnd( e : Event ) : void
+		public function onCommandEnd( e : CommandEvent ) : void
 		{
 			if ( nIndex + 1 < size() )
 			{

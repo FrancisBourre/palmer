@@ -15,6 +15,7 @@
  */
 package net.pixlib.commands 
 {
+	import net.pixlib.events.CommandEvent;
 	import net.pixlib.log.PalmerDebug;
 	import net.pixlib.log.PalmerStringifier;
 	import net.pixlib.transitions.RealTimeBeacon;
@@ -78,13 +79,13 @@ package net.pixlib.commands
 			command.fireCommandEndEvent();
 		}
 
-		public function onCommandStart ( e : Event ) : void
+		public function onCommandStart ( e : CommandEvent ) : void
 		{
 			oBeacon.addTickListener( this );
 			oBeacon.start();
 		}
 
-		public function onCommandEnd ( e : Event ) : void
+		public function onCommandEnd ( e : CommandEvent ) : void
 		{
 			oBeacon.stop();
 			oBeacon.removeTickListener( this );
