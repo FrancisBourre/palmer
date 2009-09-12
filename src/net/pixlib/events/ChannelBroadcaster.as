@@ -209,7 +209,7 @@ package net.pixlib.events
 		
 		/**
 		 * Returns the <code>Broadcaster</code> instance associated with the
-		 * passed-in <code>channel<code>. The <code>owner</code> is an optionnal
+		 * passed-in <code>channel</code>. The <code>owner</code> is an optionnal
 		 * parameter which is used to initialize the newly created <code>Broadcaster</code>
 		 * when there is no broadcaster for this channel.
 		 * 
@@ -217,7 +217,7 @@ package net.pixlib.events
 		 * @param	owner	an optional object which will used as source if there
 		 * 					is no broadcaster associated to the channel
 		 * @return	the <code>Broadcaster</code> instance associated with
-		 * 			the passed-in <code>channel<code>
+		 * 			the passed-in <code>channel</code>
 		 */
 		public function getChannelDispatcher( channel : EventChannel = null, owner : Object = null ) : Broadcaster
 		{
@@ -233,7 +233,7 @@ package net.pixlib.events
 
 		/**
 		 * Removes the <code>Broadcaster</code> instance associated with
-		 * the passed-in <code>channel<code>, and return <code>true</code>
+		 * the passed-in <code>channel</code>, and return <code>true</code>
 		 * if there is a broadcaster and if it have been successfully removed.
 		 * 
 		 * @param	channel	channel for which remove the associated broadcaster
@@ -312,7 +312,7 @@ package net.pixlib.events
 		 * <li>The passed-in listener is a function : 
 		 * A <code>Delegate</code> object is created and then
 		 * added as listener for the event type . There is no restriction on the name
-		 * of the function.
+		 * of the function.</li>
 		 * </ol>
 		 * 
 		 * @param 	type		name of the event for which register the listener

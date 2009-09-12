@@ -15,6 +15,7 @@
  */
 package net.pixlib.commands
 {
+	import net.pixlib.events.CommandEvent;
 	import flash.events.Event;
 
 	/**
@@ -26,12 +27,12 @@ package net.pixlib.commands
 		public var startEventReceived : Event;
 		public var endEventReceived : Event;
 		
-		public function onCommandStart( e : Event ) : void
+		public function onCommandStart( e : CommandEvent ) : void
 		{
 			startEventReceived = e;
 		}
 
-		public function onCommandEnd( e : Event ) : void
+		public function onCommandEnd( e : CommandEvent ) : void
 		{
 			endEventReceived = e;
 		}

@@ -16,13 +16,13 @@
  
 package net.pixlib.ioc.parser 
 {
-	import net.pixlib.events.BasicEvent;
-	import net.pixlib.ioc.load.ApplicationLoader;	
+	import net.pixlib.events.CommandEvent;
+	import net.pixlib.ioc.load.ApplicationLoader;
 
 	/**
 	 * @author Francis Bourre
 	 */
-	public class ContextParserEvent extends BasicEvent
+	public class ContextParserEvent extends CommandEvent
 	{
 		
 		//--------------------------------------------------------------------

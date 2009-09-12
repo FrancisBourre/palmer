@@ -312,7 +312,7 @@ package net.pixlib.events
 		 * <li>The passed-in listener is a function : 
 		 * There is no restriction concerning the name of the function. If the <code>rest</code> 
 		 * is not empty, all elements in it will be used as additional arguments when 
-		 * event callback will happen. 
+		 * event callback will happen. </li>
 		 * </ol>
 		 * 
 		 * @param	type		name of the event for which register the listener

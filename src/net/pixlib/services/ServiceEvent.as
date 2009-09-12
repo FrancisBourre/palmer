@@ -39,5 +39,15 @@ package net.pixlib.services
 		{
 			return _oService ;
 		}
+		
+		public function getResult() : Object
+		{
+			return getService().getResult();
+		}
+		
+		public function getRawResult() : Object
+		{
+			return getService().getRawResult();
+		}
 	}
 }

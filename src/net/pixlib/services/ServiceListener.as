@@ -15,7 +15,7 @@
  */
 package net.pixlib.services 
 {
-	import net.pixlib.events.BasicEvent;
+	import net.pixlib.events.CommandEvent;
 
 	/**
 	 * @author Francis Bourre
@@ -23,4 +23,4 @@ package net.pixlib.services
 	{
 		function onDataResult	( event : ServiceEvent ) : void;
 		function onDataError	( event : ServiceEvent ) : void;
-		function onCommandEnd	( event : BasicEvent ) : void;	}}
+		function onCommandStart	( event : CommandEvent ) : void;		function onCommandEnd	( event : CommandEvent ) : void;	}}

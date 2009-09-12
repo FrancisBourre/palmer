@@ -255,22 +255,6 @@ package net.pixlib.load
 		{
 			return _oEB.removeListener( listener );
 		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function addEventListener( type : String, listener : Object, ... rest ) : Boolean
-		{
-			return _oEB.addEventListener.apply( _oEB, rest.length > 0 ? [ type, listener ].concat( rest ) : [ type, listener ] );
-		}
-		
-		/**
-		 * @inheritDoc
-		 */
-		public function removeEventListener( type : String, listener : Object ) : Boolean
-		{
-			return _oEB.removeEventListener( type, listener );
-		}
 
 		/**
 		 * @inheritDoc

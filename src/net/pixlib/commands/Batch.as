@@ -16,6 +16,7 @@
 package net.pixlib.commands 
 {
 	import net.pixlib.commands.MacroCommand;
+	import net.pixlib.events.CommandEvent;
 	import net.pixlib.plugin.Plugin;
 
 	import flash.events.Event;
@@ -204,7 +205,7 @@ package net.pixlib.commands
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		public function onCommandStart( e : Event ) : void
+		public function onCommandStart( e : CommandEvent ) : void
 		{
 			// do nothing.
 		}
@@ -214,7 +215,7 @@ package net.pixlib.commands
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		public function onCommandEnd( e : Event ) : void
+		public function onCommandEnd( e : CommandEvent ) : void
 		{
 			if( _hasNext( ) )
 			{

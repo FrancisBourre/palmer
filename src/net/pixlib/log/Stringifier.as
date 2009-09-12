@@ -19,7 +19,7 @@ package net.pixlib.log
 	 * Stringifier allow string representation of an object.
 	 * 
 	 * <p>Stringifier interface must be implemented by all stringifier 
-	 * implementations.
+	 * implementations.</p>
 	 * 
 	 * @see BasicStringifier	 * @see PalmerStringifier
 	 * 

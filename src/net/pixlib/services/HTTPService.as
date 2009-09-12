@@ -131,7 +131,7 @@ package net.pixlib.services
 		 */
 		override protected function onExecute( e : Event = null ) : void
 		{
-			super.execute( e );
+			super.onExecute( e );
 
 			if ( _helper is HTTPServiceHelper )
 			{
@@ -185,6 +185,14 @@ package net.pixlib.services
 		public function setVariables( variables : URLVariables ) : void
 		{
 			_request.data = variables;
+		}
+		
+		/**
+		 * 
+		 */
+		public function getVariables() : URLVariables
+		{
+			return _request.data as URLVariables;
 		}
 
 		/**

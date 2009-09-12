@@ -31,7 +31,7 @@ package net.pixlib.commands
 	 * if the operation is paused, suspended (as defined by the
 	 * <code>Suspendable</code> interface or any other interface), the
 	 * object is considered as not running.
-	 * <p>
+	 * </p><p>
 	 * To go further, and to make clear the differents reflections about
 	 * the <i>run</i> concept, I will detail the notion with the loading 
 	 * example. We could consider that a loading is not running inasmuch

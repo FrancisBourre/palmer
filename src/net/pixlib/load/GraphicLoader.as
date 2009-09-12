@@ -99,6 +99,23 @@ package net.pixlib.load
 				}
 			} 
 		}
+
+		/**
+		 * Sets the index of loaded display object in 
+		 * target display list.
+		 * 
+		 * @param	index		Index of loaded display object in target 
+		 * 						display list
+		 */
+		public function setIndex( index : int ) : void
+		{
+			_index = index;
+
+			if ( _target != null )
+			{
+				_target.addChildAt( getDisplayObject( ), _index );
+			} 
+		}
 		
 		/**
 		 * @inheritDoc

@@ -18,6 +18,7 @@ package net.pixlib.ioc.load
 	import net.pixlib.commands.Command;
 	import net.pixlib.commands.CommandListener;
 	import net.pixlib.commands.Delegate;
+	import net.pixlib.events.CommandEvent;
 	import net.pixlib.exceptions.NullPointerException;
 	import net.pixlib.ioc.assembler.ApplicationAssembler;
 	import net.pixlib.ioc.assembler.DefaultApplicationAssembler;
@@ -45,7 +46,6 @@ package net.pixlib.ioc.load
 	import net.pixlib.log.PalmerDebug;
 
 	import flash.display.DisplayObjectContainer;
-	import flash.events.Event;
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
 
@@ -339,7 +339,7 @@ package net.pixlib.ioc.load
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		public function onCommandStart( e : Event ) : void
+		public function onCommandStart( e : CommandEvent ) : void
 		{
 			// do nothing.
 		}
@@ -349,7 +349,7 @@ package net.pixlib.ioc.load
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		public function onCommandEnd( event : Event ) : void
+		public function onCommandEnd( event : CommandEvent ) : void
 		{
 			try
 			{

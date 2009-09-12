@@ -15,6 +15,7 @@
  */
 package net.pixlib.ioc.parser 
 {
+	import net.pixlib.events.CommandEvent;
 	import net.pixlib.collections.Iterator;
 	import net.pixlib.commands.Batch;
 	import net.pixlib.exceptions.NullPointerException;
@@ -126,7 +127,7 @@ package net.pixlib.ioc.parser
 		 * 
 		 * @param	e	event dispatched by the command
 		 */
-		final override public function onCommandEnd( e : Event ) : void
+		final override public function onCommandEnd( e : CommandEvent ) : void
 		{
 			if( _hasNext( ) )
 			{

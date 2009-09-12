@@ -64,17 +64,25 @@ package net.pixlib.services
 		}
 
 		private var _result 	: Object;
+		private var _rawResult 	: Object;
 		private var _args 		: Array;
-		protected var _deserializer : Deserializer;
+
+		protected var _deserializer : Deserializer;
 
 		public function setResult( result : Object ) : void
 		{
+			_rawResult = result;
 			_result = _deserializer ? _deserializer.deserialize( result, _result ) : result;
 		}
 		
 		public function getResult() : Object
 		{
 			return _result;
+		}
+		
+		public function getRawResult() : Object
+		{
+			return _rawResult;
 		}
 		
 		public function addServiceListener( listener : ServiceListener ) : Boolean
@@ -130,19 +138,11 @@ package net.pixlib.services
 			_deserializer 	= null;
 		}
 
-		public function addEventListener( type : String, listener : Object, ... rest ) : Boolean
-		{
-			return _oEB.addEventListener.apply( _oEB, rest.length > 0 ? [ type, listener ].concat( rest ) : [ type, listener ] );
-		}
-
-		public function removeEventListener( type : String, listener : Object ) : Boolean
-		{
-			return _oEB.removeEventListener( type, listener );
-		}
-		
 		public function setDeserializer( deserializer : Deserializer, target : Object = null ) : void
 		{
-			_deserializer 	= deserializer;			_result 		= target;		}
+			_deserializer 	= deserializer;
+			_result 		= target;
+		}
 
 		protected function setExecutionHelper( helper : ValueObject ) : void
 		{
@@ -185,4 +185,5 @@ package net.pixlib.services
 				fireCommandEndEvent();
 			}
 		}
-	}}
+	}
+}
