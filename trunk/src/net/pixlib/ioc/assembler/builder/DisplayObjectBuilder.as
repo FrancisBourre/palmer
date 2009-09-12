@@ -108,7 +108,7 @@ package net.pixlib.ioc.assembler.builder
 		 * A <code>Delegate</code> object is created and then
 		 * added as listener for the event type. There is no restriction on the name of 
 		 * the function. If the <code>rest</code> is not empty, all elements in it is 
-		 * used as additional arguments into the delegate object. 
+		 * used as additional arguments into the delegate object.</li> 
 		 * </ol>
 		 * 
 		 * @param	type		name of the event for which register the listener

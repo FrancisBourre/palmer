@@ -150,7 +150,7 @@ package net.pixlib.utils
 		/**
 		 * Returns a new random word.
 		 * 
-		 * @param	limit	max chars in word ( must be > -1 and < 27 )
+		 * @param	limit	max chars in word ( must be &gt; -1 and &lt; 27 )
 		 * @param	type	possible values are :
 		 * <ul>
 		 *   <li>Random.UPPER_TYPE</li>

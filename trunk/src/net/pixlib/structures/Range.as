@@ -20,9 +20,7 @@ package net.pixlib.structures
 	/**
 	 * A range represent a space of numeric values.
 	 * 
-	 * @author Francis Bourre
-	 * @author Cédric Néhémie
-	 * @example Simple examples of <code>Range</code> usage
+	 * Simple examples of <code>Range</code> usage
 	 * <listing>
 	 *   var r1 : Range = new Range(10, 100);
 	 *   var r2 : Range = new Range(5, 50);
@@ -32,6 +30,9 @@ package net.pixlib.structures
 	 *   var b2 : Boolean = r2.overlap(r3); //false
 	 *   var b3 : Boolean = r1.overlap(r3); //true
 	 * </listing>
+	 * 
+	 * @author Francis Bourre
+	 * @author Cédric Néhémie
 	 */
 	public class Range
 	{
@@ -55,7 +56,7 @@ package net.pixlib.structures
 		/**
 		 * Constructs a new <code>Range</code> instance.
 		 * 
-		 * <p>Warning : parameter order is important.
+		 * <p>Warning : parameter order is important.</p>
 		 * 
 		 * @param min minimum <code>Number</code> value
 		 * @param max maximum <code>Number</code> value

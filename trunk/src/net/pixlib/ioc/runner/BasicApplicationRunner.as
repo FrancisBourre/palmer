@@ -93,9 +93,9 @@ package net.pixlib.ioc.runner
 		 * <ul>
 		 * 	<li><code>StageAlign.TOP_LEFT</code></li>
 		 * 	<li><code>StageScaleMode.NO_SCALE</code></li>
-		 *</ul></p>
+		 * </ul></p>
 		 *
-		 *<p>Overrides to customize stage properties.</p>
+		 * <p>Overrides to customize stage properties.</p>
 		 */
 		protected function initStage( ) : void
 		{

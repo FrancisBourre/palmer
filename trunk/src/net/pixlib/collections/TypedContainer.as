@@ -61,7 +61,7 @@ package net.pixlib.collections
 		 * Return the class type of elements in this container.
 		 * <p>
 		 * An untyped container returns <code>null</code>, as the
-		 * wildcard type (<code>*</code>) is not a <code>Class</code>
+		 * wildcard type (<code>~~</code>) is not a <code>Class</code>
 		 * and <code>Object</code> class doesn't fit for primitive types.
 		 * </p>
 		 * @return <code>Class</code> type of the container's elements

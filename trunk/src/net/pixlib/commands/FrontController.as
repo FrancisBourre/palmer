@@ -63,7 +63,7 @@ package net.pixlib.commands
 		/**
 		 * Creates a new Front Controller instance for the passed-in
 		 * plugin. If the plugin argument is omitted, the Front Controller
-		 * is owned by the global instance of the <code>NullPlugin</code
+		 * is owned by the global instance of the <code>NullPlugin</code>
 		 * class.
 		 * 
 		 * @param	owner	plugin instance which owns the controller

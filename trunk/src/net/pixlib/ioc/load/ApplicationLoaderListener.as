@@ -42,7 +42,7 @@ package net.pixlib.ioc.load
 		 * 	<li>ApplicationLoaderEvent.GFX_STATE</li>
 		 * 	<li>ApplicationLoaderEvent.BUILD_STATE</li>
 		 * 	<li>ApplicationLoaderEvent.RUN_STATE</li>
-		 * </ul>
+		 * </ul></p>
 		 * 
 		 * @see ApplicationLoaderEvent
 		 */

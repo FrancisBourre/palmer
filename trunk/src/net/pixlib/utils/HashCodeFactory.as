@@ -19,14 +19,14 @@ package net.pixlib.utils
 	
 	/**
 	 * The <code>HashCodeFactory</code> class provides convenient methods
-	 * to emulate the behavior of the Java&trade; <code>Object.hashcode()</code>
+	 * to emulate the behavior of the Java <code>Object.hashcode()</code>
 	 * method. The hashcode factory provides an unique identifier for any
 	 * instance in a Flash Player instance.
 	 * <p>
-	 * However, there is a major difference between the Java&trade; behavior
-	 * and the Flash&trade; behavior. In Java&trade; the hashcode method
+	 * However, there is a major difference between the Java behavior
+	 * and the Flash behavior. In Java the hashcode method
 	 * will return the same value for two different instances of the same
-	 * class which have the same properties value, in Flash&trade; the 
+	 * class which have the same properties value, in Flash the 
 	 * hashcode factory will return a different identifier for all instances
 	 * even if their properties are equals.
 	 * </p>
