@@ -1,0 +1,547 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="Queue,net.pixlib.collections.Queue,_aArray,_aColumNames,_aItems,_aKeys,_aQueue,_aSet,_aStack,_bAdded,_bAdded,_bRemoved,_bRemoved,_bRemoved,_d,_n,_nGap,_nIndex,_nIndex,_nIndex,_nSize,_nSize,_nSize,_oKeyDico,_oObject,_oType,_oType,_oType,_oValueDico,_sString,index,length,list,_init,add,add,add,add,add,add,add,add,addAll,addAll,addAll,addAll,addAll,addAllAt,addAllAt,addAllAt,addAt,addAt,addAt,clear,clear,clear,clear,clear,clear,clear,columnIterator,contains,contains,contains,contains,contains,containsAll,containsAll,containsAll,containsAll,containsAll,containsKey,containsValue,equals,get,get,get,get,getColumnNames,getItemAt,getItems,getKeys,getLength,getType,getType,getType,getType,getValues,hasNext,hasNext,hasNext,hasNext,hasNext,hasPrevious,hasPrevious,hasPrevious,indexOf,indexOf,indexOf,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isEmpty,isTyped,isTyped,isTyped,isTyped,isValidCollection,isValidCollection,isValidCollection,isValidIndex,isValidIndex,isValidIndexForAdd,isValidObject,isValidType,isValidType,isValidType,iterator,iterator,iterator,iterator,iterator,iterator,lastIndexOf,lastIndexOf,lastIndexOf,listIterator,listIterator,listIterator,matchType,matchType,matchType,matchType,next,next,next,next,next,nextIndex,nextIndex,nextIndex,parseRawData,peek,peek,poll,pop,previous,previous,previous,previousIndex,previousIndex,previousIndex,push,put,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,remove,removeAll,removeAll,removeAll,removeAll,removeAll,removeAt,removeAt,removeAt,retainAll,retainAll,retainAll,retainAll,retainAll,search,set,set,set,set,set,set,size,size,size,size,size,size,subList,subList,subList,swap,toArray,toArray,toArray,toArray,toArray,toString,toString,toString,toString,toString,toString"><title>net.pixlib.collections.Queue</title><script src="../../../AC_OETags.js" type="text/javascript"></script></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'Queue - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/collections/Queue.html&amp;net/pixlib/collections/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Queue</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a>&nbsp;| <a href="#includeExamplesSummary">Examples</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Queue"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,true,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.collections</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  Queue</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Queue  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../net/pixlib/collections/Collection.html">Collection</a>,  <a href="../../../net/pixlib/collections/TypedContainer.html">TypedContainer</a></td></tr></table><p></p><p></p><p></p>
+	 A collection designed for holding elements prior to processing.
+	 Besides basic <code>Collection</code> operations,
+	 queues provide additional insertion, extraction, and inspection
+	 operations.
+	 <p>
+	 The <code>Queue</code> class allow as many occurrences as you
+	 want. In a same way, <code>null</code> values are allowed in
+	 the queue.
+	 </p>
+               <p>
+	 Elements in a <code>Queue</code> are orderered according
+	 to a FIFO (first-in-first-out) order.
+	 </p>
+	           <p></p><p><a href="#includeExamplesSummary">View the examples</a></p><br/><hr></div><a name="propertySummary"></a><a name="protectedPropertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProtectedProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_aQueue" class="signatureLink">_aQueue</a> : Array<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_oType" class="signatureLink">_oType</a> : Class<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">Queue</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#Queue()" class="signatureLink">Queue</a>(type:Class = null)</div><div class="summaryTableDescription">
+		 Create an empty Queue object.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#add()" class="signatureLink">add</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Adds the specified element to this queue.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addAll()" class="signatureLink">addAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Adds all of the elements in the specified Collection 
+		 to this queue.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clear()" class="signatureLink">clear</a>():void</div><div class="summaryTableDescription">
+		 Removes all of the elements from this queue
+		 (optional operation).</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#contains()" class="signatureLink">contains</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Returns true if this queue contains at least
+		 one occurence of the specified element.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#containsAll()" class="signatureLink">containsAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Returns true if this queue contains
+		 all of the elements of the specified collection.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getType()" class="signatureLink">getType</a>():Class</div><div class="summaryTableDescription">
+		 Return the class type of elements in this queue object.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isEmpty()" class="signatureLink">isEmpty</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this queue contains no elements.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isTyped()" class="signatureLink">isTyped</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this queue perform a verification
+		 of the type of elements.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidCollection()" class="signatureLink">isValidCollection</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in Collection is a valid
+		 collection for use with the addAll, removeAll,
+		 retainAll and containsAll methods.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isValidType()" class="signatureLink">isValidType</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in object type match the current 
+		 Queue element's type.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#iterator()" class="signatureLink">iterator</a>():<a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></div><div class="summaryTableDescription">
+		 Returns an iterator over the elements in this queue.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#matchType()" class="signatureLink">matchType</a>(o:*):Boolean</div><div class="summaryTableDescription">
+		 Verify that the passed-in object type match the current 
+		 queue element's type.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#peek()" class="signatureLink">peek</a>():Object</div><div class="summaryTableDescription">
+		 Retrieves, but does not remove, the head of this queue,
+		 or returns null if this queue is empty.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#poll()" class="signatureLink">poll</a>():Object</div><div class="summaryTableDescription">
+		 Retrieves and removes the head of this queue,
+		 or returns null if this queue is empty.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#remove()" class="signatureLink">remove</a>(o:Object):Boolean</div><div class="summaryTableDescription">
+		 Removes a single instance of the specified element from this
+		 queue, if this queue contains one or more such elements.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAll()" class="signatureLink">removeAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Removes from this queue all of its elements that are contained
+		 in the specified collection (optional operation).</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#retainAll()" class="signatureLink">retainAll</a>(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</div><div class="summaryTableDescription">
+		 Retains only the elements in this queue that are contained
+		 in the specified collection (optional operation).</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#size()" class="signatureLink">size</a>():uint</div><div class="summaryTableDescription">
+		 Returns the number of elements in this queue (its cardinality).</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toArray()" class="signatureLink">toArray</a>():Array</div><div class="summaryTableDescription">
+		 Returns an array containing all the elements in this queue.</div></td><td class="summaryTableOwnerCol">Queue</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toString()" class="signatureLink">toString</a>():String</div><div class="summaryTableDescription">
+		 Returns the String representation of
+		 this object.</div></td><td class="summaryTableOwnerCol">Queue</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="_aQueue"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_aQueue</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>protected var _aQueue:Array</code><p></p></div><a name="propertyDetail"></a><a name="_oType"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_oType</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _oType:Class</code><p></p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="Queue()"></a><a name="Queue(Class)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">Queue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function Queue(type:Class = null)</code><p></p><p>
+		 Create an empty <code>Queue</code> object. 
+		 </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">type</span>:Class</code> (default = <code>null</code>)<code></code></td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="add()"></a><a name="add(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">add</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function add(o:Object):Boolean</code><p></p><p></p><p>
+		 Adds the specified element to this queue. 
+		 The object is added as the top of the queue.
+		 <p>
+		 If the current queue object is typed and if the passed-in object's  
+		 type prevents it to be added in this queue, the function throws
+		 an <code>ClassCastException</code>.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; element to be added to this queue.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this queue have changed at
+		 			the end of the call
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's
+		 			type prevents it to be added into this queue
+		 </td></tr></table><br/><span class="label"> Example </span><br/><div class="detailBody">Adding elements to an untyped queue
+		 <div class="listing"><pre>
+         var queue : Queue = new Queue();
+         
+         queue.add( 50 );
+         queue.add( "foo" );
+         
+         trace( queue.add( "foo" ) ); // true, because queue allow one or more entries
+                                         // for an element
+         
+         trace( queue.size() ); // 3
+         </pre></div>
+		 
+		 Adding elements to a typed queue
+		 <div class="listing"><pre>
+         var queue : Queue = new Queue( String );
+         
+         queue.add( "foo" );
+         
+         trace( queue.add( "foo" ) ); // true, because queue allow one or more occurrences
+                                         // for an element
+                                         
+         try
+         {
+             queue.add( 50 ); // fail, as 50 is not a string
+         }
+         catch( e : ClassCastException )
+         {
+             trace ( e );
+         }
+         
+         trace( queue.size() ); // 2
+         </pre></div>
+		 </div></div><a name="addAll()"></a><a name="addAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function addAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Adds all of the elements in the specified <code>Collection</code> 
+		 to this queue. The behavior of this operation is
+		 unspecified if the specified collection is modified while the
+		 operation is in progress.
+		 <p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>addAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	<code>Collection</code> whose elements are to be added to this queue.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this queue changed as a result of the call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this queue
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.	
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Queue.html#add()" target="">add()</a><br/><a href="Queue.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">How the <code>Queue.addAll</code> method works with types 
+		 <p>
+		 Let say that you have two typed queues <code>typedQueue1</code>
+		 and <code>typedQueue2</code> such :
+		 </p> 
+		 <div class="listing"><pre>
+         var typedQueue1 : Queue = new Queue( String );
+         var typedQueue2 : Queue = new Queue( String );
+         
+         typedQueue1.add( "foo1" );
+         typedQueue1.add( "foo2" );
+         typedQueue1.add( "foo3" );
+         typedQueue1.add( "foo4" );
+         
+         typedQueue2.add( "foo3" );
+         typedQueue2.add( "foo4" );
+         typedQueue2.add( "foo5" );
+         typedQueue2.add( "foo6" );
+         </pre></div>
+		 
+		 And two untyped queues <code>untypedQueue1</code>
+		 and <code>untypedQueue2</code> such : 
+		 
+		 <div class="listing"><pre>
+         var untypedQueue1 : Queue = new Queue();
+         var untypedQueue2 : Queue = new Queue();
+         
+         untypedQueue1.add( 1 );
+         untypedQueue1.add( 2 );
+         untypedQueue1.add( 3 );
+         untypedQueue1.add( "foo1" );
+         
+         untypedQueue2.add( 3 );
+         untypedQueue2.add( 4 );
+         untypedQueue2.add( 5 );
+         untypedQueue2.add( "foo1" );
+         </pre></div>
+		 
+		 The two operations below will work as expected, 
+		 realizing the union of the queues objects.
+		 
+		 <div class="listing"><pre>
+         
+         typedQueue1.addAll ( typedQueue2 );
+         // will produce a queue containing : 
+         // 'foo1'
+         // 'foo2'
+         // 'foo3'
+         // 'foo4'
+         // 'foo3'
+         // 'foo4'
+         // 'foo5'
+         // 'foo6'
+         
+         untypedQueue1.addAll ( untypedQueue2 );
+         // will produce a queue containing : 
+         // 1
+         // 2
+         // 3
+         // 'foo1'
+         // 3
+         // 4
+         // 5
+         // 'foo1'
+         </pre></div>
+		 
+		 As an untyped queue can contain any types of objects at the
+		 same time, the code below is always valid.
+		 
+		 <div class="listing"><pre>
+         untypedQueue1.addAll( typedQueue2 );
+         // will produce a queue containing : 
+         // 1
+         // 2
+         // 3
+         // 'foo1'
+         // 3
+         // 4
+         // 5
+         // 'foo1'
+         // 'foo3'
+         // 'foo4'
+         // 'foo5'
+         // 'foo6'
+         </pre></div>
+		 
+		 But if you try to add an untyped collection to a typed one
+		 the call will fail with an exception.
+		 
+		 <div class="listing"><pre>
+         try
+         {
+             typedQueue2.addAll( untypedQueue2 );
+         }
+         catch( e : IllegalArgumentException )
+         {
+             trace( e ); 
+             // The passed-in collection with type 'null' has not the same type 
+             // than net.pixlib.collections::Queue&lt;String&gt;
+         }
+         </pre></div>
+		 </div></div><a name="clear()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function clear():void</code><p></p><p></p><p>
+		 Removes all of the elements from this queue
+		 (optional operation). This queue will be empty
+		 after this call returns (unless it throws an exception).
+		 </p></div><a name="contains()"></a><a name="contains(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">contains</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function contains(o:Object):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this queue contains at least
+		 one occurence of the specified element. Moreformally,
+		 returns <code>true</code> if and only if this queue contains
+		 at least an element <code>e</code> such that <code>o === e</code>.
+		 		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>Object</code> whose presence in this queue
+		 			  	is to be tested.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this queue contains the specified
+		 			element.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this queue
+		 </td></tr></table></div><a name="containsAll()"></a><a name="containsAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">containsAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function containsAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this queue contains
+		 all of the elements of the specified collection. If the specified
+		 collection is also a <code>Set</code>, this method returns <code>true</code>
+		 if it is a <i>subliset</i> of this queue.
+		 <p>
+		 If the passed-in <code>Collection</code> is null the method throw a
+		 <code>NullPointerException</code> error.
+		 </p><p>
+		 If the passed-in <code>Collection</code> type is different than the current
+		 one the function will throw an <code>IllegalArgumentException</code>.
+		 However, if the type of this queue is <code>null</code>, 
+		 the passed-in <code>Collection</code> can have any type. 
+		 </p><p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>containsAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; <code>Collection</code>
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this queue contains all of the elements of the
+		 	       	specified collection.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			is <code>null</code>
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.
+		 </td></tr></table></div><a name="getType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getType():Class</code><p></p><p></p><p>
+		 Return the class type of elements in this queue object.
+		 <p>
+		 An untyped queue returns <code>null</code>, as the
+		 wildcard type (<code>*</code>) is not a <code>Class</code>
+		 and <code>Object</code> class doesn't fit for primitive types.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Class</code> &mdash; <code>Class</code> type of the queue's elements
+		 </td></tr></table></div><a name="isEmpty()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isEmpty():Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this queue contains no elements.
+		 		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this queue contains no elements.
+		 </td></tr></table></div><a name="isTyped()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isTyped</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isTyped():Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if this queue perform a verification
+		 of the type of elements.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this queue perform a verification
+		 			of the type of elements.
+		 </td></tr></table></div><a name="isValidCollection()"></a><a name="isValidCollection(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidCollection</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidCollection(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in <code>Collection</code> is a valid
+		 collection for use with the <code>addAll</code>, <code>removeAll</code>,
+		 <code>retainAll</code> and <code>containsAll</code> methods.
+		 <p>
+		 When dealing with typed and untyped collection, the following rules apply : 
+		 <ul>
+		 <li>Two typed collection, which have the same type, can collaborate each other.</li>
+		 <li>Two untyped collection can collaborate each other.</li>
+		 <li>An untyped collection can add, remove, retain or contains any typed collection
+		 of any type without throwing errors.</li>
+		 <li>A typed collection will always fail when attempting to add, remove, retain
+		 or contains an untyped collection.</li>
+		 </ul></p><p>
+		 If the passed-in <code>Collection</code> is null the method throw a
+		 <code>NullPointerException</code> error.
+		 </p>
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; <code>Collection</code> to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; boolean <code>true</code> if the collection is valid, 
+		 			either <code>false</code> 			
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			is <code>null</code>
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Queue.html#addAll()" target="">addAll()</a><br/><a href="Queue.html#removeAll()" target="">removeAll()</a><br/><a href="Queue.html#retainAll()" target="">retainAll()</a><br/><a href="Queue.html#containsAll()" target="">containsAll()</a></div></div><a name="isValidType()"></a><a name="isValidType(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isValidType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isValidType(o:Object):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in object type match the current 
+		 <code>Queue</code> element's type. 
+		 <p>
+		 In the case that the queue is untyped the function
+		 will always returns <code>true</code>.
+		 </p><p>
+		 In the case that the object's type prevents it to be added
+		 as element for this queue the method will throw
+		 a <code>ClassCastException</code>.
+		 </p> 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>Object</code> to verify
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object is elligible for this
+		 			queue object, either <code>false</code>.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this queue
+		 </td></tr></table></div><a name="iterator()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">iterator</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function iterator():<a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></code><p></p><p></p><p>
+		 Returns an iterator over the elements in this queue. 
+		 The elements are returned according to the FIFO
+		 (first-in-first-out) order. 
+		 		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/collections/Iterator.html">Iterator</a></code> &mdash; an iterator over the elements in this queue.
+		 </td></tr></table></div><a name="matchType()"></a><a name="matchType()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">matchType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function matchType(o:*):Boolean</code><p></p><p></p><p>
+		 Verify that the passed-in object type match the current 
+		 queue element's type. 
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the object is elligible for this
+		 			queue object, either <code>false</code>.
+		 </td></tr></table></div><a name="peek()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">peek</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function peek():Object</code><p></p><p></p><p>
+		 Retrieves, but does not remove, the head of this queue,
+		 or returns <code>null</code> if this queue is empty.
+		 		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; the head of this queue, or <code>null</code>
+		 			if this queue is empty
+		 </td></tr></table></div><a name="poll()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">poll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function poll():Object</code><p></p><p></p><p>
+		 Retrieves and removes the head of this queue,
+		 or returns <code>null</code> if this queue is empty.
+		 		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; the head of this queue, or <code>null</code>
+		 		   	if this queue is empty
+		 </td></tr></table></div><a name="remove()"></a><a name="remove(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">remove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function remove(o:Object):Boolean</code><p></p><p></p><p>
+		 Removes a single instance of the specified element from this
+		 queue, if this queue contains one or more such elements.
+		 Returns <code>true</code> if this queue contained the specified
+		 element (or equivalently, if this collection changed as a result
+		 of the call).
+		 <p>
+		 In order to remove all occurences of an element you have to call
+		 the <code>remove</code> method as long as the queue contains an
+		 occurrence of the passed-in element. Typically, the construct to
+		 remove all occurrences of an element should look like that :
+		 <div class="listing"><pre>
+         while( queue.contains( element ) ) queue.remove( element );
+         </pre></div>
+		 </p><p>
+		 If the current queue object is typed and if the passed-in object's  
+		 type prevents it to be added (and then removed) in this queue,
+		 the function throws a <code>ClassCastException</code>.
+		 </p> 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:Object</code> &mdash; <code>object</code> to be removed from this queue,
+		 			  if present.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the queue contained the 
+		 			specified element.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>ClassCastException</code> </code> &mdash; &mdash; If the object's type
+		 			prevents it to be added into this queue
+		 </td></tr></table><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Queue.remove()</code> method of an untyped queue : 
+		 <div class="listing"><pre>
+         var queue : Queue = new Queue();
+         queue.add ( "foo" );
+         queue.add ( "foo" );
+         
+         trace( queue.size() ); // 1
+         trace( queue.remove( "foo" ) ); // true, the first occurence of 'foo' have
+                                            // been removed from the queue
+         
+         trace( queue.size() ); // 1
+         trace( queue.remove( "foo" ) ); // true, the passed-in value has always
+                                            // an occurence contained in the queue
+         
+         trace( queue.size() ); // 0
+         trace( queue.remove( "foo" ) ); // false, as there is no more occurence
+                                            // in the queue
+         </pre></div>
+		 
+		 Using the <code>Queue.remove()</code> method of a typed queue :
+		 
+		 <div class="listing"><pre>
+         var queue : Queue = new Queue( String );
+         queue.add ( "foo" );
+         
+         trace( queue.size() ); // 1
+         trace( queue.remove( "foo" ) ); // true, the passed-in value have been removed
+         
+         // the code below will produce an exception
+         try
+         {
+             queue.remove( 45 ); // fail, as the passed-in value is not of type string
+         }
+         catch( e : ClassCastException )
+         {
+             trace ( e );  
+         }
+         </pre></div>
+		 </div></div><a name="removeAll()"></a><a name="removeAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Removes from this queue all of its elements that are contained
+		 in the specified collection (optional operation). At the end
+		 of the call there's no occurences of any elements contained
+		 in the passed-in collection.
+		 <p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>removeAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	<code>Collection</code> that defines which elements will be
+		 			  	removed from this queue.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this queue changed as a result
+		 			of the call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified collection is
+		          <code>null</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.    
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Queue.html#remove()" target="">remove()</a><br/><a href="Queue.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Queue.removeAll()</code> with untyped queues
+		 <div class="listing"><pre>
+         var queue1 : Queue = new Queue();
+         var queue2 : Queue = new Queue();
+         
+         queue1.add( 1 );
+         queue1.add( 2 );
+         queue1.add( 3 );
+         queue1.add( 4 );
+         queue1.add( "foo1" );
+         queue1.add( "foo2" );
+         queue1.add( "foo3" );
+         queue1.add( "foo4" );
+         
+         queue2.add( 1 );
+         queue2.add( 3 );
+         queue2.add( "foo1" );
+         queue2.add( "foo3" );
+         
+         trace ( queue1.removeAll ( queue2 ) ) ;// true
+         // queue1 now contains :
+         // 2, 4, 'foo2', 'foo4' 
+         </pre></div>
+		 </div></div><a name="retainAll()"></a><a name="retainAll(net.pixlib.collections.Collection)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">retainAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function retainAll(c:<a href="../../../net/pixlib/collections/Collection.html">Collection</a>):Boolean</code><p></p><p></p><p>
+		 Retains only the elements in this queue that are contained
+		 in the specified collection (optional operation). In other words,
+		 removes from this queue all of its elements that are not
+		 contained in the specified collection.
+		 <p>
+		 The rules which govern collaboration between typed and untyped <code>Collection</code>
+		 are described in the <code>isValidCollection</code> descrition, all rules described
+		 there are supported by the <code>retainAll</code> method.
+		 </p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">c</span>:<a href="../../../net/pixlib/collections/Collection.html">Collection</a></code> &mdash; 	<code>Collection</code> that defines which elements this
+		 			  	queue will retain.
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if this collection changed as a result of the
+		         	call.
+		 </td></tr></table><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>NullPointerException</code> </code> &mdash; &mdash; if the specified collection is
+		          <code>null</code>.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20"></td><td><code><code>IllegalArgumentException</code> </code> &mdash; &mdash; If the passed-in collection
+		 			type is not the same that the current one.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Queue.html#remove()" target="">remove()</a><br/><a href="Queue.html#isValidCollection()" target="">See isValidCollection for description of the rules for collaboration between typed and untyped collections.</a></div><br/><span class="label"> Example </span><br/><div class="detailBody">Using the <code>Queue.retainAll()</code> with untyped queues
+		 <div class="listing"><pre>
+         var queue1 : Queue = new Queue();
+         var queue2 : Queue = new Queue();
+         
+         queue1.add( 1 );
+         queue1.add( 2 );
+         queue1.add( 3 );
+         queue1.add( 4 );
+         queue1.add( "foo1" );
+         queue1.add( "foo2" );
+         queue1.add( "foo3" );
+         queue1.add( "foo4" );
+         
+         queue2.add( 1 );
+         queue2.add( 3 );
+         queue2.add( "foo1" );
+         queue2.add( "foo3" );
+         
+         trace ( queue1.retainAll ( queue2 ) ) ;// true
+         // queue1 now contains :
+         // 1, 3, 'foo1', 'foo3' 
+         </pre></div>
+		 </div></div><a name="size()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">size</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function size():uint</code><p></p><p></p><p>
+		 Returns the number of elements in this queue (its cardinality).
+		 		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>uint</code> &mdash; <code>Number</code> of elements in this queue (its cardinality).
+		 </td></tr></table></div><a name="toArray()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toArray</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toArray():Array</code><p></p><p></p><p>
+		 Returns an array containing all the elements in this queue.
+		 Obeys the general contract of the <code>Collection.toArray</code>
+		 method.
+		 		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Array</code> &mdash; <code>Array</code> containing all of the elements
+		 			in this queue.
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Collection.html#toArray()" target="">Collection.toArray()</a></div></div><a name="toString()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toString():String</code><p></p><p></p><p>
+		 Returns the <code>String</code> representation of
+		 this object. 
+		 <p>
+		 The function return a string like
+		 <code>net.pixlib.collection::Queue&lt;String&gt;</code>
+		 for a typed collection. The string between the &lt;
+		 and > is the name of the type of the collection's
+		 elements. If the collection is an untyped collection
+		 the function will simply return the result of the
+		 <code>PixlibStringifier.stringify</code> call.
+		 </p>
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; <code>String</code> representation of
+		 		   this object.
+		 </td></tr></table></div><a name="includeExamplesSummary"></a><div class="detailSectionHeader">Examples</div><div class="detailBody">
+	 Using an untyped <code>Queue</code>
+	 <div class="listing"><pre>var queue : Queue = new Queue ();
+     queue.add( 20 )
+     queue.add( "20" );
+     queue.add( 80 );
+     
+     trace ( queue.size() ); // 3 
+     trace ( queue.poll() ); // 80
+     
+     trace ( queue.peek() ); // "20"
+     trace ( queue.size() ); // 2 
+     </pre></div>
+	 
+	 Using a typed <code>Queue</code>
+	 <div class="listing"><pre>var queue : Queue = new Queue ( Number );
+     queue.add( 20 )
+     try
+     {
+         queue.add( "20" ); // throws an error because "20" is not a Number
+         queue.add( 80 );
+     }
+     catch ( e : Error ) {}
+     
+     trace ( queue.size() ); // 2
+     trace ( queue.poll() ); // 80
+     
+     trace ( queue.peek() ); // 20
+     trace ( queue.size() ); // 1 
+     </pre></div>
+	 </div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->

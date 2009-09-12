@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="Suspendable,net.pixlib.commands.Suspendable,_delay,_delay,_getNameID,_getNameID,_hasNext,_next,_notify,_push,_push,_remove,_remove,_resume,_stop,_stop,add,addArguments,addArgumentsArray,addCommand,addCommand,addCommand,addCommandAfter,addCommandAt,addCommandBefore,addCommandEnd,addCommandListener,addCommandListener,addCommandStart,addEventListener,addSequencerListener,broadcastCommandEndEvent,broadcastCommandStartEvent,bypassEventCallback,callFunction,cancel,cancel,clear,contains,contains,create,delay,delay,execute,execute,executeNextCommand,fireCommandEndEvent,fireCommandEndEvent,fireCommandEndEvent,fireCommandStartEvent,fireEndEvent,firePrivateEvent,fireProgressEvent,fireStartEvent,getArguments,getInstance,getInstance,getLength,getLength,getLogger,getModel,getOwner,getOwner,getRunningCommand,getView,handleEvent,handleEvent,isCancelled,isCancelled,isModelRegistered,isRunning,isRunning,isViewRegistered,locate,onCancel,onCancel,onCancel,onCommandEnd,onCommandEnd,onCommandEnd,onCommandEnd,onCommandEnd,onCommandStart,onCommandStart,onCommandStart,onCommandStart,onCommandStart,onExecute,onExecute,onExecute,onExecute,onSequencerEnd,onSequencerProgress,onSequencerStart,onTick,onTick,onTick,process,pushCommandClass,pushCommandInstance,pushWithName,pushWithName,push,push,register,release,release,release,remove,removeAll,removeAll,removeAll,removeCommand,removeCommand,removeCommand,removeCommandListener,removeCommandListener,removeEventListener,removeSequencerListener,removeWithName,removeWithName,remove,remove,reset,resumeWithName,resumeWithName,resume,resume,run,run,setArguments,setArgumentsArray,setOwner,setOwner,setOwner,size,size,start,stop,stopWithName,stopWithName,stop,stop,toString,toString,toString,toString,toString,toString"><title>net.pixlib.commands.Suspendable</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'Suspendable - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/commands/Suspendable.html&amp;net/pixlib/commands/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Suspendable</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Suspendable"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.commands</a></td></tr><tr><td class="classHeaderTableLabel">Interface</td><td class="classSignature">public  interface  Suspendable extends  <a href="../../../net/pixlib/commands/Runnable.html">Runnable</a> </td></tr></table><p></p><p></p><p></p>
+	              <code>Suspendable</code> defines rules for <code>Runnable</code>
+	 implementations whose instances process could be suspended.
+	 Implementers should consider the possibility for the user of the class
+	 to suspend or not the operation, if the operation could be suspended,
+	 the implementer should create a <code>Suspendable</code> class.
+	 <p>
+	 More formally, an operation is suspendable if and only if the operation could
+	 be paused(stopped) and resumed(re-started) without breaking the state of the
+	 process. For example, a loading process could be stopped, but it couldn't
+	 be suspended, when a file loading is stopped there's no possibility to restart
+	 it at the point it was stopped. In that logic, the only way to reset the state
+	 of a suspendable operation is to call the <code>reset</code> method defined
+	 in this interface. 
+	 </p>
+               <p>
+	 Implementing the <code>Suspendable</code> interface doesn't require anything
+	 regarding the time outflow approach. The only requirements concerned the suspendable
+	 nature of the process. 
+	 </p>
+               <p>
+	 Note : There's no restriction concerning class which would implements both <code>Suspendable</code>
+	 and <code>Cancelable</code> interfaces.
+	 </p>
+	           <p></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="Runnable.html" target="">Runnable</a><br/><a href="Cancelable.html" target="">Cancelable</a></div><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><div class="showHideLinks"><div id="hideInheritedMethod" class="hideInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(false,'Method');"><img class="showHideLinkImage" src="../../../images/expanded.gif"> Hide Inherited Public Methods</a></div><div id="showInheritedMethod" class="showInheritedMethod"><a class="showHideLink" href="#methodSummary" onclick="javascript:setInheritedVisible(true,'Method');"><img class="showHideLinkImage" src="../../../images/collapsed.gif"> Show Inherited Public Methods</a></div></div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/commands/Runnable.html#isRunning()" class="signatureLink">isRunning</a>():Boolean</div><div class="summaryTableDescription">
+		 Returns true if this object is running.</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/commands/Runnable.html">Runnable</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#reset()" class="signatureLink">reset</a>():void</div><div class="summaryTableDescription">
+		 Resets the state of this object.</div></td><td class="summaryTableOwnerCol">Suspendable</td></tr><tr class="hideInheritedMethod"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img src="../../../images/inheritedSummary.gif" alt="Inherited" title="Inherited" class="inheritedSummaryImage"></td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="../../../net/pixlib/commands/Runnable.html#run()" class="signatureLink">run</a>():void</div><div class="summaryTableDescription">
+		 Starts the asynchronous process of this runnable object.</div></td><td class="summaryTableOwnerCol"><a href="../../../net/pixlib/commands/Runnable.html">Runnable</a></td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#start()" class="signatureLink">start</a>():void</div><div class="summaryTableDescription">
+		 Starts the operation of this suspendable operation.</div></td><td class="summaryTableOwnerCol">Suspendable</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#stop()" class="signatureLink">stop</a>():void</div><div class="summaryTableDescription">
+		 Stops the operation in process.</div></td><td class="summaryTableOwnerCol">Suspendable</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="reset()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">reset</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function reset():void</code><p></p><p></p><p>
+		 Resets the state of this object. The state of an operation
+		 could be reset at any time, whether it be running or stopped.
+		 Concret implementation, which not support the <code>reset</code>
+		 method, can choose to throw an exception or to simply ignore the
+		 call.
+		 
+		 </p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; The <code>reset</code>
+		 			method is not supported by this implementation
+		 </td></tr></table></div><a name="start()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">start</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function start():void</code><p></p><p></p><p>
+		 Starts the operation of this suspendable operation.
+		 If a call to the <code>start</code> method is done
+		 while the operation is playing, concret class must
+		 ignore it. 
+		 </p></div><a name="stop()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">stop</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function stop():void</code><p></p><p></p><p>
+		 Stops the operation in process. If a call to the
+		 <code>stop</code> method is done whereas this operation
+		 is already stopped, concret class must ignore it.
+		 </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->

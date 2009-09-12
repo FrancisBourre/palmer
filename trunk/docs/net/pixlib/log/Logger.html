@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="Logger,net.pixlib.log.Logger,CLEAR,CLEAR,DEBUG,DEBUG,ERROR,ERROR,FATAL,FATAL,INFO,INFO,LOG,WARN,WARN,addLogListener,clear,clear,clear,clone,debug,debug,error,error,fatal,fatal,getChannel,getChannel,getInstance,getInstance,getLevel,getLevel,getName,getStringifier,hasListener,info,info,isOn,isOn,isRegistered,log,off,off,on,on,onClear,onLog,removeAllListeners,removeLogListener,setLevel,setStringifier,stringify,stringify,stringify,toString,toString,toString,toString,warn,warn"><title>net.pixlib.log.Logger</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'Logger - Palmer API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Palmer API Documentation</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?net/pixlib/log/Logger.html&amp;net/pixlib/log/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">Logger</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a>&nbsp;| <a href="#eventSummary">Events</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Logger"); titleBar_setSubNav(false,false,false,false,false,false,true,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">net.pixlib.log</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  Logger</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">Logger  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><p></p><p></p>
+	 The Logger class allow to dispatch log message tl all registered 
+	 Log listeners, in dedicated, or all logging channel.
+	 
+	 <p>Log level can be also apply to filter logging message.</p>
+	 
+	           <p></p><p><span class="classHeaderTableLabel">See also</span></p><div class="seeAlso"><a href="LogListener.html" target="">LogListener</a></div><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addLogListener()" class="signatureLink">addLogListener</a>(listener:<a href="../../../net/pixlib/log/LogListener.html">LogListener</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):void</div><div class="summaryTableDescription">
+		 Adds an event listener for the specified event type of the
+		 specified channel.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#clear()" class="signatureLink">clear</a>(oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):void</div><div class="summaryTableDescription">
+		 Broadcasts onClear event in 
+		 oChannel channel.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#CLEAR()" class="signatureLink">CLEAR</a>(oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):void</div><div class="summaryTableDescription">[static] 
+		 Clears all Logging layout console.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#DEBUG()" class="signatureLink">DEBUG</a>(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</div><div class="summaryTableDescription">[static] 
+		 Logs passed-in o message into oChannel logging 
+		 channel using LogLevel.DEBUG level filter.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#ERROR()" class="signatureLink">ERROR</a>(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</div><div class="summaryTableDescription">[static] 
+		 Logs passed-in o message into oChannel logging 
+		 channel using LogLevel.ERROR level filter.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#FATAL()" class="signatureLink">FATAL</a>(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</div><div class="summaryTableDescription">[static] 
+		 Logs passed-in o message into oChannel logging 
+		 channel using LogLevel.FATAL level filter.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getInstance()" class="signatureLink">getInstance</a>():<a href="../../../net/pixlib/log/Logger.html">Logger</a></div><div class="summaryTableDescription">[static] 
+		 Returns unique Logger instance.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getLevel()" class="signatureLink">getLevel</a>():<a href="../../../net/pixlib/log/LogLevel.html">LogLevel</a></div><div class="summaryTableDescription">
+		 Returns current LogLevel filter used.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#hasListener()" class="signatureLink">hasListener</a>(oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):Boolean</div><div class="summaryTableDescription">
+		 Returns true if there is a Broadcaster instance
+		 registered for the passed-in channel, and if this broadcaster has registered
+		 listeners.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#INFO()" class="signatureLink">INFO</a>(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</div><div class="summaryTableDescription">[static] 
+		 Logs passed-in o message into oChannel logging 
+		 channel using LogLevel.INFO level filter.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isRegistered()" class="signatureLink">isRegistered</a>(listener:<a href="../../../net/pixlib/log/LogListener.html">LogListener</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a>):Boolean</div><div class="summaryTableDescription">
+		 Returns true if the passed-in listener
+		 is registered as listener for the passed-in event type
+		 in the passed-in channel.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#log()" class="signatureLink">log</a>(e:<a href="../../../net/pixlib/log/LogEvent.html">LogEvent</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):Boolean</div><div class="summaryTableDescription">
+		 Braodcasts passed-in e LogEvent in 
+		 oChannel channel.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#LOG()" class="signatureLink">LOG</a>(o:*, level:<a href="../../../net/pixlib/log/LogLevel.html">LogLevel</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</div><div class="summaryTableDescription">[static] 
+		 </div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeAllListeners()" class="signatureLink">removeAllListeners</a>():void</div><div class="summaryTableDescription">
+		 Removes all listeners object from this event
+		 channel broadcaster.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#removeLogListener()" class="signatureLink">removeLogListener</a>(listener:<a href="../../../net/pixlib/log/LogListener.html">LogListener</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):void</div><div class="summaryTableDescription">
+		 Removes the passed-in listener for listening the specified event of
+		 the specified channel.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#setLevel()" class="signatureLink">setLevel</a>(level:<a href="../../../net/pixlib/log/LogLevel.html">LogLevel</a>):void</div><div class="summaryTableDescription">
+		 Sets logging level.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#toString()" class="signatureLink">toString</a>():String</div><div class="summaryTableDescription">
+		 Returns the string representation of this instance.</div></td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#WARN()" class="signatureLink">WARN</a>(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</div><div class="summaryTableDescription">[static] 
+		 Logs passed-in o message into oChannel logging 
+		 channel using LogLevel.WARN level filter.</div></td><td class="summaryTableOwnerCol">Logger</td></tr></table></div><a name="eventSummary"></a><div class="summarySection"><div class="summaryTableTitle">Events</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableEvent"><tr><th>&nbsp;</th><th colspan="2">Event</th><th> Summary </th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#event:onClear" class="signatureLink">onClear</a></div></td><td class="summaryTableDescription summaryTableCol">Dispatched when a clears message is sent.</td><td class="summaryTableOwnerCol">Logger</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#event:onLog" class="signatureLink">onLog</a></div></td><td class="summaryTableDescription summaryTableCol">Dispatched when a log message is sent.</td><td class="summaryTableOwnerCol">Logger</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="addLogListener()"></a><a name="addLogListener(net.pixlib.log.LogListener,net.pixlib.events.EventChannel)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addLogListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function addLogListener(listener:<a href="../../../net/pixlib/log/LogListener.html">LogListener</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):void</code><p></p><p></p><p>
+		 Adds an event listener for the specified event type of the
+		 specified channel. There is two behaviors for the 
+		 <code>addEventListener</code> function : 
+		 <ol>
+		 <li>The passed-in listener is an object : 
+		 The object is added as listener only for the specified event, the object
+		 must have a function with the same name than <code>type</code> or at least
+		 a <code>handleEvent</code> function.</li>
+		 <li>The passed-in listener is a function : 
+		 A <code>Delegate</code> object is created and then
+		 added as listener for the event type . There is no restriction on the name
+		 of the function.</li>
+		 </ol>
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">listener</span>:<a href="../../../net/pixlib/log/LogListener.html">LogListener</a></code> &mdash; 	name of the event for which register the listener
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; object or function which will receive this event
+		 </td></tr></table></p><br/><span class="label">Throws</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><code>UnsupportedOperationException</code> </code> &mdash; &mdash; If the listener is an object
+		 			which have neither a function with the same name than the event type nor
+		 			a function called <code>handleEvent</code>
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso">Broadcaster.addEventListener()</div></div><a name="clear()"></a><a name="clear(net.pixlib.events.EventChannel)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">clear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function clear(oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):void</code><p></p><p></p><p>
+		 Broadcasts <code>onClear</code> event in 
+		 <code>oChannel</code> channel.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; (optional) Event channel to use.
+		 						If not defined or <code>null</code>, event is 
+		 						dispatched to all logger listeners.
+		 </td></tr></table></p></div><a name="CLEAR()"></a><a name="CLEAR(net.pixlib.events.EventChannel)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">CLEAR</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function CLEAR(oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):void</code><p></p><p></p><p>
+		 Clears all Logging layout console.
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code></td></tr></table></p></div><a name="DEBUG()"></a><a name="DEBUG(,net.pixlib.events.EventChannel,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">DEBUG</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function DEBUG(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</code><p></p><p></p><p>
+		 Logs passed-in <code>o</code> message into <code>oChannel</code> logging 
+		 channel using <code>LogLevel.DEBUG</code> level filter.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; 		Message to log
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; (optional) Event channel to use.
+		 						If not defined or <code>null</code>, event is 
+		 						dispatched to all logger listeners.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">target</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; 	(optional) The target from where the log 
+		 						is called	
+		 						
+		 	</td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if success. ( Log level compliant )
+		 </td></tr></table></div><a name="ERROR()"></a><a name="ERROR(,net.pixlib.events.EventChannel,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">ERROR</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function ERROR(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</code><p></p><p></p><p>
+		 Logs passed-in <code>o</code> message into <code>oChannel</code> logging 
+		 channel using <code>LogLevel.ERROR</code> level filter.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; 		Message to log
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; (optional) Event channel to use.
+		 						If not defined or <code>null</code>, event is 
+		 						dispatched to all logger listeners.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">target</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; 	(optional) The target from where the log 
+		 						is called	
+		 						
+		 	</td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if success. ( Log level compliant )
+		 </td></tr></table></div><a name="FATAL()"></a><a name="FATAL(,net.pixlib.events.EventChannel,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">FATAL</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function FATAL(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</code><p></p><p></p><p>
+		 Logs passed-in <code>o</code> message into <code>oChannel</code> logging 
+		 channel using <code>LogLevel.FATAL</code> level filter.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; 		Message to log
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; (optional) Event channel to use.
+		 						If not defined or <code>null</code>, event is 
+		 						dispatched to all logger listeners.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">target</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; 	(optional) The target from where the log 
+		 						is called	
+		 						
+		 	</td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if success. ( Log level compliant )
+		 </td></tr></table></div><a name="getInstance()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getInstance</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function getInstance():<a href="../../../net/pixlib/log/Logger.html">Logger</a></code><p></p><p></p><p>
+		 Returns unique Logger instance.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/log/Logger.html">Logger</a></code> &mdash; Unique Logger instance.
+		 </td></tr></table></div><a name="getLevel()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getLevel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getLevel():<a href="../../../net/pixlib/log/LogLevel.html">LogLevel</a></code><p></p><p></p><p>
+		 Returns current LogLevel filter used.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../net/pixlib/log/LogLevel.html">LogLevel</a></code> &mdash; Current LogLevel filter used.
+		 </td></tr></table></div><a name="hasListener()"></a><a name="hasListener(net.pixlib.events.EventChannel)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">hasListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function hasListener(oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if there is a <code>Broadcaster</code> instance
+		 registered for the passed-in channel, and if this broadcaster has registered
+		 listeners.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; 	event type to look at
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if there is a <code>Broadcaster</code>
+		 			instance registered for the passed-in channel, and if this
+		 			broadcaster has registered listeners
+		 </td></tr></table></div><a name="INFO()"></a><a name="INFO(,net.pixlib.events.EventChannel,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">INFO</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function INFO(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</code><p></p><p></p><p>
+		 Logs passed-in <code>o</code> message into <code>oChannel</code> logging 
+		 channel using <code>LogLevel.INFO</code> level filter.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; 		Message to log
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; (optional) Event channel to use.
+		 						If not defined or <code>null</code>, event is 
+		 						dispatched to all logger listeners.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">target</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; 	(optional) The target from where the log 
+		 						is called	
+		 						
+		 	</td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if success. ( Log level compliant )
+		 </td></tr></table></div><a name="isRegistered()"></a><a name="isRegistered(net.pixlib.log.LogListener,net.pixlib.events.EventChannel)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isRegistered</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isRegistered(listener:<a href="../../../net/pixlib/log/LogListener.html">LogListener</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a>):Boolean</code><p></p><p></p><p>
+		 Returns <code>true</code> if the passed-in <code>listener</code>
+		 is registered as listener for the passed-in event <code>type</code>
+		 in the passed-in <code>channel</code>.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">listener</span>:<a href="../../../net/pixlib/log/LogListener.html">LogListener</a></code> &mdash; LogListener to look for registration
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> &mdash; 	event type to look at
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if the passed-in <code>listener</code>
+		 			is registered as listener for the passed-in event
+		 			<code>type</code> in the passed-in <code>channel</code>
+		 </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso">Broadcaster.isRegistered()</div></div><a name="log()"></a><a name="log(net.pixlib.log.LogEvent,net.pixlib.events.EventChannel)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">log</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function log(e:<a href="../../../net/pixlib/log/LogEvent.html">LogEvent</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):Boolean</code><p></p><p></p><p>
+		 Braodcasts passed-in <code>e</code> LogEvent in 
+		 <code>oChannel</code> channel.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">e</span>:<a href="../../../net/pixlib/log/LogEvent.html">LogEvent</a></code> &mdash; 		LogEvent instance with logging message information.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; (optional) Event channel to use.
+		 						If not defined or <code>null</code>, event is 
+		 						dispatched to all logger listeners.
+		 	
+		 	</td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if success. ( Log level compliant )
+		 </td></tr></table><br/><span class="label"> Example </span><br/><pre>
+		 
+		 var evt : LogEvent = new LogEvent( LogLevel.INFO, "my message" );
+		 
+		 Logger.getInstance().log( evt, PalmerDebug.CHANNEL );
+		 </pre>
+		 </div><a name="LOG()"></a><a name="LOG(,net.pixlib.log.LogLevel,net.pixlib.events.EventChannel,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">LOG</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function LOG(o:*, level:<a href="../../../net/pixlib/log/LogLevel.html">LogLevel</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</code><p></p><p></p><p>
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">level</span>:<a href="../../../net/pixlib/log/LogLevel.html">LogLevel</a></code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">target</span>:Object</code> (default = <code>null</code>)<code></code></td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code></td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="Logger.html#log()" target="">log()</a></div></div><a name="removeAllListeners()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeAllListeners</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeAllListeners():void</code><p></p><p></p><p>
+		 Removes all listeners object from this event
+		 channel broadcaster. The object is removed as listener
+		 for all events the broadcaster may dispatch on this
+		 channel.
+		 </p></div><a name="removeLogListener()"></a><a name="removeLogListener(net.pixlib.log.LogListener,net.pixlib.events.EventChannel)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">removeLogListener</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function removeLogListener(listener:<a href="../../../net/pixlib/log/LogListener.html">LogListener</a>, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null):void</code><p></p><p></p><p>
+		 Removes the passed-in listener for listening the specified event of
+		 the specified channel. The listener could be either an object or a function.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">listener</span>:<a href="../../../net/pixlib/log/LogListener.html">LogListener</a></code> &mdash; 	name of the event for which unregister the listener
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; object or function to be unregistered
+		 </td></tr></table></p><p><span class="label">See also</span></p><div class="seeAlso">Broadcaster.removeEventListener()</div></div><a name="setLevel()"></a><a name="setLevel(net.pixlib.log.LogLevel)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">setLevel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function setLevel(level:<a href="../../../net/pixlib/log/LogLevel.html">LogLevel</a>):void</code><p></p><p></p><p>
+		 Sets logging level.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">level</span>:<a href="../../../net/pixlib/log/LogLevel.html">LogLevel</a></code> &mdash; LogLevel filter to apply.
+		 					Possible values are :
+		 					<ul>
+		 						<li>LogLevel.ALL</li>
+		 						<li>LogLevel.DEBUG</li>
+		 						<li>LogLevel.WARN</li>
+		 						<li>LogLevel.ERROR</li>
+		 						<li>LogLevel.FATAL</li>
+		 						<li>LogLevel.OFF</li>
+		 					</ul>
+		 					
+		 	</td></tr></table></p><p><span class="label">See also</span></p><div class="seeAlso"><a href="LogLevel.html" target="">LogLevel</a></div><br/><span class="label"> Example </span><br/><pre>
+		 
+		 Logger.getInstance().setLevel( LogLevel.INFO );
+		 </pre>
+		 
+		 </div><a name="toString()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">toString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function toString():String</code><p></p><p></p><p>
+		 Returns the string representation of this instance.
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>String</code> &mdash; the string representation of this instance
+		 </td></tr></table></div><a name="WARN()"></a><a name="WARN(,net.pixlib.events.EventChannel,Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">WARN</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function WARN(o:*, oChannel:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a> = null, target:Object = null):Boolean</code><p></p><p></p><p>
+		 Logs passed-in <code>o</code> message into <code>oChannel</code> logging 
+		 channel using <code>LogLevel.WARN</code> level filter.
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">o</span>:*</code> &mdash; 		Message to log
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">oChannel</span>:<a href="../../../net/pixlib/events/EventChannel.html">EventChannel</a></code> (default = <code>null</code>)<code></code> &mdash; (optional) Event channel to use.
+		 						If not defined or <code>null</code>, event is 
+		 						dispatched to all logger listeners.
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">target</span>:Object</code> (default = <code>null</code>)<code></code> &mdash; 	(optional) The target from where the log 
+		 						is called	
+		 						
+		 	</td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if success. ( Log level compliant )
+		 </td></tr></table></div><div class="detailSectionHeader"> Event Detail </div><a name="event:onClear"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">onClear</td><td class="detailHeaderType"> Event </td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>net.pixlib.log.LogEvent.onClearEVENT</code><br/><span class="label">onClearEVENT.type property = </span><code>net.pixlib.log.LogEvent.onClearEVENT</code><br/><p></p><p></p><p>
+	  Dispatched when a clears message is sent.
+	  
+	  </p></div><a name="event:onLog"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">onLog</td><td class="detailHeaderType"> Event </td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><span class="label">Event Object Type: </span><code>net.pixlib.log.LogEvent.onLogEVENT</code><br/><span class="label">onLogEVENT.type property = </span><code>net.pixlib.log.LogEvent.onLogEVENT</code><br/><p></p><p></p><p>
+	  Dispatched when a log message is sent.
+	  
+	  </p>
+		 Defines the value of the <code>type</code> property of the event 
+		 object for a <code>onLog</code> event.
+		 
+		 </div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Palmer API Documentation - 2008</footer><br/>Samedi Septembre 12 2009, 12:39 PM +02:00  </center></div></body></html><!--Palmer API Documentation - 2008<br/>Samedi Septembre 12 2009, 12:39 PM +02:00  -->
