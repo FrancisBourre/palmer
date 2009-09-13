@@ -16,6 +16,7 @@
 package net.pixlib.plugin
 {
 	import net.pixlib.commands.FrontController;
+	import net.pixlib.commands.QueueController;
 	import net.pixlib.core.CoreFactory;
 	import net.pixlib.events.ApplicationBroadcaster;
 	import net.pixlib.events.Broadcaster;
@@ -47,6 +48,9 @@ package net.pixlib.plugin
 
 		/** Plugin FrontController. */
 		protected var _oController : FrontController;
+		
+		/** Plugin QueueController. */
+		protected var _oQueueController : QueueController;
 
 		/** Application's model locator. */
 		protected var _oModelLocator : ModelLocator;
@@ -65,6 +69,14 @@ package net.pixlib.plugin
 		public function getController() : FrontController
 		{
 			return _oController;
+		}
+		
+		/**
+		 * Returns plugin Queue controller
+		 */
+		public function getQueueController() : QueueController
+		{
+			return _oQueueController;
 		}
 
 		/**
@@ -161,9 +173,10 @@ package net.pixlib.plugin
 		 */
 		public function firePrivateEvent( e : Event ) : void
 		{
-			if ( _oController.isRegistered( e.type ) ) 
+			if ( _oController.isRegistered( e.type ) || _oQueueController.isRegistered( e.type ) ) 
 			{
-				_oController.handleEvent( e );
+				if ( _oController.isRegistered( e.type ) ) _oController.handleEvent( e );
+				if ( _oQueueController.isRegistered( e.type ) ) _oQueueController.handleEvent( e );
 			} 
 			else
 			{
@@ -284,6 +297,7 @@ package net.pixlib.plugin
 		protected function _initialize() : void
 		{
 			_oController = new FrontController( this );
+			_oQueueController = new QueueController( this );
 			_oModelLocator = ModelLocator.getInstance( this );
 			_oViewLocator = ViewLocator.getInstance( this );
 
