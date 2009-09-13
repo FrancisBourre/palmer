@@ -243,12 +243,17 @@ package net.pixlib.commands
 
 			if ( cmd != null )
 			{
-				_dCommands[ cmd ] = true;
-				( cmd as Command ).addCommandListener( this );
-				cmd.execute( event );
+				executeCommand( event, cmd );
 			}
 		}
 		
+		protected function executeCommand( event : Event, cmd : Command  ) : void
+		{
+			_dCommands[ cmd ] = true;
+			( cmd as Command ).addCommandListener( this );
+			cmd.execute( event );
+		}
+
 		/**
 		 * Called when the command process is beginning.
 		 * 
