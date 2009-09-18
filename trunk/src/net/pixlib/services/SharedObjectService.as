@@ -117,7 +117,7 @@ package net.pixlib.services
 	
 				} catch( e : Error )
 				{
-					getLogger( ).error( this + " call failed !. " + e.message );
+					getLogger( ).error( this + " call failed !. " + e.message + "\n" + e.getStackTrace(), this );
 					onFaultHandler( null );
 				}
 

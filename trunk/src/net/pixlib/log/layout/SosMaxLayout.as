@@ -17,7 +17,6 @@ package net.pixlib.log.layout
 {
 	import net.pixlib.exceptions.PrivateConstructorException;
 	import net.pixlib.log.LogEvent;
-	import net.pixlib.log.LogLevel;
 	import net.pixlib.log.LogListener;
 	import net.pixlib.log.PalmerStringifier;
 
@@ -60,27 +59,48 @@ package net.pixlib.log.layout
 			if ( !(SosMaxLayout._oI is SosMaxLayout) ) SosMaxLayout._oI = new SosMaxLayout( new ConstructorAccess() );
 			return SosMaxLayout._oI;
 		}
-
-		public function output(  o : Object, level : LogLevel ) : void
-		{						
+		
+		protected function output ( message : String ) : void
+		{
 			if ( _oXMLSocket.connected )
 			{
-				_oXMLSocket.send( "!SOS<showMessage key='" + level.getName() + "'>" + String(o) + "</showMessage>\n" );
+				_oXMLSocket.send( message );
 				
 			} else
 			{	
-				_aBuffer.push( "!SOS<showMessage key='" + level.getName() + "'>" + String(o) + "</showMessage>\n" );
+				_aBuffer.push( message );
 			}
 		}
+
+		protected function formatMessage( e : LogEvent ) : String
+		{
+			var message : String = String( e.message );
+
+			var lines 		: Array = message.split("\n");
+			var xmlMessage 	: XML 	= new XML( "<" + (lines.length == 1 ? "showMessage" : "showFoldMessage") +" key='" + e.level.getName() + "' />" );
+
+			if ( lines.length > 1 )
+			{
+				xmlMessage.title = lines[0];
+				xmlMessage.message = message.substr( message.indexOf("\n") + 1, message.length );
+
+			} else
+			{
+				xmlMessage.appendChild( message );
+			}
+
+			return '!SOS' + xmlMessage.toXMLString() + '\n';
+		}
+		
 		
 		public function clearOutput() : void
 		{
-			_oXMLSocket.send( "!SOS<clear/>\n" );
+			output( "!SOS<clear/>\n" );
 		}
 		
 		public function onLog( e : LogEvent ) : void
 		{
-			output( e.message, e.level );
+			output( formatMessage( e ) );
 		}
 		
 		/**

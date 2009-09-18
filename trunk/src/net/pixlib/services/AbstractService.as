@@ -72,7 +72,7 @@ package net.pixlib.services
 		public function setResult( result : Object ) : void
 		{
 			_rawResult = result;
-			_result = _deserializer ? _deserializer.deserialize( result, _result ) : result;
+			_result = _deserializer ? _deserializer.deserialize( result, this ) : result;
 		}
 		
 		public function getResult() : Object

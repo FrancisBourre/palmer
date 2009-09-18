@@ -138,15 +138,4 @@ package net.pixlib.ioc
 			assertTrue( "obj.p5 as 'com.bourre.ioc.MockClass' instance ref fails", o.p5 is MockClass );			assertEquals( "obj.p6 as 'obj.objChild.prop' ref fails", "world", o.p6.prop );
 			assertEquals( "build 'com.bourre.structures.Dimension' class fails", _bf.locate( "dimensionClass" ), Dimension );
 
-			assertTrue( "build 'com.bourre.ioc.MockPlugin' instance fails", _bf.locate( "mockPlugin" ) is MockPlugin );		}
-		
-//		public function testOnApplicationInit() : void
-//		{
-//			_al.addEventListener( ApplicationLoaderEvent.onApplicationInitEVENT, addAsync( onInit, 5000 ) );
-//			_al.parseContext( _xml );
-//		}
-//		
-//		public function onInit( e : Event ) : void
-//		{
-//			assertTrue( "ApplicationLoaderEvent.onApplicationInitEVENT fails", true );
-//		}	}}
+			assertTrue( "build 'com.bourre.ioc.MockPlugin' instance fails", _bf.locate( "mockPlugin" ) is MockPlugin );		}	}}
