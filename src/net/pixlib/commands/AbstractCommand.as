@@ -55,7 +55,8 @@ package net.pixlib.commands
 		protected var _oEB 			: EventBroadcaster;
 		
 		private var _owner 			: Plugin;
-		private var _bIsRunning 	: Boolean;		private var _bIsCancelled 	: Boolean;
+		private var _bIsRunning 	: Boolean;
+		private var _bIsCancelled 	: Boolean;
 
 		public function AbstractCommand() 
 		{
@@ -125,8 +126,16 @@ package net.pixlib.commands
 		 */
 		final public function fireCommandEndEvent() : void
 		{
-			_bIsRunning = false;
-			broadcastCommandEndEvent();
+			if ( _bIsRunning )
+			{
+				_bIsRunning = false;
+				broadcastCommandEndEvent();
+
+			} else
+			{
+				var msg : String = this + ".fireCommandEndEvent() failed. This command was not running.";
+				getLogger().warn( msg );
+			}
 		}
 
 		/**

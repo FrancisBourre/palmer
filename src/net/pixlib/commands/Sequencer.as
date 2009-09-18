@@ -86,7 +86,7 @@ package net.pixlib.commands
 		/**
 		 * Name of the event dispatched at the stop of the command's process.
 		 */
-		public static const onSequencerEndVENT 	: String = "onSequencerEnd";
+		public static const onSequencerEndEVENT 	: String = "onSequencerEnd";
 		
 		
 		//--------------------------------------------------------------------
@@ -109,7 +109,9 @@ package net.pixlib.commands
 		/** Main source event data. */
 		protected var eEvent : Event;
 		
-		
+		/** Returns true if a command is currently processing. */
+		protected var _isCommandProcessing : Boolean;
+
 		//--------------------------------------------------------------------
 		// Public properties
 		//--------------------------------------------------------------------
@@ -129,6 +131,7 @@ package net.pixlib.commands
 		{
 			return _bUseEventFlow;
 		}
+
 		/** @private */
 		public function set useEventFlow(useEventFlow : Boolean) : void
 		{
@@ -148,8 +151,9 @@ package net.pixlib.commands
 			aCommands = new Vector.<Command>( );
 			
 			useEventFlow = false;
+			_isCommandProcessing = false;
 		}
-		
+
 		/**
 		 * @inheritDoc
 		 */
@@ -274,7 +278,7 @@ package net.pixlib.commands
 		 */
 		override protected function onExecute( e : Event = null ) : void
 		{
-			if( !isRunning()  && size() > 0 )
+			if( !_isCommandProcessing && size() > 0 )
 			{
 				eEvent = e;
 				nIndex = 0;
@@ -295,7 +299,7 @@ package net.pixlib.commands
 		 */
 		public function onCommandStart( e : CommandEvent ) : void
 		{
-			// do nothing.
+			_isCommandProcessing = true;
 		}
 		
 		/**
@@ -305,6 +309,8 @@ package net.pixlib.commands
 		 */
 		public function onCommandEnd( e : CommandEvent ) : void
 		{
+			_isCommandProcessing = false;
+
 			if ( nIndex + 1 < size() )
 			{
 				aCommands[ nIndex ].removeCommandListener( this );
@@ -329,10 +335,10 @@ package net.pixlib.commands
 			if( isRunning() )
 			{
 				return aCommands[ nIndex ];
-			}
-			else
+
+			} else
 			{
-				throw new IllegalStateException()( this + ".getRunningCommand() cannot be call when the sequencer is not running ");
+				throw new IllegalStateException()( this + ".getRunningCommand() cannot be called when the sequencer is not running ");
 				return null ;
 			}
 		}
@@ -468,7 +474,7 @@ package net.pixlib.commands
 		 */
 		protected function fireEndEvent() : void
 		{
-			_oEB.broadcastEvent( new ObjectEvent( onSequencerEndVENT, this, null ) );
+			_oEB.broadcastEvent( new ObjectEvent( onSequencerEndEVENT, this, null ) );
 		}
 	}
 }
