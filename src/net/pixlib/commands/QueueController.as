@@ -47,6 +47,11 @@ package net.pixlib.commands
 			_dCommandMap			= new Dictionary( false );
 		}
 		
+		public function hasCommandQueued( eventType : String ) : Boolean
+		{
+			return getCommandCollection( eventType ).length > 0;
+		}
+		
 		public function isRunning( eventType : String ) : Boolean
 		{
 			return _dRunningCommandMap[ eventType ];
@@ -58,7 +63,7 @@ package net.pixlib.commands
 			
 			super.onCommandEnd( e );
 			
-			if ( getCommandCollection( eventType ).length > 0 )
+			if ( hasCommandQueued( eventType ) )
 			{
 				executeNextCommand( eventType );
 
