@@ -18,9 +18,10 @@ package net.pixlib.load
 	import net.pixlib.collections.Queue;
 	import net.pixlib.exceptions.NullPointerException;
 	import net.pixlib.log.PalmerDebug;
-	
+
+	import flash.events.Event;
 	import flash.net.URLRequest;
-	import flash.system.LoaderContext;	
+	import flash.system.LoaderContext;
 
 	/**
 	 * @author Francis Bourre
@@ -29,8 +30,8 @@ package net.pixlib.load
 	public class QueueLoader 
 		extends AbstractLoader 
 	{
-		protected var _q : Queue;
-		protected var _currentLoader : Loader;
+		protected var _q 				: Queue;
+		protected var _currentLoader 	: Loader;
 
 		static private var _KEY : int = 0 ;
 
@@ -48,18 +49,11 @@ package net.pixlib.load
 		{
 			return _currentLoader;
 		}
-
-		override public function load( url : URLRequest = null, context : LoaderContext = null ) : void
+		
+		override protected function onExecute( e : Event = null ) : void
 		{
-			registerLoaderToPool( this );
-			
-			if( ( url != null ) || ( context != null ) )
-			{
-				PalmerDebug.WARN( this + ".load() arguments are not used in this implementation" );	
-			}
-			
 			var a : Array = _q.toArray();
-			var l : Number = a.length;
+			var l : int = a.length;
 			
 			while( --l > -1 )
 			{
@@ -75,6 +69,12 @@ package net.pixlib.load
 			
 			_onLoadStart();
 			_processQueue() ;
+		}
+
+		override public function load( url : URLRequest = null, context : LoaderContext = null ) : void
+		{
+			if( ( url != null ) || ( context != null ) ) PalmerDebug.WARN( this + ".load() arguments are not used in this implementation" );
+			execute();
 		}
 
 		override public function release() : void
