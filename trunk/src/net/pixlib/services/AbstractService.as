@@ -99,6 +99,12 @@ package net.pixlib.services
 		{
 			return _oEB.getListenerCollection();
 		}
+		
+		public function addArguments( ...rest ) : void
+		{
+			if ( !_args ) _args = new Array();
+			_args.concat( rest.concat() );
+		}
 
 		public function setArguments( ...rest ) : void
 		{
@@ -180,7 +186,6 @@ package net.pixlib.services
 			if ( isRegistered( this ) )
 			{
 				AbstractService.unregister( this );
-				setResult( o );
 				fireError();
 				fireCommandEndEvent();
 			}
