@@ -22,14 +22,16 @@ package net.pixlib.ioc.parser.factory.xml
 	import net.pixlib.load.GraphicLoader;
 	import net.pixlib.load.Loader;
 	import net.pixlib.load.LoaderEvent;
-	
-	import flash.net.URLRequest;	
+
+	import flash.net.URLRequest;
 
 	/**
 	 * @author Francis Bourre
 	 */
 	public class LoaderParser extends XMLParser
 	{
+		protected var _hasLoader : Boolean = false;
+		
 		//--------------------------------------------------------------------
 		// Public API
 		//--------------------------------------------------------------------
@@ -43,7 +45,7 @@ package net.pixlib.ioc.parser.factory.xml
 			for each ( var node : XML in getXMLContext( )[ ContextNameList.APPLICATION_LOADER ] ) parseNode( node );
 			delete getXMLContext( )[ ContextNameList.APPLICATION_LOADER ];
 			
-			fireCommandEndEvent( );
+			if ( !_hasLoader ) fireCommandEndEvent( );
 		}
 
 		
@@ -58,6 +60,8 @@ package net.pixlib.ioc.parser.factory.xml
 
 		protected function parseNode( node : XML ) : void
 		{
+			_hasLoader = true;
+			
 			var info : DisplayLoaderInfo = new DisplayLoaderInfo( 
 				AttributeUtils.getID( node ), 
 				new URLRequest( AttributeUtils.getURL( node ) ), 
