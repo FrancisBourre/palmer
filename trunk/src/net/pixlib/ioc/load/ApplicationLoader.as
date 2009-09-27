@@ -46,6 +46,7 @@ package net.pixlib.ioc.load
 	import net.pixlib.log.PalmerDebug;
 
 	import flash.display.DisplayObjectContainer;
+	import flash.events.Event;
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
 
@@ -302,7 +303,13 @@ package net.pixlib.ioc.load
 		override public function load( url : URLRequest = null, context : LoaderContext = null ) : void
 		{
 			if ( url != null ) setURL( url );
+			if ( context != null ) setContext( context );
 
+			execute();
+		}
+		
+		override protected function onExecute( e : Event = null ) : void
+		{
 			if ( getURL( ).url.length > 0 )
 			{
 				var loader : Loader = getContextLoader( );
@@ -312,7 +319,7 @@ package net.pixlib.ioc.load
 				loader.addEventListener( LoaderEvent.onLoadTimeOutEVENT, this );
 				loader.addEventListener( LoaderEvent.onLoadErrorEVENT, this );
 				
-				loader.load( getURL( ), context );
+				loader.load( getURL( ), getContext() );
 			} 
 			else
 			{

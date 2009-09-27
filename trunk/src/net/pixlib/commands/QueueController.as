@@ -42,9 +42,9 @@ package net.pixlib.commands
 		{
 			super( owner );
 
-			_dRunningCommandMap 	= new Dictionary( false );
-			_dCommandCollectionMap 	= new Dictionary( false );
-			_dCommandMap			= new Dictionary( false );
+			_dRunningCommandMap 	= new Dictionary( true );
+			_dCommandCollectionMap 	= new Dictionary( true );
+			_dCommandMap			= new Dictionary( true );
 		}
 		
 		public function hasCommandQueued( eventType : String ) : Boolean
@@ -60,6 +60,7 @@ package net.pixlib.commands
 		override public function onCommandEnd ( e : CommandEvent ) : void
 		{
 			var eventType 	: String 	= _dCommandMap[ e.getCommand() ] as String;
+			_dCommandMap[ e.getCommand() ] = null;
 			
 			super.onCommandEnd( e );
 			
@@ -69,7 +70,8 @@ package net.pixlib.commands
 
 			} else
 			{
-				_dRunningCommandMap[ eventType ] = false;
+				_dCommandCollectionMap[ eventType ] = null;
+				_dRunningCommandMap[ eventType ] = null;
 			}
 		}
 
