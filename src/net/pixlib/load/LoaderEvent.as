@@ -15,7 +15,7 @@
  */
 package net.pixlib.load
 {
-	import net.pixlib.events.BasicEvent;
+	import net.pixlib.events.CommandEvent;
 	
 	use namespace palmer_GraphicLoader;
 	
@@ -37,7 +37,7 @@ package net.pixlib.load
 	 * 
 	 * @see Loader
 	 */
-	public class LoaderEvent extends BasicEvent
+	public class LoaderEvent extends CommandEvent
 	{
 		//--------------------------------------------------------------------
 		// Events

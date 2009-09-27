@@ -16,6 +16,7 @@
 
 package net.pixlib.ioc.runner 
 {
+	import net.pixlib.events.CommandEvent;
 	import net.pixlib.ioc.load.ApplicationLoaderEvent;
 	import net.pixlib.ioc.load.ApplicationLoaderListener;
 	import net.pixlib.ioc.load.ApplicationLoaderState;
@@ -68,6 +69,22 @@ package net.pixlib.ioc.runner
 			{
 				oLoader.removeListener( this );
 			}
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function onCommandStart( e : CommandEvent ) : void
+		{
+			logStep( e );
+		}
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function onCommandEnd( e : CommandEvent ) : void
+		{
+			logStep( e );
 		}
 		
 		/**
@@ -186,7 +203,7 @@ package net.pixlib.ioc.runner
 		/**
 		 * @private
 		 */
-		protected function logStep( e : LoaderEvent ) : void
+		protected function logStep( e : CommandEvent ) : void
 		{
 			PalmerDebug.DEBUG( "[IoC] pass " + e.getType( ), this );
 		}
