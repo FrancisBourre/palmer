@@ -143,6 +143,8 @@ package net.pixlib.load
 		 */
 		public function closeStream() : void 
 		{
+			if( isRunning() ) fireCommandEndEvent();
+			
 			if( oStream )
 			{
 				oStream.removeEventListener(NetStatusEvent.NET_STATUS, onNetStreamStatus);
@@ -213,9 +215,12 @@ package net.pixlib.load
 			}
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		override protected function onCancel() : void
 		{
-			//TODO implementation
+			release();
 		}
 		
 		/**

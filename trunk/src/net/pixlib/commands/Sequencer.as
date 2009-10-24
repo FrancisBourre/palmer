@@ -287,9 +287,12 @@ package net.pixlib.commands
 			}
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		override protected function onCancel() : void
 		{
-			//TODO implementation
+			
 		}
 		
 		/**

@@ -55,7 +55,9 @@ package net.pixlib.utils
 		 */	
 		public static function getInstance() : FlashVars
 		{
-			if ( !(FlashVars._oI is FlashVars) ) FlashVars._oI = new FlashVars( ConstructorAccess.instance );
+			if ( !(FlashVars._oI is FlashVars) ) 
+				FlashVars._oI = new FlashVars( ConstructorAccess.instance );
+				
 			return FlashVars._oI;
 		}
 
