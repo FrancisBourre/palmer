@@ -25,6 +25,7 @@ package net.pixlib.utils
 	import flash.display.DisplayObjectContainer;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.system.ApplicationDomain;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
@@ -55,7 +56,7 @@ package net.pixlib.utils
 		 */
 		public static function attachSprite( linkage : String, parent : DisplayObjectContainer = null, domain : ApplicationDomain = null ) : Sprite
 		{
-			return _attachObject( linkage, parent, domain ) as Sprite;
+			return _attachObject(linkage, parent, domain) as Sprite;
 		}
 
 		/**
@@ -72,7 +73,7 @@ package net.pixlib.utils
 		 */
 		public static function attachMovie( linkage : String, parent : DisplayObjectContainer = null, domain : ApplicationDomain = null ) : MovieClip
 		{
-			return _attachObject( linkage, parent, domain ) as MovieClip;
+			return _attachObject(linkage, parent, domain) as MovieClip;
 		}
 
 		/**
@@ -94,8 +95,8 @@ package net.pixlib.utils
 			{
 				if( debug )
 				{
-					PalmerDebug.DEBUG( _stringify( ) + " source = " + object.width + "x" + object.height );
-					PalmerDebug.DEBUG( _stringify( ) + " bounds = " + max.width + "x" + max.height );
+					PalmerDebug.DEBUG(_stringify() + " source = " + object.width + "x" + object.height);
+					PalmerDebug.DEBUG(_stringify() + " bounds = " + max.width + "x" + max.height);
 				}
 				
 				var ratio : Number = object.height / object.width;
@@ -103,16 +104,16 @@ package net.pixlib.utils
 				if (object.width > max.width) 
 				{
 					object.width = max.width;
-					object.height = Math.round( object.width * ratio );
+					object.height = Math.round(object.width * ratio);
 				}
 				
 				if (object.height > max.height ) 
 				{
 					object.height = max.height;
-					object.width = Math.round( object.height / ratio );
+					object.width = Math.round(object.height / ratio);
 				}
 				
-				if( debug ) PalmerDebug.DEBUG( _stringify( ) + " resize = " + object.width + "x" + object.height );
+				if( debug ) PalmerDebug.DEBUG(_stringify() + " resize = " + object.width + "x" + object.height);
 			}
 		}
 
@@ -130,23 +131,23 @@ package net.pixlib.utils
 		{
 			var target : DisplayObject = container;
 			
-			var a : Array = label.split( "." );
+			var a : Array = label.split(".");
 			var l : int = a.length;
 			
-			for ( var i : int = 0; i < l ; i++ )
+			for ( var i : int = 0;i < l; i++ )
 			{
 				var name : String = a[ i ];
-				if ( (target as DisplayObjectContainer).getChildByName( name ) != null )
+				if ( (target as DisplayObjectContainer).getChildByName(name) != null )
 				{
-					target = (target as DisplayObjectContainer).getChildByName( name );
+					target = (target as DisplayObjectContainer).getChildByName(name);
 				}
 				else
 				{
 					if ( throwException )
 					{
-						var msg : String = _stringify( ) + ".resolveUI(" + label + ") failed on " + container;
-						PalmerDebug.ERROR( msg );
-						throw new NoSuchElementException( msg );
+						var msg : String = _stringify() + ".resolveUI(" + label + ") failed on " + container;
+						PalmerDebug.ERROR(msg);
+						throw new NoSuchElementException(msg);
 					}
 					
 					return null;
@@ -161,11 +162,11 @@ package net.pixlib.utils
 		 */
 		public static function resolveFunction( container : DisplayObject, label : String  , throwException : Boolean = true ) : Function
 		{
-			var a : Array = label.split( "." );
-			var f : String = a.pop( );
-			var target : DisplayObjectContainer = resolveUI( container, a.join( "." ), false ) as DisplayObjectContainer ; 
+			var a : Array = label.split(".");
+			var f : String = a.pop();
+			var target : DisplayObjectContainer = resolveUI(container, a.join("."), false) as DisplayObjectContainer ; 
 			
-			if ( target.hasOwnProperty( f ) && target[f] is Function  )
+			if ( target.hasOwnProperty(f) && target[f] is Function  )
 			{
 				return target[f] ;
 			}
@@ -173,9 +174,9 @@ package net.pixlib.utils
 			{
 				if ( throwException ) 
 				{
-					var msg : String = _stringify( ) + ".resolveFunction(" + label + ") failed on " + container;
-					PalmerDebug.ERROR( msg );
-					throw new NoSuchElementException( msg );
+					var msg : String = _stringify() + ".resolveFunction(" + label + ") failed on " + container;
+					PalmerDebug.ERROR(msg);
+					throw new NoSuchElementException(msg);
 				}
 			}
 			
@@ -191,15 +192,15 @@ package net.pixlib.utils
 		 */
 		public static function callOnDisplayTree( target : DisplayObject, callback : Function, processOwner : Boolean = true ) : void
 		{
-			if( processOwner ) callback( target );
+			if( processOwner ) callback(target);
 			
 			if ( target is DisplayObjectContainer )
 			{
-				var l : int = DisplayObjectContainer( target ).numChildren;
+				var l : int = DisplayObjectContainer(target).numChildren;
 				
-				for (var i : uint = 0; i < l ; i++)
+				for (var i : uint = 0;i < l; i++)
 				{
-					callOnDisplayTree( DisplayObjectContainer( target ).getChildAt( i ), callback, true );
+					callOnDisplayTree(DisplayObjectContainer(target).getChildAt(i), callback, true);
 				}
 			}
 		}
@@ -215,7 +216,7 @@ package net.pixlib.utils
 			
 			try
 			{
-				for ( var o : DisplayObject = target; o != null ; o = o.parent )
+				for ( var o : DisplayObject = target;o != null; o = o.parent )
 				{
 					if (o.parent && o.stage && o.parent == o.stage)  break;
                    
@@ -228,7 +229,7 @@ package net.pixlib.utils
         	
 			return result;
 		}
-		
+
 		/**
 		 * Creates an unique name for passed-in object.
 		 * 
@@ -241,14 +242,14 @@ package net.pixlib.utils
 		 */
 		public static function createUniqueName( object : Object ) : String
 		{
-			var key : String = HashCodeFactory.getKey( object );
-			var name : String = getQualifiedClassName( object );
-			var index : int = name.indexOf( "::" );
-			if (index != -1) name = name.substr( index + 2 );
+			var key : String = HashCodeFactory.getKey(object);
+			var name : String = getQualifiedClassName(object);
+			var index : int = name.indexOf("::");
+			if (index != -1) name = name.substr(index + 2);
 			
-			return name + "_" + key.substr( HashCodeFactory.PREFIX.length + 1 );
+			return name + "_" + key.substr(HashCodeFactory.PREFIX.length + 1);
 		}
-		
+
 		/**
 		 * Removes all childrens of passed-in <code>container</code>.
 		 * 
@@ -256,10 +257,78 @@ package net.pixlib.utils
 		 */
 		public static function removeAllChildren( container : DisplayObjectContainer ) : void 
 		{
-			while( container.numChildren > 0 ) container.removeChildAt( 0 );
+			while( container.numChildren > 0 ) container.removeChildAt(0);
+		}
+
+		/**
+		 * Changes the rendering quality of application.
+		 * 
+		 * <p>The following are valid values:
+		 * <ul>
+		 * 	<li><code>StageQuality.LOW</code> — Low rendering quality. 
+		 * 	Graphics are not anti-aliased, 
+		 * 	and bitmaps are not smoothed. This setting is not supported in Adobe AIR.</li>
+		 * 	<li><code>StageQuality.MEDIUM</code> — Medium rendering quality. 
+		 * 	Graphics are anti-aliased 
+		 * 	using a 2 x 2 pixel grid, but bitmaps are not smoothed. 
+		 * 	This setting is suitable for movies that do not contain text. 
+		 * 	This setting is not supported in Adobe AIR.</li>
+		 * 	<li><code>StageQuality.HIGH</code> — High rendering quality. 
+		 * 	Graphics are anti-aliased 
+		 * 	using a 4 x 4 pixel grid, and bitmaps are smoothed if the movie is static. 
+		 * 	This is the default rendering quality setting that Flash Player uses.</li>
+		 * 	<li><code>StageQuality.BEST</code> — Very high rendering quality. 
+		 * 	Graphics are anti-aliased using a 4 x 4 pixel grid and bitmaps 
+		 * 	are always smoothed.</li>
+		 * </ul>
+		 * 
+		 * @param	stage	Main Stage
+		 * @param	quality	New rendering quality to use
+		 */
+		public function changeQuality( stage : Stage, quality : String = "best" ) : void 
+		{
+			if( ( stage != null ) && ( stage.quality != quality ) ) 
+			{
+				try
+				{
+					stage.quality = quality;
+				}
+				catch( e : Error )
+				{
+					PalmerDebug.ERROR("Stage quality change failed = " + e.message);	
+				}
+			}
 		}
 		
+		/**
+		 * Changes the frame rate of the stage. 
+		 * 
+		 * <p>The frame rate is defined as frames per second. 
+		 * By default the rate is set to the frame rate of the first SWF file loaded. 
+		 * Valid range for the frame rate is from 0.01 to 1000 frames per second.</p>
+		 * 
+		 * @param	stage		Main Stage
+		 * @param	framerate	New frame rate to use
+		 */
+		public static function changeFramerate( stage : Stage, framerate : uint = 31) : void
+		{
+			if( ( stage != null ) && ( stage.frameRate != framerate ) ) 
+			{
+				if( framerate <= 1000 )
+				{
+					try
+					{
+						stage.frameRate = framerate;
+					}
+					catch( e : Error )
+					{
+						PalmerDebug.ERROR("Stage framerate change failed = " + e.message);	
+					}
+				}
+			}
+		}
 
+		
 		//--------------------------------------------------------------------
 		// Private implementation
 		//--------------------------------------------------------------------
@@ -268,17 +337,17 @@ package net.pixlib.utils
 		{
 			try
 			{
-				var clazz : Class = domain ? domain.getDefinition( linkage ) as Class : getDefinitionByName( linkage ) as Class;
+				var clazz : Class = domain ? domain.getDefinition(linkage) as Class : getDefinitionByName(linkage) as Class;
 				
 				if( parent != null )
 				{
-					return parent.addChild( new clazz( ) );
+					return parent.addChild(new clazz());
 				}
-				else return new clazz( );
+				else return new clazz();
 			}	
 			catch( e : ReferenceError )
 			{
-				PalmerDebug.ERROR( _stringify( ) + "::" + e.message );
+				PalmerDebug.ERROR(_stringify() + "::" + e.message);
 			}
 			
 			return null;
@@ -286,7 +355,7 @@ package net.pixlib.utils
 
 		private static function _stringify() : String
 		{
-			return PalmerStringifier.stringify( DisplayUtil );	
+			return PalmerStringifier.stringify(DisplayUtil);	
 		}
 
 		/** @private */

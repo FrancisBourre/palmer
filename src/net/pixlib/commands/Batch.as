@@ -195,9 +195,12 @@ package net.pixlib.commands
 			if( _hasNext( ) ) _next( ).execute( _eEvent );
 		}
 		
+		/**
+		 * @inheritDoc
+		 */
 		override protected function onCancel() : void
 		{
-			//TODO implementation
+			
 		}
 		
 		/**

@@ -70,9 +70,8 @@ package net.pixlib.ioc.parser.factory.xml
 		//--------------------------------------------------------------------
 		// Private properties
 		//--------------------------------------------------------------------
-
 		private var _loader : QueueLoader;
-		
+
 		
 		//--------------------------------------------------------------------
 		// Public API
@@ -83,24 +82,22 @@ package net.pixlib.ioc.parser.factory.xml
 		 */
 		public function ImportParser(   )
 		{
-			_loader = new QueueLoader( );
+			_loader = new QueueLoader();
 		}
-		
+
 		/**
 		 * Starts include job.
 		 */
 		override public function parse() : void
 		{
-			parseImport( getXMLContext( ) );
+			parseImport(getXMLContext());
 			
-			executeQueue( );
+			executeQueue();
 		}
 
-		
 		//--------------------------------------------------------------------
 		// Protected methods
 		//--------------------------------------------------------------------
-		
 		override protected function getState(  ) : String
 		{
 			return ApplicationLoaderState.IMPORT_PARSE_STATE;
@@ -111,119 +108,116 @@ package net.pixlib.ioc.parser.factory.xml
 		 */
 		protected function executeQueue( ) : void
 		{
-			if( !_loader.isEmpty( ) )
+			if( !_loader.isEmpty() )
 			{
-				_loader.addEventListener( QueueLoaderEvent.onItemLoadInitEVENT, onImportLoadInit );
-				_loader.addEventListener( LoaderEvent.onLoadProgressEVENT,  onImportLoadProgress );				_loader.addEventListener( LoaderEvent.onLoadTimeOutEVENT, onImportLoadError );
-				_loader.addEventListener( LoaderEvent.onLoadErrorEVENT, onImportLoadError );
-				_loader.addEventListener( LoaderEvent.onLoadInitEVENT, onLoadQueueInit );
-				_loader.execute( );
+				_loader.addEventListener(QueueLoaderEvent.onItemLoadInitEVENT, onImportLoadInit);
+				_loader.addEventListener(LoaderEvent.onLoadProgressEVENT, onImportLoadProgress);				_loader.addEventListener(LoaderEvent.onLoadTimeOutEVENT, onImportLoadError);
+				_loader.addEventListener(LoaderEvent.onLoadErrorEVENT, onImportLoadError);
+				_loader.addEventListener(LoaderEvent.onLoadInitEVENT, onLoadQueueInit);
+				_loader.execute();
 			}
-			else fireOnCompleteEvent( );
+			else fireOnCompleteEvent();
 		}
-		
+
 		/**
 		 * @private
 		 */
 		protected function release() : void
 		{
-			_loader.removeEventListener( QueueLoaderEvent.onItemLoadInitEVENT, onImportLoadInit );			_loader.removeEventListener( LoaderEvent.onLoadProgressEVENT,  onImportLoadProgress );
-			_loader.removeEventListener( LoaderEvent.onLoadTimeOutEVENT, onImportLoadError );
-			_loader.removeEventListener( LoaderEvent.onLoadErrorEVENT, onImportLoadError );
-			_loader.removeEventListener( LoaderEvent.onLoadInitEVENT, onLoadQueueInit );
-			_loader.release( );
+			_loader.removeEventListener(QueueLoaderEvent.onItemLoadInitEVENT, onImportLoadInit);			_loader.removeEventListener(LoaderEvent.onLoadProgressEVENT, onImportLoadProgress);
+			_loader.removeEventListener(LoaderEvent.onLoadTimeOutEVENT, onImportLoadError);
+			_loader.removeEventListener(LoaderEvent.onLoadErrorEVENT, onImportLoadError);
+			_loader.removeEventListener(LoaderEvent.onLoadInitEVENT, onLoadQueueInit);
+			_loader.release();
 			
 			ImportExpert.release();
 		}
-		
+
 		/**
 		 * @private
 		 */
 		protected function parseImport( xml : XML ) : void
 		{
-			var incXML : XMLList = xml.child( ContextNameList.IMPORT );
-			var l : int = incXML.length( );
+			var incXML : XMLList = xml.child(ContextNameList.IMPORT);
+			var l : int = incXML.length();
 			
-			for ( var i : int = 0; i < l ; i++ ) 
+			for ( var i : int = 0;i < l; i++ ) 
 			{
 				var node : XML = incXML[ i ];
-				var info : Import = new Import( new URLRequest( AttributeUtils.getURL( node ) ), AttributeUtils.getRootRef( node ) );
+				var info : Import = new Import(new URLRequest(AttributeUtils.getURL(node)), AttributeUtils.getRootRef(node));
 				
 				var id : String = info.url.url;
 				
-				ImportExpert.getInstance( ).register( id, info );
+				ImportExpert.getInstance().register(id, info);
 				
-				var xl : XMLLoader = new XMLLoader( );
+				var xl : XMLLoader = new XMLLoader();
 				
-				_loader.add( xl, id, info.url, new LoaderContext( false, ApplicationDomain.currentDomain ) );
+				_loader.add(xl, id, info.url, new LoaderContext(false, ApplicationDomain.currentDomain));
 			}
 			
 			delete xml[ ContextNameList.IMPORT ];
 		}
-		
+
 		/**
 		 * @private
 		 */
 		protected function onImportLoadInit( event : LoaderEvent ) : void
 		{
-			var xml : XML = XMLLoader( event.getLoader( ) ).getXML( );
-			var info : Import = ImportExpert.getInstance( ).locate( event.getName( ) ) as Import;
+			var xml : XML = XMLLoader(event.getLoader()).getXML();
+			var info : Import = ImportExpert.getInstance().locate(event.getName()) as Import;
 			
-			checkImportSandbox( xml, event.getLoader().getURL().url );
-			checkImportDomain( xml );
+			checkImportSandbox(xml, event.getLoader().getURL().url);
+			checkImportDomain(xml);
 			
-			parseImport( xml );
+			parseImport(xml);
 			
 			try
 			{
-				var container : XMLList = getXMLContext( ).descendants( ).(  hasOwnProperty( "@id" ) && @id == info.rootRef );
+				var container : XMLList = getXMLContext().descendants().(  hasOwnProperty("@id") && @id == info.rootRef );
 				
-				if( xml.hasOwnProperty( ContextNameList.ROOT ) )
+				if( xml.hasOwnProperty(ContextNameList.ROOT) )
 				{
-					container.appendChild( xml.child( ContextNameList.ROOT ).children( ) );
+					container.appendChild(xml.child(ContextNameList.ROOT).children());
 					
 					delete xml[ ContextNameList.ROOT ];
 				}
 			}
-			catch( e : Error )
-			{
-				PalmerDebug.ERROR( this + "::no rootref for " + info.url.url + " -> " + info.rootRef );
+			catch( e : Error ) {
+				PalmerDebug.ERROR(this + "::no rootref for " + info.url.url + " -> " + info.rootRef);
 			}
-			finally
-			{
-				for each (var node : XML in xml.children( ) ) 
+			finally {
+				for each (var node : XML in xml.children() ) 
 				{
-					getXMLContext( ).appendChild( node );
+					getXMLContext().appendChild(node);
 				}
 				
-				ImportExpert.getInstance( ).unregister( info.url.url );
+				ImportExpert.getInstance().unregister(info.url.url);
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */
 		protected function onImportLoadProgress( event : LoaderEvent ) : void
 		{
-			
 		}
-		
+
 		/**
 		 * @private
 		 */
 		protected function onImportLoadError( event : LoaderEvent ) : void
 		{
-			fireOnCompleteEvent( );
+			fireOnCompleteEvent();
 		}
-		
+
 		/**
 		 * @private
 		 */
 		protected function onLoadQueueInit( event : QueueLoaderEvent ) : void
 		{
-			release( );
+			release();
 			
-			fireOnCompleteEvent( );
+			fireOnCompleteEvent();
 		}
 
 		/**
@@ -231,7 +225,7 @@ package net.pixlib.ioc.parser.factory.xml
 		 */
 		protected function fireOnCompleteEvent( ) : void
 		{
-			fireCommandEndEvent( );
+			fireCommandEndEvent();
 		}
 		
 		/**
@@ -242,24 +236,24 @@ package net.pixlib.ioc.parser.factory.xml
 		 */
 		protected function checkImportSandbox( imported : XML, contextURL : String ) : void
 		{
-			var result : XMLList = imported..*.( hasOwnProperty( getAttributeName( ContextAttributeList.URL ) ) && String( @[ContextAttributeList.URL] ).length > 0 );
+			var result : XMLList = imported..*.( hasOwnProperty(getAttributeName(ContextAttributeList.URL)) && String(@[ContextAttributeList.URL]).length > 0 );
 			
 			for each (var node : XML in result)
 			{
 				var separator : String = "://";
 				var url : String = node.@url;
-				var key : String = url.substring( 0, url.indexOf( separator ) );
+				var key : String = url.substring(0, url.indexOf(separator));
 				
 				if( key == "sandbox" )
 				{
-					node.@url = NetUtil.createCleanRelativeURL( contextURL, url.substr( url.indexOf( separator ) + separator.length ) );
+					node.@url = NetUtil.createCleanRelativeURL(contextURL, url.substr(url.indexOf(separator) + separator.length));
 				}
 			}
 		}
 		
 		protected function checkImportDomain( imported : XML ) : void
 		{
-			if( imported.hasOwnProperty( getAttributeName( "domain" ) ) )
+			if( imported.hasOwnProperty(getAttributeName("domain")) )
 			{
 				var domain : String = imported.@domain;
 				
@@ -268,19 +262,19 @@ package net.pixlib.ioc.parser.factory.xml
 					var node : XML;
 					
 					//ID process
-					var nodes : XMLList = imported..*.( hasOwnProperty( getAttributeName( ContextAttributeList.ID ) ) && String( @[ContextAttributeList.ID] ).length > 0 );
+					var nodes : XMLList = imported..*.( hasOwnProperty(getAttributeName(ContextAttributeList.ID)) && String(@[ContextAttributeList.ID]).length > 0 );
 					for each ( node in nodes ) 
 					{
 						node.@id = domain + "_" + node.@id;
 					}
 					
 					//REF process
-					nodes = imported..*.( hasOwnProperty( getAttributeName( ContextAttributeList.REF ) ) && String( @[ContextAttributeList.REF] ).length > 0 );
+					nodes = imported..*.( hasOwnProperty(getAttributeName(ContextAttributeList.REF)) && String(@[ContextAttributeList.REF]).length > 0 );
 					for each (node  in nodes ) 
 					{
-						if( String( node.@ref ).indexOf( "/" ) == 0 )
+						if( String(node.@ref).indexOf("/") == 0 )
 						{
-							node.@ref = String( node.@ref ).substr( 1 );	
+							node.@ref = String(node.@ref).substr(1);	
 						}
 						else
 						{
@@ -290,7 +284,7 @@ package net.pixlib.ioc.parser.factory.xml
 				}
 			}
 		}
-		
+
 		/**
 		 * Returns XML attribute full qualified name.
 		 */
@@ -298,14 +292,14 @@ package net.pixlib.ioc.parser.factory.xml
 		{
 			return "@" + name;		
 		}
-		
+
 		/**
 		 * Parses url.
 		 */
 		protected function getSandboxURL( url : String, contextURL : String  ) : String
 		{
-			var cURL : String = contextURL.substring( 0, getApplicationLoader().getURL( ).url.indexOf( "?" ) );
-			var contextPath : String = cURL.substring( 0, contextURL.lastIndexOf( "/" ) );
+			var cURL : String = contextURL.substring(0, getApplicationLoader().getURL().url.indexOf("?"));
+			var contextPath : String = cURL.substring(0, contextURL.lastIndexOf("/"));
 			
 			if( contextPath.length > 0 ) contextPath += "/";
 			
